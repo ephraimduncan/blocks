@@ -19,4 +19,5 @@ export const categoryIds: { [key: string]: string } = {
   Login: "login",
   Stats: "stats",
   GridList: "grid-list",
+  Alert: "alert",
 };

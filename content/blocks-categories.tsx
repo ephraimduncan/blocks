@@ -67,6 +67,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: StatsThumbnail,
     hasCharts: false,
   },
+  {
+    id: categoryIds.Alert,
+    name: "Alert",
+    thumbnail: StatsThumbnail,
+    hasCharts: false,
+  },
 ];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories();

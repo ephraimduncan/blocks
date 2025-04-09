@@ -197,4 +197,10 @@ export const blocksMetadata: BlocksMetadata[] = [
     name: "Link cards with icons",
     iframeHeight: "500px",
   },
+  {
+    id: "alert-01",
+    category: categoryIds.Alert,
+    name: "Alert box based in Bootstrap style",
+    iframeHeight: "500px",
+  },
 ];

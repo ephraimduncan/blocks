@@ -3,6 +3,7 @@ import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
 import { LoginThumbnail } from "@/components/thumbnails/login";
 import { StatsThumbnail } from "@/components/thumbnails/stats";
 
+import { AlertThumbnail } from "@/components/thumbnails/alert";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
@@ -70,7 +71,7 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.Alert,
     name: "Alert",
-    thumbnail: StatsThumbnail,
+    thumbnail: AlertThumbnail,
     hasCharts: false,
   },
 ];

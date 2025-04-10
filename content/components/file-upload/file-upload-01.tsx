@@ -127,22 +127,22 @@ export default function FileUpload() {
                       <SelectItem value="2">
                         <img
                           className="size-5 rounded"
-                          src="https://blocks.so/avatar-01.png"
-                          alt="Mark Manson"
+                          src="https://blocks.so/avatar-03.png"
+                          alt="Lucas Smith"
                           width={20}
                           height={20}
                         />
-                        <span className="truncate">Mark Manson</span>
+                        <span className="truncate">Lucas Smith</span>
                       </SelectItem>
                       <SelectItem value="3">
                         <img
                           className="size-5 rounded"
-                          src="https://blocks.so/avatar-01.png"
-                          alt="Anne Kelley"
+                          src="https://blocks.so/avatar-02.jpg"
+                          alt="Timur Ercan"
                           width={20}
                           height={20}
                         />
-                        <span className="truncate">Anne Kelley</span>
+                        <span className="truncate">Timur Ercan</span>
                       </SelectItem>
                     </SelectGroup>
                   </SelectContent>

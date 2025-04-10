@@ -7,7 +7,7 @@
     "build:source": "bun run scripts/build-registry-sources.ts",
     "build:registry": "bun run scripts/build-registry-index.ts && bun run build:source",
     "markdown": "bun run scripts/generate-markdown.ts ./content/components/",
-    "build": "bun run build:registry && bun run markdown && next build",
+    "build": "bun run build:registry && bun run markdown && next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -47,12 +47,12 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.483.0",
     "motion": "^12.5.0",
-    "next": "15.2.3",
+    "next": "15.3.0",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
-    "react": "^19.0.0",
+    "react": "19.1.0",
     "react-day-picker": "8.10.1",
-    "react-dom": "^19.0.0",
+    "react-dom": "19.1.0",
     "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.54.2",
     "react-resizable-panels": "^2.1.7",
@@ -69,12 +69,16 @@
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.2",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "15.2.3",
+    "eslint-config-next": "15.3.0",
     "@eslint/eslintrc": "^3"
+  },
+  "overrides": {
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.2"
   }
 }

@@ -61,7 +61,7 @@ export default async function Page({ params }: PageProps) {
       <div className="mt-0 overflow-hidden px-px pb-px">
         {blocks.blocksData?.map((block) => (
           <Block
-            key={block.name}
+            key={block.blocksId}
             name={block.name}
             code={block.codeSource}
             meta={block.meta}

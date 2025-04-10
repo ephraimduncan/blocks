@@ -3,6 +3,7 @@ import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
 import { LoginThumbnail } from "@/components/thumbnails/login";
 import { StatsThumbnail } from "@/components/thumbnails/stats";
 
+import { DialogThumbnail } from "@/components/thumbnails/dialog";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
@@ -38,6 +39,12 @@ const initializeAndUpdateCategories = (): BlocksCategoryMetadata[] => {
 };
 
 const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
+  {
+    id: categoryIds.Dialogs,
+    name: "Dialogs",
+    thumbnail: DialogThumbnail,
+    hasCharts: false,
+  },
   {
     id: categoryIds.FileUpload,
     name: "File Upload",

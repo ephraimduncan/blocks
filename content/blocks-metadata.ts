@@ -197,10 +197,78 @@ export const blocksMetadata: BlocksMetadata[] = [
     name: "Link cards with icons",
     iframeHeight: "500px",
   },
+
   {
     id: "alert-01",
     category: categoryIds.Alert,
     name: "Alert box based in Bootstrap style",
     iframeHeight: "500px",
+  },
+
+  {
+    id: "dialog-01",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
+  {
+    id: "dialog-02",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
+  {
+    id: "dialog-03",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "400px",
+  },
+  {
+    id: "dialog-04",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
+  {
+    id: "dialog-05",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "400px",
+  },
+  {
+    id: "dialog-06",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "450px",
+  },
+  {
+    id: "dialog-07",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "450px",
+  },
+  {
+    id: "dialog-08",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "600px",
+  },
+  {
+    id: "dialog-09",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
+  {
+    id: "dialog-10",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "750px",
+  },
+  {
+    id: "dialog-11",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "650px",
   },
 ];

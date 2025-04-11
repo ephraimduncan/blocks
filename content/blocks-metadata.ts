@@ -197,7 +197,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     name: "Link cards with icons",
     iframeHeight: "500px",
   },
-
+  {
+    id: "sidebar-01",
+    category: categoryIds.Sidebar,
+    name: "Sidebar",
+  },
   {
     id: "dialog-01",
     category: categoryIds.Dialogs,

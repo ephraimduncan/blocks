@@ -233,6 +233,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "sidebar-01",
     category: categoryIds.Sidebar,
     name: "Sidebar",
+    type: "directory",
   },
   {
     id: "dialog-01",

@@ -25,14 +25,17 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
-  const blocks = getBlocks({ blocksCategory: params.blocksCategory });
+  const blocksCategory = blocksCategoriesMetadata.find(
+    (category) => category.id === params.blocksCategory
+  );
 
-  if (!blocks) {
-    return notFound();
+  if (!blocksCategory) {
+    return {};
   }
 
   return {
-    title: `${blocks.name} | blocks`,
+    title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui - blocks.so`,
+    description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
   };
 }
 
@@ -72,6 +75,7 @@ export default async function Page({ params }: PageProps) {
             }
             blocksId={block.blocksId}
             blocksCategory={block.blocksCategory}
+            fileTree={block.fileTree}
           />
         ))}
       </div>

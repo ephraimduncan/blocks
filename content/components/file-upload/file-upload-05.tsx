@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { FileSpreadsheet, Upload, X } from "lucide-react";
 
-export default function FileUpload04() {
+export default function FileUpload05() {
   return (
     <div className="sm:mx-auto sm:max-w-lg flex items-center justify-center p-10 w-full max-w-lg">
       <form>

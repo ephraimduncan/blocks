@@ -1,0 +1,998 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "blocks",
+  "homepage": "https://blocks.so",
+  "items": [
+    {
+      "name": "dialog-01",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-01.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-02",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-02.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-02.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-03",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-03.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-03.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-04",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-04.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-04.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-05",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "input",
+        "label"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-05.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-05.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-06",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "input",
+        "label",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-06.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-06.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-07",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "input",
+        "label"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-07.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-07.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-08",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "dialog",
+        "input"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-08.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-08.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-09",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "input",
+        "label",
+        "switch",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-09.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-09.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-10",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "dialog",
+        "input",
+        "label",
+        "popover",
+        "select",
+        "textarea"
+      ],
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-10.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-10.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-11",
+      "type": "registry:block",
+      "title": "Dialog",
+      "description": "A dialog block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "label",
+        "select",
+        "separator"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-11.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-11.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-01",
+      "type": "registry:block",
+      "title": "File Upload with Preview",
+      "description": "A file upload with preview block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "select",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-01/index.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/index.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/dropzone.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/dropzone.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/file-item.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/file-item.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/file-list.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/file-list.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/form.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-01",
+      "type": "registry:block",
+      "title": "File Upload with Preview",
+      "description": "A file upload with preview block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "select",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-01.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-02",
+      "type": "registry:block",
+      "title": "Simple File Upload",
+      "description": "A simple file upload block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-02.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-02.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-03",
+      "type": "registry:block",
+      "title": "Multi-File Dropzone",
+      "description": "A multi-file dropzone block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "select",
+        "separator"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-03.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-03.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-04",
+      "type": "registry:block",
+      "title": "Drag & Drop Upload",
+      "description": "A drag & drop upload block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "progress"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-04.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-04.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-05",
+      "type": "registry:block",
+      "title": "File Upload with Progress",
+      "description": "A file upload with progress block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "label"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-05.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-05.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-layout-01",
+      "type": "registry:block",
+      "title": "Workspace Registration Form",
+      "description": "A workspace registration form block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/form-layout/form-layout-01.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/form-layout-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-layout-02",
+      "type": "registry:block",
+      "title": "Form Sections with Side Labels",
+      "description": "A form sections with side labels block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "radio-group",
+        "select",
+        "separator",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/form-layout/form-layout-02.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/form-layout-02.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-layout-03",
+      "type": "registry:block",
+      "title": "Form Sections with Checkbox Settings",
+      "description": "A form sections with checkbox settings block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "input",
+        "label",
+        "select",
+        "separator",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/form-layout/form-layout-03.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/form-layout-03.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-layout-04",
+      "type": "registry:block",
+      "title": "Early Access Application with Package Selection",
+      "description": "A early access application with package selection block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "radio-group",
+        "select",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/form-layout/form-layout-04.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/form-layout-04.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-layout-05",
+      "type": "registry:block",
+      "title": "Design Workspace Creation with Plan Selection",
+      "description": "A design workspace creation with plan selection block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "input",
+        "label",
+        "radio-group",
+        "select",
+        "separator"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/form-layout/form-layout-05.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/form-layout-05.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-list-01",
+      "type": "registry:block",
+      "title": "Simple Card with Dropdown",
+      "description": "A simple card with dropdown block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "dropdown-menu"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/grid-list/grid-list-01.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/grid-list-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-list-02",
+      "type": "registry:block",
+      "title": "Link cards",
+      "description": "A link cards block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "avatar",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/grid-list/grid-list-02.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/grid-list-02.tsx"
+        }
+      ]
+    },
+    {
+      "name": "grid-list-03",
+      "type": "registry:block",
+      "title": "Link cards with icons",
+      "description": "A link cards with icons block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/grid-list/grid-list-03.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/grid-list-03.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-01",
+      "type": "registry:block",
+      "title": "Simple Email Login with Google",
+      "description": "A simple email login with google block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/login/login-01.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-02",
+      "type": "registry:block",
+      "title": "Simple Email/Password Login with Google",
+      "description": "A simple email/password login with google block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/login/login-02.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-02.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-03",
+      "type": "registry:block",
+      "title": "Simple Email/Password Login",
+      "description": "A simple email/password login block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/login/login-03.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-03.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-04",
+      "type": "registry:block",
+      "title": "Simple Login with Social Buttons",
+      "description": "A simple login with social buttons block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/login/login-04.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-04.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-05",
+      "type": "registry:block",
+      "title": "Simple Card Signup Form",
+      "description": "A simple card signup form block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "checkbox",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/login/login-05.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-05.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-06",
+      "type": "registry:block",
+      "title": "Login with Magic Link/SSO",
+      "description": "A login with magic link/sso block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/login/login-06.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-06.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-07",
+      "type": "registry:block",
+      "title": "Full Page Login with Icons",
+      "description": "A full page login with icons block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "input",
+        "label",
+        "separator"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/login/login-07.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-07.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-08",
+      "type": "registry:block",
+      "title": "Login with SSO",
+      "description": "A login with sso block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "checkbox",
+        "input",
+        "label"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/login/login-08.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-08.tsx"
+        }
+      ]
+    },
+    {
+      "name": "login-09",
+      "type": "registry:block",
+      "title": "Signup with Role Selection",
+      "description": "A signup with role selection block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "checkbox",
+        "input",
+        "label",
+        "select"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/login/login-09.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/login-09.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-01",
+      "type": "registry:block",
+      "title": "Stats with trending",
+      "description": "A stats with trending block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/stats/stats-01.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-02",
+      "type": "registry:block",
+      "title": "Stats with borders",
+      "description": "A stats with borders block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "badge",
+        "card"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-02.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-02.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-03",
+      "type": "registry:block",
+      "title": "Stats cards",
+      "description": "A stats cards block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/stats/stats-03.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-03.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-04",
+      "type": "registry:block",
+      "title": "Stats cards with badges",
+      "description": "A stats cards with badges block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "badge",
+        "card"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-04.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-04.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-05",
+      "type": "registry:block",
+      "title": "Stats cards with links",
+      "description": "A stats cards with links block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/stats/stats-05.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-05.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-06",
+      "type": "registry:block",
+      "title": "Stats cards with status",
+      "description": "A stats cards with status block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-06.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-06.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-07",
+      "type": "registry:block",
+      "title": "Stats cards with circular progress",
+      "description": "A stats cards with circular progress block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-07.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-07.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-08",
+      "type": "registry:block",
+      "title": "Stats card with circular progress and links",
+      "description": "A stats card with circular progress and links block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-08.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-08.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-09",
+      "type": "registry:block",
+      "title": "Stats card with progress",
+      "description": "A stats card with progress block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/stats/stats-09.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-09.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stats-10",
+      "type": "registry:block",
+      "title": "Stats card with area chart",
+      "description": "A stats card with area chart block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-10.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/stats-10.tsx"
+        }
+      ]
+    }
+  ]
+}

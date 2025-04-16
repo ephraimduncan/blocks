@@ -24,7 +24,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
-export default function FileUploadCard() {
+export default function FileUpload03() {
   const [files, setFiles] = React.useState<File[]>([]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => setFiles(acceptedFiles),

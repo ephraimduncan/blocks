@@ -21,6 +21,7 @@ import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { ImperativePanelHandle } from "react-resizable-panels";
 import CliCommands from "../cli-commands";
+import { CodeBlockEditor } from "../code-block-editor";
 import { Button } from "./button";
 import {
   Dialog,
@@ -47,6 +48,7 @@ export const Block = ({
   codeSource,
   code,
   meta,
+  fileTree,
 }: BlocksProps) => {
   const [hasCopied, setHasCopied] = useState(false);
   const [state, setState] = useState<BlockViewState>({
@@ -302,9 +304,15 @@ export const Block = ({
           </div>
         )}
 
-        {state.view === "code" && (
+        {state.view === "code" && meta?.type === "file" && (
           <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
             {codeSource}
+          </div>
+        )}
+
+        {state.view === "code" && meta?.type === "directory" && (
+          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
+            <CodeBlockEditor fileTree={fileTree ?? []} />
           </div>
         )}
       </div>

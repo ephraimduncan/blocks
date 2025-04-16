@@ -172,3 +172,62 @@ code,
 figure {
   @apply overflow-x-auto;
 }
+
+/* Code Block Editor Specific Styles */
+.code-block-editor-view pre,
+.code-block-editor-view code,
+.code-block-editor-view .shiki {
+  background-color: transparent !important;
+  margin: 0 !important;
+  width: 100%;
+}
+
+.code-block-editor-view .shiki {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.code-block-editor-view .shiki code {
+  display: inline-block;
+  min-width: 100%;
+}
+
+.code-block-editor-view pre code {
+  counter-reset: line;
+}
+
+.code-block-editor-view .line {
+  display: inline-block;
+  width: 100%;
+  padding-left: 2.5rem;
+  position: relative;
+  min-height: 1.8em;
+  white-space: pre;
+}
+
+.code-block-editor-view .line:empty {
+  height: 1.8em;
+}
+
+.code-block-editor-view .line:last-child:empty {
+  display: none;
+}
+
+.code-block-editor-view .line::before {
+  content: counter(line);
+  counter-increment: line;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1rem;
+  text-align: right;
+  color: hsl(var(--muted-foreground));
+  user-select: none;
+  font-size: 0.75rem;
+  line-height: 1.8em;
+}
+
+.code-block-editor-view .line:last-child:empty::before {
+  content: none;
+  counter-increment: none;
+}

@@ -22,26 +22,22 @@ function deleteDirectoryRecursive(directoryPath: string): void {
   }
 }
 
-function copyDirectory(src: string, dest: string): void {
+function copyDirectoryOnlyFiles(src: string, dest: string): void {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
-
   const entries = fs.readdirSync(src, { withFileTypes: true });
 
   for (const entry of entries) {
-    if (entry.name === "index.ts") {
+    if (entry.name === "index.ts" || entry.isDirectory()) {
       continue;
     }
 
     const srcPath = path.join(src, entry.name);
     let destPath = path.join(dest, entry.name);
 
-    if (entry.isDirectory()) {
-      copyDirectory(srcPath, destPath);
-    } else {
+    if (entry.isFile()) {
       const content = fs.readFileSync(srcPath, "utf8");
-
       if (path.extname(entry.name) === ".tsx") {
         destPath = path.join(dest, path.basename(entry.name, ".tsx") + ".mdx");
         const newContent = wrapContentWithCodeBlock(content);
@@ -69,13 +65,33 @@ preserveDirs.forEach((dir) => {
   const src = path.join(newFolderPath, dir);
   const dest = path.join(tempDir, dir);
   if (fs.existsSync(src)) {
-    copyDirectory(src, dest);
+    fs.cpSync(src, dest, { recursive: true });
   }
 });
 
 deleteDirectoryRecursive(newFolderPath);
 
-copyDirectory(folderPath, newFolderPath);
+if (!fs.existsSync(newFolderPath)) {
+  fs.mkdirSync(newFolderPath, { recursive: true });
+}
+
+preserveDirs.forEach((dir) => {
+  const src = path.join(tempDir, dir);
+  const dest = path.join(newFolderPath, dir);
+  if (fs.existsSync(src)) {
+    fs.cpSync(src, dest, { recursive: true });
+  }
+});
+
+const categoryEntries = fs.readdirSync(folderPath, { withFileTypes: true });
+for (const categoryEntry of categoryEntries) {
+  if (categoryEntry.isDirectory()) {
+    const categorySrcPath = path.join(folderPath, categoryEntry.name);
+    const categoryDestPath = path.join(newFolderPath, categoryEntry.name);
+
+    copyDirectoryOnlyFiles(categorySrcPath, categoryDestPath);
+  }
+}
 
 fs.rm(tempDir, { recursive: true, force: true }, (err) => {
   if (err) {

@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build:source": "bun run scripts/build-registry-sources.ts",
-    "build:registry": "bun run scripts/build-registry-index.ts && bun run build:source",
-    "markdown": "bun run scripts/generate-markdown.ts ./content/components/",
-    "build": "bun run build:registry && bun run markdown && next build --turbopack",
+    "generate:registry": "bun run scripts/generate-registry.mjs && shadcn build",
+    "generate:markdown": "bun run scripts/generate-markdown.ts ./content/components/",
+    "build": "bun run generate:registry && bun run generate:markdown && next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -51,6 +50,7 @@
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
     "react": "19.1.0",
+    "react-accessible-treeview": "^2.11.1",
     "react-day-picker": "8.10.1",
     "react-dom": "19.1.0",
     "react-dropzone": "^14.3.8",
@@ -59,7 +59,7 @@
     "recharts": "^2.15.1",
     "rehype-pretty-code": "^0.14.1",
     "shadcn": "^2.4.0-canary.17",
-    "shiki": "^3.2.1",
+    "shiki": "^3.2.2",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.2",
     "tw-animate-css": "^1.2.4",
@@ -67,18 +67,20 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "ts-morph": "^25.0.1",
+    "typescript": "^5"
   },
   "overrides": {
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

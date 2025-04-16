@@ -11,6 +11,7 @@ export type BlocksMetadata = {
   category: string;
   name: string;
   iframeHeight?: string;
+  type: "file" | "directory";
 };
 
 export const categoryIds: { [key: string]: string } = {

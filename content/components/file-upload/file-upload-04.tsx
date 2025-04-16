@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
-export default function FileUpload03() {
+export default function FileUpload04() {
   const [uploadState, setUploadState] = useState<{
     file: File | null;
     progress: number;

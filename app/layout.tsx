@@ -17,10 +17,7 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "blocks.so",
-    template: `%s - blocks.so`,
-  },
+  title: "blocks.so",
   metadataBase: new URL("https://blocks.so"),
   description: "blocks.so",
   keywords: [
@@ -30,6 +27,7 @@ export const metadata: Metadata = {
     "Server Components",
     "Radix UI",
     "shadcn",
+    "shadcn/ui",
     "blocks.so",
     "blocks",
   ],

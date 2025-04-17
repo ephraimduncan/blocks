@@ -12,16 +12,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { BellIcon } from "lucide-react";
 
+type Notification = {
+  id: string;
+  avatar: string;
+  fallback: string;
+  text: string;
+  time: string;
+};
+
 export function NotificationsPopover({
   notifications,
 }: {
-  notifications: {
-    id: string;
-    avatar: string;
-    fallback: string;
-    text: string;
-    time: string;
-  }[];
+  notifications: Notification[];
 }) {
   return (
     <DropdownMenu>
@@ -38,20 +40,15 @@ export function NotificationsPopover({
       <DropdownMenuContent side="right" className="w-80 my-6">
         <DropdownMenuLabel>Notifications</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {notifications.map((notification) => (
-          <DropdownMenuItem
-            key={notification.id}
-            className="flex items-start gap-3"
-          >
+        {notifications.map(({ id, avatar, fallback, text, time }) => (
+          <DropdownMenuItem key={id} className="flex items-start gap-3">
             <Avatar className="size-8">
-              <AvatarImage src={notification.avatar} alt="Avatar" />
-              <AvatarFallback>{notification.fallback}</AvatarFallback>
+              <AvatarImage src={avatar} alt="Avatar" />
+              <AvatarFallback>{fallback}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-sm font-medium">{notification.text}</span>
-              <span className="text-xs text-muted-foreground">
-                {notification.time}
-              </span>
+              <span className="text-sm font-medium">{text}</span>
+              <span className="text-xs text-muted-foreground">{time}</span>
             </div>
           </DropdownMenuItem>
         ))}

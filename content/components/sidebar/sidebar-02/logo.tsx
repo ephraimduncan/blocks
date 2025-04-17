@@ -1,8 +1,6 @@
-import { JSX, SVGProps } from "react";
+import { SVGProps } from "react";
 
-export const Logo = (
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) => (
+export const Logo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     fill="currentColor"
     height="48"

@@ -32,22 +32,6 @@ import DashboardNavigation from "./nav-main";
 import { NotificationsPopover } from "./nav-notifications";
 import { TeamSwitcher } from "./team-switcher";
 
-interface Organization {
-  id: string;
-  name: string;
-  slug: string;
-  avatar_url?: string;
-  feature_settings?: {
-    usage_based_billing_enabled?: boolean;
-  };
-}
-
-interface DashboardSidebarProps {
-  organizations: Organization[];
-}
-
-const appName = "Acme";
-
 const sampleNotifications = [
   {
     id: "1",
@@ -168,18 +152,9 @@ const dashboardRoutes: Route[] = [
     icon: <DollarSign className="size-4" />,
     link: "#",
     subs: [
-      {
-        title: "Incoming",
-        link: "#",
-      },
-      {
-        title: "Outgoing",
-        link: "#",
-      },
-      {
-        title: "Payout Account",
-        link: "#",
-      },
+      { title: "Incoming", link: "#" },
+      { title: "Outgoing", link: "#" },
+      { title: "Payout Account", link: "#" },
     ],
   },
   {
@@ -188,40 +163,38 @@ const dashboardRoutes: Route[] = [
     icon: <Settings className="size-4" />,
     link: "#",
     subs: [
-      {
-        title: "General",
-        link: "#",
-      },
-      {
-        title: "Webhooks",
-        link: "#",
-      },
-      {
-        title: "Custom Fields",
-        link: "#",
-      },
+      { title: "General", link: "#" },
+      { title: "Webhooks", link: "#" },
+      { title: "Custom Fields", link: "#" },
     ],
   },
 ];
 
-export function DashboardSidebar({ organizations }: DashboardSidebarProps) {
+const teams = [
+  { id: "1", name: "Alpha Inc.", logo: Logo, plan: "Free" },
+  { id: "2", name: "Beta Corp.", logo: Logo, plan: "Free" },
+  { id: "3", name: "Gamma Tech", logo: Logo, plan: "Free" },
+];
+
+export function DashboardSidebar() {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
 
   return (
     <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader
-        className={`flex md:pt-3.5 ${
+        className={cn(
+          "flex md:pt-3.5",
           isCollapsed
             ? "flex-row items-center justify-between gap-y-4 md:flex-col md:items-start md:justify-start"
             : "flex-row items-center justify-between"
-        }`}
+        )}
       >
         <a href="#" className="flex items-center gap-2">
           <Logo className="h-8 w-8" />
           {!isCollapsed && (
             <span className="font-semibold text-black dark:text-white">
-              {appName}
+              Acme
             </span>
           )}
         </a>
@@ -241,25 +214,10 @@ export function DashboardSidebar({ organizations }: DashboardSidebarProps) {
         </motion.div>
       </SidebarHeader>
       <SidebarContent className="gap-4 px-2 py-4">
-        <motion.div
-          key={isCollapsed ? "nav-collapsed" : "nav-expanded"}
-          className="flex items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <DashboardNavigation routes={dashboardRoutes} />
-        </motion.div>
+        <DashboardNavigation routes={dashboardRoutes} />
       </SidebarContent>
-
-      <SidebarFooter>
-        <TeamSwitcher
-          teams={organizations.map((org) => ({
-            name: org.name,
-            logo: Logo,
-            plan: "Free",
-          }))}
-        />
+      <SidebarFooter className="px-2">
+        <TeamSwitcher teams={teams} />
       </SidebarFooter>
     </Sidebar>
   );

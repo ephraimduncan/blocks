@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-
 import {
   Collapsible,
   CollapsibleContent,
@@ -19,6 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
+import type React from "react";
 import { useState } from "react";
 
 export type Route = {
@@ -36,51 +35,41 @@ export type Route = {
 export default function DashboardNavigation({ routes }: { routes: Route[] }) {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
-
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
-
-  const handleMenuItemClick = (route: Route) => {
-    if (!route.subs) {
-      setOpenCollapsible(null);
-    }
-  };
 
   return (
     <SidebarMenu>
       {routes.map((route) => {
         const isOpen = !isCollapsed && openCollapsible === route.id;
+        const hasSubRoutes = !!route.subs?.length;
 
         return (
           <SidebarMenuItem key={route.id}>
-            {route.subs ? (
+            {hasSubRoutes ? (
               <Collapsible
                 open={isOpen}
                 onOpenChange={(open) =>
                   setOpenCollapsible(open ? route.id : null)
                 }
                 className="w-full"
-                disabled={!route.subs?.length}
               >
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
                     className={cn(
-                      "flex w-full flex-row items-center rounded-lg px-2 transition-colors",
+                      "flex w-full items-center rounded-lg px-2 transition-colors",
                       isOpen
                         ? "bg-sidebar-muted text-foreground"
                         : "text-muted-foreground hover:bg-sidebar-muted hover:text-foreground",
                       isCollapsed && "justify-center"
                     )}
-                    onClick={() => {
-                      setOpenCollapsible(isOpen ? null : route.id);
-                    }}
                   >
                     {route.icon}
                     {!isCollapsed && (
-                      <span className={cn("ml-2 flex-1 text-sm font-medium")}>
+                      <span className="ml-2 flex-1 text-sm font-medium">
                         {route.title}
                       </span>
                     )}
-                    {!isCollapsed && !!route.subs?.length && (
+                    {!isCollapsed && hasSubRoutes && (
                       <span className="ml-auto">
                         {isOpen ? (
                           <ChevronUp className="size-4" />
@@ -94,44 +83,34 @@ export default function DashboardNavigation({ routes }: { routes: Route[] }) {
 
                 {!isCollapsed && (
                   <CollapsibleContent>
-                    <SidebarMenuSub className="my-1 ml-2">
-                      {route.subs.map((subRoute) => {
-                        return (
-                          <SidebarMenuSubItem
-                            key={`${route.id}-${subRoute.title}`}
-                            className="h-auto"
-                          >
-                            <SidebarMenuSubButton asChild>
-                              <Link
-                                href={subRoute.link}
-                                prefetch={true}
-                                className={cn(
-                                  "flex items-center rounded-md px-2 py-1.5 text-sm font-medium",
-                                  "text-muted-foreground hover:bg-sidebar-muted hover:text-foreground"
-                                )}
-                              >
-                                {subRoute.title}
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        );
-                      })}
+                    <SidebarMenuSub className="my-1 ml-3.5 ">
+                      {route.subs?.map((subRoute) => (
+                        <SidebarMenuSubItem
+                          key={`${route.id}-${subRoute.title}`}
+                          className="h-auto"
+                        >
+                          <SidebarMenuSubButton asChild>
+                            <Link
+                              href={subRoute.link}
+                              prefetch={true}
+                              className="flex items-center rounded-md px-4 py-1.5 text-sm font-medium text-muted-foreground hover:bg-sidebar-muted hover:text-foreground"
+                            >
+                              {subRoute.title}
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      ))}
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 )}
               </Collapsible>
             ) : (
-              <SidebarMenuButton
-                tooltip={route.title}
-                asChild
-                onClick={() => handleMenuItemClick(route)}
-              >
+              <SidebarMenuButton tooltip={route.title} asChild>
                 <Link
                   href={route.link}
                   prefetch={true}
                   className={cn(
-                    "flex flex-row items-center rounded-lg px-2 transition-colors",
-                    "text-muted-foreground hover:bg-sidebar-muted hover:text-foreground",
+                    "flex items-center rounded-lg px-2 transition-colors text-muted-foreground hover:bg-sidebar-muted hover:text-foreground",
                     isCollapsed && "justify-center"
                   )}
                 >

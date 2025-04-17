@@ -95,7 +95,7 @@ export default function FileUpload03() {
                   <SelectTrigger
                     id="visibility"
                     name="visibility"
-                    className="mt-2"
+                    className="mt-2 w-full"
                   >
                     <SelectValue placeholder="Select visibility" />
                   </SelectTrigger>

@@ -109,8 +109,8 @@ export default function FileUpload01() {
                   Project lead
                 </Label>
                 <Select defaultValue="1">
-                  <SelectTrigger id="projectLead" className="ps-2">
-                    <SelectValue placeholder="Select framework" />
+                  <SelectTrigger id="projectLead" className="ps-2 w-full">
+                    <SelectValue placeholder="Select project lead" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>

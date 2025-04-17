@@ -52,4 +52,5 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "dialog-12": components.Dialog12,
 
   "sidebar-01": components.Sidebar01,
+  "sidebar-02": components.Sidebar02,
 };

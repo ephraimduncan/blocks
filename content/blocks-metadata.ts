@@ -229,7 +229,12 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "500px",
     type: "file",
   },
-
+  {
+    id: "sidebar-01",
+    category: categoryIds.Sidebar,
+    name: "Sidebar",
+    type: "directory",
+  },
   {
     id: "dialog-01",
     category: categoryIds.Dialogs,

@@ -50,4 +50,6 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "dialog-10": components.Dialog10,
   "dialog-11": components.Dialog11,
   "dialog-12": components.Dialog12,
+
+  "sidebar-01": components.Sidebar01,
 };

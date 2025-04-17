@@ -25,7 +25,7 @@ export default async function BlockPreviewPage({ params }: Params) {
   }
 
   return (
-    <div className="relative flex h-screen w-full items-center justify-center">
+    <div className="relative flex min-h-screen w-full items-center justify-center">
       <BlocksComponent />
       <PreviewThemeSwitcher />
     </div>

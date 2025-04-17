@@ -21,4 +21,5 @@ export const categoryIds: { [key: string]: string } = {
   Stats: "stats",
   GridList: "grid-list",
   Dialogs: "dialogs",
+  Sidebar: "sidebar",
 };

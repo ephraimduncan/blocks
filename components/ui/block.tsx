@@ -1,13 +1,5 @@
 "use client";
 
-import { OpenInV0Button } from "@/components/open-in-v0-button";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import { useCopy } from "@/hooks/use-copy";
-import { BlocksProps } from "@/lib/blocks";
 import {
   Check,
   Code,
@@ -15,13 +7,24 @@ import {
   Fullscreen,
   Monitor,
   Smartphone,
-  Tablet,
+  Tablet
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { ImperativePanelHandle } from "react-resizable-panels";
+
+import { OpenInV0Button } from "@/components/open-in-v0-button";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup
+} from "@/components/ui/resizable";
+import { useCopy } from "@/hooks/use-copy";
+import { BlocksProps } from "@/lib/blocks";
+
 import CliCommands from "../cli-commands";
 import { CodeBlockEditor } from "../code-block-editor";
+
 import { Button } from "./button";
 import {
   Dialog,
@@ -31,7 +34,7 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "./dialog";
 import { Separator } from "./separator";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
@@ -62,19 +65,13 @@ export const Block = ({
   const [, copy] = useCopy();
 
   const getCleanCode = (rawCode: string | ReactNode): string => {
-    let cleanCode = typeof rawCode === "string" ? rawCode : "";
+    const cleanCode = typeof rawCode === "string" ? rawCode : "";
 
     if (cleanCode.startsWith("````")) {
-      try {
-        const codeBlockRegex = /^````(?:\\w+)?\\s*\\n([\\s\\S]*?)\\n````\\s*$/;
-        const [, extractedCode] = cleanCode.match(codeBlockRegex) || [];
-
-        if (extractedCode) {
-          cleanCode = extractedCode;
-        }
-      } catch (error) {
-        console.error("Error parsing markdown for copy:", error);
-      }
+      return cleanCode.replace(
+        /````(?:tsx|javascript|js|jsx|ts|[a-z]*)\n([\s\S]*?)````/g,
+        "$1"
+      );
     }
 
     return cleanCode;

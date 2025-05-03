@@ -47,7 +47,7 @@ function ThemeSwitcher({
     <div
       className={cn(
         "relative isolate inline-flex h-8 items-center rounded-full border border-dotted px-1",
-        className
+        className,
       )}
       {...props}
     >
@@ -73,7 +73,7 @@ function ThemeSwitcher({
                 "transition duration-200 ease-out",
                 isActive
                   ? "text-foreground"
-                  : "text-secondary-foreground group-hover:text-foreground group-focus-visible:text-foreground"
+                  : "text-secondary-foreground group-hover:text-foreground group-focus-visible:text-foreground",
               )}
             />
           </button>

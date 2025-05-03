@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
   const blocksCategory = blocksCategoriesMetadata.find(
-    (category) => category.id === params.blocksCategory
+    (category) => category.id === params.blocksCategory,
   );
 
   if (!blocksCategory) {

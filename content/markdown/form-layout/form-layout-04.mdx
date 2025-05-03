@@ -1,4 +1,4 @@
-````tsx
+```tsx
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -133,8 +133,8 @@ export default function Example() {
                 onValueChange={(value) =>
                   setSelectedWorkspace(
                     workspaces.find(
-                      (workspace) => workspace.id.toString() === value
-                    ) || workspaces[0]
+                      (workspace) => workspace.id.toString() === value,
+                    ) || workspaces[0],
                   )
                 }
               >
@@ -195,4 +195,4 @@ export default function Example() {
     </div>
   );
 }
-````
+```

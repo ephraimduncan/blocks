@@ -7,7 +7,7 @@ import {
   Fullscreen,
   Monitor,
   Smartphone,
-  Tablet
+  Tablet,
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
@@ -17,7 +17,7 @@ import { OpenInV0Button } from "@/components/open-in-v0-button";
 import {
   ResizableHandle,
   ResizablePanel,
-  ResizablePanelGroup
+  ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useCopy } from "@/hooks/use-copy";
 import { BlocksProps } from "@/lib/blocks";
@@ -34,7 +34,7 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "./dialog";
 import { Separator } from "./separator";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
@@ -70,7 +70,7 @@ export const Block = ({
     if (cleanCode.startsWith("````")) {
       return cleanCode.replace(
         /````(?:tsx|javascript|js|jsx|ts|[a-z]*)\n([\s\S]*?)````/g,
-        "$1"
+        "$1",
       );
     }
 

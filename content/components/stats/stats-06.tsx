@@ -51,8 +51,8 @@ export default function Stats06() {
                         item.status === "within"
                           ? "bg-emerald-500 text-white"
                           : item.status === "observe"
-                          ? "bg-yellow-500 text-white"
-                          : "bg-red-500 text-white"
+                            ? "bg-yellow-500 text-white"
+                            : "bg-red-500 text-white",
                       )}
                     >
                       {item.status === "within" ? (
@@ -83,8 +83,8 @@ export default function Stats06() {
                           item.status === "within"
                             ? "text-emerald-800 dark:text-emerald-500"
                             : item.status === "observe"
-                            ? "text-yellow-800 dark:text-yellow-500"
-                            : "text-red-800 dark:text-red-500"
+                              ? "text-yellow-800 dark:text-yellow-500"
+                              : "text-red-800 dark:text-red-500",
                         )}
                       >
                         {item.status}

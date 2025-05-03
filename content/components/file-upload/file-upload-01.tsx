@@ -26,7 +26,7 @@ export default function FileUpload01() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [fileProgresses, setFileProgresses] = useState<Record<string, number>>(
-    {}
+    {},
   );
 
   const handleFileSelect = (files: FileList | null) => {
@@ -189,7 +189,7 @@ export default function FileUpload01() {
           <div
             className={cn(
               "px-6 pb-5 space-y-3",
-              uploadedFiles.length > 0 ? "mt-4" : ""
+              uploadedFiles.length > 0 ? "mt-4" : "",
             )}
           >
             {uploadedFiles.map((file, index) => {

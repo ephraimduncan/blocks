@@ -46,7 +46,7 @@ function useCodeBlockEditor() {
   const context = React.useContext(CodeBlockEditorContext);
   if (!context) {
     throw new Error(
-      "useCodeBlockEditor must be used within a CodeBlockEditorProvider"
+      "useCodeBlockEditor must be used within a CodeBlockEditorProvider",
     );
   }
   return context;
@@ -60,7 +60,7 @@ function CodeBlockEditorProvider({
   fileTree: FileTreeItem[];
 }) {
   const [activeFile, setActiveFile] = React.useState<string | null>(
-    findFirstFile(fileTree)?.path || null
+    findFirstFile(fileTree)?.path || null,
   );
   const [expandedFolders, setExpandedFolders] = React.useState<Set<string>>(
     () => {
@@ -75,7 +75,7 @@ function CodeBlockEditorProvider({
       };
       addFolderPaths(fileTree);
       return expanded;
-    }
+    },
   );
 
   const toggleFolder = React.useCallback((path: string) => {
@@ -199,7 +199,7 @@ function FileTreeView() {
     const addToMap = (
       items: FileTreeItem[],
       depth: number,
-      parentVisible = true
+      parentVisible = true,
     ) => {
       items.forEach((item) => {
         const isVisible =
@@ -208,7 +208,7 @@ function FileTreeView() {
             (item.type === "file" &&
               (!item.path.includes("/") ||
                 expandedFolders.has(
-                  item.path.substring(0, item.path.lastIndexOf("/"))
+                  item.path.substring(0, item.path.lastIndexOf("/")),
                 ))));
 
         itemMap.set(item.path, { ...item, depth, visible: isVisible });
@@ -271,7 +271,7 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
         "pl-[calc(0.5rem+0.8rem*var(--depth))]",
         item.type === "file" &&
           item.path === activeFile &&
-          "bg-muted font-medium"
+          "bg-muted font-medium",
       )}
       style={{ "--depth": depth } as React.CSSProperties}
     >
@@ -280,7 +280,7 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
           <ChevronRight
             className={cn(
               "h-4 w-4 shrink-0 transition-transform",
-              isExpanded && "rotate-90"
+              isExpanded && "rotate-90",
             )}
           />
           <Folder className="h-4 w-4 shrink-0" />

@@ -24,7 +24,7 @@ async function loadMetadata() {
 
     if (!Array.isArray(blocksMetadata)) {
       console.error(
-        `Error: Expected blocksMetadata to be an array in ${METADATA_FILE}`
+        `Error: Expected blocksMetadata to be an array in ${METADATA_FILE}`,
       );
       process.exit(1);
     }
@@ -36,7 +36,7 @@ async function loadMetadata() {
       } else {
         console.warn(
           `Warning: Invalid metadata entry found in ${METADATA_FILE}:`,
-          item
+          item,
         );
       }
     }
@@ -44,10 +44,10 @@ async function loadMetadata() {
   } catch (error) {
     console.error(
       `Error loading or parsing metadata file ${METADATA_FILE}:`,
-      error
+      error,
     );
     console.error(
-      "Ensure you are running this script in an environment that can handle TypeScript imports (e.g., using 'tsx scripts/generate-registry.mjs')."
+      "Ensure you are running this script in an environment that can handle TypeScript imports (e.g., using 'tsx scripts/generate-registry.mjs').",
     );
     process.exit(1);
   }
@@ -101,13 +101,13 @@ async function findTsxFiles(dirPath, baseSourceDir, baseTargetDir) {
     const sourcePathRelative = path
       .join(
         COMPONENTS_DIR,
-        path.relative(path.resolve(process.cwd(), COMPONENTS_DIR), fullPath)
+        path.relative(path.resolve(process.cwd(), COMPONENTS_DIR), fullPath),
       )
       .replace(/\\/g, "/");
 
     if (entry.isDirectory()) {
       files.push(
-        ...(await findTsxFiles(fullPath, baseSourceDir, baseTargetDir))
+        ...(await findTsxFiles(fullPath, baseSourceDir, baseTargetDir)),
       );
     } else if (entry.isFile() && entry.name.endsWith(".tsx")) {
       files.push({
@@ -154,7 +154,7 @@ async function generateRegistry() {
           let title = metadataMap.get(blockId);
           if (!title) {
             console.warn(
-              `Warning: Metadata not found for block ID "${blockId}". Using generated title.`
+              `Warning: Metadata not found for block ID "${blockId}". Using generated title.`,
             );
             title = formatTitle(blockId);
           }
@@ -176,7 +176,7 @@ async function generateRegistry() {
 
             const { registryDependencies, dependencies } = extractDependencies(
               project,
-              absoluteFilePath
+              absoluteFilePath,
             );
             registryDependencies.forEach((dep) => allRegistryDeps.add(dep));
             dependencies.forEach((dep) => allExternalDeps.add(dep));
@@ -195,7 +195,7 @@ async function generateRegistry() {
             const foundFiles = await findTsxFiles(
               blockSourceDir,
               blockSourceDir,
-              blockTargetDir
+              blockTargetDir,
             );
 
             for (const fileInfo of foundFiles) {
@@ -239,7 +239,7 @@ async function generateRegistry() {
 
     await fs.writeFile(OUTPUT_FILE, JSON.stringify(registry, null, 2));
     console.log(
-      `Successfully generated ${OUTPUT_FILE} with ${registryItems.length} items.`
+      `Successfully generated ${OUTPUT_FILE} with ${registryItems.length} items.`,
     );
   } catch (error) {
     console.error("Error generating registry:", error);

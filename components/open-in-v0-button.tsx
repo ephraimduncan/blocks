@@ -10,7 +10,7 @@ export function OpenInV0Button({
       aria-label="Open in v0"
       className={cn(
         "h-6.5 gap-1 rounded-sm shadow-none bg-black p-0 text-xs text-white hover:bg-black hover:text-white dark:bg-white dark:text-black",
-        className
+        className,
       )}
       asChild
     >

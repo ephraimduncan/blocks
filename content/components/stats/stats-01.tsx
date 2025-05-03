@@ -38,7 +38,7 @@ export default function Stats01() {
             className={cn(
               "rounded-none border-0 shadow-none py-0",
               index === 0 && "rounded-l-xl",
-              index === data.length - 1 && "rounded-r-xl"
+              index === data.length - 1 && "rounded-r-xl",
             )}
           >
             <CardContent className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 p-4 sm:p-6">
@@ -50,7 +50,7 @@ export default function Stats01() {
                   "text-xs font-medium",
                   stat.changeType === "positive"
                     ? "text-green-800 dark:text-green-400"
-                    : "text-red-800 dark:text-red-400"
+                    : "text-red-800 dark:text-red-400",
                 )}
               >
                 {stat.change}

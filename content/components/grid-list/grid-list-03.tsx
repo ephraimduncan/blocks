@@ -81,7 +81,7 @@ export default function GridList03() {
           <Card
             key={action.title}
             className={cn(
-              "group relative rounded-xl border-0 bg-card p-0 focus-within:ring-2 focus-within:ring-ring focus-within:ring-inset"
+              "group relative rounded-xl border-0 bg-card p-0 focus-within:ring-2 focus-within:ring-ring focus-within:ring-inset",
             )}
           >
             <CardContent className="p-6">
@@ -91,7 +91,7 @@ export default function GridList03() {
                     action.iconBackground,
                     action.iconForeground,
                     "inline-flex rounded-lg p-3 ring-2 ring-inset",
-                    action.ringColorClass
+                    action.ringColorClass,
                   )}
                 >
                   <action.icon aria-hidden="true" className="h-6 w-6" />

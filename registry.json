@@ -9,13 +9,8 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "dialog"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-01.tsx",
@@ -30,13 +25,8 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "dialog"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-02.tsx",
@@ -51,13 +41,8 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "dialog"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-03.tsx",
@@ -72,12 +57,7 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog",
-        "input",
-        "label"
-      ],
+      "registryDependencies": ["button", "dialog", "input", "label"],
       "dependencies": [],
       "files": [
         {
@@ -93,15 +73,8 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog",
-        "input",
-        "label"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "dialog", "input", "label"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-05.tsx",
@@ -116,13 +89,7 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog",
-        "input",
-        "label",
-        "switch"
-      ],
+      "registryDependencies": ["button", "dialog", "input", "label", "switch"],
       "dependencies": [],
       "files": [
         {
@@ -138,15 +105,8 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "dialog",
-        "input",
-        "label"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "dialog", "input", "label"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-07.tsx",
@@ -161,16 +121,8 @@
       "title": "Dialog",
       "description": "A dialog block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "avatar",
-        "badge",
-        "button",
-        "dialog",
-        "input"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["avatar", "badge", "button", "dialog", "input"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-08.tsx",
@@ -193,9 +145,7 @@
         "switch",
         "tooltip"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-09.tsx",
@@ -220,10 +170,7 @@
         "select",
         "textarea"
       ],
-      "dependencies": [
-        "date-fns",
-        "lucide-react"
-      ],
+      "dependencies": ["date-fns", "lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-10.tsx",
@@ -245,9 +192,7 @@
         "select",
         "separator"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/dialogs/dialog-11.tsx",
@@ -270,9 +215,7 @@
         "select",
         "tooltip"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/file-upload/file-upload-01/index.tsx",
@@ -315,9 +258,7 @@
         "select",
         "tooltip"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/file-upload/file-upload-01.tsx",
@@ -332,12 +273,7 @@
       "title": "Simple File Upload",
       "description": "A simple file upload block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "card",
-        "input",
-        "label"
-      ],
+      "registryDependencies": ["button", "card", "input", "label"],
       "dependencies": [],
       "files": [
         {
@@ -361,9 +297,7 @@
         "select",
         "separator"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/file-upload/file-upload-03.tsx",
@@ -378,15 +312,8 @@
       "title": "Drag & Drop Upload",
       "description": "A drag & drop upload block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "card",
-        "progress"
-      ],
-      "dependencies": [
-        "lucide-react",
-        "sonner"
-      ],
+      "registryDependencies": ["button", "card", "progress"],
+      "dependencies": ["lucide-react", "sonner"],
       "files": [
         {
           "path": "content/components/file-upload/file-upload-04.tsx",
@@ -401,13 +328,8 @@
       "title": "File Upload with Progress",
       "description": "A file upload with progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "label"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "label"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/file-upload/file-upload-05.tsx",
@@ -422,12 +344,7 @@
       "title": "Workspace Registration Form",
       "description": "A workspace registration form block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "input",
-        "label",
-        "separator"
-      ],
+      "registryDependencies": ["button", "input", "label", "separator"],
       "dependencies": [],
       "files": [
         {
@@ -524,9 +441,7 @@
         "select",
         "separator"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/form-layout/form-layout-05.tsx",
@@ -541,14 +456,8 @@
       "title": "Simple Card with Dropdown",
       "description": "A simple card with dropdown block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "card",
-        "dropdown-menu"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "card", "dropdown-menu"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/grid-list/grid-list-01.tsx",
@@ -563,10 +472,7 @@
       "title": "Link cards",
       "description": "A link cards block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "avatar",
-        "card"
-      ],
+      "registryDependencies": ["avatar", "card"],
       "dependencies": [],
       "files": [
         {
@@ -582,12 +488,8 @@
       "title": "Link cards with icons",
       "description": "A link cards with icons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["card"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/grid-list/grid-list-03.tsx",
@@ -602,12 +504,7 @@
       "title": "Simple Email Login with Google",
       "description": "A simple email login with google block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "input",
-        "label",
-        "separator"
-      ],
+      "registryDependencies": ["button", "input", "label", "separator"],
       "dependencies": [],
       "files": [
         {
@@ -623,12 +520,7 @@
       "title": "Simple Email/Password Login with Google",
       "description": "A simple email/password login with google block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "input",
-        "label",
-        "separator"
-      ],
+      "registryDependencies": ["button", "input", "label", "separator"],
       "dependencies": [],
       "files": [
         {
@@ -644,11 +536,7 @@
       "title": "Simple Email/Password Login",
       "description": "A simple email/password login block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "input",
-        "label"
-      ],
+      "registryDependencies": ["button", "input", "label"],
       "dependencies": [],
       "files": [
         {
@@ -664,12 +552,7 @@
       "title": "Simple Login with Social Buttons",
       "description": "A simple login with social buttons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "input",
-        "label",
-        "separator"
-      ],
+      "registryDependencies": ["button", "input", "label", "separator"],
       "dependencies": [],
       "files": [
         {
@@ -685,13 +568,7 @@
       "title": "Simple Card Signup Form",
       "description": "A simple card signup form block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "card",
-        "checkbox",
-        "input",
-        "label"
-      ],
+      "registryDependencies": ["button", "card", "checkbox", "input", "label"],
       "dependencies": [],
       "files": [
         {
@@ -707,12 +584,7 @@
       "title": "Login with Magic Link/SSO",
       "description": "A login with magic link/sso block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "card",
-        "input",
-        "separator"
-      ],
+      "registryDependencies": ["button", "card", "input", "separator"],
       "dependencies": [],
       "files": [
         {
@@ -735,9 +607,7 @@
         "label",
         "separator"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/login/login-07.tsx",
@@ -752,16 +622,8 @@
       "title": "Login with SSO",
       "description": "A login with sso block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "button",
-        "card",
-        "checkbox",
-        "input",
-        "label"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["button", "card", "checkbox", "input", "label"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/login/login-08.tsx",
@@ -784,9 +646,7 @@
         "label",
         "select"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/login/login-09.tsx",
@@ -801,9 +661,7 @@
       "title": "Stats with trending",
       "description": "A stats with trending block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card"
-      ],
+      "registryDependencies": ["card"],
       "dependencies": [],
       "files": [
         {
@@ -819,13 +677,8 @@
       "title": "Stats with borders",
       "description": "A stats with borders block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "badge",
-        "card"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["badge", "card"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/stats/stats-02.tsx",
@@ -840,9 +693,7 @@
       "title": "Stats cards",
       "description": "A stats cards block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card"
-      ],
+      "registryDependencies": ["card"],
       "dependencies": [],
       "files": [
         {
@@ -858,13 +709,8 @@
       "title": "Stats cards with badges",
       "description": "A stats cards with badges block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "badge",
-        "card"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["badge", "card"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/stats/stats-04.tsx",
@@ -879,9 +725,7 @@
       "title": "Stats cards with links",
       "description": "A stats cards with links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card"
-      ],
+      "registryDependencies": ["card"],
       "dependencies": [],
       "files": [
         {
@@ -897,12 +741,8 @@
       "title": "Stats cards with status",
       "description": "A stats cards with status block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card"
-      ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "registryDependencies": ["card"],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "content/components/stats/stats-06.tsx",
@@ -917,14 +757,8 @@
       "title": "Stats cards with circular progress",
       "description": "A stats cards with circular progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card",
-        "chart"
-      ],
-      "dependencies": [
-        "lucide-react",
-        "recharts"
-      ],
+      "registryDependencies": ["card", "chart"],
+      "dependencies": ["lucide-react", "recharts"],
       "files": [
         {
           "path": "content/components/stats/stats-07.tsx",
@@ -939,13 +773,8 @@
       "title": "Stats card with circular progress and links",
       "description": "A stats card with circular progress and links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card",
-        "chart"
-      ],
-      "dependencies": [
-        "recharts"
-      ],
+      "registryDependencies": ["card", "chart"],
+      "dependencies": ["recharts"],
       "files": [
         {
           "path": "content/components/stats/stats-08.tsx",
@@ -960,10 +789,7 @@
       "title": "Stats card with progress",
       "description": "A stats card with progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card",
-        "progress"
-      ],
+      "registryDependencies": ["card", "progress"],
       "dependencies": [],
       "files": [
         {
@@ -979,13 +805,8 @@
       "title": "Stats card with area chart",
       "description": "A stats card with area chart block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "card",
-        "chart"
-      ],
-      "dependencies": [
-        "recharts"
-      ],
+      "registryDependencies": ["card", "chart"],
+      "dependencies": ["recharts"],
       "files": [
         {
           "path": "content/components/stats/stats-10.tsx",

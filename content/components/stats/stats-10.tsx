@@ -161,7 +161,7 @@ export default function Stats10() {
                         item.changeType === "positive"
                           ? "text-green-600 dark:text-green-500"
                           : "text-red-600 dark:text-red-500",
-                        "text-lg font-semibold"
+                        "text-lg font-semibold",
                       )}
                     >
                       {item.value}
@@ -174,7 +174,7 @@ export default function Stats10() {
                         className={cn(
                           item.changeType === "positive"
                             ? "text-green-600 dark:text-green-500"
-                            : "text-red-600 dark:text-red-500"
+                            : "text-red-600 dark:text-red-500",
                         )}
                       >
                         ({item.percentageChange})

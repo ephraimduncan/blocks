@@ -65,7 +65,7 @@ function getMDXData(dir: string) {
 
 export function getBlocksMDX(blocksCategory: string) {
   return getMDXData(
-    path.join(process.cwd(), "content", "markdown", blocksCategory)
+    path.join(process.cwd(), "content", "markdown", blocksCategory),
   );
 }
 
@@ -88,7 +88,7 @@ export type FileTreeItem = FileItem | FolderItem;
 
 function generateFileTree(
   dirPath: string,
-  basePath: string = dirPath
+  basePath: string = dirPath,
 ): FileTreeItem[] {
   const items: FileTreeItem[] = [];
   try {
@@ -162,7 +162,7 @@ export interface BlocksProps {
 
 export function getBlocks(params: { blocksCategory: string }) {
   const categoryMetadata = blocksCategoriesMetadata.find(
-    (metadata) => metadata.id === params.blocksCategory
+    (metadata) => metadata.id === params.blocksCategory,
   );
 
   const blocksData: BlocksProps[] = [];
@@ -179,7 +179,7 @@ export function getBlocks(params: { blocksCategory: string }) {
             "content",
             "components",
             block.category,
-            block.id
+            block.id,
           );
 
           console.log(blockDirPath);
@@ -188,12 +188,12 @@ export function getBlocks(params: { blocksCategory: string }) {
 
           if (fileTree.length === 0) {
             console.warn(
-              `No files found or error generating file tree for directory block: ${block.id}`
+              `No files found or error generating file tree for directory block: ${block.id}`,
             );
           }
         } else {
           codeSource = getBlocksMDX(block.category).find(
-            (b) => b.blocksCategory === block.id
+            (b) => b.blocksCategory === block.id,
           )?.content;
           if (!codeSource) {
             console.warn(`MDX content not found for file block: ${block.id}`);

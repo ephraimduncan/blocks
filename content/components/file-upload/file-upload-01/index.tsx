@@ -18,7 +18,7 @@ export default function FileUpload01() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [fileProgresses, setFileProgresses] = useState<Record<string, number>>(
-    {}
+    {},
   );
 
   const handleFileSelect = (files: FileList | null) => {

@@ -23,7 +23,7 @@ const countByCategory = (blocks: BlocksMetadata[]): CategoryCount => {
 
 const updateCategoryCounts = (
   categories: Omit<BlocksCategoryMetadata, "count">[],
-  counts: CategoryCount
+  counts: CategoryCount,
 ): BlocksCategoryMetadata[] => {
   const countsMap = new Map<string, number>(Object.entries(counts));
   return categories.map((category) => ({

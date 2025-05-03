@@ -132,8 +132,8 @@ export default function Example() {
                 onValueChange={(value) =>
                   setSelectedWorkspace(
                     workspaces.find(
-                      (workspace) => workspace.id.toString() === value
-                    ) || workspaces[0]
+                      (workspace) => workspace.id.toString() === value,
+                    ) || workspaces[0],
                   )
                 }
               >

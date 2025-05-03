@@ -49,7 +49,7 @@ export default function Stats03() {
                     item.changeType === "positive"
                       ? "text-green-800 dark:text-green-400"
                       : "text-red-800 dark:text-red-400",
-                    "text-sm font-medium"
+                    "text-sm font-medium",
                   )}
                 >
                   {item.change}

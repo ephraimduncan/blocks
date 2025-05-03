@@ -1,4 +1,4 @@
-````tsx
+```tsx
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -152,7 +152,7 @@ export default function WorkspaceForm() {
               value={selected.name}
               onValueChange={(value) =>
                 setSelected(
-                  plans.find((plan) => plan.name === value) || plans[0]
+                  plans.find((plan) => plan.name === value) || plans[0],
                 )
               }
               className="mt-4 space-y-4"
@@ -165,7 +165,7 @@ export default function WorkspaceForm() {
                     "relative block cursor-pointer rounded-md border bg-background transition",
                     selected.name === plan.name
                       ? "border-primary/20 ring-2 ring-primary/20"
-                      : "border-border"
+                      : "border-border",
                   )}
                 >
                   <div className="flex items-start space-x-4 px-6 py-4">
@@ -262,4 +262,4 @@ export default function WorkspaceForm() {
     </div>
   );
 }
-````
+```

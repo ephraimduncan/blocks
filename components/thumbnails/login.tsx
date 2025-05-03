@@ -1,7 +1,7 @@
 import { JSX, SVGProps } from "react";
 
 export const LoginThumbnail = (
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg width="296" height="141" viewBox="0 0 296 141" fill="none" {...props}>
     <path

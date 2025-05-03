@@ -41,7 +41,7 @@ export default function FileUpload03() {
             aria-label="Remove file"
             onClick={() =>
               setFiles((prevFiles) =>
-                prevFiles.filter((prevFile) => prevFile.name !== file.name)
+                prevFiles.filter((prevFile) => prevFile.name !== file.name),
               )
             }
           >
@@ -118,7 +118,7 @@ export default function FileUpload03() {
                     isDragActive
                       ? "border-primary bg-primary/10 ring-2 ring-primary/20"
                       : "border-border",
-                    "mt-2 flex justify-center rounded-md border border-dashed px-6 py-20 transition-colors duration-200"
+                    "mt-2 flex justify-center rounded-md border border-dashed px-6 py-20 transition-colors duration-200",
                   )}
                 >
                   <div>

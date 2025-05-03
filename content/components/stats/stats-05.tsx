@@ -43,7 +43,7 @@ export default function Stats05() {
                     "text-sm font-medium",
                     item.changeType === "positive"
                       ? "text-emerald-700 dark:text-emerald-500"
-                      : "text-red-700 dark:text-red-500"
+                      : "text-red-700 dark:text-red-500",
                   )}
                 >
                   {item.change}

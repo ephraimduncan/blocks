@@ -100,5 +100,5 @@ fs.rm(tempDir, { recursive: true, force: true }, (err) => {
 });
 
 console.log(
-  `Folder duplicated and markdown created successfully: ${newFolderPath}`
+  `Folder duplicated and markdown created successfully: ${newFolderPath}`,
 );

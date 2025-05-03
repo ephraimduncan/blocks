@@ -8,7 +8,7 @@ const components = {
       data-line-numbers
       className={cn(
         "relative rounded-lg bg-black dark:border dark:border-accent py-4 font-mono text-sm",
-        className
+        className,
       )}
       {...props}
     />

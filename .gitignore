@@ -45,3 +45,9 @@ next-env.d.ts
 content/index.ts
 /public/r
 /public/index.json
+
+# AI 
+.claude
+.cursor
+.vscode
+CLAUDE.md

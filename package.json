@@ -8,7 +8,7 @@
     "generate:markdown": "bun run scripts/generate-markdown.ts ./content/components/",
     "build": "bun run generate:registry && bun run generate:markdown && next build --turbopack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "bunx ultracite lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -46,7 +46,7 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.488.0",
     "motion": "^12.5.0",
-    "next": "15.3.0",
+    "next": "15.4.1",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
     "react": "19.1.0",
@@ -67,20 +67,19 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.1.2",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.0",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
     "tailwindcss": "^4",
     "ts-morph": "^25.0.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ultracite": "5.0.39"
   },
   "overrides": {
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6"
+  }
 }

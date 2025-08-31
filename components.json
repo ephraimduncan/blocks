@@ -17,9 +17,5 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "iconLibrary": "lucide",
-  "registries": {
-    "@blocks": "https://blocks.so/r/{name}.json",
-    "@shadcn": "https://ui.shadcn.com/r/{name}.json"
-  }
+  "iconLibrary": "lucide"
 }

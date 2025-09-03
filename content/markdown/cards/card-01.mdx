@@ -1,0 +1,127 @@
+````tsx
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  IconBolt,
+  IconHeadphones,
+  IconPlus,
+  IconPuzzle,
+  IconShield,
+  IconTarget,
+  IconTrendingUp,
+  IconX,
+} from "@tabler/icons-react";
+import { useState } from "react";
+
+const benefits = [
+  {
+    icon: IconBolt,
+    title: "Lightning Fast Performance",
+    description: "Experience blazing-fast load times and seamless interactions. Our optimized infrastructure ensures zero delays.",
+    colors: "bg-yellow-50 dark:bg-yellow-950/30 text-yellow-700 ring-yellow-700/30"
+  },
+  {
+    icon: IconShield,
+    title: "Enterprise-Grade Security",
+    description: "Your data is protected with military-grade encryption and advanced threat detection. Security you can trust.",
+    colors: "bg-red-50 dark:bg-red-950/30 text-red-700 ring-red-700/30"
+  },
+  {
+    icon: IconTarget,
+    title: "Precision Accuracy",
+    description: "Get results with 99.9% accuracy powered by advanced AI algorithms and machine learning models.",
+    colors: "bg-blue-50 dark:bg-blue-950/30 text-blue-700 ring-blue-700/30"
+  },
+  {
+    icon: IconTrendingUp,
+    title: "Scalable Growth",
+    description: "Scale from startup to enterprise seamlessly. Our platform grows with your business needs.",
+    colors: "bg-green-50 dark:bg-green-950/30 text-green-700 ring-green-700/30"
+  },
+  {
+    icon: IconPuzzle,
+    title: "Easy Integration",
+    description: "Connect with 500+ tools and platforms in minutes. Simple APIs and comprehensive documentation.",
+    colors: "bg-purple-50 dark:bg-purple-950/30 text-purple-700 ring-purple-700/30"
+  },
+  {
+    icon: IconHeadphones,
+    title: "24/7 Expert Support",
+    description: "Get help when you need it from our team of experts. Fast response times and personalized assistance.",
+    colors: "bg-pink-50 dark:bg-pink-950/30 text-pink-700 ring-pink-700/30"
+  }
+];
+
+const ANIMATION_CLASSES = "transition-opacity duration-500";
+const BUTTON_CLASSES = "absolute -bottom-1 right-5 z-10 h-8 w-8 rounded-full bg-muted transition-colors hover:bg-muted/80";
+
+export default function Card01() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const getStateClasses = (isVisible: boolean) =>
+    `absolute inset-0 ${ANIMATION_CLASSES} ${
+      isVisible ? "opacity-100" : "pointer-events-none opacity-0"
+    }`;
+
+  return (
+    <div className="mx-auto w-full max-w-sm px-4">
+      <Card className="h-80 overflow-hidden">
+        <CardContent className="relative h-full p-0">
+          {/* Collapsed State */}
+          <div className={`${getStateClasses(!isExpanded)} flex flex-col items-center justify-center p-6 text-center`}>
+            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-50 dark:bg-green-950/30 ring-2 ring-inset ring-green-700/30">
+              <IconTarget className="h-8 w-8 text-green-700" />
+            </div>
+            <div className="mb-8 space-y-2">
+              <h3 className="text-lg font-semibold text-foreground">Why choose us?</h3>
+              <p className="text-muted-foreground">Discover the benefits</p>
+            </div>
+          </div>
+
+          {/* Expanded State */}
+          <div className={`${getStateClasses(isExpanded)} flex flex-col p-6`}>
+            <ScrollArea className="mr-2 h-0 flex-1">
+              <div className="space-y-6 text-sm leading-relaxed">
+                {benefits.map((benefit) => (
+                  <div key={benefit.title} className="flex items-start space-x-3">
+                    <span className={`inline-flex rounded-lg p-2 ring-2 ring-inset ${benefit.colors}`}>
+                      <benefit.icon className="h-4 w-4" />
+                    </span>
+                    <div className="flex-1">
+                      <h4 className="mb-1 font-semibold text-foreground">{benefit.title}</h4>
+                      <p className="text-muted-foreground">{benefit.description}</p>
+                    </div>
+                  </div>
+                ))}
+                <div className="border-t border-border pt-4 text-center">
+                  <p className="text-xs text-muted-foreground">
+                    Trusted by 50,000+ businesses worldwide
+                  </p>
+                </div>
+              </div>
+            </ScrollArea>
+          </div>
+
+          {/* Toggle Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={BUTTON_CLASSES}
+            aria-label={isExpanded ? "Close benefits" : "Show benefits"}
+          >
+            {isExpanded ? (
+              <IconX className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <IconPlus className="h-4 w-4 text-muted-foreground" />
+            )}
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+````

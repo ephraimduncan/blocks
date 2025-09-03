@@ -111,6 +111,32 @@
       ]
     },
     {
+      "name": "card-01",
+      "type": "registry:block",
+      "title": "Expandable Benefits Card",
+      "description": "A expandable benefits card block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "scroll-area"
+      ],
+      "dependencies": [
+        "@tabler/icons-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/cards/card-01.tsx",
+          "type": "registry:component",
+          "target": "components/card-01.tsx",
+          "content": "\"use client\";\n\nimport { Button } from \"@/components/ui/button\";\nimport { Card, CardContent } from \"@/components/ui/card\";\nimport { ScrollArea } from \"@/components/ui/scroll-area\";\nimport {\n  IconBolt,\n  IconHeadphones,\n  IconPlus,\n  IconPuzzle,\n  IconShield,\n  IconTarget,\n  IconTrendingUp,\n  IconX,\n} from \"@tabler/icons-react\";\nimport { useState } from \"react\";\n\nconst benefits = [\n  {\n    icon: IconBolt,\n    title: \"Lightning Fast Performance\",\n    description: \"Experience blazing-fast load times and seamless interactions. Our optimized infrastructure ensures zero delays.\",\n    colors: \"bg-yellow-50 dark:bg-yellow-950/30 text-yellow-700 ring-yellow-700/30\"\n  },\n  {\n    icon: IconShield,\n    title: \"Enterprise-Grade Security\",\n    description: \"Your data is protected with military-grade encryption and advanced threat detection. Security you can trust.\",\n    colors: \"bg-red-50 dark:bg-red-950/30 text-red-700 ring-red-700/30\"\n  },\n  {\n    icon: IconTarget,\n    title: \"Precision Accuracy\",\n    description: \"Get results with 99.9% accuracy powered by advanced AI algorithms and machine learning models.\",\n    colors: \"bg-blue-50 dark:bg-blue-950/30 text-blue-700 ring-blue-700/30\"\n  },\n  {\n    icon: IconTrendingUp,\n    title: \"Scalable Growth\",\n    description: \"Scale from startup to enterprise seamlessly. Our platform grows with your business needs.\",\n    colors: \"bg-green-50 dark:bg-green-950/30 text-green-700 ring-green-700/30\"\n  },\n  {\n    icon: IconPuzzle,\n    title: \"Easy Integration\",\n    description: \"Connect with 500+ tools and platforms in minutes. Simple APIs and comprehensive documentation.\",\n    colors: \"bg-purple-50 dark:bg-purple-950/30 text-purple-700 ring-purple-700/30\"\n  },\n  {\n    icon: IconHeadphones,\n    title: \"24/7 Expert Support\",\n    description: \"Get help when you need it from our team of experts. Fast response times and personalized assistance.\",\n    colors: \"bg-pink-50 dark:bg-pink-950/30 text-pink-700 ring-pink-700/30\"\n  }\n];\n\nconst ANIMATION_CLASSES = \"transition-opacity duration-500\";\nconst BUTTON_CLASSES = \"absolute -bottom-1 right-5 z-10 h-8 w-8 rounded-full bg-muted transition-colors hover:bg-muted/80\";\n\nexport default function Card01() {\n  const [isExpanded, setIsExpanded] = useState(false);\n\n  const getStateClasses = (isVisible: boolean) =>\n    `absolute inset-0 ${ANIMATION_CLASSES} ${\n      isVisible ? \"opacity-100\" : \"pointer-events-none opacity-0\"\n    }`;\n\n  return (\n    <div className=\"mx-auto w-full max-w-sm px-4\">\n      <Card className=\"h-80 overflow-hidden\">\n        <CardContent className=\"relative h-full p-0\">\n          {/* Collapsed State */}\n          <div className={`${getStateClasses(!isExpanded)} flex flex-col items-center justify-center p-6 text-center`}>\n            <div className=\"mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-50 dark:bg-green-950/30 ring-2 ring-inset ring-green-700/30\">\n              <IconTarget className=\"h-8 w-8 text-green-700\" />\n            </div>\n            <div className=\"mb-8 space-y-2\">\n              <h3 className=\"text-lg font-semibold text-foreground\">Why choose us?</h3>\n              <p className=\"text-muted-foreground\">Discover the benefits</p>\n            </div>\n          </div>\n\n          {/* Expanded State */}\n          <div className={`${getStateClasses(isExpanded)} flex flex-col p-6`}>\n            <ScrollArea className=\"mr-2 h-0 flex-1\">\n              <div className=\"space-y-6 text-sm leading-relaxed\">\n                {benefits.map((benefit) => (\n                  <div key={benefit.title} className=\"flex items-start space-x-3\">\n                    <span className={`inline-flex rounded-lg p-2 ring-2 ring-inset ${benefit.colors}`}>\n                      <benefit.icon className=\"h-4 w-4\" />\n                    </span>\n                    <div className=\"flex-1\">\n                      <h4 className=\"mb-1 font-semibold text-foreground\">{benefit.title}</h4>\n                      <p className=\"text-muted-foreground\">{benefit.description}</p>\n                    </div>\n                  </div>\n                ))}\n                <div className=\"border-t border-border pt-4 text-center\">\n                  <p className=\"text-xs text-muted-foreground\">\n                    Trusted by 50,000+ businesses worldwide\n                  </p>\n                </div>\n              </div>\n            </ScrollArea>\n          </div>\n\n          {/* Toggle Button */}\n          <Button\n            variant=\"ghost\"\n            size=\"icon\"\n            onClick={() => setIsExpanded(!isExpanded)}\n            className={BUTTON_CLASSES}\n            aria-label={isExpanded ? \"Close benefits\" : \"Show benefits\"}\n          >\n            {isExpanded ? (\n              <IconX className=\"h-4 w-4 text-muted-foreground\" />\n            ) : (\n              <IconPlus className=\"h-4 w-4 text-muted-foreground\" />\n            )}\n          </Button>\n        </CardContent>\n      </Card>\n    </div>\n  );\n}"
+        }
+      ],
+      "categories": [
+        "cards"
+      ]
+    },
+    {
       "name": "dialog-01",
       "type": "registry:block",
       "title": "Dialog",

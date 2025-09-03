@@ -407,4 +407,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "650px",
     type: "file",
   },
+  {
+    id: "card-01",
+    category: categoryIds.Cards,
+    name: "Expandable Benefits Card",
+    iframeHeight: "350px",
+    type: "file",
+  },
 ];

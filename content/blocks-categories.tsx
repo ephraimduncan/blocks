@@ -4,6 +4,7 @@ import { LoginThumbnail } from "@/components/thumbnails/login";
 import { StatsThumbnail } from "@/components/thumbnails/stats";
 
 import { AIThumbnail } from "@/components/thumbnails/ai";
+import { CardsThumbnail } from "@/components/thumbnails/cards";
 import { DialogThumbnail } from "@/components/thumbnails/dialog";
 import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 import { blocksMetadata } from "./blocks-metadata";
@@ -87,6 +88,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     id: categoryIds.AI,
     name: "AI",
     thumbnail: AIThumbnail,
+    hasCharts: false,
+  },
+  {
+    id: categoryIds.Cards,
+    name: "Cards",
+    thumbnail: CardsThumbnail,
     hasCharts: false,
   },
 ];

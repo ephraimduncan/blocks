@@ -1,0 +1,159 @@
+````tsx
+import { Badge } from "@/components/ui/badge"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Clock, XCircle, CheckCircle2, ArrowRight } from "lucide-react"
+
+const orders = [
+  {
+    id: "ORD-1247",
+    customer: "Sarah Williams",
+    status: "completed",
+    payment: "Credit Card",
+    total: "$234.50",
+    date: "15 Mar 2024",
+  },
+  {
+    id: "ORD-1248",
+    customer: "Michael Chen",
+    status: "pending",
+    payment: "PayPal",
+    total: "$89.99",
+    date: "16 Mar 2024",
+  },
+  {
+    id: "ORD-1249",
+    customer: "Emma Rodriguez",
+    status: "cancelled",
+    payment: "Debit Card",
+    total: "$156.25",
+    date: "16 Mar 2024",
+  },
+  {
+    id: "ORD-1250",
+    customer: "James Wilson",
+    status: "completed",
+    payment: "Credit Card",
+    total: "$412.00",
+    date: "17 Mar 2024",
+  },
+  {
+    id: "ORD-1251",
+    customer: "Olivia Taylor",
+    status: "pending",
+    payment: "Bank Transfer",
+    total: "$78.50",
+    date: "18 Mar 2024",
+  },
+  {
+    id: "ORD-1252",
+    customer: "Lucas Anderson",
+    status: "completed",
+    payment: "Credit Card",
+    total: "$299.99",
+    date: "18 Mar 2024",
+  },
+  {
+    id: "ORD-1253",
+    customer: "Sophia Martinez",
+    status: "pending",
+    payment: "PayPal",
+    total: "$167.75",
+    date: "19 Mar 2024",
+  },
+]
+
+function getStatusBadge(status: string) {
+  switch (status) {
+    case "pending":
+      return (
+        <Badge
+          variant="outline"
+          className="bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20 border-0"
+        >
+          <Clock className="mr-1.5 size-3" />
+          Pending
+        </Badge>
+      )
+    case "cancelled":
+      return (
+        <Badge
+          variant="outline"
+          className="bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20 border-0"
+        >
+          <XCircle className="mr-1.5 size-3" />
+          Cancelled
+        </Badge>
+      )
+    case "completed":
+      return (
+        <Badge
+          variant="outline"
+          className="bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20 border-0"
+        >
+          <CheckCircle2 className="mr-1.5 size-3" />
+          Completed
+        </Badge>
+      )
+    default:
+      return <Badge variant="secondary">{status}</Badge>
+  }
+}
+
+export default function Table02() {
+  return (
+    <div className="w-full max-w-7xl mx-auto p-8">
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-lg font-semibold leading-none tracking-tight">Recent Orders</h1>
+          <p className="mt-1.5 max-w-lg text-pretty text-sm text-muted-foreground">
+            View and manage customer orders from the past week. Last updated{" "}
+            <strong className="text-foreground">19 Mar 2024</strong>.
+          </p>
+        </div>
+        <a
+          href="/orders/all"
+          className="relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg bg-secondary px-3.5 py-2 text-sm font-medium text-secondary-foreground shadow-sm ring-1 ring-inset ring-foreground/15 transition-colors hover:bg-secondary/85 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:ring-2 focus-visible:ring-offset-3 focus-visible:ring-offset-background sm:px-3 sm:py-1.5 sm:text-sm"
+        >
+          View All
+          <ArrowRight className="size-4" />
+        </a>
+      </div>
+
+      <div className="w-full rounded-lg border border-zinc-400/70 bg-background/50 p-4 shadow-sm dark:border-zinc-700">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Order ID</TableHead>
+                <TableHead>Customer</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Payment</TableHead>
+                <TableHead>Total</TableHead>
+                <TableHead>Date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {orders.map((order) => (
+                <TableRow key={order.id} className="cursor-pointer">
+                  <TableCell className="font-mono text-sm">
+                    <Badge variant="secondary" className="bg-secondary hover:bg-muted dark:bg-secondary dark:hover:bg-muted">
+                      {order.id}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="font-medium">{order.customer}</TableCell>
+                  <TableCell>{getStatusBadge(order.status)}</TableCell>
+                  <TableCell>
+                    <span className="text-sm text-muted-foreground">{order.payment}</span>
+                  </TableCell>
+                  <TableCell className="font-semibold">{order.total}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{order.date}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
+  )
+}
+````

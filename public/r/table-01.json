@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table-01",
+  "type": "registry:block",
+  "title": "Simple Data Table",
+  "description": "A simple data table block.",
+  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "registryDependencies": [
+    "table"
+  ],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "content/components/tables/table-01.tsx",
+      "type": "registry:component",
+      "target": "components/table-01.tsx",
+      "content": "import {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\";\n\nconst tableData = [\n  { id: \"1\", name: \"Alice Johnson\", email: \"alice@example.com\", role: \"Admin\" },\n  { id: \"2\", name: \"Bob Smith\", email: \"bob@example.com\", role: \"Editor\" },\n  { id: \"3\", name: \"Carol White\", email: \"carol@example.com\", role: \"Viewer\" },\n  { id: \"4\", name: \"David Brown\", email: \"david@example.com\", role: \"Editor\" },\n];\n\nexport default function Table01() {\n  return (\n    <div className=\"flex items-center justify-center p-10\">\n      <div className=\"w-full max-w-2xl\">\n        <Table>\n          <TableHeader>\n            <TableRow>\n              <TableHead>Name</TableHead>\n              <TableHead>Email</TableHead>\n              <TableHead>Role</TableHead>\n            </TableRow>\n          </TableHeader>\n          <TableBody>\n            {tableData.map((row) => (\n              <TableRow key={row.id}>\n                <TableCell className=\"font-medium\">{row.name}</TableCell>\n                <TableCell>{row.email}</TableCell>\n                <TableCell>{row.role}</TableCell>\n              </TableRow>\n            ))}\n          </TableBody>\n        </Table>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "categories": [
+    "tables"
+  ]
+}

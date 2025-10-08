@@ -12,6 +12,7 @@ import {
   BlocksMetadata,
   categoryIds,
 } from "./declarations";
+import { TablesThumbnail } from "@/components/thumbnails/tables";
 
 type CategoryCount = Record<string, number>;
 
@@ -89,7 +90,13 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: AIThumbnail,
     hasCharts: false,
   },
-];
+
+  {
+    id: categoryIds.Tables,
+    name: "Tables",
+    thumbnail: TablesThumbnail,
+    hasCharts: false,
+  },];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories().sort(
   (a, b) => a.name.localeCompare(b.name)

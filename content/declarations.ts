@@ -23,4 +23,5 @@ export const categoryIds: { [key: string]: string } = {
   Dialogs: "dialogs",
   Sidebar: "sidebar",
 
-  AI: "ai",};
+  AI: "ai",
+  Tables: "tables",};

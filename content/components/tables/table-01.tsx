@@ -1,0 +1,42 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+const tableData = [
+  { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin" },
+  { id: "2", name: "Bob Smith", email: "bob@example.com", role: "Editor" },
+  { id: "3", name: "Carol White", email: "carol@example.com", role: "Viewer" },
+  { id: "4", name: "David Brown", email: "david@example.com", role: "Editor" },
+];
+
+export default function Table01() {
+  return (
+    <div className="flex items-center justify-center p-10">
+      <div className="w-full max-w-2xl">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Role</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {tableData.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell className="font-medium">{row.name}</TableCell>
+                <TableCell>{row.email}</TableCell>
+                <TableCell>{row.role}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}

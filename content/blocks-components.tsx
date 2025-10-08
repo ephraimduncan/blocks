@@ -59,6 +59,7 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "sidebar-03": components.Sidebar03,
   "sidebar-04": components.Sidebar04,
   "sidebar-05": components.Sidebar05,
+  "sidebar-06": components.Sidebar06,
 
   "ai-01": components.Ai01,
   "ai-02": components.Ai02,

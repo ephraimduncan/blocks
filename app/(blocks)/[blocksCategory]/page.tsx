@@ -34,21 +34,43 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     return {};
   }
 
+  const categoryName = blocksCategory.name;
+  const blockCount = blocksCategory.count || 0;
+
   return {
-    title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
-    description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
+    title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui ${categoryName} Components`,
+    description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks into your projects.`,
     alternates: { canonical: `/${params.blocksCategory}` },
+    keywords: [
+      `shadcn ${categoryName.toLowerCase()} blocks`,
+      `shadcn/ui ${categoryName.toLowerCase()} components`,
+      `${categoryName.toLowerCase()} UI blocks`,
+      `React ${categoryName.toLowerCase()} components`,
+      `Tailwind ${categoryName.toLowerCase()}`,
+      `Next.js ${categoryName.toLowerCase()}`,
+      `free ${categoryName.toLowerCase()} blocks`,
+    ],
     openGraph: {
-      title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
-      description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
-      url: `/${params.blocksCategory}`,
+      title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui Components`,
+      description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks.`,
+      url: `${siteConfig.url}/${params.blocksCategory}`,
       siteName: "blocks.so",
-      images: [siteConfig.ogImage],
+      type: "website",
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${categoryName} shadcn/ui blocks - blocks.so`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
-      description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
+      title: `${categoryName} Shadcn Blocks - ${blockCount} Free Components`,
+      description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} accessible UI blocks.`,
+      creator: "@ephraimduncan_",
+      site: "@ephraimduncan_",
       images: [siteConfig.ogImage],
     },
   };

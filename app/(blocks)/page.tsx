@@ -5,14 +5,30 @@ import { siteConfig } from "@/config";
 import { blocksCategoriesMetadata } from "@/content/blocks-categories";
 
 export const metadata: Metadata = {
-  title: "Building Blocks for the Web",
+  title: "Shadcn Blocks - 60+ Free shadcn/ui Components for React",
   description: siteConfig.description,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Building Blocks for the Web",
+    title: "Shadcn Blocks - 60+ Free shadcn/ui Components for React",
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: "blocks.so",
+    type: "website",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "blocks.so - Free shadcn/ui blocks and components",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shadcn Blocks - 60+ Free shadcn/ui Components for React",
+    description: siteConfig.description,
+    creator: "@ephraimduncan_",
+    site: "@ephraimduncan_",
     images: [siteConfig.ogImage],
   },
 };

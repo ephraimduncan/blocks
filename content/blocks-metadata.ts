@@ -429,4 +429,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "800px",
     type: "file",
   },
+  {
+    id: "table-04",
+    category: categoryIds.Tables,
+    name: "Task Management Table",
+    iframeHeight: "800px",
+    type: "file",
+  },
 ];

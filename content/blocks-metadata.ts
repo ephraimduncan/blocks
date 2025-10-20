@@ -433,7 +433,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "table-04",
     category: categoryIds.Tables,
     name: "Task Management Table",
-    iframeHeight: "800px",
+    iframeHeight: "600px",
     type: "file",
   },
 ];

@@ -1,6 +1,13 @@
 "use client";
 
-import { CheckCircle, FileTextIcon, Loader2, PauseIcon, PlayIcon, Trash2Icon } from "lucide-react";
+import {
+  CheckCircle,
+  FileTextIcon,
+  Loader2,
+  PauseIcon,
+  PlayIcon,
+  Trash2Icon,
+} from "lucide-react";
 import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -94,7 +101,8 @@ const tasks: Task[] = [
     status: "completed",
     priority: "urgent",
     dueDate: "2024-03-19",
-    notes: "Conducted comprehensive security review and vulnerability assessment",
+    notes:
+      "Conducted comprehensive security review and vulnerability assessment",
   },
 ];
 
@@ -141,53 +149,11 @@ function getStatusBadge(status: Task["status"]) {
   }
 }
 
-function getPriorityBadge(priority: Task["priority"]) {
-  switch (priority) {
-    case "low":
-      return (
-        <Badge
-          variant="outline"
-          className="bg-slate-500/15 text-slate-700 hover:bg-slate-500/25 dark:bg-slate-500/10 dark:text-slate-300 dark:hover:bg-slate-500/20 border-0"
-        >
-          Low
-        </Badge>
-      );
-    case "medium":
-      return (
-        <Badge
-          variant="outline"
-          className="bg-sky-500/15 text-sky-700 hover:bg-sky-500/25 dark:bg-sky-500/10 dark:text-sky-400 dark:hover:bg-sky-500/20 border-0"
-        >
-          Medium
-        </Badge>
-      );
-    case "high":
-      return (
-        <Badge
-          variant="outline"
-          className="bg-orange-500/15 text-orange-700 hover:bg-orange-500/25 dark:bg-orange-500/10 dark:text-orange-400 dark:hover:bg-orange-500/20 border-0"
-        >
-          High
-        </Badge>
-      );
-    case "urgent":
-      return (
-        <Badge
-          variant="outline"
-          className="bg-red-500/15 text-red-700 hover:bg-red-500/25 dark:bg-red-500/10 dark:text-red-400 dark:hover:bg-red-500/20 border-0"
-        >
-          Urgent
-        </Badge>
-      );
-    default:
-      return <Badge variant="secondary">{priority}</Badge>;
-  }
-}
-
 export default function Table04() {
-  const [pendingAction, setPendingAction] = useState<{ id: string; type: TaskActionType } | null>(
-    null
-  );
+  const [pendingAction, setPendingAction] = useState<{
+    id: string;
+    type: TaskActionType;
+  } | null>(null);
 
   const isTaskActionPending = (action: TaskActionType, taskId: string) =>
     pendingAction?.id === taskId && pendingAction.type === action;
@@ -196,7 +162,6 @@ export default function Table04() {
 
   const handleAction = (task: Task, actionType: TaskActionType) => {
     setPendingAction({ id: task.id, type: actionType });
-    // Simulate async action
     setTimeout(() => {
       setPendingAction(null);
       console.log(`Action "${actionType}" completed for task:`, task.title);
@@ -216,8 +181,10 @@ export default function Table04() {
         <TableCell className="h-16 px-4 text-sm text-muted-foreground">
           {task.assignee}
         </TableCell>
-        <TableCell className="h-16 px-4">{getStatusBadge(task.status)}</TableCell>
-        <TableCell className="h-16 px-4">{getPriorityBadge(task.priority)}</TableCell>
+        <TableCell className="h-16 px-4">
+          {getStatusBadge(task.status)}
+        </TableCell>
+
         <TableCell className="h-16 px-4 text-sm text-muted-foreground">
           {task.dueDate}
         </TableCell>
@@ -334,17 +301,21 @@ export default function Table04() {
   };
 
   return (
-    <div className="rounded-lg border bg-card">
+    <div className="rounded-lg border bg-card w-[95%]">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent border-b">
             <TableHead className="h-12 px-4 font-medium">Title</TableHead>
             <TableHead className="h-12 px-4 font-medium">Assignee</TableHead>
-            <TableHead className="h-12 px-4 font-medium w-[120px]">Status</TableHead>
-            <TableHead className="h-12 px-4 font-medium w-[120px]">Priority</TableHead>
+            <TableHead className="h-12 px-4 font-medium w-[120px]">
+              Status
+            </TableHead>
+
             <TableHead className="h-12 px-4 font-medium">Due Date</TableHead>
             <TableHead className="h-12 px-4 font-medium">Notes</TableHead>
-            <TableHead className="h-12 px-4 font-medium w-[180px]">Actions</TableHead>
+            <TableHead className="h-12 px-4 font-medium w-[180px]">
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>{tasks.map(renderTaskRow)}</TableBody>

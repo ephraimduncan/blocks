@@ -425,7 +425,7 @@ export const blocksMetadata: BlocksMetadata[] = [
   {
     id: "table-03",
     category: categoryIds.Tables,
-    name: "Product Inventory Table",
+    name: "Table with Filters",
     iframeHeight: "700px",
     type: "file",
   },

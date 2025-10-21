@@ -249,19 +249,7 @@ export default function Table03() {
                     {item.warehouse}
                   </TableCell>
                   <TableCell className="h-14 px-4">
-                    <div className="flex items-center justify-end gap-2">
-                      <span
-                        className={cn(
-                          'font-mono text-sm font-semibold',
-                          item.stockLevel === 0 && 'text-rose-600 dark:text-rose-400',
-                          item.stockLevel > 0 &&
-                            item.stockLevel <= 20 &&
-                            'text-amber-600 dark:text-amber-400',
-                          item.stockLevel > 20 && 'text-foreground'
-                        )}
-                      >
-                        {item.stockLevel}
-                      </span>
+                    <div className="flex items-center justify-end">
                       {getStockLevelBadge(item.stockLevel)}
                     </div>
                   </TableCell>

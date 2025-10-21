@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-11",
   "type": "registry:block",
-  "title": "Status dashboard with progress bars",
-  "description": "A status dashboard with progress bars block.",
+  "title": "Stats Dashboard with Progress Bars",
+  "description": "A stats dashboard with progress bars block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

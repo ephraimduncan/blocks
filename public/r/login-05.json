@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-05",
   "type": "registry:block",
-  "title": "Simple Card Signup Form",
-  "description": "A simple card signup form block.",
+  "title": "Login Card Signup Form",
+  "description": "A login card signup form block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

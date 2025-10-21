@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog-01",
   "type": "registry:block",
-  "title": "Dialog",
-  "description": "A dialog block.",
+  "title": "Dialog Confirmation",
+  "description": "A dialog confirmation block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

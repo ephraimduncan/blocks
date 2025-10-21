@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog-08",
   "type": "registry:block",
-  "title": "Dialog",
-  "description": "A dialog block.",
+  "title": "Dialog with Email and Password Fields",
+  "description": "A dialog with email and password fields block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "avatar",

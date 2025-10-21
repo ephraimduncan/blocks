@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "form-layout-04",
   "type": "registry:block",
-  "title": "Early Access Application with Package Selection",
-  "description": "A early access application with package selection block.",
+  "title": "Form with Package Selection",
+  "description": "A form with package selection block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

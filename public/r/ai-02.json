@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-02",
   "type": "registry:block",
-  "title": "Prompt Input with Model Selection",
-  "description": "A prompt input with model selection block.",
+  "title": "AI Chat with Model Selection",
+  "description": "A ai chat with model selection block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

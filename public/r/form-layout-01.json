@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "form-layout-01",
   "type": "registry:block",
-  "title": "Workspace Registration Form",
-  "description": "A workspace registration form block.",
+  "title": "Form with Workspace Fields",
+  "description": "A form with workspace fields block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

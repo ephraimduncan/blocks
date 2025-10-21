@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog-09",
   "type": "registry:block",
-  "title": "Dialog",
-  "description": "A dialog block.",
+  "title": "Dialog with Link Share and Toggles",
+  "description": "A dialog with link share and toggles block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

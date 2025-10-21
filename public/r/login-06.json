@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-06",
   "type": "registry:block",
-  "title": "Login with Magic Link/SSO",
-  "description": "A login with magic link/sso block.",
+  "title": "Login with Magic Link and SSO",
+  "description": "A login with magic link and sso block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

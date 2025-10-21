@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "form-layout-05",
   "type": "registry:block",
-  "title": "Design Workspace Creation with Plan Selection",
-  "description": "A design workspace creation with plan selection block.",
+  "title": "Form with Plan Selection",
+  "description": "A form with plan selection block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "badge",

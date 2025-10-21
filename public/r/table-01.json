@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "table-01",
   "type": "registry:block",
-  "title": "Accordion Table",
-  "description": "A accordion table block.",
+  "title": "Table with Accordion",
+  "description": "A table with accordion block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

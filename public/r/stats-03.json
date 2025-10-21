@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-03",
   "type": "registry:block",
-  "title": "Stats cards",
-  "description": "A stats cards block.",
+  "title": "Stats with Card Layout",
+  "description": "A stats with card layout block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "card"

@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-03",
   "type": "registry:block",
-  "title": "Simple Email/Password Login",
-  "description": "A simple email/password login block.",
+  "title": "Login with Email and Password",
+  "description": "A login with email and password block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

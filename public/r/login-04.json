@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-04",
   "type": "registry:block",
-  "title": "Simple Login with Social Buttons",
-  "description": "A simple login with social buttons block.",
+  "title": "Login with Social Buttons",
+  "description": "A login with social buttons block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "file-upload-03",
   "type": "registry:block",
-  "title": "Multi-File Dropzone",
-  "description": "A multi-file dropzone block.",
+  "title": "File Upload Multi-File Dropzone",
+  "description": "A file upload multi-file dropzone block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

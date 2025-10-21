@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "grid-list-02",
   "type": "registry:block",
-  "title": "Link cards",
-  "description": "A link cards block.",
+  "title": "Grid List with Links",
+  "description": "A grid list with links block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "avatar",

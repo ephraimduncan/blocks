@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-07",
   "type": "registry:block",
-  "title": "Full Page Login with Icons",
-  "description": "A full page login with icons block.",
+  "title": "Login Full Page with Icons",
+  "description": "A login full page with icons block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

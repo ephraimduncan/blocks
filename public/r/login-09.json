@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-09",
   "type": "registry:block",
-  "title": "Signup with Role Selection",
-  "description": "A signup with role selection block.",
+  "title": "Login Signup with Role Selection",
+  "description": "A login signup with role selection block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

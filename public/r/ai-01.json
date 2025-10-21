@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-01",
   "type": "registry:block",
-  "title": "Prompt Input with Voice Input",
-  "description": "A prompt input with voice input block.",
+  "title": "AI Chat with Voice Input",
+  "description": "A ai chat with voice input block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

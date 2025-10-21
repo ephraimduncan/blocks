@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-01",
   "type": "registry:block",
-  "title": "Simple Email Login with Google",
-  "description": "A simple email login with google block.",
+  "title": "Login with Email and Google",
+  "description": "A login with email and google block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

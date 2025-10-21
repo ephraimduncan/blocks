@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "file-upload-02",
   "type": "registry:block",
-  "title": "Simple File Upload",
-  "description": "A simple file upload block.",
+  "title": "File Upload Simple",
+  "description": "A file upload simple block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

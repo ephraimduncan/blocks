@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-01",
   "type": "registry:block",
-  "title": "Stats with trending",
+  "title": "Stats with Trending",
   "description": "A stats with trending block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [

@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog-10",
   "type": "registry:block",
-  "title": "Dialog",
-  "description": "A dialog block.",
+  "title": "Dialog with Calendar and Time Picker",
+  "description": "A dialog with calendar and time picker block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

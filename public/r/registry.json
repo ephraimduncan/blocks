@@ -6,8 +6,8 @@
     {
       "name": "ai-01",
       "type": "registry:block",
-      "title": "Prompt Input with Voice Input",
-      "description": "A prompt input with voice input block.",
+      "title": "AI Chat with Voice Input",
+      "description": "A ai chat with voice input block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -32,8 +32,8 @@
     {
       "name": "ai-02",
       "type": "registry:block",
-      "title": "Prompt Input with Model Selection",
-      "description": "A prompt input with model selection block.",
+      "title": "AI Chat with Model Selection",
+      "description": "A ai chat with model selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -58,8 +58,8 @@
     {
       "name": "ai-03",
       "type": "registry:block",
-      "title": "Prompt Input Compact Interface",
-      "description": "A prompt input compact interface block.",
+      "title": "AI Chat Compact Interface",
+      "description": "A ai chat compact interface block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -84,8 +84,8 @@
     {
       "name": "ai-04",
       "type": "registry:block",
-      "title": "Prompt Input with File Attachments",
-      "description": "A prompt input with file attachments block.",
+      "title": "AI Chat with File Attachments",
+      "description": "A ai chat with file attachments block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -113,8 +113,8 @@
     {
       "name": "dialog-01",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog Confirmation",
+      "description": "A dialog confirmation block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -138,8 +138,8 @@
     {
       "name": "dialog-02",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Warning Icon",
+      "description": "A dialog with warning icon block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -163,8 +163,8 @@
     {
       "name": "dialog-03",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Input Field",
+      "description": "A dialog with input field block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -188,8 +188,8 @@
     {
       "name": "dialog-04",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Two Buttons",
+      "description": "A dialog with two buttons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -213,8 +213,8 @@
     {
       "name": "dialog-05",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Password Confirmation",
+      "description": "A dialog with password confirmation block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -240,8 +240,8 @@
     {
       "name": "dialog-06",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Privacy Toggle",
+      "description": "A dialog with privacy toggle block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -266,8 +266,8 @@
     {
       "name": "dialog-07",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Member List",
+      "description": "A dialog with member list block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -293,8 +293,8 @@
     {
       "name": "dialog-08",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Email and Password Fields",
+      "description": "A dialog with email and password fields block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -321,8 +321,8 @@
     {
       "name": "dialog-09",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Link Share and Toggles",
+      "description": "A dialog with link share and toggles block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -350,8 +350,8 @@
     {
       "name": "dialog-10",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Calendar and Time Picker",
+      "description": "A dialog with calendar and time picker block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -382,8 +382,8 @@
     {
       "name": "dialog-11",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog Multi-Step Wizard",
+      "description": "A dialog multi-step wizard block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -410,7 +410,7 @@
     {
       "name": "dialog-12",
       "type": "registry:block",
-      "title": "Dialog with avatar upload",
+      "title": "Dialog with Avatar Upload",
       "description": "A dialog with avatar upload block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
@@ -520,8 +520,8 @@
     {
       "name": "file-upload-02",
       "type": "registry:block",
-      "title": "Simple File Upload",
-      "description": "A simple file upload block.",
+      "title": "File Upload Simple",
+      "description": "A file upload simple block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -545,8 +545,8 @@
     {
       "name": "file-upload-03",
       "type": "registry:block",
-      "title": "Multi-File Dropzone",
-      "description": "A multi-file dropzone block.",
+      "title": "File Upload Multi-File Dropzone",
+      "description": "A file upload multi-file dropzone block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -575,8 +575,8 @@
     {
       "name": "file-upload-04",
       "type": "registry:block",
-      "title": "Drag & Drop Upload",
-      "description": "A drag & drop upload block.",
+      "title": "File Upload Drag & Drop",
+      "description": "A file upload drag & drop block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -654,8 +654,8 @@
     {
       "name": "form-layout-01",
       "type": "registry:block",
-      "title": "Workspace Registration Form",
-      "description": "A workspace registration form block.",
+      "title": "Form with Workspace Fields",
+      "description": "A form with workspace fields block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -679,8 +679,8 @@
     {
       "name": "form-layout-02",
       "type": "registry:block",
-      "title": "Form Sections with Side Labels",
-      "description": "A form sections with side labels block.",
+      "title": "Form with Side Labels",
+      "description": "A form with side labels block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -707,8 +707,8 @@
     {
       "name": "form-layout-03",
       "type": "registry:block",
-      "title": "Form Sections with Checkbox Settings",
-      "description": "A form sections with checkbox settings block.",
+      "title": "Form with Checkbox Settings",
+      "description": "A form with checkbox settings block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -735,8 +735,8 @@
     {
       "name": "form-layout-04",
       "type": "registry:block",
-      "title": "Early Access Application with Package Selection",
-      "description": "A early access application with package selection block.",
+      "title": "Form with Package Selection",
+      "description": "A form with package selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -762,8 +762,8 @@
     {
       "name": "form-layout-05",
       "type": "registry:block",
-      "title": "Design Workspace Creation with Plan Selection",
-      "description": "A design workspace creation with plan selection block.",
+      "title": "Form with Plan Selection",
+      "description": "A form with plan selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -793,8 +793,8 @@
     {
       "name": "grid-list-01",
       "type": "registry:block",
-      "title": "Simple Card with Dropdown",
-      "description": "A simple card with dropdown block.",
+      "title": "Grid List with Dropdown",
+      "description": "A grid list with dropdown block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -819,8 +819,8 @@
     {
       "name": "grid-list-02",
       "type": "registry:block",
-      "title": "Link cards",
-      "description": "A link cards block.",
+      "title": "Grid List with Links",
+      "description": "A grid list with links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -842,8 +842,8 @@
     {
       "name": "grid-list-03",
       "type": "registry:block",
-      "title": "Link cards with icons",
-      "description": "A link cards with icons block.",
+      "title": "Grid List with Icons",
+      "description": "A grid list with icons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -866,8 +866,8 @@
     {
       "name": "login-01",
       "type": "registry:block",
-      "title": "Simple Email Login with Google",
-      "description": "A simple email login with google block.",
+      "title": "Login with Email and Google",
+      "description": "A login with email and google block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -891,8 +891,8 @@
     {
       "name": "login-02",
       "type": "registry:block",
-      "title": "Simple Email/Password Login with Google",
-      "description": "A simple email/password login with google block.",
+      "title": "Login with Email, Password and Google",
+      "description": "A login with email, password and google block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -916,8 +916,8 @@
     {
       "name": "login-03",
       "type": "registry:block",
-      "title": "Simple Email/Password Login",
-      "description": "A simple email/password login block.",
+      "title": "Login with Email and Password",
+      "description": "A login with email and password block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -940,8 +940,8 @@
     {
       "name": "login-04",
       "type": "registry:block",
-      "title": "Simple Login with Social Buttons",
-      "description": "A simple login with social buttons block.",
+      "title": "Login with Social Buttons",
+      "description": "A login with social buttons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -965,8 +965,8 @@
     {
       "name": "login-05",
       "type": "registry:block",
-      "title": "Simple Card Signup Form",
-      "description": "A simple card signup form block.",
+      "title": "Login Card Signup Form",
+      "description": "A login card signup form block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -991,8 +991,8 @@
     {
       "name": "login-06",
       "type": "registry:block",
-      "title": "Login with Magic Link/SSO",
-      "description": "A login with magic link/sso block.",
+      "title": "Login with Magic Link and SSO",
+      "description": "A login with magic link and sso block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1016,8 +1016,8 @@
     {
       "name": "login-07",
       "type": "registry:block",
-      "title": "Full Page Login with Icons",
-      "description": "A full page login with icons block.",
+      "title": "Login Full Page with Icons",
+      "description": "A login full page with icons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1072,8 +1072,8 @@
     {
       "name": "login-09",
       "type": "registry:block",
-      "title": "Signup with Role Selection",
-      "description": "A signup with role selection block.",
+      "title": "Login Signup with Role Selection",
+      "description": "A login signup with role selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1101,8 +1101,8 @@
     {
       "name": "sidebar-01",
       "type": "registry:block",
-      "title": "Sidebar",
-      "description": "A sidebar block.",
+      "title": "Sidebar Collapsible Sections",
+      "description": "A sidebar collapsible sections block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1168,8 +1168,8 @@
     {
       "name": "sidebar-02",
       "type": "registry:block",
-      "title": "Sidebar",
-      "description": "A sidebar block.",
+      "title": "Sidebar Dashboard Inset",
+      "description": "A sidebar dashboard inset block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1227,8 +1227,8 @@
     {
       "name": "sidebar-03",
       "type": "registry:block",
-      "title": "Floating Sidebar",
-      "description": "A floating sidebar block.",
+      "title": "Sidebar Dashboard Floating",
+      "description": "A sidebar dashboard floating block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1286,8 +1286,8 @@
     {
       "name": "sidebar-04",
       "type": "registry:block",
-      "title": "Double Sided Sidebar",
-      "description": "A double sided sidebar block.",
+      "title": "Sidebar Double-Sided Mail",
+      "description": "A sidebar double-sided mail block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1331,8 +1331,8 @@
     {
       "name": "sidebar-05",
       "type": "registry:block",
-      "title": "Double Sided Sidebar",
-      "description": "A double sided sidebar block.",
+      "title": "Sidebar Double-Sided",
+      "description": "A sidebar double-sided block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1370,8 +1370,8 @@
     {
       "name": "sidebar-06",
       "type": "registry:block",
-      "title": "Replacement Sidebar",
-      "description": "A replacement sidebar block.",
+      "title": "Sidebar Replacement",
+      "description": "A sidebar replacement block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1409,7 +1409,7 @@
     {
       "name": "stats-01",
       "type": "registry:block",
-      "title": "Stats with trending",
+      "title": "Stats with Trending",
       "description": "A stats with trending block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
@@ -1431,7 +1431,7 @@
     {
       "name": "stats-02",
       "type": "registry:block",
-      "title": "Stats with borders",
+      "title": "Stats with Borders",
       "description": "A stats with borders block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
@@ -1456,8 +1456,8 @@
     {
       "name": "stats-03",
       "type": "registry:block",
-      "title": "Stats cards",
-      "description": "A stats cards block.",
+      "title": "Stats with Card Layout",
+      "description": "A stats with card layout block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -1478,8 +1478,8 @@
     {
       "name": "stats-04",
       "type": "registry:block",
-      "title": "Stats cards with badges",
-      "description": "A stats cards with badges block.",
+      "title": "Stats with Badges",
+      "description": "A stats with badges block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -1503,8 +1503,8 @@
     {
       "name": "stats-05",
       "type": "registry:block",
-      "title": "Stats cards with links",
-      "description": "A stats cards with links block.",
+      "title": "Stats with Links",
+      "description": "A stats with links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -1525,8 +1525,8 @@
     {
       "name": "stats-06",
       "type": "registry:block",
-      "title": "Stats cards with status",
-      "description": "A stats cards with status block.",
+      "title": "Stats with Status",
+      "description": "A stats with status block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -1549,8 +1549,8 @@
     {
       "name": "stats-07",
       "type": "registry:block",
-      "title": "Stats cards with circular progress",
-      "description": "A stats cards with circular progress block.",
+      "title": "Stats with Circular Progress",
+      "description": "A stats with circular progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1575,8 +1575,8 @@
     {
       "name": "stats-08",
       "type": "registry:block",
-      "title": "Stats card with circular progress and links",
-      "description": "A stats card with circular progress and links block.",
+      "title": "Stats with Circular Progress and Links",
+      "description": "A stats with circular progress and links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1600,8 +1600,8 @@
     {
       "name": "stats-09",
       "type": "registry:block",
-      "title": "Stats card with progress",
-      "description": "A stats card with progress block.",
+      "title": "Stats with Progress",
+      "description": "A stats with progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1623,8 +1623,8 @@
     {
       "name": "stats-10",
       "type": "registry:block",
-      "title": "Stats card with area chart",
-      "description": "A stats card with area chart block.",
+      "title": "Stats with Area Chart",
+      "description": "A stats with area chart block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1648,8 +1648,8 @@
     {
       "name": "stats-11",
       "type": "registry:block",
-      "title": "Status dashboard with progress bars",
-      "description": "A status dashboard with progress bars block.",
+      "title": "Stats Dashboard with Progress Bars",
+      "description": "A stats dashboard with progress bars block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1676,8 +1676,8 @@
     {
       "name": "stats-12",
       "type": "registry:block",
-      "title": "Usage dashboard",
-      "description": "A usage dashboard block.",
+      "title": "Stats Usage Dashboard",
+      "description": "A stats usage dashboard block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1702,8 +1702,8 @@
     {
       "name": "table-01",
       "type": "registry:block",
-      "title": "Accordion Table",
-      "description": "A accordion table block.",
+      "title": "Table with Accordion",
+      "description": "A table with accordion block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1727,8 +1727,8 @@
     {
       "name": "table-02",
       "type": "registry:block",
-      "title": "Task Management Table",
-      "description": "A task management table block.",
+      "title": "Table with Actions",
+      "description": "A table with actions block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -1745,6 +1745,30 @@
           "type": "registry:component",
           "target": "components/table-02.tsx",
           "content": "\"use client\";\n\nimport {\n  CheckCircle,\n  FileTextIcon,\n  Loader2,\n  PauseIcon,\n  PlayIcon,\n  Trash2Icon,\n} from \"lucide-react\";\nimport { useState } from \"react\";\n\nimport { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\";\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\";\n\ninterface Task {\n  id: string;\n  title: string;\n  assignee: string;\n  status: \"pending\" | \"in-progress\" | \"completed\" | \"blocked\";\n  priority: \"low\" | \"medium\" | \"high\" | \"urgent\";\n  dueDate: string;\n  notes: string;\n}\n\ntype TaskActionType = \"start\" | \"pause\" | \"complete\" | \"delete\" | \"view\";\n\nconst tasks: Task[] = [\n  {\n    id: \"TASK-001\",\n    title: \"Implement User Authentication\",\n    assignee: \"Sarah Chen\",\n    status: \"in-progress\",\n    priority: \"high\",\n    dueDate: \"2024-03-25\",\n    notes: \"OAuth 2.0 integration with Google and GitHub providers\",\n  },\n  {\n    id: \"TASK-002\",\n    title: \"Design Dashboard UI\",\n    assignee: \"Michael Torres\",\n    status: \"completed\",\n    priority: \"medium\",\n    dueDate: \"2024-03-20\",\n    notes: \"Finalize dashboard layout with responsive grid system\",\n  },\n  {\n    id: \"TASK-003\",\n    title: \"API Performance Optimization\",\n    assignee: \"Emma Rodriguez\",\n    status: \"pending\",\n    priority: \"urgent\",\n    dueDate: \"2024-03-22\",\n    notes: \"Reduce API response time by implementing caching strategy\",\n  },\n  {\n    id: \"TASK-004\",\n    title: \"Write Unit Tests\",\n    assignee: \"James Wilson\",\n    status: \"in-progress\",\n    priority: \"medium\",\n    dueDate: \"2024-03-28\",\n    notes: \"Achieve 80% code coverage for authentication module\",\n  },\n  {\n    id: \"TASK-005\",\n    title: \"Database Migration\",\n    assignee: \"Olivia Martinez\",\n    status: \"blocked\",\n    priority: \"high\",\n    dueDate: \"2024-03-24\",\n    notes: \"Waiting for infrastructure team approval before proceeding\",\n  },\n  {\n    id: \"TASK-006\",\n    title: \"Update Documentation\",\n    assignee: \"Lucas Anderson\",\n    status: \"pending\",\n    priority: \"low\",\n    dueDate: \"2024-03-30\",\n    notes: \"Document new API endpoints and authentication flow\",\n  },\n  {\n    id: \"TASK-007\",\n    title: \"Security Audit\",\n    assignee: \"Sophia Taylor\",\n    status: \"completed\",\n    priority: \"urgent\",\n    dueDate: \"2024-03-19\",\n    notes:\n      \"Conducted comprehensive security review and vulnerability assessment\",\n  },\n];\n\nfunction getStatusBadge(status: Task[\"status\"]) {\n  switch (status) {\n    case \"pending\":\n      return (\n        <Badge\n          variant=\"outline\"\n          className=\"bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20 border-0\"\n        >\n          Pending\n        </Badge>\n      );\n    case \"in-progress\":\n      return (\n        <Badge\n          variant=\"outline\"\n          className=\"bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20 border-0\"\n        >\n          In Progress\n        </Badge>\n      );\n    case \"completed\":\n      return (\n        <Badge\n          variant=\"outline\"\n          className=\"bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20 border-0\"\n        >\n          Completed\n        </Badge>\n      );\n    case \"blocked\":\n      return (\n        <Badge\n          variant=\"outline\"\n          className=\"bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20 border-0\"\n        >\n          Blocked\n        </Badge>\n      );\n    default:\n      return <Badge variant=\"secondary\">{status}</Badge>;\n  }\n}\n\nexport default function Table02() {\n  const [pendingAction, setPendingAction] = useState<{\n    id: string;\n    type: TaskActionType;\n  } | null>(null);\n\n  const isTaskActionPending = (action: TaskActionType, taskId: string) =>\n    pendingAction?.id === taskId && pendingAction.type === action;\n\n  const isTaskBusy = (taskId: string) => pendingAction?.id === taskId;\n\n  const handleAction = (task: Task, actionType: TaskActionType) => {\n    setPendingAction({ id: task.id, type: actionType });\n    setTimeout(() => {\n      setPendingAction(null);\n      console.log(`Action \"${actionType}\" completed for task:`, task.title);\n    }, 1000);\n  };\n\n  const renderTaskRow = (task: Task) => {\n    const busy = isTaskBusy(task.id);\n    const startPending = isTaskActionPending(\"start\", task.id);\n    const pausePending = isTaskActionPending(\"pause\", task.id);\n    const completePending = isTaskActionPending(\"complete\", task.id);\n    const deletePending = isTaskActionPending(\"delete\", task.id);\n\n    return (\n      <TableRow key={task.id} className=\"hover:bg-muted/50\">\n        <TableCell className=\"h-16 px-4 font-medium\">{task.title}</TableCell>\n        <TableCell className=\"h-16 px-4 text-sm text-muted-foreground\">\n          {task.assignee}\n        </TableCell>\n        <TableCell className=\"h-16 px-4\">\n          {getStatusBadge(task.status)}\n        </TableCell>\n\n        <TableCell className=\"h-16 px-4 text-sm text-muted-foreground\">\n          {task.dueDate}\n        </TableCell>\n        <TableCell className=\"h-16 px-4 max-w-[300px] text-sm text-muted-foreground\">\n          <TooltipProvider>\n            <Tooltip>\n              <TooltipTrigger asChild>\n                <span className=\"block cursor-help truncate\">{task.notes}</span>\n              </TooltipTrigger>\n              <TooltipContent className=\"max-w-md\">{task.notes}</TooltipContent>\n            </Tooltip>\n          </TooltipProvider>\n        </TableCell>\n        <TableCell className=\"h-16 px-4\">\n          <TooltipProvider>\n            <div className=\"flex items-center gap-1\">\n              {(task.status === \"pending\" || task.status === \"blocked\") && (\n                <Tooltip>\n                  <TooltipTrigger asChild>\n                    <Button\n                      variant=\"outline\"\n                      size=\"icon\"\n                      className=\"h-8 w-8\"\n                      onClick={() => handleAction(task, \"start\")}\n                      disabled={busy}\n                    >\n                      {startPending ? (\n                        <Loader2 className=\"size-4 animate-spin\" />\n                      ) : (\n                        <PlayIcon className=\"size-4\" />\n                      )}\n                    </Button>\n                  </TooltipTrigger>\n                  <TooltipContent>Start</TooltipContent>\n                </Tooltip>\n              )}\n              {task.status === \"in-progress\" && (\n                <>\n                  <Tooltip>\n                    <TooltipTrigger asChild>\n                      <Button\n                        variant=\"outline\"\n                        size=\"icon\"\n                        className=\"h-8 w-8\"\n                        onClick={() => handleAction(task, \"pause\")}\n                        disabled={busy}\n                      >\n                        {pausePending ? (\n                          <Loader2 className=\"size-4 animate-spin\" />\n                        ) : (\n                          <PauseIcon className=\"size-4\" />\n                        )}\n                      </Button>\n                    </TooltipTrigger>\n                    <TooltipContent>Pause</TooltipContent>\n                  </Tooltip>\n                  <Tooltip>\n                    <TooltipTrigger asChild>\n                      <Button\n                        variant=\"outline\"\n                        size=\"icon\"\n                        className=\"h-8 w-8\"\n                        onClick={() => handleAction(task, \"complete\")}\n                        disabled={busy}\n                      >\n                        {completePending ? (\n                          <Loader2 className=\"size-4 animate-spin\" />\n                        ) : (\n                          <CheckCircle className=\"size-4\" />\n                        )}\n                      </Button>\n                    </TooltipTrigger>\n                    <TooltipContent>Complete</TooltipContent>\n                  </Tooltip>\n                </>\n              )}\n              <Tooltip>\n                <TooltipTrigger asChild>\n                  <Button\n                    variant=\"outline\"\n                    size=\"icon\"\n                    className=\"h-8 w-8 text-destructive hover:bg-destructive hover:text-white\"\n                    onClick={() => handleAction(task, \"delete\")}\n                    disabled={busy}\n                  >\n                    {deletePending ? (\n                      <Loader2 className=\"size-4 animate-spin\" />\n                    ) : (\n                      <Trash2Icon className=\"size-4\" />\n                    )}\n                  </Button>\n                </TooltipTrigger>\n                <TooltipContent>Delete</TooltipContent>\n              </Tooltip>\n              <Tooltip>\n                <TooltipTrigger asChild>\n                  <Button\n                    variant=\"outline\"\n                    size=\"icon\"\n                    className=\"h-8 w-8\"\n                    onClick={() => handleAction(task, \"view\")}\n                    disabled={busy}\n                  >\n                    <FileTextIcon className=\"size-4\" />\n                  </Button>\n                </TooltipTrigger>\n                <TooltipContent>View Details</TooltipContent>\n              </Tooltip>\n            </div>\n          </TooltipProvider>\n        </TableCell>\n      </TableRow>\n    );\n  };\n\n  return (\n    <div className=\"rounded-lg border bg-card w-[95%]\">\n      <Table>\n        <TableHeader>\n          <TableRow className=\"hover:bg-transparent border-b\">\n            <TableHead className=\"h-12 px-4 font-medium\">Title</TableHead>\n            <TableHead className=\"h-12 px-4 font-medium\">Assignee</TableHead>\n            <TableHead className=\"h-12 px-4 font-medium w-[120px]\">\n              Status\n            </TableHead>\n\n            <TableHead className=\"h-12 px-4 font-medium\">Due Date</TableHead>\n            <TableHead className=\"h-12 px-4 font-medium\">Notes</TableHead>\n            <TableHead className=\"h-12 px-4 font-medium w-[180px]\">\n              Actions\n            </TableHead>\n          </TableRow>\n        </TableHeader>\n        <TableBody>{tasks.map(renderTaskRow)}</TableBody>\n      </Table>\n    </div>\n  );\n}\n"
+        }
+      ],
+      "categories": [
+        "tables"
+      ]
+    },
+    {
+      "name": "table-03",
+      "type": "registry:block",
+      "title": "Product Inventory Table",
+      "description": "A product inventory table block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "badge",
+        "select",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "content/components/tables/table-03.tsx",
+          "type": "registry:component",
+          "target": "components/table-03.tsx",
+          "content": "'use client';\n\nimport { useState } from 'react';\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from '@/components/ui/select';\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from '@/components/ui/table';\nimport { Badge } from '@/components/ui/badge';\nimport { cn } from '@/lib/utils';\n\ninterface Product {\n  sku: string;\n  productName: string;\n  supplier: string;\n  stockLevel: number;\n  warehouse: string;\n  category: string;\n  unitPrice: string;\n  lastRestocked: string;\n}\n\nconst data: Product[] = [\n  {\n    sku: 'SKU-8472',\n    productName: 'Wireless Mouse Pro',\n    supplier: 'TechSupply Inc.',\n    stockLevel: 245,\n    warehouse: 'Dallas TX',\n    category: 'Electronics',\n    unitPrice: '$24.99',\n    lastRestocked: '15/10/2024 09:30',\n  },\n  {\n    sku: 'SKU-3391',\n    productName: 'Ergonomic Keyboard',\n    supplier: 'KeyMasters Ltd.',\n    stockLevel: 89,\n    warehouse: 'Seattle WA',\n    category: 'Electronics',\n    unitPrice: '$79.99',\n    lastRestocked: '18/10/2024 14:20',\n  },\n  {\n    sku: 'SKU-7156',\n    productName: 'Office Chair Deluxe',\n    supplier: 'ComfortSeating Co.',\n    stockLevel: 12,\n    warehouse: 'Chicago IL',\n    category: 'Furniture',\n    unitPrice: '$299.99',\n    lastRestocked: '12/10/2024 08:15',\n  },\n  {\n    sku: 'SKU-9204',\n    productName: 'USB-C Hub Adapter',\n    supplier: 'ConnectAll Corp.',\n    stockLevel: 456,\n    warehouse: 'Dallas TX',\n    category: 'Accessories',\n    unitPrice: '$34.50',\n    lastRestocked: '19/10/2024 11:45',\n  },\n  {\n    sku: 'SKU-1638',\n    productName: 'Standing Desk Frame',\n    supplier: 'ComfortSeating Co.',\n    stockLevel: 5,\n    warehouse: 'Seattle WA',\n    category: 'Furniture',\n    unitPrice: '$449.00',\n    lastRestocked: '10/10/2024 16:00',\n  },\n  {\n    sku: 'SKU-5529',\n    productName: 'Laptop Stand Aluminum',\n    supplier: 'TechSupply Inc.',\n    stockLevel: 178,\n    warehouse: 'Austin TX',\n    category: 'Accessories',\n    unitPrice: '$45.99',\n    lastRestocked: '17/10/2024 10:30',\n  },\n  {\n    sku: 'SKU-4817',\n    productName: 'Mechanical Keyboard RGB',\n    supplier: 'KeyMasters Ltd.',\n    stockLevel: 0,\n    warehouse: 'Chicago IL',\n    category: 'Electronics',\n    unitPrice: '$129.99',\n    lastRestocked: '05/10/2024 13:20',\n  },\n];\n\nfunction getStockLevelBadge(stockLevel: number) {\n  if (stockLevel === 0) {\n    return (\n      <Badge\n        variant=\"outline\"\n        className=\"border-0 bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20\"\n      >\n        Out of Stock\n      </Badge>\n    );\n  } else if (stockLevel <= 20) {\n    return (\n      <Badge\n        variant=\"outline\"\n        className=\"border-0 bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20\"\n      >\n        Low Stock\n      </Badge>\n    );\n  } else if (stockLevel <= 100) {\n    return (\n      <Badge\n        variant=\"outline\"\n        className=\"border-0 bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20\"\n      >\n        In Stock\n      </Badge>\n    );\n  } else {\n    return (\n      <Badge\n        variant=\"outline\"\n        className=\"border-0 bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20\"\n      >\n        Well Stocked\n      </Badge>\n    );\n  }\n}\n\nexport default function Table03() {\n  const [selectedCategory, setSelectedCategory] = useState<string>('all');\n  const [selectedWarehouse, setSelectedWarehouse] = useState<string>('all');\n\n  const filteredData = data.filter((item) => {\n    const categoryMatch =\n      selectedCategory === 'all' || item.category === selectedCategory;\n    const warehouseMatch =\n      selectedWarehouse === 'all' || item.warehouse === selectedWarehouse;\n    return categoryMatch && warehouseMatch;\n  });\n\n  const uniqueCategories = Array.from(\n    new Set(data.map((item) => item.category))\n  );\n  const uniqueWarehouses = Array.from(\n    new Set(data.map((item) => item.warehouse))\n  );\n\n  return (\n    <div className=\"space-y-6\">\n      <div className=\"flex flex-col gap-4 md:flex-row md:items-center md:justify-between\">\n        <div>\n          <h3 className=\"text-lg font-semibold text-foreground\">\n            Product Inventory\n          </h3>\n          <p className=\"mt-1 text-sm text-muted-foreground\">\n            Track and manage product stock levels across all warehouse\n            locations.\n          </p>\n        </div>\n        <div className=\"flex flex-col gap-2 sm:flex-row sm:items-center\">\n          <Select value={selectedCategory} onValueChange={setSelectedCategory}>\n            <SelectTrigger className=\"w-full sm:w-[180px]\">\n              <SelectValue placeholder=\"Filter by category\" />\n            </SelectTrigger>\n            <SelectContent>\n              <SelectItem value=\"all\">All Categories</SelectItem>\n              {uniqueCategories.map((category) => (\n                <SelectItem key={category} value={category}>\n                  {category}\n                </SelectItem>\n              ))}\n            </SelectContent>\n          </Select>\n          <Select\n            value={selectedWarehouse}\n            onValueChange={setSelectedWarehouse}\n          >\n            <SelectTrigger className=\"w-full sm:w-[180px]\">\n              <SelectValue placeholder=\"Filter by warehouse\" />\n            </SelectTrigger>\n            <SelectContent>\n              <SelectItem value=\"all\">All Warehouses</SelectItem>\n              {uniqueWarehouses.map((warehouse) => (\n                <SelectItem key={warehouse} value={warehouse}>\n                  {warehouse}\n                </SelectItem>\n              ))}\n            </SelectContent>\n          </Select>\n        </div>\n      </div>\n\n      <div className=\"rounded-lg border bg-card\">\n        <Table>\n          <TableHeader>\n            <TableRow className=\"border-b hover:bg-transparent\">\n              <TableHead className=\"h-12 px-4 font-medium\">SKU</TableHead>\n              <TableHead className=\"h-12 px-4 font-medium\">\n                Product Name\n              </TableHead>\n              <TableHead className=\"h-12 px-4 font-medium\">Supplier</TableHead>\n              <TableHead className=\"h-12 px-4 font-medium\">Category</TableHead>\n              <TableHead className=\"h-12 px-4 font-medium\">Warehouse</TableHead>\n              <TableHead className=\"h-12 px-4 text-right font-medium\">\n                Stock Level\n              </TableHead>\n              <TableHead className=\"h-12 px-4 text-right font-medium\">\n                Unit Price\n              </TableHead>\n              <TableHead className=\"h-12 px-4 text-right font-medium\">\n                Last Restocked\n              </TableHead>\n            </TableRow>\n          </TableHeader>\n          <TableBody>\n            {filteredData.length > 0 ? (\n              filteredData.map((item) => (\n                <TableRow key={item.sku} className=\"hover:bg-muted/50\">\n                  <TableCell className=\"h-14 px-4 font-mono text-sm font-medium\">\n                    {item.sku}\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4 font-medium\">\n                    {item.productName}\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4 text-sm text-muted-foreground\">\n                    {item.supplier}\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4 text-sm text-muted-foreground\">\n                    {item.category}\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4 text-sm text-muted-foreground\">\n                    {item.warehouse}\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4\">\n                    <div className=\"flex items-center justify-end gap-2\">\n                      <span\n                        className={cn(\n                          'font-mono text-sm font-semibold',\n                          item.stockLevel === 0 && 'text-rose-600 dark:text-rose-400',\n                          item.stockLevel > 0 &&\n                            item.stockLevel <= 20 &&\n                            'text-amber-600 dark:text-amber-400',\n                          item.stockLevel > 20 && 'text-foreground'\n                        )}\n                      >\n                        {item.stockLevel}\n                      </span>\n                      {getStockLevelBadge(item.stockLevel)}\n                    </div>\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4 text-right font-mono text-sm font-semibold\">\n                    {item.unitPrice}\n                  </TableCell>\n                  <TableCell className=\"h-14 px-4 text-right text-sm text-muted-foreground\">\n                    {item.lastRestocked}\n                  </TableCell>\n                </TableRow>\n              ))\n            ) : (\n              <TableRow>\n                <TableCell\n                  colSpan={8}\n                  className=\"h-24 text-center text-muted-foreground\"\n                >\n                  No products found matching the selected filters.\n                </TableCell>\n              </TableRow>\n            )}\n          </TableBody>\n        </Table>\n      </div>\n    </div>\n  );\n}\n"
         }
       ],
       "categories": [

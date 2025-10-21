@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "file-upload-04",
   "type": "registry:block",
-  "title": "Drag & Drop Upload",
-  "description": "A drag & drop upload block.",
+  "title": "File Upload Drag & Drop",
+  "description": "A file upload drag & drop block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

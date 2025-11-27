@@ -8,7 +8,7 @@ import { RegistrySetup } from "./registry-setup";
 
 export function Header() {
   return (
-    <div className="sticky top-0 z-50 border-border border-b border-dotted bg-background">
+    <div className="sticky top-0 z-50 bg-background">
       <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between border-border border-r border-l border-dotted px-4 sm:px-8">
         <Link className="flex items-center space-x-1 py-5" href="/">
           <IconSquareRoundedFilled />
@@ -16,13 +16,13 @@ export function Header() {
           <h1 className="font-semibold text-xl">blocks</h1>
         </Link>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <RegistrySetup />
 
           <a
             className={cn(
-              buttonVariants({ variant: "outline" }),
-              "rounded-full"
+              buttonVariants({ variant: "default" }),
+              "rounded-lg text-base"
             )}
             data-umami-event="View GitHub Repository"
             href="https://github.com/ephraimduncan/blocks"
@@ -31,7 +31,7 @@ export function Header() {
           >
             <svg
               aria-hidden="true"
-              className="size-3.5"
+              className="size-4"
               fill="currentColor"
               role="img"
               viewBox="0 0 24 24"

@@ -6,11 +6,13 @@ import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { DM_Sans, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-const fontSans = DM_Sans({
+const fontSans = localFont({
+  src: "../public/font/font-medium.otf",
   variable: "--font-sans",
-  subsets: ["latin"],
+  fallback: ["DM Sans", "system-ui", "sans-serif"],
 });
 
 const fontMono = Geist_Mono({

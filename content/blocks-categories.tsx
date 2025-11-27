@@ -74,11 +74,10 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
 
   {
     id: categoryIds.AI,
-    name: "AI Blocks",
+    name: "AI Components",
     hasCharts: false,
     thumbnailCustomClasses: "w-10/12",
   },
-
   {
     id: categoryIds.Tables,
     name: "Tables",

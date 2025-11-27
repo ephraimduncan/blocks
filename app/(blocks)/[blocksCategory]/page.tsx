@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/config";
+import { IconArrowLeftDashed, IconChevronLeft } from "@tabler/icons-react";
 
 type PageProps = {
   params: Promise<{ blocksCategory: string }>;
@@ -86,16 +87,20 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="flex flex-col">
-      <div className="space-y-2">
+      <div className="space-y-2 flex flex-col items-center justify-center my-10">
         <Link
           href="/"
-          className="text-sm text-muted-foreground flex gap-1 items-center"
+          className="text-sm text-muted-foreground flex gap-0.5 items-center"
         >
-          <ArrowLeftIcon className="w-3 h-3" />
-          <span>Back to blocks</span>
+          <IconChevronLeft className="size-5 text-[#A6A6A6] " />
+          <span className="font-medium text-base text-[#A6A6A6]">
+            Back to blocks
+          </span>
         </Link>
 
-        <h1 className="text-3xl font-bold tracking-tight">{blocks.name}</h1>
+        <h1 className="text-5xl/[1.1] font-bold tracking-tight">
+          {blocks.name}
+        </h1>
       </div>
 
       <div className="mt-0 overflow-hidden px-px pb-px">

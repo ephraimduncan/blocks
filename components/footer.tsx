@@ -25,7 +25,7 @@ export function Footer() {
               href={siteConfig.links.website}
               target="_blank"
               rel="noreferrer"
-              className="hover:font-black transition-all duration-100 underline underline-offset-4"
+              className="hover:font-black transition-all duration-200 underline underline-offset-4"
               data-umami-event="View Ephraim Duncan's Website"
             >
               Ephraim Duncan
@@ -37,7 +37,7 @@ export function Footer() {
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
-              className="hover:font-black transition-all duration-300 underline underline-offset-4"
+              className="underline underline-offset-4"
               data-umami-event="View GitHub Repository"
             >
               GitHub

@@ -5,7 +5,6 @@ import { siteConfig } from "@/config";
 import { blocksCategoriesMetadata } from "@/content/blocks-categories";
 import { CodeIcon, ReactIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Shadcn Blocks - 60+ Free shadcn/ui Components for React",
@@ -39,13 +38,15 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="w-full">
-      {/* remove the mb-10 */}
-      <div className="mb-10">
+      <div>
         <div className="gap-4 mt-20">
-          <h1 className="mb-4 font-semibold text-6xl/[1.1] leading-tight text-foreground tracking-tight md:text-7xl/[1.1] text-center">
+          <h1 className="mb-4 font-bold text-6xl/[1.1] text-foreground tracking-tight md:text-7xl/[1.1] text-center">
             Building Blocks
             <br />
-            for the Web
+            for the{" "}
+            <span className="hover:font-black transition-all duration-200 cursor-pointer">
+              Web
+            </span>
           </h1>
 
           <p className="mb-6 text-lg text-[#898989] text-center">

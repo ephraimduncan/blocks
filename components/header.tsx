@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils";
 import { IconSquareRoundedFilled } from "@tabler/icons-react";
 import Link from "next/link";
 import { RegistrySetup } from "./registry-setup";
+import { siteConfig } from "@/config";
 
 export function Header() {
   return (
-    <div className="sticky top-0 z-50 bg-background">
+    <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between border-border border-r border-l border-dotted px-4 sm:px-8">
         <Link className="flex items-center space-x-1 py-5" href="/">
           <IconSquareRoundedFilled />
@@ -22,10 +23,10 @@ export function Header() {
           <a
             className={cn(
               buttonVariants({ variant: "default" }),
-              "rounded-lg text-base"
+              "rounded-xl text-base"
             )}
             data-umami-event="View GitHub Repository"
-            href="https://github.com/ephraimduncan/blocks"
+            href={siteConfig.links.github}
             rel="noreferrer"
             target="_blank"
           >

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
+import { CodeIcon, ReactIcon } from "@/components/icons";
 import { siteConfig } from "@/config";
 import { blocksCategoriesMetadata } from "@/content/blocks-categories";
-import { CodeIcon, ReactIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -37,7 +38,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Shadcn Blocks" }]} />
+      <div className="w-full">
       <div>
         <div className="gap-4 mt-20">
           <h1 className="mb-4 font-bold text-6xl/[1.1] text-foreground tracking-tight md:text-7xl/[1.1] text-center">
@@ -79,7 +82,9 @@ export default function Home() {
               <div className="w-full border border-border rounded-3xl aspect-square grid place-items-center bg-[#F4F4F4]">
                 <img
                   src={`/thumbnails/${block.id}.svg`}
-                  alt={block.name}
+                  alt={`${
+                    block.name
+                  } - Free shadcn/ui ${block.name.toLowerCase()} blocks and components`}
                   className={block.thumbnailCustomClasses}
                 />
               </div>
@@ -96,6 +101,7 @@ export default function Home() {
           </Link>
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

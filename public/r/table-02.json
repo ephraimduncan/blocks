@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "table-02",
   "type": "registry:block",
-  "title": "Task Management Table",
-  "description": "A task management table block.",
+  "title": "Table with Actions",
+  "description": "A table with actions block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "badge",

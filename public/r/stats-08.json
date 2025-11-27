@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-08",
   "type": "registry:block",
-  "title": "Stats card with circular progress and links",
-  "description": "A stats card with circular progress and links block.",
+  "title": "Stats with Circular Progress and Links",
+  "description": "A stats with circular progress and links block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "card",

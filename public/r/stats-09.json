@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-09",
   "type": "registry:block",
-  "title": "Stats card with progress",
-  "description": "A stats card with progress block.",
+  "title": "Stats with Progress",
+  "description": "A stats with progress block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "card",

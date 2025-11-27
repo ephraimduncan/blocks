@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-04",
   "type": "registry:block",
-  "title": "Prompt Input with File Attachments",
-  "description": "A prompt input with file attachments block.",
+  "title": "AI Chat with File Attachments",
+  "description": "A ai chat with file attachments block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "badge",

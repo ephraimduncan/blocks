@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-12",
   "type": "registry:block",
-  "title": "Usage dashboard",
-  "description": "A usage dashboard block.",
+  "title": "Stats Usage Dashboard",
+  "description": "A stats usage dashboard block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

@@ -1,12 +1,13 @@
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
 import { Block } from "@/components/ui/block";
 import { CustomMDX } from "@/components/ui/mdx";
+import { siteConfig } from "@/config";
 import { blocksCategoriesMetadata } from "@/content/blocks-categories";
 import { getBlocks } from "@/lib/blocks";
-import { ArrowLeftIcon } from "lucide-react";
+import { IconChevronLeft } from "@tabler/icons-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { siteConfig } from "@/config";
 
 type PageProps = {
   params: Promise<{ blocksCategory: string }>;
@@ -42,13 +43,23 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks into your projects.`,
     alternates: { canonical: `/${params.blocksCategory}` },
     keywords: [
+      `shadcn ${categoryName.toLowerCase()}`,
       `shadcn ${categoryName.toLowerCase()} blocks`,
+      `shadcn/ui ${categoryName.toLowerCase()}`,
       `shadcn/ui ${categoryName.toLowerCase()} components`,
+      `shadcn ui ${categoryName.toLowerCase()}`,
       `${categoryName.toLowerCase()} UI blocks`,
+      `${categoryName.toLowerCase()} component react`,
+      `${categoryName.toLowerCase()} UI tailwind`,
       `React ${categoryName.toLowerCase()} components`,
       `Tailwind ${categoryName.toLowerCase()}`,
       `Next.js ${categoryName.toLowerCase()}`,
       `free ${categoryName.toLowerCase()} blocks`,
+      `free ${categoryName.toLowerCase()} component`,
+      `copy paste ${categoryName.toLowerCase()}`,
+      `${categoryName.toLowerCase()} examples`,
+      `${categoryName.toLowerCase()} template`,
+      `radix ${categoryName.toLowerCase()}`,
     ],
     openGraph: {
       title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui Components`,
@@ -85,17 +96,28 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="space-y-2">
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Shadcn Blocks" },
+          { name: blocks.name, path: `/${blocksCategory}` },
+        ]}
+      />
+      <div className="flex flex-col">
+      <div className="space-y-2 flex flex-col items-center justify-center my-10">
         <Link
           href="/"
-          className="text-sm text-muted-foreground flex gap-1 items-center"
+          className="text-sm text-muted-foreground flex gap-0.5 items-center"
         >
-          <ArrowLeftIcon className="w-3 h-3" />
-          <span>Back to blocks</span>
+          <IconChevronLeft className="size-5 text-[#A6A6A6] " />
+          <span className="font-medium text-base text-[#A6A6A6]">
+            Back to blocks
+          </span>
         </Link>
 
-        <h1 className="text-3xl font-bold tracking-tight">{blocks.name}</h1>
+        <h1 className="text-5xl/[1.1] font-bold tracking-tight">
+          {blocks.name}
+        </h1>
       </div>
 
       <div className="mt-0 overflow-hidden px-px pb-px">
@@ -116,6 +138,7 @@ export default async function Page({ params }: PageProps) {
           />
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

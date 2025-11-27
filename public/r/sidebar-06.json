@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sidebar-06",
   "type": "registry:block",
-  "title": "Replacement Sidebar",
-  "description": "A replacement sidebar block.",
+  "title": "Sidebar Replacement",
+  "description": "A sidebar replacement block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "avatar",

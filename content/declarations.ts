@@ -1,7 +1,8 @@
 export type BlocksCategoryMetadata = {
   id: string;
   name: string;
-  thumbnail: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  thumbnail?: string;
+  thumbnailCustomClasses?: string;
   count: string;
   hasCharts?: boolean;
 };
@@ -24,4 +25,5 @@ export const categoryIds: { [key: string]: string } = {
   Sidebar: "sidebar",
 
   AI: "ai",
-  Tables: "tables",};
+  Tables: "tables",
+};

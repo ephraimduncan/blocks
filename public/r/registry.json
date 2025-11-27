@@ -6,8 +6,8 @@
     {
       "name": "ai-01",
       "type": "registry:block",
-      "title": "Prompt Input with Voice Input",
-      "description": "A prompt input with voice input block.",
+      "title": "AI Chat with Voice Input",
+      "description": "A ai chat with voice input block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -32,8 +32,8 @@
     {
       "name": "ai-02",
       "type": "registry:block",
-      "title": "Prompt Input with Model Selection",
-      "description": "A prompt input with model selection block.",
+      "title": "AI Chat with Model Selection",
+      "description": "A ai chat with model selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -58,8 +58,8 @@
     {
       "name": "ai-03",
       "type": "registry:block",
-      "title": "Prompt Input Compact Interface",
-      "description": "A prompt input compact interface block.",
+      "title": "AI Chat Compact Interface",
+      "description": "A ai chat compact interface block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -84,8 +84,8 @@
     {
       "name": "ai-04",
       "type": "registry:block",
-      "title": "Prompt Input with File Attachments",
-      "description": "A prompt input with file attachments block.",
+      "title": "AI Chat with File Attachments",
+      "description": "A ai chat with file attachments block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -113,8 +113,8 @@
     {
       "name": "dialog-01",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog Confirmation",
+      "description": "A dialog confirmation block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -138,8 +138,8 @@
     {
       "name": "dialog-02",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Warning Icon",
+      "description": "A dialog with warning icon block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -163,8 +163,8 @@
     {
       "name": "dialog-03",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Input Field",
+      "description": "A dialog with input field block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -188,8 +188,8 @@
     {
       "name": "dialog-04",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Two Buttons",
+      "description": "A dialog with two buttons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -213,8 +213,8 @@
     {
       "name": "dialog-05",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Password Confirmation",
+      "description": "A dialog with password confirmation block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -240,8 +240,8 @@
     {
       "name": "dialog-06",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Privacy Toggle",
+      "description": "A dialog with privacy toggle block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -266,8 +266,8 @@
     {
       "name": "dialog-07",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Member List",
+      "description": "A dialog with member list block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -293,8 +293,8 @@
     {
       "name": "dialog-08",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Email and Password Fields",
+      "description": "A dialog with email and password fields block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -321,8 +321,8 @@
     {
       "name": "dialog-09",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Link Share and Toggles",
+      "description": "A dialog with link share and toggles block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -350,8 +350,8 @@
     {
       "name": "dialog-10",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog with Calendar and Time Picker",
+      "description": "A dialog with calendar and time picker block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -382,8 +382,8 @@
     {
       "name": "dialog-11",
       "type": "registry:block",
-      "title": "Dialog",
-      "description": "A dialog block.",
+      "title": "Dialog Multi-Step Wizard",
+      "description": "A dialog multi-step wizard block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -410,7 +410,7 @@
     {
       "name": "dialog-12",
       "type": "registry:block",
-      "title": "Dialog with avatar upload",
+      "title": "Dialog with Avatar Upload",
       "description": "A dialog with avatar upload block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
@@ -520,8 +520,8 @@
     {
       "name": "file-upload-02",
       "type": "registry:block",
-      "title": "Simple File Upload",
-      "description": "A simple file upload block.",
+      "title": "File Upload Simple",
+      "description": "A file upload simple block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -545,8 +545,8 @@
     {
       "name": "file-upload-03",
       "type": "registry:block",
-      "title": "Multi-File Dropzone",
-      "description": "A multi-file dropzone block.",
+      "title": "File Upload Multi-File Dropzone",
+      "description": "A file upload multi-file dropzone block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -575,8 +575,8 @@
     {
       "name": "file-upload-04",
       "type": "registry:block",
-      "title": "Drag & Drop Upload",
-      "description": "A drag & drop upload block.",
+      "title": "File Upload Drag & Drop",
+      "description": "A file upload drag & drop block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -654,8 +654,8 @@
     {
       "name": "form-layout-01",
       "type": "registry:block",
-      "title": "Workspace Registration Form",
-      "description": "A workspace registration form block.",
+      "title": "Form with Workspace Fields",
+      "description": "A form with workspace fields block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -679,8 +679,8 @@
     {
       "name": "form-layout-02",
       "type": "registry:block",
-      "title": "Form Sections with Side Labels",
-      "description": "A form sections with side labels block.",
+      "title": "Form with Side Labels",
+      "description": "A form with side labels block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -707,8 +707,8 @@
     {
       "name": "form-layout-03",
       "type": "registry:block",
-      "title": "Form Sections with Checkbox Settings",
-      "description": "A form sections with checkbox settings block.",
+      "title": "Form with Checkbox Settings",
+      "description": "A form with checkbox settings block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -735,8 +735,8 @@
     {
       "name": "form-layout-04",
       "type": "registry:block",
-      "title": "Early Access Application with Package Selection",
-      "description": "A early access application with package selection block.",
+      "title": "Form with Package Selection",
+      "description": "A form with package selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -762,8 +762,8 @@
     {
       "name": "form-layout-05",
       "type": "registry:block",
-      "title": "Design Workspace Creation with Plan Selection",
-      "description": "A design workspace creation with plan selection block.",
+      "title": "Form with Plan Selection",
+      "description": "A form with plan selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -793,8 +793,8 @@
     {
       "name": "grid-list-01",
       "type": "registry:block",
-      "title": "Simple Card with Dropdown",
-      "description": "A simple card with dropdown block.",
+      "title": "Grid List with Dropdown",
+      "description": "A grid list with dropdown block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -819,8 +819,8 @@
     {
       "name": "grid-list-02",
       "type": "registry:block",
-      "title": "Link cards",
-      "description": "A link cards block.",
+      "title": "Grid List with Links",
+      "description": "A grid list with links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -842,8 +842,8 @@
     {
       "name": "grid-list-03",
       "type": "registry:block",
-      "title": "Link cards with icons",
-      "description": "A link cards with icons block.",
+      "title": "Grid List with Icons",
+      "description": "A grid list with icons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -866,8 +866,8 @@
     {
       "name": "login-01",
       "type": "registry:block",
-      "title": "Simple Email Login with Google",
-      "description": "A simple email login with google block.",
+      "title": "Login with Email and Google",
+      "description": "A login with email and google block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -891,8 +891,8 @@
     {
       "name": "login-02",
       "type": "registry:block",
-      "title": "Simple Email/Password Login with Google",
-      "description": "A simple email/password login with google block.",
+      "title": "Login with Email, Password and Google",
+      "description": "A login with email, password and google block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -916,8 +916,8 @@
     {
       "name": "login-03",
       "type": "registry:block",
-      "title": "Simple Email/Password Login",
-      "description": "A simple email/password login block.",
+      "title": "Login with Email and Password",
+      "description": "A login with email and password block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -940,8 +940,8 @@
     {
       "name": "login-04",
       "type": "registry:block",
-      "title": "Simple Login with Social Buttons",
-      "description": "A simple login with social buttons block.",
+      "title": "Login with Social Buttons",
+      "description": "A login with social buttons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -965,8 +965,8 @@
     {
       "name": "login-05",
       "type": "registry:block",
-      "title": "Simple Card Signup Form",
-      "description": "A simple card signup form block.",
+      "title": "Login Card Signup Form",
+      "description": "A login card signup form block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -991,8 +991,8 @@
     {
       "name": "login-06",
       "type": "registry:block",
-      "title": "Login with Magic Link/SSO",
-      "description": "A login with magic link/sso block.",
+      "title": "Login with Magic Link and SSO",
+      "description": "A login with magic link and sso block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1016,8 +1016,8 @@
     {
       "name": "login-07",
       "type": "registry:block",
-      "title": "Full Page Login with Icons",
-      "description": "A full page login with icons block.",
+      "title": "Login Full Page with Icons",
+      "description": "A login full page with icons block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1072,8 +1072,8 @@
     {
       "name": "login-09",
       "type": "registry:block",
-      "title": "Signup with Role Selection",
-      "description": "A signup with role selection block.",
+      "title": "Login Signup with Role Selection",
+      "description": "A login signup with role selection block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1101,8 +1101,8 @@
     {
       "name": "sidebar-01",
       "type": "registry:block",
-      "title": "Sidebar",
-      "description": "A sidebar block.",
+      "title": "Sidebar Collapsible Sections",
+      "description": "A sidebar collapsible sections block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1168,8 +1168,8 @@
     {
       "name": "sidebar-02",
       "type": "registry:block",
-      "title": "Sidebar",
-      "description": "A sidebar block.",
+      "title": "Sidebar Dashboard Inset",
+      "description": "A sidebar dashboard inset block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1227,8 +1227,8 @@
     {
       "name": "sidebar-03",
       "type": "registry:block",
-      "title": "Floating Sidebar",
-      "description": "A floating sidebar block.",
+      "title": "Sidebar Dashboard Floating",
+      "description": "A sidebar dashboard floating block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1286,8 +1286,8 @@
     {
       "name": "sidebar-04",
       "type": "registry:block",
-      "title": "Double Sided Sidebar",
-      "description": "A double sided sidebar block.",
+      "title": "Sidebar Double-Sided Mail",
+      "description": "A sidebar double-sided mail block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1331,8 +1331,8 @@
     {
       "name": "sidebar-05",
       "type": "registry:block",
-      "title": "Double Sided Sidebar",
-      "description": "A double sided sidebar block.",
+      "title": "Sidebar Double-Sided",
+      "description": "A sidebar double-sided block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1370,8 +1370,8 @@
     {
       "name": "sidebar-06",
       "type": "registry:block",
-      "title": "Replacement Sidebar",
-      "description": "A replacement sidebar block.",
+      "title": "Sidebar Replacement",
+      "description": "A sidebar replacement block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
@@ -1409,7 +1409,7 @@
     {
       "name": "stats-01",
       "type": "registry:block",
-      "title": "Stats with trending",
+      "title": "Stats with Trending",
       "description": "A stats with trending block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
@@ -1431,7 +1431,7 @@
     {
       "name": "stats-02",
       "type": "registry:block",
-      "title": "Stats with borders",
+      "title": "Stats with Borders",
       "description": "A stats with borders block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
@@ -1456,8 +1456,8 @@
     {
       "name": "stats-03",
       "type": "registry:block",
-      "title": "Stats cards",
-      "description": "A stats cards block.",
+      "title": "Stats with Card Layout",
+      "description": "A stats with card layout block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -1478,8 +1478,8 @@
     {
       "name": "stats-04",
       "type": "registry:block",
-      "title": "Stats cards with badges",
-      "description": "A stats cards with badges block.",
+      "title": "Stats with Badges",
+      "description": "A stats with badges block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",
@@ -1503,8 +1503,8 @@
     {
       "name": "stats-05",
       "type": "registry:block",
-      "title": "Stats cards with links",
-      "description": "A stats cards with links block.",
+      "title": "Stats with Links",
+      "description": "A stats with links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -1525,8 +1525,8 @@
     {
       "name": "stats-06",
       "type": "registry:block",
-      "title": "Stats cards with status",
-      "description": "A stats cards with status block.",
+      "title": "Stats with Status",
+      "description": "A stats with status block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card"
@@ -1549,8 +1549,8 @@
     {
       "name": "stats-07",
       "type": "registry:block",
-      "title": "Stats cards with circular progress",
-      "description": "A stats cards with circular progress block.",
+      "title": "Stats with Circular Progress",
+      "description": "A stats with circular progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1575,8 +1575,8 @@
     {
       "name": "stats-08",
       "type": "registry:block",
-      "title": "Stats card with circular progress and links",
-      "description": "A stats card with circular progress and links block.",
+      "title": "Stats with Circular Progress and Links",
+      "description": "A stats with circular progress and links block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1600,8 +1600,8 @@
     {
       "name": "stats-09",
       "type": "registry:block",
-      "title": "Stats card with progress",
-      "description": "A stats card with progress block.",
+      "title": "Stats with Progress",
+      "description": "A stats with progress block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1623,8 +1623,8 @@
     {
       "name": "stats-10",
       "type": "registry:block",
-      "title": "Stats card with area chart",
-      "description": "A stats card with area chart block.",
+      "title": "Stats with Area Chart",
+      "description": "A stats with area chart block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "card",
@@ -1648,8 +1648,8 @@
     {
       "name": "stats-11",
       "type": "registry:block",
-      "title": "Status dashboard with progress bars",
-      "description": "A status dashboard with progress bars block.",
+      "title": "Stats Dashboard with Progress Bars",
+      "description": "A stats dashboard with progress bars block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1676,8 +1676,8 @@
     {
       "name": "stats-12",
       "type": "registry:block",
-      "title": "Usage dashboard",
-      "description": "A usage dashboard block.",
+      "title": "Stats Usage Dashboard",
+      "description": "A stats usage dashboard block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1702,8 +1702,8 @@
     {
       "name": "table-01",
       "type": "registry:block",
-      "title": "Accordion Table",
-      "description": "A accordion table block.",
+      "title": "Table with Accordion",
+      "description": "A table with accordion block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "button",
@@ -1727,8 +1727,8 @@
     {
       "name": "table-02",
       "type": "registry:block",
-      "title": "Task Management Table",
-      "description": "A task management table block.",
+      "title": "Table with Actions",
+      "description": "A table with actions block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "badge",

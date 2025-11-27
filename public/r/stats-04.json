@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-04",
   "type": "registry:block",
-  "title": "Stats cards with badges",
-  "description": "A stats cards with badges block.",
+  "title": "Stats with Badges",
+  "description": "A stats with badges block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "badge",

@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "form-layout-03",
   "type": "registry:block",
-  "title": "Form Sections with Checkbox Settings",
-  "description": "A form sections with checkbox settings block.",
+  "title": "Form with Checkbox Settings",
+  "description": "A form with checkbox settings block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

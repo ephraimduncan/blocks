@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "form-layout-02",
   "type": "registry:block",
-  "title": "Form Sections with Side Labels",
-  "description": "A form sections with side labels block.",
+  "title": "Form with Side Labels",
+  "description": "A form with side labels block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stats-10",
   "type": "registry:block",
-  "title": "Stats card with area chart",
-  "description": "A stats card with area chart block.",
+  "title": "Stats with Area Chart",
+  "description": "A stats with area chart block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "card",

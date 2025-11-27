@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "grid-list-01",
   "type": "registry:block",
-  "title": "Simple Card with Dropdown",
-  "description": "A simple card with dropdown block.",
+  "title": "Grid List with Dropdown",
+  "description": "A grid list with dropdown block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

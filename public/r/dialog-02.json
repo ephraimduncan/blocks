@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog-02",
   "type": "registry:block",
-  "title": "Dialog",
-  "description": "A dialog block.",
+  "title": "Dialog with Warning Icon",
+  "description": "A dialog with warning icon block.",
   "author": "ephraim duncan <https://ephraimduncan.com>",
   "registryDependencies": [
     "button",

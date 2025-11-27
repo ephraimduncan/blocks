@@ -5,6 +5,7 @@ import { siteConfig } from "@/config";
 import { blocksCategoriesMetadata } from "@/content/blocks-categories";
 import { CodeIcon, ReactIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Shadcn Blocks - 60+ Free shadcn/ui Components for React",
@@ -67,15 +68,19 @@ export default function Home() {
 
       <div
         className={cn(
-          "grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-10",
+          "grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-12",
           "mt-20"
         )}
       >
         {blocksCategoriesMetadata.map((block) => (
           <Link href={`/${block.id}`} key={`${block.id}-${block.name}`}>
             <div className="space-y-4">
-              <div className="w-full border border-border rounded-xl aspect-square flex items-center justify-center bg-[#F4F4F4]">
-                <block.thumbnail className="w-full h-full object-cover grayscale" />
+              <div className="w-full border border-border rounded-3xl aspect-square grid place-items-center bg-[#F4F4F4]">
+                <img
+                  src={`/thumbnails/${block.id}.svg`}
+                  alt={block.name}
+                  className={block.thumbnailCustomClasses}
+                />
               </div>
 
               <div className="flex flex-col gap-1 text-center">

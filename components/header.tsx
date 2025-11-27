@@ -1,5 +1,3 @@
-"use client";
-
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { IconSquareRoundedFilled } from "@tabler/icons-react";
@@ -10,7 +8,8 @@ import { siteConfig } from "@/config";
 export function Header() {
   return (
     <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between border-border border-r border-l border-dotted px-4 sm:px-8">
+      {/* border-border border-r border-l border-dotted */}
+      <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between  px-4 sm:px-8">
         <Link className="flex items-center space-x-1 py-5" href="/">
           <IconSquareRoundedFilled />
 

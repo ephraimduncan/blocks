@@ -1,11 +1,9 @@
-"use client";
-
 import { siteConfig } from "@/config";
 import { IconSquareRoundedFilled } from "@tabler/icons-react";
 
 export function Footer() {
   return (
-    <div className="mx-auto w-full max-w-(--breakpoint-xl) px-4 sm:px-8 border-border border-dotted border-r border-l">
+    <div className="mx-auto w-full max-w-(--breakpoint-xl) px-4 sm:px-8">
       <footer className="flex items-center justify-center w-full sm:flex-row sm:items-center gap-4 py-5 pb-20">
         <div className="flex flex-col items-center space-y-4">
           <div className="text-center gap-0.5">

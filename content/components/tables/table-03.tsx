@@ -19,13 +19,14 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+type Status = 'active' | 'pending' | 'discontinued' | 'on-hold';
+
 interface Product {
   sku: string;
   productName: string;
-  supplier: string;
   stockLevel: number;
-  warehouse: string;
   category: string;
+  status: Status;
   unitPrice: string;
   lastRestocked: string;
 }
@@ -34,132 +35,122 @@ const data: Product[] = [
   {
     sku: 'SKU-8472',
     productName: 'Wireless Mouse Pro',
-    supplier: 'TechSupply Inc.',
     stockLevel: 245,
-    warehouse: 'Dallas TX',
     category: 'Electronics',
+    status: 'active',
     unitPrice: '$24.99',
-    lastRestocked: '15/10/2024 09:30',
+    lastRestocked: 'Oct 15, 2024',
   },
   {
     sku: 'SKU-3391',
     productName: 'Ergonomic Keyboard',
-    supplier: 'KeyMasters Ltd.',
     stockLevel: 89,
-    warehouse: 'Seattle WA',
     category: 'Electronics',
+    status: 'active',
     unitPrice: '$79.99',
-    lastRestocked: '18/10/2024 14:20',
+    lastRestocked: 'Oct 18, 2024',
   },
   {
     sku: 'SKU-7156',
     productName: 'Office Chair Deluxe',
-    supplier: 'ComfortSeating Co.',
     stockLevel: 12,
-    warehouse: 'Chicago IL',
     category: 'Furniture',
+    status: 'pending',
     unitPrice: '$299.99',
-    lastRestocked: '12/10/2024 08:15',
+    lastRestocked: 'Oct 12, 2024',
   },
   {
     sku: 'SKU-9204',
     productName: 'USB-C Hub Adapter',
-    supplier: 'ConnectAll Corp.',
     stockLevel: 456,
-    warehouse: 'Dallas TX',
     category: 'Accessories',
+    status: 'active',
     unitPrice: '$34.50',
-    lastRestocked: '19/10/2024 11:45',
+    lastRestocked: 'Oct 19, 2024',
   },
   {
     sku: 'SKU-1638',
     productName: 'Standing Desk Frame',
-    supplier: 'ComfortSeating Co.',
     stockLevel: 5,
-    warehouse: 'Seattle WA',
     category: 'Furniture',
+    status: 'on-hold',
     unitPrice: '$449.00',
-    lastRestocked: '10/10/2024 16:00',
+    lastRestocked: 'Oct 10, 2024',
   },
   {
     sku: 'SKU-5529',
     productName: 'Laptop Stand Aluminum',
-    supplier: 'TechSupply Inc.',
     stockLevel: 178,
-    warehouse: 'Austin TX',
     category: 'Accessories',
+    status: 'active',
     unitPrice: '$45.99',
-    lastRestocked: '17/10/2024 10:30',
+    lastRestocked: 'Oct 17, 2024',
   },
   {
     sku: 'SKU-4817',
     productName: 'Mechanical Keyboard RGB',
-    supplier: 'KeyMasters Ltd.',
     stockLevel: 0,
-    warehouse: 'Chicago IL',
     category: 'Electronics',
+    status: 'discontinued',
     unitPrice: '$129.99',
-    lastRestocked: '05/10/2024 13:20',
+    lastRestocked: 'Oct 05, 2024',
   },
 ];
 
-function getStockLevelBadge(stockLevel: number) {
-  if (stockLevel === 0) {
-    return (
-      <Badge
-        variant="outline"
-        className="border-0 bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20"
-      >
-        Out of Stock
-      </Badge>
-    );
-  } else if (stockLevel <= 20) {
-    return (
-      <Badge
-        variant="outline"
-        className="border-0 bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20"
-      >
-        Low Stock
-      </Badge>
-    );
-  } else if (stockLevel <= 100) {
-    return (
-      <Badge
-        variant="outline"
-        className="border-0 bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"
-      >
-        In Stock
-      </Badge>
-    );
-  } else {
-    return (
-      <Badge
-        variant="outline"
-        className="border-0 bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20"
-      >
-        Well Stocked
-      </Badge>
-    );
+function getStatusBadge(status: Status) {
+  switch (status) {
+    case 'active':
+      return (
+        <Badge
+          variant="outline"
+          className="border-0 bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20"
+        >
+          Active
+        </Badge>
+      );
+    case 'pending':
+      return (
+        <Badge
+          variant="outline"
+          className="border-0 bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20"
+        >
+          Pending
+        </Badge>
+      );
+    case 'discontinued':
+      return (
+        <Badge
+          variant="outline"
+          className="border-0 bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20"
+        >
+          Discontinued
+        </Badge>
+      );
+    case 'on-hold':
+      return (
+        <Badge
+          variant="outline"
+          className="border-0 bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"
+        >
+          On Hold
+        </Badge>
+      );
+    default:
+      return null;
   }
 }
 
 export default function Table03() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedWarehouse, setSelectedWarehouse] = useState<string>('all');
 
   const filteredData = data.filter((item) => {
     const categoryMatch =
       selectedCategory === 'all' || item.category === selectedCategory;
-    const warehouseMatch =
-      selectedWarehouse === 'all' || item.warehouse === selectedWarehouse;
-    return categoryMatch && warehouseMatch;
+    return categoryMatch;
   });
 
   const uniqueCategories = Array.from(
     new Set(data.map((item) => item.category))
-  );
-  const uniqueWarehouses = Array.from(
-    new Set(data.map((item) => item.warehouse))
   );
 
   return (
@@ -188,22 +179,6 @@ export default function Table03() {
               ))}
             </SelectContent>
           </Select>
-          <Select
-            value={selectedWarehouse}
-            onValueChange={setSelectedWarehouse}
-          >
-            <SelectTrigger className="w-full sm:w-[180px]">
-              <SelectValue placeholder="Filter by warehouse" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Warehouses</SelectItem>
-              {uniqueWarehouses.map((warehouse) => (
-                <SelectItem key={warehouse} value={warehouse}>
-                  {warehouse}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
         </div>
       </div>
 
@@ -215,12 +190,8 @@ export default function Table03() {
               <TableHead className="h-12 px-4 font-medium">
                 Product Name
               </TableHead>
-              <TableHead className="h-12 px-4 font-medium">Supplier</TableHead>
               <TableHead className="h-12 px-4 font-medium">Category</TableHead>
-              <TableHead className="h-12 px-4 font-medium">Warehouse</TableHead>
-              <TableHead className="h-12 px-4 text-right font-medium">
-                Stock Level
-              </TableHead>
+              <TableHead className="h-12 px-4 font-medium">Status</TableHead>
               <TableHead className="h-12 px-4 text-right font-medium">
                 Unit Price
               </TableHead>
@@ -240,18 +211,10 @@ export default function Table03() {
                     {item.productName}
                   </TableCell>
                   <TableCell className="h-14 px-4 text-sm text-muted-foreground">
-                    {item.supplier}
-                  </TableCell>
-                  <TableCell className="h-14 px-4 text-sm text-muted-foreground">
                     {item.category}
                   </TableCell>
-                  <TableCell className="h-14 px-4 text-sm text-muted-foreground">
-                    {item.warehouse}
-                  </TableCell>
                   <TableCell className="h-14 px-4">
-                    <div className="flex items-center justify-end">
-                      {getStockLevelBadge(item.stockLevel)}
-                    </div>
+                    {getStatusBadge(item.status)}
                   </TableCell>
                   <TableCell className="h-14 px-4 text-right font-mono text-sm font-semibold">
                     {item.unitPrice}
@@ -264,7 +227,7 @@ export default function Table03() {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={8}
+                  colSpan={6}
                   className="h-24 text-center text-muted-foreground"
                 >
                   No products found matching the selected filters.

@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 const fontSans = localFont({
   src: "../public/font/font-medium.otf",
@@ -131,6 +132,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            crossOrigin="anonymous"
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            strategy="beforeInteractive"
+          />
+        )}
+      </head>
       <body
         className={cn(fontSans.variable, fontMono.variable, "antialiased")}
         suppressHydrationWarning

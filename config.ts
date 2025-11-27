@@ -5,8 +5,9 @@ export const siteConfig = {
   description:
     "Free shadcn/ui blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste 60+ beautifully designed, accessible UI blocks into your projects. Open source forever.",
   links: {
-    twitter: "https://twitter.com/ephraimduncan_",
-    github: "https://github.com/ephraimduncan/blocks",
+    website: "https://ephraimduncan.com?utm_source=blocks.so",
+    twitter: "https://twitter.com/ephraimduncan_?utm_source=blocks.so",
+    github: "https://github.com/ephraimduncan/blocks?utm_source=blocks.so",
   },
 };
 

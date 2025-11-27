@@ -111,7 +111,7 @@ export const Block = ({
           <div className="flex items-center gap-4 cursor-pointer font-medium text-foreground sm:text-lg">
             <a
               href={`#${blocksId}`}
-              className="text-sm font-medium underline-offset-2 hover:underline"
+              className="text-base font-semibold underline-offset-2 hover:underline"
             >
               {name}
             </a>

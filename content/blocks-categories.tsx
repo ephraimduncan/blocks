@@ -1,18 +1,9 @@
-import { FileUploadThumbnail } from "@/components/thumbnails/file-upload";
-import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
-import { LoginThumbnail } from "@/components/thumbnails/login";
-import { StatsThumbnail } from "@/components/thumbnails/stats";
-
-import { AIThumbnail } from "@/components/thumbnails/ai";
-import { DialogThumbnail } from "@/components/thumbnails/dialog";
-import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
   BlocksMetadata,
   categoryIds,
 } from "./declarations";
-import { TablesThumbnail } from "@/components/thumbnails/tables";
 
 type CategoryCount = Record<string, number>;
 
@@ -44,59 +35,56 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.Dialogs,
     name: "Dialogs",
-    thumbnail: DialogThumbnail,
     hasCharts: false,
+    thumbnailCustomClasses: "w-9/12",
   },
   {
     id: categoryIds.FileUpload,
     name: "File Upload",
-    thumbnail: FileUploadThumbnail,
     hasCharts: false,
   },
   {
     id: categoryIds.FormLayout,
     name: "Form Layout",
-    thumbnail: FormLayoutThumbnail,
     hasCharts: false,
+    thumbnailCustomClasses: "w-8/12",
   },
   {
     id: categoryIds.GridList,
     name: "Grid List",
-    thumbnail: StatsThumbnail,
     hasCharts: false,
   },
   {
     id: categoryIds.Login,
     name: "Login & Signup",
-    thumbnail: LoginThumbnail,
     hasCharts: false,
+    thumbnailCustomClasses: "w-8/12",
   },
   {
     id: categoryIds.Stats,
     name: "Stats",
-    thumbnail: StatsThumbnail,
     hasCharts: false,
   },
   {
     id: categoryIds.Sidebar,
     name: "Sidebar",
-    thumbnail: SidebarThumbnail,
     hasCharts: false,
+    thumbnailCustomClasses: "w-10/12 self-end",
   },
 
   {
     id: categoryIds.AI,
-    name: "AI",
-    thumbnail: AIThumbnail,
+    name: "AI Components",
     hasCharts: false,
+    thumbnailCustomClasses: "w-10/12",
   },
-
   {
     id: categoryIds.Tables,
     name: "Tables",
-    thumbnail: TablesThumbnail,
     hasCharts: false,
-  },];
+    thumbnailCustomClasses: "w-11/12 justify-self-end",
+  },
+];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories().sort(
   (a, b) => a.name.localeCompare(b.name)

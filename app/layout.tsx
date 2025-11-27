@@ -6,11 +6,13 @@ import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { DM_Sans, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-const fontSans = DM_Sans({
+const fontSans = localFont({
+  src: "../public/font/font-medium.otf",
   variable: "--font-sans",
-  subsets: ["latin"],
+  fallback: ["DM Sans", "system-ui", "sans-serif"],
 });
 
 const fontMono = Geist_Mono({
@@ -47,6 +49,28 @@ export const metadata: Metadata = {
     "UI blocks for developers",
     "shadcn previews",
     "shadcn templates",
+    "shadcn",
+    "shadcn ui",
+    "shadcn ui library",
+    "shadcn examples",
+    "shadcn starter",
+    "radix ui blocks",
+    "radix ui components",
+    "shadcn dialog component",
+    "shadcn form component",
+    "shadcn table component",
+    "shadcn sidebar",
+    "shadcn login",
+    "how to use shadcn",
+    "best shadcn components",
+    "shadcn react components",
+    "shadcn next.js",
+    "shadcn tailwind",
+    "ui components react",
+    "free react ui kit",
+    "shadcn ui kit",
+    "react component library",
+    "tailwind ui components",
   ],
   authors: [
     {

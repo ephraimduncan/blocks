@@ -12,12 +12,8 @@ export async function GET(request: NextRequest) {
   const rssXml = await generateRegistryRssFeed({
     baseUrl,
     blocksUrl: ((item) => {
-      /**
-       * This is necessary in order to correctly select the link to the block.
-       * Since you do not have a separate link to the block, but only to the block category,
-       * I made it possible to obtain the category from the block
-       */
-      return `/${item.name.split("-")?.[0] ?? "uncategorized"}`;
+      const category = item.categories?.[0] ?? "uncategorized";
+      return `/${category}#${item.name}`;
     }) as UrlResolverByItem,
     rss: {
       title: "@blocks",

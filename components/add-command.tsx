@@ -47,8 +47,7 @@ export function AddCommand({ name }: { name: string }) {
           ></line>
         </svg>
       )}
-      <span className="hidden sm:inline">{`@blocks/${name}`}</span>
-      <span className="sm:hidden">Add</span>
+{`@blocks/${name}`}
     </Button>
   );
 }

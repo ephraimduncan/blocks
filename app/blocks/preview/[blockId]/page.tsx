@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { blocksComponents } from "@/content/blocks-components";
-import PreviewThemeSwitcher from "./theme-switcher";
 
 type Params = {
   params: Promise<{
@@ -29,7 +28,6 @@ export default async function BlockPreviewPage({ params }: Params) {
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center">
       <BlocksComponent />
-      <PreviewThemeSwitcher />
     </div>
   );
 }

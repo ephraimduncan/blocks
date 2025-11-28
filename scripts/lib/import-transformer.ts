@@ -6,16 +6,17 @@ export class ImportTransformer {
 
   async transformImports(
     filePath: string,
-    fileType: RegistryItemType
+    fileType: RegistryItemType,
+    blockId?: string
   ): Promise<string | undefined> {
-    const cacheKey = `${filePath}:${fileType}`;
+    const cacheKey = `${filePath}:${fileType}:${blockId || ""}`;
     if (this.transformationCache.has(cacheKey)) {
       return this.transformationCache.get(cacheKey);
     }
 
     try {
       const content = await fs.readFile(filePath, "utf-8");
-      const transformedContent = this.transformContent(content, fileType);
+      const transformedContent = this.transformContent(content, fileType, blockId);
 
       this.transformationCache.set(cacheKey, transformedContent);
 
@@ -31,90 +32,96 @@ export class ImportTransformer {
 
   private transformContent(
     content: string,
-    fileType: RegistryItemType
+    fileType: RegistryItemType,
+    blockId?: string
   ): string {
     let transformedContent = content;
 
     switch (fileType) {
       case "registry:page":
-        transformedContent = this.transformPageImports(transformedContent);
+        transformedContent = this.transformPageImports(transformedContent, blockId);
         break;
       case "registry:component":
       case "registry:block":
       case "registry:ui":
-        transformedContent = this.transformComponentImports(transformedContent);
+      case "registry:file":
+        transformedContent = this.transformComponentImports(transformedContent, blockId);
         break;
       case "registry:lib":
       case "registry:hook":
-        transformedContent = this.transformLibraryImports(transformedContent);
+        transformedContent = this.transformLibraryImports(transformedContent, blockId);
         break;
       default:
-        transformedContent = this.transformGenericImports(transformedContent);
+        transformedContent = this.transformGenericImports(transformedContent, blockId);
     }
 
     return transformedContent;
   }
 
-  private transformPageImports(content: string): string {
+  private transformPageImports(content: string, blockId?: string): string {
     let transformed = content;
+    const basePath = blockId ? `@/components/${blockId}` : "@/components";
 
     transformed = transformed.replace(
       /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\.\/((?![\/]).+)["']/g,
       (_, importPart, relativePath) => {
-        return `import ${importPart} from "@/components/${relativePath}"`;
+        return `import ${importPart} from "${basePath}/${relativePath}"`;
       }
     );
 
     transformed = transformed.replace(
       /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
       (_, importPart, relativePath) => {
-        return `import ${importPart} from "@/components/${relativePath}"`;
+        return `import ${importPart} from "${basePath}/${relativePath}"`;
       }
     );
 
     return transformed;
   }
 
-  private transformComponentImports(content: string): string {
+  private transformComponentImports(content: string, blockId?: string): string {
     let transformed = content;
+    const basePath = blockId ? `@/components/${blockId}` : "@/components";
 
     transformed = transformed.replace(
       /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
       (_, importPart, relativePath) => {
-        return `import ${importPart} from "@/components/${relativePath}"`;
+        return `import ${importPart} from "${basePath}/${relativePath}"`;
       }
     );
 
     transformed = transformed.replace(
       /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\.\/((?![\/]).+)["']/g,
       (_, importPart, relativePath) => {
-        return `import ${importPart} from "@/components/${relativePath}"`;
+        return `import ${importPart} from "${basePath}/${relativePath}"`;
       }
     );
 
     return transformed;
   }
 
-  private transformLibraryImports(content: string): string {
+  private transformLibraryImports(content: string, blockId?: string): string {
     let transformed = content;
+    const basePath = blockId ? `@/lib/${blockId}` : "@/lib";
 
     transformed = transformed.replace(
       /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
       (_, importPart, relativePath) => {
-        return `import ${importPart} from "@/lib/${relativePath}"`;
+        return `import ${importPart} from "${basePath}/${relativePath}"`;
       }
     );
 
     return transformed;
   }
 
-  private transformGenericImports(content: string): string {
+  private transformGenericImports(content: string, blockId?: string): string {
     let transformed = content;
+    const basePath = blockId ? `@/components/${blockId}` : "@/components";
 
     transformed = transformed.replace(
       /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
       (_, importPart, relativePath) => {
-        return `import ${importPart} from "@/components/${relativePath}"`;
+        return `import ${importPart} from "${basePath}/${relativePath}"`;
       }
     );
 
@@ -132,8 +139,8 @@ export class ImportTransformer {
     };
   }
 
-  transformContentString(content: string, fileType: RegistryItemType): string {
-    return this.transformContent(content, fileType);
+  transformContentString(content: string, fileType: RegistryItemType, blockId?: string): string {
+    return this.transformContent(content, fileType, blockId);
   }
 
   validateTransformations(

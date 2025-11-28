@@ -82,7 +82,8 @@ export class RegistryBuilder {
 
           const files = await this.fileScanner.scanBlock(
             entryPath,
-            isDirectory
+            isDirectory,
+            blockId
           );
 
           if (files.length === 0) {

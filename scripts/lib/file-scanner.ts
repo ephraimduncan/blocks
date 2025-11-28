@@ -14,10 +14,11 @@ export class FileScanner {
 
   async scanBlock(
     blockPath: string,
-    isDirectory: boolean
+    isDirectory: boolean,
+    blockId?: string
   ): Promise<FileInfo[]> {
     if (isDirectory) {
-      return this.scanDirectory(blockPath);
+      return this.scanDirectory(blockPath, blockId);
     } else {
       return this.scanSingleFile(blockPath);
     }
@@ -29,9 +30,12 @@ export class FileScanner {
     return [fileInfo];
   }
 
-  private async scanDirectory(dirPath: string): Promise<FileInfo[]> {
+  private async scanDirectory(
+    dirPath: string,
+    blockId?: string
+  ): Promise<FileInfo[]> {
     const files: FileInfo[] = [];
-    await this.scanDirectoryRecursive(dirPath, dirPath, files);
+    await this.scanDirectoryRecursive(dirPath, dirPath, files, blockId);
 
     return files;
   }
@@ -39,7 +43,8 @@ export class FileScanner {
   private async scanDirectoryRecursive(
     currentDir: string,
     rootDir: string,
-    files: FileInfo[]
+    files: FileInfo[],
+    blockId?: string
   ): Promise<void> {
     try {
       const entries = await fs.readdir(currentDir, { withFileTypes: true });
@@ -48,9 +53,9 @@ export class FileScanner {
         const fullPath = path.join(currentDir, entry.name);
 
         if (entry.isDirectory()) {
-          await this.scanDirectoryRecursive(fullPath, rootDir, files);
+          await this.scanDirectoryRecursive(fullPath, rootDir, files, blockId);
         } else if (entry.isFile() && this.isSourceFile(entry.name)) {
-          const fileInfo = await this.processFile(fullPath, rootDir);
+          const fileInfo = await this.processFile(fullPath, rootDir, blockId);
 
           files.push(fileInfo);
         }
@@ -65,7 +70,8 @@ export class FileScanner {
 
   private async processFile(
     filePath: string,
-    rootDir?: string
+    rootDir?: string,
+    blockId?: string
   ): Promise<FileInfo> {
     const absolutePath = path.resolve(filePath);
     const relativePath = path.relative(
@@ -78,12 +84,14 @@ export class FileScanner {
 
     const { type, targetPath } = this.determineFileTypeAndTarget(
       absolutePath,
-      rootDir
+      rootDir,
+      blockId
     );
 
     const transformedContent = await this.importTransformer.transformImports(
       absolutePath,
-      type
+      type,
+      blockId
     );
 
     return {
@@ -98,7 +106,8 @@ export class FileScanner {
 
   private determineFileTypeAndTarget(
     filePath: string,
-    rootDir?: string
+    rootDir?: string,
+    blockId?: string
   ): {
     type: RegistryItemType;
     targetPath: string;
@@ -148,6 +157,52 @@ export class FileScanner {
       }
     }
 
+    // For directory blocks with blockId, prefix paths with blockId
+    if (rootDir && blockId) {
+      const relativeToRoot = path.relative(rootDir, filePath);
+
+      // Detect type files
+      if (this.isTypeFile(filePath)) {
+        return {
+          type: "registry:file",
+          targetPath: `components/${blockId}/${relativeToRoot}`.replace(
+            /\\/g,
+            "/"
+          ),
+        };
+      }
+
+      if (relativeToRoot.includes("lib/")) {
+        return {
+          type: "registry:lib",
+          targetPath: `lib/${blockId}/${path.basename(filePath)}`.replace(
+            /\\/g,
+            "/"
+          ),
+        };
+      }
+
+      if (relativeToRoot.includes("hooks/")) {
+        return {
+          type: "registry:hook",
+          targetPath: `hooks/${blockId}/${path.basename(filePath)}`.replace(
+            /\\/g,
+            "/"
+          ),
+        };
+      }
+
+      // All other files in directory blocks get prefixed with blockId
+      return {
+        type: "registry:component",
+        targetPath: `components/${blockId}/${relativeToRoot}`.replace(
+          /\\/g,
+          "/"
+        ),
+      };
+    }
+
+    // Legacy handling for directory blocks without blockId (shouldn't happen)
     if (rootDir) {
       const relativeToRoot = path.relative(rootDir, filePath);
 
@@ -175,10 +230,21 @@ export class FileScanner {
       };
     }
 
+    // Single-file blocks - no prefix needed
     return {
       type: "registry:component",
       targetPath: path.join("components", fileName).replace(/\\/g, "/"),
     };
+  }
+
+  private isTypeFile(filePath: string): boolean {
+    const fileName = path.basename(filePath);
+    return (
+      fileName === "types.ts" ||
+      fileName === "types.tsx" ||
+      fileName.endsWith(".types.ts") ||
+      filePath.includes("/types/")
+    );
   }
 
   private isSourceFile(filename: string): boolean {

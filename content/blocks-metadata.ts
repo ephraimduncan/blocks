@@ -429,4 +429,18 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "700px",
     type: "file",
   },
+  {
+    id: "table-04",
+    category: categoryIds.Tables,
+    name: "Table with Grouped Rows",
+    iframeHeight: "600px",
+    type: "file",
+  },
+  {
+    id: "table-05",
+    category: categoryIds.Tables,
+    name: "Data Table",
+    iframeHeight: "600px",
+    type: "file",
+  },
 ];

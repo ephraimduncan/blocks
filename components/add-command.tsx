@@ -47,7 +47,7 @@ export function AddCommand({ name }: { name: string }) {
           ></line>
         </svg>
       )}
-      {`@blocks/${name}`}
+{`@blocks/${name}`}
     </Button>
   );
 }

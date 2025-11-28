@@ -43,7 +43,7 @@ export default function Home() {
       <div className="w-full">
       <div>
         <div className="gap-4 mt-20">
-          <h1 className="mb-4 font-bold text-6xl/[1.1] text-foreground tracking-tight md:text-7xl/[1.1] text-center">
+          <h1 className="mb-4 font-bold text-4xl/[1.1] sm:text-5xl/[1.1] text-foreground tracking-tight md:text-7xl/[1.1] text-center">
             Building Blocks
             <br />
             for the{" "}
@@ -57,13 +57,13 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex w-fit mx-auto items-center gap-2">
-          <div className="flex items-center gap-0.5 border border-[#93E2FF] bg-[#93E2FF33] rounded-full px-2.5 py-1 text-sm text-[#535353] font-medium leading-normal tracking-tight">
+        <div className="flex flex-col sm:flex-row w-fit mx-auto items-center gap-2">
+          <div className="flex items-center gap-1 border border-[#93E2FF] bg-[#93E2FF33] rounded-full px-2.5 py-1 text-sm text-[#535353] font-medium leading-normal tracking-tight">
             <ReactIcon className="size-5 text-[#23B2E7]" />
             Works on all React frameworks
           </div>
 
-          <div className="flex items-center gap-0.5 border border-[#E1E1E1] bg-[#E1E1E133] rounded-full px-2.5 py-1 text-sm text-[#535353] font-medium leading-normal tracking-tight">
+          <div className="flex items-center gap-1 border border-[#E1E1E1] bg-[#E1E1E133] rounded-full px-2.5 py-1 text-sm text-[#535353] font-medium leading-normal tracking-tight">
             <CodeIcon className="size-5 text-[#B1B1B1] stroke-2.5" />
             Open Source
           </div>

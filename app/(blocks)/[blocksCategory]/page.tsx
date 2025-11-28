@@ -115,7 +115,7 @@ export default async function Page({ params }: PageProps) {
           </span>
         </Link>
 
-        <h1 className="text-5xl/[1.1] font-bold tracking-tight">
+        <h1 className="text-3xl/[1.1] sm:text-4xl/[1.1] md:text-5xl/[1.1] font-bold tracking-tight">
           {blocks.name}
         </h1>
       </div>

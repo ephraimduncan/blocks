@@ -107,7 +107,7 @@ export const Block = ({
       style={{ "--height": iframeHeight } as React.CSSProperties}
     >
       <div className="">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-4 cursor-pointer font-medium text-foreground sm:text-lg">
             <a
               href={`#${blocksId}`}
@@ -116,7 +116,7 @@ export const Block = ({
               {name}
             </a>
           </div>
-          <div className="flex items-center">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-0">
             <Tabs
               value={state.view}
               onValueChange={handleViewChange}

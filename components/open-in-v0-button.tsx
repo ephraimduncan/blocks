@@ -22,7 +22,7 @@ export function OpenInV0Button({
         rel="noreferrer"
         data-umami-event="Open Block in v0"
       >
-        Open in{" "}
+        <span className="hidden sm:inline">Open in</span>{" "}
         <svg
           viewBox="0 0 40 20"
           fill="none"

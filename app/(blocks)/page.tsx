@@ -43,7 +43,7 @@ export default function Home() {
       <div className="w-full">
       <div>
         <div className="gap-4 mt-20">
-          <h1 className="mb-4 font-bold text-6xl/[1.1] text-foreground tracking-tight md:text-7xl/[1.1] text-center">
+          <h1 className="mb-4 font-bold text-4xl/[1.1] sm:text-5xl/[1.1] text-foreground tracking-tight md:text-7xl/[1.1] text-center">
             Building Blocks
             <br />
             for the{" "}

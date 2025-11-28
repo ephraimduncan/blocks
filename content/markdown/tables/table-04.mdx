@@ -1,6 +1,7 @@
 ````tsx
 'use client';
 
+import { Fragment } from 'react';
 import {
   Table,
   TableBody,
@@ -225,9 +226,8 @@ export default function Table04() {
         </TableHeader>
         <TableBody>
           {data.map((group) => (
-            <>
+            <Fragment key={group.name}>
               <TableRow
-                key={group.name}
                 className="bg-muted/50 hover:bg-muted/50"
               >
                 <TableCell colSpan={5} className="py-2 font-semibold">
@@ -253,7 +253,7 @@ export default function Table04() {
                   </TableCell>
                 </TableRow>
               ))}
-            </>
+            </Fragment>
           ))}
         </TableBody>
       </Table>

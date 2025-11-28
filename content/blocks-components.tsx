@@ -70,4 +70,5 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "table-02": components.Table02,
   "table-03": components.Table03,
   "table-04": components.Table04,
+  "table-05": components.Table05,
 };

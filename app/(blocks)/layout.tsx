@@ -2,6 +2,7 @@ import "@/app/globals.css";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { ProductHuntBanner } from "@/components/product-hunt-banner";
 import Script from "next/script";
 
 export default function BlockLayout({
@@ -11,6 +12,7 @@ export default function BlockLayout({
 }>) {
   return (
     <div className="flex min-h-screen flex-col">
+      <ProductHuntBanner />
       <Header />
       <div className="flex flex-1 flex-col">
         {/* border-border  border-dotted border-r border-l */}

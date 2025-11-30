@@ -7,9 +7,9 @@ import { siteConfig } from "@/config";
 
 export function Header() {
   return (
-    <div className="sticky top-10 z-40 bg-background/80 backdrop-blur-md">
+    <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-md">
       {/* border-border border-r border-l border-dotted */}
-      <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between  px-4 sm:px-8">
+      <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between px-4 sm:px-8">
         <Link className="flex items-center space-x-1 py-5" href="/">
           <IconSquareRoundedFilled />
 

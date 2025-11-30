@@ -129,8 +129,8 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
     <>
       <TableRow
         className={cn(
-          'grid grid-cols-[40px_80px_180px_110px_100px_110px]',
-          isOpen && 'border-b-0 bg-muted/40'
+          'grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50 hover:bg-muted/50',
+          isOpen && 'border-b-0'
         )}
       >
         <TableCell className="p-0">

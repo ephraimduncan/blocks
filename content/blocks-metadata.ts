@@ -228,6 +228,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "700px",
     type: "file",
   },
+  {
+    id: "stats-13",
+    category: categoryIds.Stats,
+    name: "Stats with Segmented Progress",
+    iframeHeight: "250px",
+    type: "file",
+  },
 
   {
     id: "grid-list-01",

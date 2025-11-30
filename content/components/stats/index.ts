@@ -10,3 +10,4 @@ export { default as Stats09 } from "./stats-09";
 export { default as Stats10 } from "./stats-10";
 export { default as Stats11 } from "./stats-11";
 export { default as Stats12 } from "./stats-12";
+export { default as Stats13 } from "./stats-13";

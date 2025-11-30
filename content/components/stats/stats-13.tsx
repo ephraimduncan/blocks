@@ -3,23 +3,21 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-interface Segment {
-  label: string;
-  value: number;
-  color: string;
-}
-
-interface Stats13Props {
+interface Props {
   title?: string;
   used?: number;
   total?: number;
   usedLabel?: string;
   totalLabel?: string;
-  segments?: Segment[];
+  segments?: {
+    label: string;
+    value: number;
+    color: string;
+  }[];
   className?: string;
 }
 
-const defaultSegments: Segment[] = [
+const defaultSegments: NonNullable<Props["segments"]> = [
   { label: "Documents", value: 2400, color: "bg-blue-500" },
   { label: "Photos", value: 1800, color: "bg-emerald-500" },
   { label: "Videos", value: 3200, color: "bg-amber-500" },
@@ -34,7 +32,7 @@ export default function Stats13({
   totalLabel = "GB",
   segments = defaultSegments,
   className,
-}: Stats13Props) {
+}: Props) {
   const totalValue = total * 1000;
   const freeValue = totalValue - used;
 

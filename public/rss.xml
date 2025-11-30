@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>@blocks</title>
+    <link>https://blocks.so</link>
+    <description>Subscribe to @blocks updates</description>
+    <lastBuildDate>Sun, 30 Nov 2025 15:39:02 GMT</lastBuildDate>
+    <item>
+      <title>Grid List with Dropdown</title>
+      <link>https://blocks.so/grid-list#grid-list-01</link>
+      <description>A grid list with dropdown block.</description>
+      <pubDate>Fri, 04 Apr 2025 19:25:15 GMT</pubDate>
+      <guid>https://blocks.so/grid-list#grid-list-01</guid>
+    </item>
+    <item>
+      <title>Form with Workspace Fields</title>
+      <link>https://blocks.so/form-layout#form-layout-01</link>
+      <description>A form with workspace fields block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-01</guid>
+    </item>
+    <item>
+      <title>Form with Side Labels</title>
+      <link>https://blocks.so/form-layout#form-layout-02</link>
+      <description>A form with side labels block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-02</guid>
+    </item>
+    <item>
+      <title>Form with Checkbox Settings</title>
+      <link>https://blocks.so/form-layout#form-layout-03</link>
+      <description>A form with checkbox settings block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-03</guid>
+    </item>
+    <item>
+      <title>Form with Package Selection</title>
+      <link>https://blocks.so/form-layout#form-layout-04</link>
+      <description>A form with package selection block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-04</guid>
+    </item>
+    <item>
+      <title>Form with Plan Selection</title>
+      <link>https://blocks.so/form-layout#form-layout-05</link>
+      <description>A form with plan selection block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-05</guid>
+    </item>
+    <item>
+      <title>Login with Email and Password</title>
+      <link>https://blocks.so/login#login-03</link>
+      <description>A login with email and password block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/login#login-03</guid>
+    </item>
+    <item>
+      <title>Stats with Trending</title>
+      <link>https://blocks.so/stats#stats-01</link>
+      <description>A stats with trending block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-01</guid>
+    </item>
+    <item>
+      <title>Stats with Borders</title>
+      <link>https://blocks.so/stats#stats-02</link>
+      <description>A stats with borders block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-02</guid>
+    </item>
+    <item>
+      <title>Stats with Status</title>
+      <link>https://blocks.so/stats#stats-06</link>
+      <description>A stats with status block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-06</guid>
+    </item>
+    <item>
+      <title>Stats with Circular Progress</title>
+      <link>https://blocks.so/stats#stats-07</link>
+      <description>A stats with circular progress block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-07</guid>
+    </item>
+    <item>
+      <title>Stats with Progress</title>
+      <link>https://blocks.so/stats#stats-09</link>
+      <description>A stats with progress block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-09</guid>
+    </item>
+    <item>
+      <title>Stats with Area Chart</title>
+      <link>https://blocks.so/stats#stats-10</link>
+      <description>A stats with area chart block.</description>
+      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-10</guid>
+    </item>
+    <item>
+      <title>Stats with Card Layout</title>
+      <link>https://blocks.so/stats#stats-03</link>
+      <description>A stats with card layout block.</description>
+      <pubDate>Sat, 05 Apr 2025 07:24:19 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-03</guid>
+    </item>
+    <item>
+      <title>Stats with Badges</title>
+      <link>https://blocks.so/stats#stats-04</link>
+      <description>A stats with badges block.</description>
+      <pubDate>Sat, 05 Apr 2025 07:24:19 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-04</guid>
+    </item>
+    <item>
+      <title>Login with Email and Google</title>
+      <link>https://blocks.so/login#login-01</link>
+      <description>A login with email and google block.</description>
+      <pubDate>Tue, 08 Apr 2025 15:41:35 GMT</pubDate>
+      <guid>https://blocks.so/login#login-01</guid>
+    </item>
+    <item>
+      <title>Login with Email, Password and Google</title>
+      <link>https://blocks.so/login#login-02</link>
+      <description>A login with email, password and google block.</description>
+      <pubDate>Tue, 08 Apr 2025 15:41:35 GMT</pubDate>
+      <guid>https://blocks.so/login#login-02</guid>
+    </item>
+    <item>
+      <title>Login with Social Buttons</title>
+      <link>https://blocks.so/login#login-04</link>
+      <description>A login with social buttons block.</description>
+      <pubDate>Tue, 08 Apr 2025 15:41:35 GMT</pubDate>
+      <guid>https://blocks.so/login#login-04</guid>
+    </item>
+    <item>
+      <title>Login Card Signup Form</title>
+      <link>https://blocks.so/login#login-05</link>
+      <description>A login card signup form block.</description>
+      <pubDate>Tue, 08 Apr 2025 15:41:35 GMT</pubDate>
+      <guid>https://blocks.so/login#login-05</guid>
+    </item>
+    <item>
+      <title>Login with Magic Link and SSO</title>
+      <link>https://blocks.so/login#login-06</link>
+      <description>A login with magic link and sso block.</description>
+      <pubDate>Tue, 08 Apr 2025 15:41:35 GMT</pubDate>
+      <guid>https://blocks.so/login#login-06</guid>
+    </item>
+    <item>
+      <title>Login Full Page with Icons</title>
+      <link>https://blocks.so/login#login-07</link>
+      <description>A login full page with icons block.</description>
+      <pubDate>Tue, 08 Apr 2025 15:41:35 GMT</pubDate>
+      <guid>https://blocks.so/login#login-07</guid>
+    </item>
+    <item>
+      <title>Dialog Confirmation</title>
+      <link>https://blocks.so/dialogs#dialog-01</link>
+      <description>A dialog confirmation block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-01</guid>
+    </item>
+    <item>
+      <title>Dialog with Warning Icon</title>
+      <link>https://blocks.so/dialogs#dialog-02</link>
+      <description>A dialog with warning icon block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-02</guid>
+    </item>
+    <item>
+      <title>Dialog with Two Buttons</title>
+      <link>https://blocks.so/dialogs#dialog-04</link>
+      <description>A dialog with two buttons block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-04</guid>
+    </item>
+    <item>
+      <title>Dialog with Password Confirmation</title>
+      <link>https://blocks.so/dialogs#dialog-05</link>
+      <description>A dialog with password confirmation block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-05</guid>
+    </item>
+    <item>
+      <title>Dialog with Privacy Toggle</title>
+      <link>https://blocks.so/dialogs#dialog-06</link>
+      <description>A dialog with privacy toggle block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-06</guid>
+    </item>
+    <item>
+      <title>Dialog with Member List</title>
+      <link>https://blocks.so/dialogs#dialog-07</link>
+      <description>A dialog with member list block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-07</guid>
+    </item>
+    <item>
+      <title>Dialog with Link Share and Toggles</title>
+      <link>https://blocks.so/dialogs#dialog-09</link>
+      <description>A dialog with link share and toggles block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-09</guid>
+    </item>
+    <item>
+      <title>Dialog Multi-Step Wizard</title>
+      <link>https://blocks.so/dialogs#dialog-11</link>
+      <description>A dialog multi-step wizard block.</description>
+      <pubDate>Wed, 09 Apr 2025 10:44:34 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-11</guid>
+    </item>
+    <item>
+      <title>Dialog with Email and Password Fields</title>
+      <link>https://blocks.so/dialogs#dialog-08</link>
+      <description>A dialog with email and password fields block.</description>
+      <pubDate>Wed, 09 Apr 2025 14:43:19 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-08</guid>
+    </item>
+    <item>
+      <title>Grid List with Links</title>
+      <link>https://blocks.so/grid-list#grid-list-02</link>
+      <description>A grid list with links block.</description>
+      <pubDate>Wed, 09 Apr 2025 14:43:19 GMT</pubDate>
+      <guid>https://blocks.so/grid-list#grid-list-02</guid>
+    </item>
+    <item>
+      <title>File Upload Simple</title>
+      <link>https://blocks.so/file-upload#file-upload-02</link>
+      <description>A file upload simple block.</description>
+      <pubDate>Tue, 15 Apr 2025 16:13:38 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-02</guid>
+    </item>
+    <item>
+      <title>File Upload Drag &amp; Drop</title>
+      <link>https://blocks.so/file-upload#file-upload-04</link>
+      <description>A file upload drag &amp; drop block.</description>
+      <pubDate>Tue, 15 Apr 2025 16:13:38 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-04</guid>
+    </item>
+    <item>
+      <title>File Upload with Progress</title>
+      <link>https://blocks.so/file-upload#file-upload-05</link>
+      <description>A file upload with progress block.</description>
+      <pubDate>Tue, 15 Apr 2025 16:13:38 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-05</guid>
+    </item>
+    <item>
+      <title>File Upload with Preview</title>
+      <link>https://blocks.so/file-upload#file-upload-01</link>
+      <description>A file upload with preview block.</description>
+      <pubDate>Tue, 15 Apr 2025 20:49:05 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-01</guid>
+    </item>
+    <item>
+      <title>Dialog with Avatar Upload</title>
+      <link>https://blocks.so/dialogs#dialog-12</link>
+      <description>A dialog with avatar upload block.</description>
+      <pubDate>Wed, 16 Apr 2025 13:47:52 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-12</guid>
+    </item>
+    <item>
+      <title>File Upload Multi-File Dropzone</title>
+      <link>https://blocks.so/file-upload#file-upload-03</link>
+      <description>A file upload multi-file dropzone block.</description>
+      <pubDate>Thu, 17 Apr 2025 19:27:36 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-03</guid>
+    </item>
+    <item>
+      <title>Sidebar Dashboard Inset</title>
+      <link>https://blocks.so/sidebar#sidebar-02</link>
+      <description>A sidebar dashboard inset block.</description>
+      <pubDate>Sun, 10 Aug 2025 00:22:13 GMT</pubDate>
+      <guid>https://blocks.so/sidebar#sidebar-02</guid>
+    </item>
+    <item>
+      <title>File Upload with Status Sections</title>
+      <link>https://blocks.so/file-upload#file-upload-06</link>
+      <description>A file upload with status sections block.</description>
+      <pubDate>Sat, 23 Aug 2025 23:55:27 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-06</guid>
+    </item>
+    <item>
+      <title>Sidebar Dashboard Floating</title>
+      <link>https://blocks.so/sidebar#sidebar-03</link>
+      <description>A sidebar dashboard floating block.</description>
+      <pubDate>Sun, 24 Aug 2025 00:46:58 GMT</pubDate>
+      <guid>https://blocks.so/sidebar#sidebar-03</guid>
+    </item>
+    <item>
+      <title>Sidebar Collapsible Sections</title>
+      <link>https://blocks.so/sidebar#sidebar-01</link>
+      <description>A sidebar collapsible sections block.</description>
+      <pubDate>Fri, 29 Aug 2025 12:49:19 GMT</pubDate>
+      <guid>https://blocks.so/sidebar#sidebar-01</guid>
+    </item>
+    <item>
+      <title>Stats Dashboard with Progress Bars</title>
+      <link>https://blocks.so/stats#stats-11</link>
+      <description>A stats dashboard with progress bars block.</description>
+      <pubDate>Sat, 30 Aug 2025 09:52:39 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-11</guid>
+    </item>
+    <item>
+      <title>Sidebar Double-Sided Mail</title>
+      <link>https://blocks.so/sidebar#sidebar-04</link>
+      <description>A sidebar double-sided mail block.</description>
+      <pubDate>Sun, 31 Aug 2025 01:39:25 GMT</pubDate>
+      <guid>https://blocks.so/sidebar#sidebar-04</guid>
+    </item>
+    <item>
+      <title>Sidebar Double-Sided</title>
+      <link>https://blocks.so/sidebar#sidebar-05</link>
+      <description>A sidebar double-sided block.</description>
+      <pubDate>Sun, 31 Aug 2025 04:02:22 GMT</pubDate>
+      <guid>https://blocks.so/sidebar#sidebar-05</guid>
+    </item>
+    <item>
+      <title>Sidebar Replacement</title>
+      <link>https://blocks.so/sidebar#sidebar-06</link>
+      <description>A sidebar replacement block.</description>
+      <pubDate>Mon, 01 Sep 2025 10:16:47 GMT</pubDate>
+      <guid>https://blocks.so/sidebar#sidebar-06</guid>
+    </item>
+    <item>
+      <title>AI Chat with Model Selection</title>
+      <link>https://blocks.so/ai#ai-02</link>
+      <description>A ai chat with model selection block.</description>
+      <pubDate>Mon, 01 Sep 2025 22:10:23 GMT</pubDate>
+      <guid>https://blocks.so/ai#ai-02</guid>
+    </item>
+    <item>
+      <title>AI Chat with Voice Input</title>
+      <link>https://blocks.so/ai#ai-01</link>
+      <description>A ai chat with voice input block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:49:49 GMT</pubDate>
+      <guid>https://blocks.so/ai#ai-01</guid>
+    </item>
+    <item>
+      <title>AI Chat Compact Interface</title>
+      <link>https://blocks.so/ai#ai-03</link>
+      <description>A ai chat compact interface block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/ai#ai-03</guid>
+    </item>
+    <item>
+      <title>Dialog with Input Field</title>
+      <link>https://blocks.so/dialogs#dialog-03</link>
+      <description>A dialog with input field block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-03</guid>
+    </item>
+    <item>
+      <title>Dialog with Calendar and Time Picker</title>
+      <link>https://blocks.so/dialogs#dialog-10</link>
+      <description>A dialog with calendar and time picker block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/dialogs#dialog-10</guid>
+    </item>
+    <item>
+      <title>File Upload with Preview</title>
+      <link>https://blocks.so/file-upload#file-upload-01</link>
+      <description>A file upload with preview block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/file-upload#file-upload-01</guid>
+    </item>
+    <item>
+      <title>Grid List with Icons</title>
+      <link>https://blocks.so/grid-list#grid-list-03</link>
+      <description>A grid list with icons block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/grid-list#grid-list-03</guid>
+    </item>
+    <item>
+      <title>Login with SSO</title>
+      <link>https://blocks.so/login#login-08</link>
+      <description>A login with sso block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/login#login-08</guid>
+    </item>
+    <item>
+      <title>Login Signup with Role Selection</title>
+      <link>https://blocks.so/login#login-09</link>
+      <description>A login signup with role selection block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/login#login-09</guid>
+    </item>
+    <item>
+      <title>Stats with Links</title>
+      <link>https://blocks.so/stats#stats-05</link>
+      <description>A stats with links block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-05</guid>
+    </item>
+    <item>
+      <title>Stats with Circular Progress and Links</title>
+      <link>https://blocks.so/stats#stats-08</link>
+      <description>A stats with circular progress and links block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-08</guid>
+    </item>
+    <item>
+      <title>Stats Usage Dashboard</title>
+      <link>https://blocks.so/stats#stats-12</link>
+      <description>A stats usage dashboard block.</description>
+      <pubDate>Tue, 02 Sep 2025 02:53:44 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-12</guid>
+    </item>
+    <item>
+      <title>AI Chat with File Attachments</title>
+      <link>https://blocks.so/ai#ai-04</link>
+      <description>A ai chat with file attachments block.</description>
+      <pubDate>Tue, 02 Sep 2025 15:21:26 GMT</pubDate>
+      <guid>https://blocks.so/ai#ai-04</guid>
+    </item>
+    <item>
+      <title>Table with Actions</title>
+      <link>https://blocks.so/tables#table-02</link>
+      <description>A table with actions block.</description>
+      <pubDate>Mon, 20 Oct 2025 10:13:08 GMT</pubDate>
+      <guid>https://blocks.so/tables#table-02</guid>
+    </item>
+    <item>
+      <title>Table with Filters</title>
+      <link>https://blocks.so/tables#table-03</link>
+      <description>A table with filters block.</description>
+      <pubDate>Thu, 27 Nov 2025 20:35:48 GMT</pubDate>
+      <guid>https://blocks.so/tables#table-03</guid>
+    </item>
+    <item>
+      <title>Table with Accordion</title>
+      <link>https://blocks.so/tables#table-01</link>
+      <description>A table with accordion block.</description>
+      <pubDate>Fri, 28 Nov 2025 02:37:20 GMT</pubDate>
+      <guid>https://blocks.so/tables#table-01</guid>
+    </item>
+    <item>
+      <title>Table with Grouped Rows</title>
+      <link>https://blocks.so/tables#table-04</link>
+      <description>A table with grouped rows block.</description>
+      <pubDate>Fri, 28 Nov 2025 02:37:20 GMT</pubDate>
+      <guid>https://blocks.so/tables#table-04</guid>
+    </item>
+    <item>
+      <title>Data Table</title>
+      <link>https://blocks.so/tables#table-05</link>
+      <description>A data table block.</description>
+      <pubDate>Fri, 28 Nov 2025 02:37:20 GMT</pubDate>
+      <guid>https://blocks.so/tables#table-05</guid>
+    </item>
+    <item>
+      <title>Stats with Segmented Progress</title>
+      <link>https://blocks.so/stats#stats-13</link>
+      <description>A stats with segmented progress block.</description>
+      <pubDate>Sun, 30 Nov 2025 13:00:43 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-13</guid>
+    </item>
+  </channel>
+</rss>

@@ -9,7 +9,8 @@
     "validate:registry": "bunx tsx scripts/generate-registry.ts validate public/r/registry.json",
     "registry:info": "bunx tsx scripts/generate-registry.ts info",
     "generate:markdown": "bun run scripts/generate-markdown.ts ./content/components/",
-    "build": "bun run generate:registry && bun run generate:markdown && next build --turbopack",
+    "generate:rss": "bunx tsx scripts/generate-rss.ts",
+    "build": "bun run generate:registry && bun run generate:markdown && bun run generate:rss && next build --turbopack",
     "generate": "bun run generate:registry && bun run generate:markdown",
     "start": "next start",
     "lint": "bunx ultracite lint"

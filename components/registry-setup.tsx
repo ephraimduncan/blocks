@@ -60,7 +60,7 @@ export function RegistrySetup({
           Registry
         </Button>
       </DialogTrigger>
-      <DialogContent className="md:max-w-2xl">
+      <DialogContent className="md:max-w-2xl flex flex-col">
         <DialogHeader>
           <DialogTitle>Setup Registry</DialogTitle>
           <DialogDescription>

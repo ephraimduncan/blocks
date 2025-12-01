@@ -450,4 +450,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "600px",
     type: "file",
   },
+  {
+    id: "pricing-01",
+    category: categoryIds.Pricing,
+    name: "Pricing Simple",
+    iframeHeight: "600px",
+    type: "file",
+  },
 ];

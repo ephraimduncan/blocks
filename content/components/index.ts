@@ -7,3 +7,4 @@ export * from "./sidebar";
 export * from "./stats";
 export * from "./ai";
 export * from "./tables";
+export * from "./pricing";

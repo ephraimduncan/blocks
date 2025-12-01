@@ -26,4 +26,5 @@ export const categoryIds: { [key: string]: string } = {
 
   AI: "ai",
   Tables: "tables",
+  Pricing: "pricing",
 };

@@ -1,10 +1,11 @@
 ````tsx
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { IconArrowRight, IconCornerDownLeft } from "@tabler/icons-react";
-import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -21,7 +22,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Separator } from "@/components/ui/separator";
 
 const navItems = [
   { href: "/", label: "Home", keywords: ["home", "main", "index"] },
@@ -133,75 +133,9 @@ const colorGroups = [
   },
 ];
 
-interface ColorItem {
-  name: string;
-  className: string;
-  value: string;
-}
-
-function CommandMenuItem({
-  children,
-  className,
-  onHighlight,
-  ...props
-}: React.ComponentProps<typeof CommandItem> & {
-  onHighlight?: () => void;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "aria-selected" &&
-          element.getAttribute("aria-selected") === "true"
-        ) {
-          onHighlight?.();
-        }
-      });
-    });
-
-    observer.observe(element, { attributes: true });
-    return () => observer.disconnect();
-  }, [onHighlight]);
-
-  return (
-    <CommandItem
-      ref={ref}
-      className={cn(
-        "h-9 rounded-md border border-transparent !px-3 font-medium data-[selected=true]:border-input data-[selected=true]:bg-input/50",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </CommandItem>
-  );
-}
-
-function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
-  return (
-    <kbd
-      className={cn(
-        "pointer-events-none flex h-5 select-none items-center justify-center gap-1 rounded border bg-background px-1 font-sans text-[0.7rem] font-medium text-muted-foreground [&_svg:not([class*='size-'])]:size-3",
-        className
-      )}
-      {...props}
-    />
-  );
-}
-
 export function CommandMenu03() {
   const router = useRouter();
   const [open, setOpen] = useState(true);
-  const [selectedType, setSelectedType] = useState<"page" | "color" | null>(
-    null
-  );
-  const [copyPayload, setCopyPayload] = useState("");
 
   const copyToClipboard = useCallback((text: string) => {
     navigator.clipboard.writeText(text);
@@ -210,24 +144,6 @@ export function CommandMenu03() {
   const runCommand = useCallback((command: () => unknown) => {
     setOpen(false);
     command();
-  }, []);
-
-  const handlePageHighlight = useCallback(
-    (isComponent: boolean, href: string) => {
-      setSelectedType("page");
-      if (isComponent) {
-        const componentName = href.split("/").pop();
-        setCopyPayload(`pnpm dlx shadcn@latest add ${componentName}`);
-      } else {
-        setCopyPayload("");
-      }
-    },
-    []
-  );
-
-  const handleColorHighlight = useCallback((color: ColorItem) => {
-    setSelectedType("color");
-    setCopyPayload(color.className);
   }, []);
 
   useEffect(() => {
@@ -244,15 +160,11 @@ export function CommandMenu03() {
         e.preventDefault();
         setOpen((open) => !open);
       }
-
-      if (e.key === "c" && (e.metaKey || e.ctrlKey) && open && copyPayload) {
-        copyToClipboard(copyPayload);
-      }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [copyPayload, open, copyToClipboard]);
+  }, []);
 
   return (
     <>
@@ -282,21 +194,18 @@ export function CommandMenu03() {
                   className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1 [&_[cmdk-group-heading]]:scroll-mt-16"
                 >
                   {navItems.map((item) => (
-                    <CommandMenuItem
+                    <CommandItem
                       key={item.href}
                       value={`Navigation ${item.label}`}
                       keywords={item.keywords}
-                      onHighlight={() => {
-                        setSelectedType("page");
-                        setCopyPayload("");
-                      }}
                       onSelect={() => {
                         runCommand(() => router.push(item.href));
                       }}
+                      className="h-9 rounded-md border border-transparent !px-3 font-medium hover:border-input hover:bg-input/50"
                     >
                       <IconArrowRight aria-hidden="true" className="size-4" />
                       {item.label}
-                    </CommandMenuItem>
+                    </CommandItem>
                   ))}
                 </CommandGroup>
               )}
@@ -310,16 +219,14 @@ export function CommandMenu03() {
                   {group.pages.map((page) => {
                     const isComponent = page.href.includes("/components/");
                     return (
-                      <CommandMenuItem
+                      <CommandItem
                         key={page.href}
                         value={`${group.name} ${page.name}`}
                         keywords={page.keywords}
-                        onHighlight={() =>
-                          handlePageHighlight(isComponent, page.href)
-                        }
                         onSelect={() => {
                           runCommand(() => router.push(page.href));
                         }}
+                        className="h-9 rounded-md border border-transparent !px-3 font-medium hover:border-input hover:bg-input/50"
                       >
                         {isComponent ? (
                           <div className="aspect-square size-4 rounded-full border border-dashed border-muted-foreground" />
@@ -330,7 +237,7 @@ export function CommandMenu03() {
                           />
                         )}
                         {page.name}
-                      </CommandMenuItem>
+                      </CommandItem>
                     );
                   })}
                 </CommandGroup>
@@ -343,14 +250,14 @@ export function CommandMenu03() {
                   className="!p-0 [&_[cmdk-group-heading]]:!p-3"
                 >
                   {colorGroup.colors.map((color) => (
-                    <CommandMenuItem
+                    <CommandItem
                       key={color.className}
                       value={color.className}
                       keywords={["color", color.name, color.className]}
-                      onHighlight={() => handleColorHighlight(color)}
                       onSelect={() => {
                         runCommand(() => copyToClipboard(color.value));
                       }}
+                      className="h-9 rounded-md border border-transparent !px-3 font-medium hover:border-input hover:bg-input/50"
                     >
                       <div
                         className="aspect-square size-4 rounded-sm border"
@@ -360,7 +267,7 @@ export function CommandMenu03() {
                       <span className="ml-auto font-mono text-xs font-normal tabular-nums text-muted-foreground">
                         {color.value}
                       </span>
-                    </CommandMenuItem>
+                    </CommandItem>
                   ))}
                 </CommandGroup>
               ))}
@@ -368,24 +275,10 @@ export function CommandMenu03() {
           </Command>
 
           <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground dark:border-t-neutral-700 dark:bg-neutral-800">
-            <div className="flex items-center gap-2">
-              <CommandMenuKbd>
-                <IconCornerDownLeft aria-hidden="true" className="size-3" />
-              </CommandMenuKbd>
-              {selectedType === "page" && "Go to Page"}
-              {selectedType === "color" && "Copy Value"}
-              {!selectedType && "Select"}
-            </div>
-            {copyPayload && (
-              <>
-                <Separator orientation="vertical" className="h-4!" />
-                <div className="flex items-center gap-1">
-                  <CommandMenuKbd>⌘</CommandMenuKbd>
-                  <CommandMenuKbd>C</CommandMenuKbd>
-                  <span className="max-w-48 truncate">{copyPayload}</span>
-                </div>
-              </>
-            )}
+            <kbd className="pointer-events-none flex h-5 select-none items-center justify-center gap-1 rounded border bg-background px-1 font-sans text-[0.7rem] font-medium text-muted-foreground [&_svg:not([class*='size-'])]:size-3">
+              <IconCornerDownLeft aria-hidden="true" className="size-3" />
+            </kbd>
+            Select
           </div>
         </DialogContent>
       </Dialog>

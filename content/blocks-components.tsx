@@ -46,6 +46,7 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
 
   "command-menu-01": components.CommandMenu01,
   "command-menu-02": components.CommandMenu02,
+  "command-menu-03": components.CommandMenu03,
 
   "dialog-01": components.Dialog01,
   "dialog-02": components.Dialog02,

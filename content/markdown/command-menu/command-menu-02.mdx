@@ -1,0 +1,468 @@
+````tsx
+"use client";
+
+import * as React from "react";
+import { Command as CommandPrimitive } from "cmdk";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import {
+  IconSettings,
+  IconUser,
+  IconLogout,
+  IconPlus,
+  IconUsers,
+  IconCopy,
+  IconDeviceDesktop,
+  IconArrowRight,
+  IconFileSearch,
+  IconMessage,
+  IconAt,
+  IconKeyboard,
+  IconFile,
+  IconPencil,
+  IconSend,
+  IconTemplate,
+  IconLink,
+  IconDownload,
+} from "@tabler/icons-react";
+
+export function CommandMenu02() {
+  const [open, setOpen] = React.useState(true);
+  const [inputValue, setInputValue] = React.useState("");
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open Command Menu
+      </Button>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogHeader className="sr-only">
+          <DialogTitle>Command Menu</DialogTitle>
+          <DialogDescription>
+            Use the command menu to navigate through the app.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogContent
+          className="overflow-hidden p-0 shadow-lg sm:max-w-lg gap-0 rounded-xl border-border/50"
+          showCloseButton={false}
+        >
+          <CommandPrimitive className="flex h-full w-full flex-col overflow-hidden bg-popover">
+            {/* Top Section - Input */}
+            <div className="flex items-center h-12 px-4 border-b border-border/50">
+              <CommandPrimitive.Input
+                className="flex-1 bg-transparent text-[15px] text-foreground placeholder:text-muted-foreground outline-none"
+                placeholder="What do you need?"
+                value={inputValue}
+                onValueChange={setInputValue}
+              />
+              <button
+                className="h-6 px-1.5 text-xs font-medium text-muted-foreground bg-muted rounded border border-border/50 hover:bg-accent transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                Esc
+              </button>
+            </div>
+
+            {/* Command List */}
+            <CommandPrimitive.List className="max-h-[400px] overflow-y-auto overflow-x-hidden py-2">
+              <CommandPrimitive.Empty className="py-6 text-center text-sm text-muted-foreground">
+                No results found.
+              </CommandPrimitive.Empty>
+
+              {/* Top level items (no group heading) */}
+              <CommandItem value="settings" onSelect={() => setOpen(false)}>
+                <ItemIcon>
+                  <IconSettings className="size-4" />
+                </ItemIcon>
+                Account Settings...
+              </CommandItem>
+              <CommandItem
+                value="switch workspace"
+                onSelect={() => setOpen(false)}
+              >
+                <ItemIcon>
+                  <IconUser className="size-4" />
+                </ItemIcon>
+                Switch Workspace...
+              </CommandItem>
+              <CommandItem value="log out" onSelect={() => setOpen(false)}>
+                <ItemIcon>
+                  <IconLogout className="size-4" />
+                </ItemIcon>
+                Log Out
+              </CommandItem>
+
+              {/* Documents Group */}
+              <CommandGroup heading="Documents">
+                <CommandItem
+                  value="search documents"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconFile className="size-4" />
+                  </ItemIcon>
+                  Search Documents...
+                  <Keybinds>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>D</Kbd>
+                  </Keybinds>
+                </CommandItem>
+                <CommandItem
+                  value="create new document"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconPlus className="size-4" />
+                  </ItemIcon>
+                  Create New Document...
+                </CommandItem>
+                <CommandItem
+                  value="upload document"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconFile className="size-4" />
+                  </ItemIcon>
+                  Upload Document...
+                </CommandItem>
+              </CommandGroup>
+
+              {/* Signing Group */}
+              <CommandGroup heading="Signing">
+                <CommandItem
+                  value="request signature"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconSend className="size-4" />
+                  </ItemIcon>
+                  Request Signature...
+                  <Keybinds>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>S</Kbd>
+                  </Keybinds>
+                </CommandItem>
+                <CommandItem
+                  value="sign document"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconPencil className="size-4" />
+                  </ItemIcon>
+                  Sign a Document...
+                </CommandItem>
+                <CommandItem value="bulk send" onSelect={() => setOpen(false)}>
+                  <ItemIcon>
+                    <IconUsers className="size-4" />
+                  </ItemIcon>
+                  Bulk Send for Signature...
+                </CommandItem>
+              </CommandGroup>
+
+              {/* Templates Group */}
+              <CommandGroup heading="Templates">
+                <CommandItem
+                  value="search templates"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconTemplate className="size-4" />
+                  </ItemIcon>
+                  Search Templates...
+                  <Keybinds>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>T</Kbd>
+                  </Keybinds>
+                </CommandItem>
+                <CommandItem
+                  value="create template"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconPlus className="size-4" />
+                  </ItemIcon>
+                  Create New Template...
+                </CommandItem>
+              </CommandGroup>
+
+              {/* General Group */}
+              <CommandGroup heading="General">
+                <CommandItem
+                  value="change theme"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconDeviceDesktop className="size-4" />
+                  </ItemIcon>
+                  Change Theme...
+                  <Keybinds>
+                    <Kbd>T</Kbd>
+                  </Keybinds>
+                </CommandItem>
+                <CommandItem
+                  value="copy current url"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconCopy className="size-4" />
+                  </ItemIcon>
+                  Copy Current URL
+                </CommandItem>
+              </CommandGroup>
+
+              {/* Navigation Group */}
+              <CommandGroup heading="Navigation">
+                <CommandItem value="go to inbox" onSelect={() => setOpen(false)}>
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Inbox</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to action required"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Action Required</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to waiting for others"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Waiting for Others</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to completed"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Completed</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to drafts"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Drafts</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to templates"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Templates</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to archive"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Archive</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem value="go to trash" onSelect={() => setOpen(false)}>
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Trash</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  value="go to settings"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconArrowRight className="size-4" />
+                  </ItemIcon>
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Settings</strong>
+                  </span>
+                </CommandItem>
+              </CommandGroup>
+
+              {/* Quick Actions Group */}
+              <CommandGroup heading="Quick Actions">
+                <CommandItem
+                  value="copy signing link"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconLink className="size-4" />
+                  </ItemIcon>
+                  Copy Signing Link
+                </CommandItem>
+                <CommandItem
+                  value="download document"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconDownload className="size-4" />
+                  </ItemIcon>
+                  Download Document
+                </CommandItem>
+              </CommandGroup>
+
+              {/* Help Group */}
+              <CommandGroup heading="Help">
+                <CommandItem value="search help" onSelect={() => setOpen(false)}>
+                  <ItemIcon>
+                    <IconFileSearch className="size-4" />
+                  </ItemIcon>
+                  Search Help Center...
+                  <Keybinds>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>H</Kbd>
+                  </Keybinds>
+                </CommandItem>
+                <CommandItem
+                  value="send feedback"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconMessage className="size-4" />
+                  </ItemIcon>
+                  Send Feedback...
+                </CommandItem>
+                <CommandItem
+                  value="contact support"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconAt className="size-4" />
+                  </ItemIcon>
+                  Contact Support
+                </CommandItem>
+              </CommandGroup>
+
+              {/* Keyboard Shortcuts Group */}
+              <CommandGroup heading="Keyboard Shortcuts">
+                <CommandItem
+                  value="keyboard shortcuts"
+                  onSelect={() => setOpen(false)}
+                >
+                  <ItemIcon>
+                    <IconKeyboard className="size-4" />
+                  </ItemIcon>
+                  View Keyboard Shortcuts
+                  <Keybinds>
+                    <Kbd>?</Kbd>
+                  </Keybinds>
+                </CommandItem>
+              </CommandGroup>
+            </CommandPrimitive.List>
+          </CommandPrimitive>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
+// Helper components for exact styling match
+function CommandGroup({
+  heading,
+  children,
+}: {
+  heading: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <CommandPrimitive.Group className="px-2 py-1.5">
+      <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+        {heading}
+      </div>
+      {children}
+    </CommandPrimitive.Group>
+  );
+}
+
+function CommandItem({
+  value,
+  children,
+  onSelect,
+}: {
+  value: string;
+  children: React.ReactNode;
+  onSelect?: () => void;
+}) {
+  return (
+    <CommandPrimitive.Item
+      value={value}
+      onSelect={onSelect}
+      className="relative flex cursor-pointer items-center gap-2 rounded-lg px-2 py-2.5 text-sm text-foreground outline-none select-none data-[selected=true]:bg-accent mx-2"
+    >
+      {children}
+    </CommandPrimitive.Item>
+  );
+}
+
+function ItemIcon({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-center w-4 h-4 text-muted-foreground">
+      {children}
+    </div>
+  );
+}
+
+function Keybinds({ children }: { children: React.ReactNode }) {
+  return <div className="ml-auto flex items-center gap-1">{children}</div>;
+}
+
+function Kbd({ children }: { children: React.ReactNode }) {
+  return (
+    <kbd className="h-5 min-w-5 flex items-center justify-center rounded bg-muted px-1.5 text-[11px] font-medium text-muted-foreground border border-border/50">
+      {children}
+    </kbd>
+  );
+}
+````

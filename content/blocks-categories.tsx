@@ -33,6 +33,12 @@ const initializeAndUpdateCategories = (): BlocksCategoryMetadata[] => {
 
 const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
+    id: categoryIds.CommandMenu,
+    name: "Command Menu",
+    hasCharts: false,
+    thumbnailCustomClasses: "w-9/12",
+  },
+  {
     id: categoryIds.Dialogs,
     name: "Dialogs",
     hasCharts: false,

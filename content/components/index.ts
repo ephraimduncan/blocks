@@ -1,3 +1,4 @@
+export * from "./command-menu";
 export * from "./dialogs";
 export * from "./file-upload";
 export * from "./form-layout";

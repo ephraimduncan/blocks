@@ -23,6 +23,7 @@ export const categoryIds: { [key: string]: string } = {
   GridList: "grid-list",
   Dialogs: "dialogs",
   Sidebar: "sidebar",
+  CommandMenu: "command-menu",
 
   AI: "ai",
   Tables: "tables",

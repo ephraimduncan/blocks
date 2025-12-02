@@ -3,8 +3,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -73,7 +73,7 @@ const plans = [
   },
 ];
 
-export default function WorkspaceForm() {
+export default function FormLayout05() {
   const [selected, setSelected] = useState(plans[0]);
 
   return (
@@ -87,61 +87,61 @@ export default function WorkspaceForm() {
             <div className="space-y-4 md:space-y-6">
               <div className="md:flex md:items-center md:space-x-4">
                 <div className="md:w-1/4">
-                  <Label htmlFor="organization" className="font-medium">
-                    Organization
-                  </Label>
-                  <Select defaultValue="1">
-                    <SelectTrigger
-                      id="organization"
-                      name="organization"
-                      className="mt-2 w-full"
-                    >
-                      <SelectValue placeholder="Select organization" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">Acme, Inc.</SelectItem>
-                      <SelectItem value="2">Hero Labs</SelectItem>
-                      <SelectItem value="3">Rose Holding</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Field className="gap-2">
+                    <FieldLabel htmlFor="organization">Organization</FieldLabel>
+                    <Select defaultValue="1">
+                      <SelectTrigger
+                        id="organization"
+                        name="organization"
+                        className="w-full"
+                      >
+                        <SelectValue placeholder="Select organization" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">Acme, Inc.</SelectItem>
+                        <SelectItem value="2">Hero Labs</SelectItem>
+                        <SelectItem value="3">Rose Holding</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
                 </div>
                 <div className="mt-4 md:mt-0 md:w-3/4">
-                  <Label htmlFor="workspace" className="font-medium">
-                    Workspace name
-                  </Label>
-                  <Input id="workspace" name="workspace" className="mt-2" />
+                  <Field className="gap-2">
+                    <FieldLabel htmlFor="workspace">Workspace name</FieldLabel>
+                    <Input id="workspace" name="workspace" />
+                  </Field>
                 </div>
               </div>
               <div>
-                <Label htmlFor="region" className="font-medium">
-                  Region
-                </Label>
-                <Select defaultValue="iad1">
-                  <SelectTrigger id="region" name="region" className="mt-2">
-                    <SelectValue placeholder="Select region" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="fra1">
-                      eu-central-1 (Frankfurt, Germany)
-                    </SelectItem>
-                    <SelectItem value="iad1">
-                      us-east-1 (Washington, D.C., USA)
-                    </SelectItem>
-                    <SelectItem value="lhr1">
-                      eu-west-2 (London, United Kingdom)
-                    </SelectItem>
-                    <SelectItem value="sfo1">
-                      us-west-1 (San Francisco, USA)
-                    </SelectItem>
-                    <SelectItem value="sin1">
-                      ap-southeast-1 (Singapore)
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  For best performance, choose a region closest to your
-                  operations
-                </p>
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="region">Region</FieldLabel>
+                  <Select defaultValue="iad1">
+                    <SelectTrigger id="region" name="region">
+                      <SelectValue placeholder="Select region" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="fra1">
+                        eu-central-1 (Frankfurt, Germany)
+                      </SelectItem>
+                      <SelectItem value="iad1">
+                        us-east-1 (Washington, D.C., USA)
+                      </SelectItem>
+                      <SelectItem value="lhr1">
+                        eu-west-2 (London, United Kingdom)
+                      </SelectItem>
+                      <SelectItem value="sfo1">
+                        us-west-1 (San Francisco, USA)
+                      </SelectItem>
+                      <SelectItem value="sin1">
+                        ap-southeast-1 (Singapore)
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FieldDescription>
+                    For best performance, choose a region closest to your
+                    operations
+                  </FieldDescription>
+                </Field>
               </div>
             </div>
             <h4 className="mt-14 font-medium">

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -12,7 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 
-export default function Example() {
+export default function FormLayout03() {
   return (
     <div className="flex items-center justify-center p-10">
       <form>
@@ -28,86 +28,66 @@ export default function Example() {
           <div className="sm:max-w-3xl md:col-span-2">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
               <div className="col-span-full sm:col-span-3">
-                <Label
-                  htmlFor="first-name"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  First name
-                </Label>
-                <Input
-                  type="text"
-                  id="first-name"
-                  name="first-name"
-                  autoComplete="given-name"
-                  placeholder="Emma"
-                  className="mt-2"
-                />
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="first-name">First name</FieldLabel>
+                  <Input
+                    type="text"
+                    id="first-name"
+                    name="first-name"
+                    autoComplete="given-name"
+                    placeholder="Emma"
+                  />
+                </Field>
               </div>
               <div className="col-span-full sm:col-span-3">
-                <Label
-                  htmlFor="last-name"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Last name
-                </Label>
-                <Input
-                  type="text"
-                  id="last-name"
-                  name="last-name"
-                  autoComplete="family-name"
-                  placeholder="Crown"
-                  className="mt-2"
-                />
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="last-name">Last name</FieldLabel>
+                  <Input
+                    type="text"
+                    id="last-name"
+                    name="last-name"
+                    autoComplete="family-name"
+                    placeholder="Crown"
+                  />
+                </Field>
               </div>
               <div className="col-span-full">
-                <Label
-                  htmlFor="email"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Email
-                </Label>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  placeholder="emma@company.com"
-                  className="mt-2"
-                />
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    placeholder="emma@company.com"
+                  />
+                </Field>
               </div>
               <div className="col-span-full sm:col-span-3">
-                <Label
-                  htmlFor="birthyear"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Birth year
-                </Label>
-                <Input
-                  type="number"
-                  id="birthyear"
-                  name="year"
-                  placeholder="1990"
-                  className="mt-2"
-                />
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="birthyear">Birth year</FieldLabel>
+                  <Input
+                    type="number"
+                    id="birthyear"
+                    name="year"
+                    placeholder="1990"
+                  />
+                </Field>
               </div>
               <div className="col-span-full sm:col-span-3">
-                <Label
-                  htmlFor="role"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Role
-                </Label>
-                <Input
-                  type="text"
-                  id="role"
-                  name="role"
-                  placeholder="Senior Manager"
-                  disabled
-                  className="mt-2"
-                />
-                <p className="mt-2 text-xs text-muted-foreground dark:text-muted-foreground">
-                  Roles can only be changed by system admin.
-                </p>
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="role">Role</FieldLabel>
+                  <Input
+                    type="text"
+                    id="role"
+                    name="role"
+                    placeholder="Senior Manager"
+                    disabled
+                  />
+                  <FieldDescription>
+                    Roles can only be changed by system admin.
+                  </FieldDescription>
+                </Field>
               </div>
             </div>
           </div>
@@ -125,53 +105,44 @@ export default function Example() {
           <div className="sm:max-w-3xl md:col-span-2">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
               <div className="col-span-full sm:col-span-3">
-                <Label
-                  htmlFor="workspace-name"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Workspace name
-                </Label>
-                <Input
-                  type="text"
-                  id="workspace-name"
-                  name="workspace-name"
-                  placeholder="Test workspace"
-                  className="mt-2"
-                />
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="workspace-name">Workspace name</FieldLabel>
+                  <Input
+                    type="text"
+                    id="workspace-name"
+                    name="workspace-name"
+                    placeholder="Test workspace"
+                  />
+                </Field>
               </div>
               <div className="col-span-full sm:col-span-3">
-                <Label
-                  htmlFor="visibility"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Visibility
-                </Label>
-                <Select name="visibility" defaultValue="private">
-                  <SelectTrigger id="visibility" className="mt-2">
-                    <SelectValue placeholder="Select visibility" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="public">Public</SelectItem>
-                    <SelectItem value="private">Private</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="visibility">Visibility</FieldLabel>
+                  <Select name="visibility" defaultValue="private">
+                    <SelectTrigger id="visibility">
+                      <SelectValue placeholder="Select visibility" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="public">Public</SelectItem>
+                      <SelectItem value="private">Private</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </Field>
               </div>
               <div className="col-span-full">
-                <Label
-                  htmlFor="workspace-description"
-                  className="text-sm font-medium text-foreground dark:text-foreground"
-                >
-                  Workspace description
-                </Label>
-                <Textarea
-                  id="workspace-description"
-                  name="workspace-description"
-                  className="mt-2"
-                  rows={4}
-                />
-                <p className="mt-2 text-xs text-muted-foreground dark:text-muted-foreground">
-                  Note: description provided will not be displayed externally.
-                </p>
+                <Field className="gap-2">
+                  <FieldLabel htmlFor="workspace-description">
+                    Workspace description
+                  </FieldLabel>
+                  <Textarea
+                    id="workspace-description"
+                    name="workspace-description"
+                    rows={4}
+                  />
+                  <FieldDescription>
+                    Note: description provided will not be displayed externally.
+                  </FieldDescription>
+                </Field>
               </div>
             </div>
           </div>
@@ -191,9 +162,9 @@ export default function Example() {
               <legend className="text-sm font-medium text-foreground dark:text-foreground">
                 Team
               </legend>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+              <FieldDescription className="mt-1 leading-6">
                 Configure the types of team alerts you want to receive.
-              </p>
+              </FieldDescription>
               <div className="mt-2">
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox
@@ -201,24 +172,21 @@ export default function Example() {
                     name="team-requests"
                     defaultChecked
                   />
-                  <Label
-                    htmlFor="team-requests"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
+                  <FieldLabel htmlFor="team-requests" className="font-normal">
                     Team join requests
-                  </Label>
+                  </FieldLabel>
                 </div>
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox
                     id="team-activity-digest"
                     name="team-activity-digest"
                   />
-                  <Label
+                  <FieldLabel
                     htmlFor="team-activity-digest"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
+                    className="font-normal"
                   >
                     Weekly team activity digest
-                  </Label>
+                  </FieldLabel>
                 </div>
               </div>
             </fieldset>
@@ -226,30 +194,27 @@ export default function Example() {
               <legend className="text-sm font-medium text-foreground dark:text-foreground">
                 Usage
               </legend>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+              <FieldDescription className="mt-1 leading-6">
                 Configure the types of usage alerts you want to receive.
-              </p>
+              </FieldDescription>
               <div className="mt-2">
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox id="api-requests" name="api-requests" />
-                  <Label
-                    htmlFor="api-requests"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
+                  <FieldLabel htmlFor="api-requests" className="font-normal">
                     API requests
-                  </Label>
+                  </FieldLabel>
                 </div>
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox
                     id="workspace-execution"
                     name="workspace-execution"
                   />
-                  <Label
+                  <FieldLabel
                     htmlFor="workspace-execution"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
+                    className="font-normal"
                   >
                     Workspace loading times
-                  </Label>
+                  </FieldLabel>
                 </div>
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox
@@ -257,21 +222,15 @@ export default function Example() {
                     name="query-caching"
                     defaultChecked
                   />
-                  <Label
-                    htmlFor="query-caching"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
+                  <FieldLabel htmlFor="query-caching" className="font-normal">
                     Query caching
-                  </Label>
+                  </FieldLabel>
                 </div>
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox id="storage" name="storage" defaultChecked />
-                  <Label
-                    htmlFor="storage"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
+                  <FieldLabel htmlFor="storage" className="font-normal">
                     Storage
-                  </Label>
+                  </FieldLabel>
                 </div>
               </div>
             </fieldset>

@@ -76,7 +76,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "form-layout-05",
     category: categoryIds.FormLayout,
     name: "Form with Plan Selection",
-    iframeHeight: "1230px",
+    iframeHeight: "1240px",
     type: "file",
   },
 

@@ -13,6 +13,8 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "form-layout-03": components.FormLayout03,
   "form-layout-04": components.FormLayout04,
   "form-layout-05": components.FormLayout05,
+  "form-layout-06": components.FormLayout06,
+
 
   "login-01": components.Login01,
   "login-02": components.Login02,

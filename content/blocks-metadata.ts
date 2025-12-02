@@ -79,6 +79,14 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "1230px",
     type: "file",
   },
+  {
+    id: "form-layout-06",
+    category: categoryIds.FormLayout,
+    name: "Form with Profile Settings",
+    iframeHeight: "900px",
+    type: "file",
+  },
+
 
   {
     id: "login-01",

@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { Command } from "commander";
 import { DependencyExtractor } from "./lib/dependency-extractor";
 import { FileScanner } from "./lib/file-scanner";
@@ -234,6 +233,4 @@ process.on("unhandledRejection", (error) => {
   process.exit(1);
 });
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main();
-}
+main().catch(console.error);

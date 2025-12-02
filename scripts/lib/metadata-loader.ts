@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { pathToFileURL } from "url";
 import { BlockMetadata, GeneratorConfig } from "./types";
 
 export class MetadataLoader {
@@ -16,13 +17,12 @@ export class MetadataLoader {
       const metadataPath = path.resolve(this.config.metadataFile);
       await fs.access(metadataPath);
 
-      const metadataModule = await import(metadataPath);
+      const metadataModule = await import(pathToFileURL(metadataPath).href);
       const blocksMetadata = metadataModule.blocksMetadata;
 
       if (!Array.isArray(blocksMetadata)) {
         throw new Error(
-          `Expected blocksMetadata to be an array in ${
-            this.config.metadataFile
+          `Expected blocksMetadata to be an array in ${this.config.metadataFile
           }, got ${typeof blocksMetadata}`
         );
       }
@@ -61,19 +61,18 @@ export class MetadataLoader {
         if (error.message.includes("ENOENT")) {
           throw new Error(
             `Metadata file not found: ${this.config.metadataFile}. ` +
-              `Please ensure the file exists and contains exported blocksMetadata array.`
+            `Please ensure the file exists and contains exported blocksMetadata array.`
           );
         } else if (error.message.includes("Cannot resolve module")) {
           throw new Error(
             `Failed to import metadata file: ${this.config.metadataFile}. ` +
-              `Ensure you are running this script with TypeScript support (e.g., 'tsx scripts/generate-registry.ts').`
+            `Ensure you are running this script with TypeScript support (e.g., 'tsx scripts/generate-registry.ts').`
           );
         }
       }
 
       throw new Error(
-        `Error loading metadata file ${this.config.metadataFile}: ${
-          error instanceof Error ? error.message : String(error)
+        `Error loading metadata file ${this.config.metadataFile}: ${error instanceof Error ? error.message : String(error)
         }`
       );
     }

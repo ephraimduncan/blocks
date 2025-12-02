@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -35,7 +35,7 @@ const workspaces = [
   },
 ];
 
-export default function Example() {
+export default function FormLayout04() {
   const [selectedWorkspace, setSelectedWorkspace] = useState(workspaces[0]);
 
   return (
@@ -51,80 +51,80 @@ export default function Example() {
         <form action="#" method="post" className="mt-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
             <div className="col-span-full sm:col-span-3">
-              <Label htmlFor="first-name" className="font-medium">
-                First name<span className="text-red-500">*</span>
-              </Label>
-              <Input
-                type="text"
-                id="first-name"
-                name="first-name"
-                autoComplete="given-name"
-                required
-                placeholder="Emma"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="first-name">
+                  First name<span className="text-red-500">*</span>
+                </FieldLabel>
+                <Input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  autoComplete="given-name"
+                  required
+                  placeholder="Emma"
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-3">
-              <Label htmlFor="last-name" className="font-medium">
-                Last name
-              </Label>
-              <Input
-                type="text"
-                id="last-name"
-                name="last-name"
-                autoComplete="family-name"
-                placeholder="Crown"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="last-name">Last name</FieldLabel>
+                <Input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  autoComplete="family-name"
+                  placeholder="Crown"
+                />
+              </Field>
             </div>
             <div className="col-span-full">
-              <Label htmlFor="email" className="font-medium">
-                Work email<span className="text-red-500">*</span>
-              </Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
-                required
-                placeholder="emma@company.com"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="email">
+                  Work email<span className="text-red-500">*</span>
+                </FieldLabel>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  placeholder="emma@company.com"
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-3">
-              <Label htmlFor="company" className="font-medium">
-                Company
-              </Label>
-              <Input
-                type="text"
-                id="company"
-                name="company"
-                autoComplete="organization"
-                placeholder="Company, Inc."
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="company">Company</FieldLabel>
+                <Input
+                  type="text"
+                  id="company"
+                  name="company"
+                  autoComplete="organization"
+                  placeholder="Company, Inc."
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-3">
-              <Label htmlFor="size" className="font-medium">
-                Company size (employees)
-              </Label>
-              <Select defaultValue="">
-                <SelectTrigger id="size" name="size" className="mt-2">
-                  <SelectValue placeholder="Select company size" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1-9">1-9</SelectItem>
-                  <SelectItem value="10-50">10-50</SelectItem>
-                  <SelectItem value="50-250">50-250</SelectItem>
-                  <SelectItem value="250+">250+</SelectItem>
-                </SelectContent>
-              </Select>
+              <Field className="gap-2">
+                <FieldLabel htmlFor="size">Company size (employees)</FieldLabel>
+                <Select defaultValue="">
+                  <SelectTrigger id="size" name="size">
+                    <SelectValue placeholder="Select company size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1-9">1-9</SelectItem>
+                    <SelectItem value="10-50">10-50</SelectItem>
+                    <SelectItem value="50-250">50-250</SelectItem>
+                    <SelectItem value="250+">250+</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
             </div>
             <Separator className="col-span-full my-4" />
             <div className="col-span-full">
-              <Label className="font-semibold text-foreground block mb-4">
+              <FieldLabel className="font-semibold text-foreground block mb-4">
                 Select a workspace package
-              </Label>
+              </FieldLabel>
 
               <RadioGroup
                 className="grid grid-cols-1 sm:grid-cols-3 gap-5"
@@ -149,12 +149,12 @@ export default function Example() {
                         className="order-1 after:absolute after:inset-0"
                       />
 
-                      <Label
+                      <FieldLabel
                         htmlFor={item.id.toString()}
                         className="block text-sm font-medium text-foreground"
                       >
                         {item.title}
-                      </Label>
+                      </FieldLabel>
                     </div>
                     <div className="flex flex-col h-full justify-between">
                       <p className="mt-1 text-sm text-muted-foreground">
@@ -168,12 +168,12 @@ export default function Example() {
                 ))}
               </RadioGroup>
 
-              <p className="mt-6 text-xs text-muted-foreground">
+              <FieldDescription className="mt-2!">
                 <sup>1</sup> $0.5/10K requests after limit reach.
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
+              </FieldDescription>
+              <FieldDescription className="mt-1">
                 <sup>2</sup> No credit card required for registration.
-              </p>
+              </FieldDescription>
             </div>
           </div>
           <Separator className="my-6" />

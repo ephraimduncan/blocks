@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 
 export default function FormLayout01() {
@@ -16,121 +16,99 @@ export default function FormLayout01() {
         <form action="#" method="post" className="mt-8">
           <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
             <div className="col-span-full sm:col-span-3">
-              <Label
-                htmlFor="first-name"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                First name
-                <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                type="text"
-                id="first-name"
-                name="first-name"
-                autoComplete="first-name"
-                placeholder="First name"
-                className="mt-2"
-                required
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="first-name">
+                  First name
+                  <span className="text-red-500">*</span>
+                </FieldLabel>
+                <Input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  autoComplete="first-name"
+                  placeholder="First name"
+                  required
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-3">
-              <Label
-                htmlFor="last-name"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                Last name
-                <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                type="text"
-                id="last-name"
-                name="last-name"
-                autoComplete="last-name"
-                placeholder="Last name"
-                className="mt-2"
-                required
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="last-name">
+                  Last name
+                  <span className="text-red-500">*</span>
+                </FieldLabel>
+                <Input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  autoComplete="last-name"
+                  placeholder="Last name"
+                  required
+                />
+              </Field>
             </div>
             <div className="col-span-full">
-              <Label
-                htmlFor="email"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                Email
-                <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
-                placeholder="Email"
-                className="mt-2"
-                required
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="email">
+                  Email
+                  <span className="text-red-500">*</span>
+                </FieldLabel>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="Email"
+                  required
+                />
+              </Field>
             </div>
             <div className="col-span-full">
-              <Label
-                htmlFor="address"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                Address
-              </Label>
-              <Input
-                type="text"
-                id="address"
-                name="address"
-                autoComplete="street-address"
-                placeholder="Address"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="address">Address</FieldLabel>
+                <Input
+                  type="text"
+                  id="address"
+                  name="address"
+                  autoComplete="street-address"
+                  placeholder="Address"
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-2">
-              <Label
-                htmlFor="city"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                City
-              </Label>
-              <Input
-                type="text"
-                id="city"
-                name="city"
-                autoComplete="address-level2"
-                placeholder="City"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="city">City</FieldLabel>
+                <Input
+                  type="text"
+                  id="city"
+                  name="city"
+                  autoComplete="address-level2"
+                  placeholder="City"
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-2">
-              <Label
-                htmlFor="state"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                State
-              </Label>
-              <Input
-                type="text"
-                id="state"
-                name="state"
-                autoComplete="address-level1"
-                placeholder="State"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="state">State</FieldLabel>
+                <Input
+                  type="text"
+                  id="state"
+                  name="state"
+                  autoComplete="address-level1"
+                  placeholder="State"
+                />
+              </Field>
             </div>
             <div className="col-span-full sm:col-span-2">
-              <Label
-                htmlFor="postal-code"
-                className="text-sm font-medium text-foreground dark:text-foreground"
-              >
-                Postal code
-              </Label>
-              <Input
-                id="postal-code"
-                name="postal-code"
-                autoComplete="postal-code"
-                placeholder="Postal code"
-                className="mt-2"
-              />
+              <Field className="gap-2">
+                <FieldLabel htmlFor="postal-code">Postal code</FieldLabel>
+                <Input
+                  id="postal-code"
+                  name="postal-code"
+                  autoComplete="postal-code"
+                  placeholder="Postal code"
+                />
+              </Field>
             </div>
           </div>
           <Separator className="my-6" />

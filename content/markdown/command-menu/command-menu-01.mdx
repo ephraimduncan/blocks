@@ -1,5 +1,5 @@
 ````tsx
-'use client';
+"use client";
 
 import {
   IconBell,
@@ -21,10 +21,9 @@ import {
   IconTarget,
   IconTrendingUp,
   IconUsers,
-} from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
-
-import { Button } from '@/components/ui/button';
+} from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -32,35 +31,35 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
-import { Kbd } from '@/components/ui/kbd';
+} from "@/components/ui/command";
+import { Kbd } from "@/components/ui/kbd";
 
 const workspaceItems = [
-  { icon: IconLayoutDashboard, label: 'Dashboard' },
-  { icon: IconLayoutKanban, label: 'Projects' },
-  { icon: IconSquareCheck, label: 'Tasks' },
-  { icon: IconCalendar, label: 'Calendar' },
-  { icon: IconUsers, label: 'Team members' },
-  { icon: IconMessage, label: 'Messages' },
-  { icon: IconFileText, label: 'Documents' },
-  { icon: IconBell, label: 'Notifications' },
-  { icon: IconClock, label: 'Time tracking' },
-  { icon: IconTarget, label: 'Goals' },
+  { icon: IconLayoutDashboard, label: "Dashboard" },
+  { icon: IconLayoutKanban, label: "Projects" },
+  { icon: IconSquareCheck, label: "Tasks" },
+  { icon: IconCalendar, label: "Calendar" },
+  { icon: IconUsers, label: "Team members" },
+  { icon: IconMessage, label: "Messages" },
+  { icon: IconFileText, label: "Documents" },
+  { icon: IconBell, label: "Notifications" },
+  { icon: IconClock, label: "Time tracking" },
+  { icon: IconTarget, label: "Goals" },
 ];
 
 const analyticsItems = [
-  { icon: IconChartBar, label: 'Overview' },
-  { icon: IconTrendingUp, label: 'Performance' },
-  { icon: IconChartPie, label: 'Reports' },
-  { icon: IconBolt, label: 'Insights' },
+  { icon: IconChartBar, label: "Overview" },
+  { icon: IconTrendingUp, label: "Performance" },
+  { icon: IconChartPie, label: "Reports" },
+  { icon: IconBolt, label: "Insights" },
 ];
 
 const settingsItems = [
-  { icon: IconSettings, label: 'Preferences' },
-  { icon: IconPalette, label: 'Appearance' },
-  { icon: IconKeyboard, label: 'Keyboard shortcuts' },
-  { icon: IconHelp, label: 'Help & support' },
-  { icon: IconLogout, label: 'Sign out' },
+  { icon: IconSettings, label: "Preferences" },
+  { icon: IconPalette, label: "Appearance" },
+  { icon: IconKeyboard, label: "Keyboard shortcuts" },
+  { icon: IconHelp, label: "Help & support" },
+  { icon: IconLogout, label: "Sign out" },
 ];
 
 export function CommandMenu01() {
@@ -68,14 +67,14 @@ export function CommandMenu01() {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((prev) => !prev);
       }
     };
 
-    document.addEventListener('keydown', down);
-    return () => document.removeEventListener('keydown', down);
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
   }, []);
 
   return (

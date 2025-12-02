@@ -179,7 +179,7 @@ export function CommandMenu03() {
             </DialogDescription>
           </DialogHeader>
 
-          <Command className="**:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input]:!h-9 rounded-none bg-transparent **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input]:py-0">
+          <Command className="rounded-none bg-transparent **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input]:h-9! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input]:py-0">
             <CommandInput placeholder="Search documentation..." />
             <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
               <CommandEmpty className="py-12 text-center text-muted-foreground text-sm">
@@ -188,12 +188,12 @@ export function CommandMenu03() {
 
               {navItems.length > 0 && (
                 <CommandGroup
-                  className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1 [&_[cmdk-group-heading]]:scroll-mt-16"
+                  className="p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
                   heading="Pages"
                 >
                   {navItems.map((item) => (
                     <CommandItem
-                      className="!px-3 h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
+                      className="px-3! h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
                       key={item.href}
                       keywords={item.keywords}
                       onSelect={() => {
@@ -210,7 +210,7 @@ export function CommandMenu03() {
 
               {pageGroups.map((group) => (
                 <CommandGroup
-                  className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1 [&_[cmdk-group-heading]]:scroll-mt-16"
+                  className="p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
                   heading={group.name}
                   key={group.name}
                 >
@@ -218,7 +218,7 @@ export function CommandMenu03() {
                     const isComponent = page.href.includes("/components/");
                     return (
                       <CommandItem
-                        className="!px-3 h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
+                        className="px-3! h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
                         key={page.href}
                         keywords={page.keywords}
                         onSelect={() => {
@@ -243,13 +243,13 @@ export function CommandMenu03() {
 
               {colorGroups.map((colorGroup) => (
                 <CommandGroup
-                  className="!p-0 [&_[cmdk-group-heading]]:!p-3"
+                  className="p-0! **:[[cmdk-group-heading]]:p-3!"
                   heading={colorGroup.name}
                   key={colorGroup.name}
                 >
                   {colorGroup.colors.map((color) => (
                     <CommandItem
-                      className="!px-3 h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
+                      className="px-3! h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
                       key={color.className}
                       keywords={["color", color.name, color.className]}
                       onSelect={() => {

@@ -20,13 +20,13 @@ import {
   IconUser,
   IconUsers,
 } from "@tabler/icons-react";
-import { Command as CommandPrimitive } from "cmdk";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -72,20 +72,20 @@ export function CommandMenu02() {
           className="gap-0 overflow-hidden rounded-xl border-border/50 p-0 shadow-lg sm:max-w-lg"
           showCloseButton={false}
         >
-          <Command className="flex h-full w-full flex-col overflow-hidden bg-popover">
-            <div className="flex h-12 items-center border-border/50 border-b px-4">
-              <CommandPrimitive.Input
-                className="flex-1 bg-transparent text-[15px] text-foreground outline-none placeholder:text-muted-foreground"
+          <Command className="flex h-full w-full flex-col overflow-hidden bg-popover **:data-[slot=command-input-wrapper]:h-auto **:data-[slot=command-input-wrapper]:grow **:data-[slot=command-input-wrapper]:border-0 **:data-[slot=command-input-wrapper]:px-0">
+            <div className="flex h-12 items-center gap-2 border-border/50 border-b px-4">
+              <CommandInput
+                className="h-10 text-[15px]"
                 onValueChange={setInputValue}
                 placeholder="What do you need?"
                 value={inputValue}
               />
               <button
-                className="h-6 rounded border border-border/50 bg-muted px-1.5 font-medium text-muted-foreground text-xs transition-colors hover:bg-accent"
+                className="flex shrink-0 items-center"
                 onClick={() => setOpen(false)}
                 type="button"
               >
-                Esc
+                <Kbd>Esc</Kbd>
               </button>
             </div>
 

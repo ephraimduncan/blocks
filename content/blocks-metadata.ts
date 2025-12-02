@@ -273,6 +273,14 @@ export const blocksMetadata: BlocksMetadata[] = [
   },
 
   {
+    id: "command-menu-01",
+    category: categoryIds.CommandMenu,
+    name: "Command Menu with Groups",
+    iframeHeight: "550px",
+    type: "file",
+  },
+
+  {
     id: "dialog-01",
     category: categoryIds.Dialogs,
     name: "Dialog Confirmation",

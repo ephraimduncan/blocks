@@ -37,6 +37,7 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "stats-11": components.Stats11,
   "stats-12": components.Stats12,
   "stats-13": components.Stats13,
+  "stats-14": components.Stats14,
 
   "grid-list-01": components.GridList01,
   "grid-list-02": components.GridList02,

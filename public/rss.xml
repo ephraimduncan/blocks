@@ -4,7 +4,7 @@
     <title>@blocks</title>
     <link>https://blocks.so</link>
     <description>Subscribe to @blocks updates</description>
-    <lastBuildDate>Tue, 02 Dec 2025 13:54:12 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 02 Dec 2025 14:57:53 GMT</lastBuildDate>
     <item>
       <title>Grid List with Dropdown</title>
       <link>https://blocks.so/grid-list#grid-list-01</link>
@@ -457,8 +457,15 @@
       <title>Onboarding</title>
       <link>https://blocks.so/onboarding#onboarding-01</link>
       <description>A onboarding block.</description>
-      <pubDate>Tue, 02 Dec 2025 12:56:47 GMT</pubDate>
+      <pubDate>Tue, 02 Dec 2025 13:58:13 GMT</pubDate>
       <guid>https://blocks.so/onboarding#onboarding-01</guid>
+    </item>
+    <item>
+      <title>Stats with Usage Breakdown</title>
+      <link>https://blocks.so/stats#stats-14</link>
+      <description>A stats with usage breakdown block.</description>
+      <pubDate>Tue, 02 Dec 2025 14:57:53 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-14</guid>
     </item>
   </channel>
 </rss>

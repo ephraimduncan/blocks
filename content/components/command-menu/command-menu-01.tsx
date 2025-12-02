@@ -1,6 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import {
+  IconBell,
+  IconBolt,
+  IconCalendar,
+  IconChartBar,
+  IconChartPie,
+  IconClock,
+  IconFileText,
+  IconHelp,
+  IconKeyboard,
+  IconLayoutDashboard,
+  IconLayoutKanban,
+  IconLogout,
+  IconMessage,
+  IconPalette,
+  IconSettings,
+  IconSquareCheck,
+  IconTarget,
+  IconTrendingUp,
+  IconUsers,
+} from "@tabler/icons-react";
+
+import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -9,28 +33,6 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Button } from "@/components/ui/button";
-import {
-  IconLayoutDashboard,
-  IconUsers,
-  IconLayoutKanban,
-  IconSquareCheck,
-  IconCalendar,
-  IconMessage,
-  IconFileText,
-  IconSettings,
-  IconBell,
-  IconPalette,
-  IconChartBar,
-  IconTrendingUp,
-  IconChartPie,
-  IconTarget,
-  IconBolt,
-  IconClock,
-  IconHelp,
-  IconKeyboard,
-  IconLogout,
-} from "@tabler/icons-react";
 
 const workspaceItems = [
   { icon: IconLayoutDashboard, label: "Dashboard" },
@@ -60,7 +62,7 @@ const settingsItems = [
   { icon: IconLogout, label: "Sign out" },
 ];
 
-export default function CommandMenu01() {
+export function CommandMenu01() {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {

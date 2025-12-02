@@ -280,6 +280,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     type: "file",
   },
   {
+    id: "command-menu-02",
+    category: categoryIds.CommandMenu,
+    name: "Command Menu with Keyboard Shortcuts",
+    iframeHeight: "650px",
+    type: "file",
+  },
+  {
     id: "command-menu-03",
     category: categoryIds.CommandMenu,
     name: "Command Menu with Documentation Search",

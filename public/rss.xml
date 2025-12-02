@@ -4,7 +4,7 @@
     <title>@blocks</title>
     <link>https://blocks.so</link>
     <description>Subscribe to @blocks updates</description>
-    <lastBuildDate>Tue, 02 Dec 2025 15:21:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 02 Dec 2025 15:45:00 GMT</lastBuildDate>
     <item>
       <title>Grid List with Dropdown</title>
       <link>https://blocks.so/grid-list#grid-list-01</link>
@@ -462,9 +462,16 @@
     </item>
     <item>
       <title>Stats with Value Breakdown</title>
-      <link>https://blocks.so/stats#stats-14</link>
+      <link>https://blocks.so/stats#stats-15</link>
       <description>A stats with value breakdown block.</description>
-      <pubDate>Tue, 02 Dec 2025 15:21:00 GMT</pubDate>
+      <pubDate>Tue, 02 Dec 2025 15:42:07 GMT</pubDate>
+      <guid>https://blocks.so/stats#stats-15</guid>
+    </item>
+    <item>
+      <title>Stats with Usage Breakdown</title>
+      <link>https://blocks.so/stats#stats-14</link>
+      <description>A stats with usage breakdown block.</description>
+      <pubDate>Tue, 02 Dec 2025 15:45:00 GMT</pubDate>
       <guid>https://blocks.so/stats#stats-14</guid>
     </item>
   </channel>

@@ -236,6 +236,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     type: "file",
   },
   {
+    id: "stats-14",
+    category: categoryIds.Stats,
+    name: "Stats with Usage Breakdown",
+    iframeHeight: "400px",
+    type: "file",
+  },
+  {
     id: "stats-15",
     category: categoryIds.Stats,
     name: "Stats with Value Breakdown",

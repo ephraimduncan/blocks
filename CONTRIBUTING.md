@@ -47,7 +47,7 @@ bun run generate:registry    # Generate registry.json
 bun run generate:markdown    # Generate MDX documentation
 bun run validate:registry    # Validate registry structure
 
-# Code Quality  
+# Code Quality
 bunx ultracite lint         # Lint codebase with Biome
 ```
 
@@ -71,9 +71,13 @@ blocks/
 
 ### Adding New Blocks
 
+We'd love your block contributions! To keep the library well-organized, we ask that you **add blocks to existing categories** rather than creating new ones. If you have ideas for a new category, feel free to open an issue to discuss it with the maintainers.
+
+Existing categories can be found in `content/blocks-categories.tsx`.
+
 1. **Create the component** in `content/components/{category}/{block-id}.tsx`
 2. **Register metadata** in `content/blocks-metadata.ts`
-3. **Map the component** in `content/blocks-components.tsx` 
+3. **Map the component** in `content/blocks-components.tsx`
 4. **Export from category** in `content/components/{category}/index.ts`
 5. **Generate registry** with `bun run generate:registry`
 

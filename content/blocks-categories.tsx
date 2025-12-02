@@ -88,6 +88,7 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     id: categoryIds.Onboarding,
     name: "Onboarding",
     hasCharts: false,
+    thumbnailCustomClasses: "w-8/12",
   },
 ];
 

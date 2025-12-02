@@ -1,0 +1,347 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import {
+  IconArrowRight,
+  IconAt,
+  IconCopy,
+  IconDeviceDesktop,
+  IconDownload,
+  IconFile,
+  IconFileSearch,
+  IconKeyboard,
+  IconLink,
+  IconLogout,
+  IconMessage,
+  IconPencil,
+  IconPlus,
+  IconSend,
+  IconSettings,
+  IconTemplate,
+  IconUser,
+  IconUsers,
+} from "@tabler/icons-react";
+
+import { Command as CommandPrimitive } from "cmdk";
+
+import { Button } from "@/components/ui/button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+export function CommandMenu02() {
+  const [open, setOpen] = useState(true);
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open Command Menu
+      </Button>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogHeader className="sr-only">
+          <DialogTitle>Command Menu</DialogTitle>
+          <DialogDescription>
+            Use the command menu to navigate through the app.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogContent
+          className="overflow-hidden p-0 shadow-lg sm:max-w-lg gap-0 rounded-xl border-border/50"
+          showCloseButton={false}
+        >
+          <Command className="flex h-full w-full flex-col overflow-hidden bg-popover">
+            <div className="flex items-center h-12 px-4 border-b border-border/50">
+              <CommandPrimitive.Input
+                className="flex-1 bg-transparent text-[15px] text-foreground placeholder:text-muted-foreground outline-none"
+                placeholder="What do you need?"
+                value={inputValue}
+                onValueChange={setInputValue}
+              />
+              <button
+                className="h-6 px-1.5 text-xs font-medium text-muted-foreground bg-muted rounded border border-border/50 hover:bg-accent transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                Esc
+              </button>
+            </div>
+
+            <CommandList className="max-h-[400px] py-2">
+              <CommandEmpty>No results found.</CommandEmpty>
+
+              <CommandGroup>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconSettings aria-hidden />
+                  Account Settings...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconUser aria-hidden />
+                  Switch Workspace...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconLogout aria-hidden />
+                  Log Out
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Documents">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconFile aria-hidden />
+                  Search Documents...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconPlus aria-hidden />
+                  Create New Document...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconFile aria-hidden />
+                  Upload Document...
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Signing">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconSend aria-hidden />
+                  Request Signature...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconPencil aria-hidden />
+                  Sign a Document...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconUsers aria-hidden />
+                  Bulk Send for Signature...
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Templates">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconTemplate aria-hidden />
+                  Search Templates...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconPlus aria-hidden />
+                  Create New Template...
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="General">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconDeviceDesktop aria-hidden />
+                  Change Theme...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconCopy aria-hidden />
+                  Copy Current URL
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Navigation">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Inbox</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Action Required</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Waiting for Others</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Completed</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Drafts</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Templates</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Archive</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;<strong className="font-semibold">Trash</strong>
+                  </span>
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconArrowRight aria-hidden />
+                  <span>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Settings</strong>
+                  </span>
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Quick Actions">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconLink aria-hidden />
+                  Copy Signing Link
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconDownload aria-hidden />
+                  Download Document
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Help">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconFileSearch aria-hidden />
+                  Search Help Center...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconMessage aria-hidden />
+                  Send Feedback...
+                </CommandItem>
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconAt aria-hidden />
+                  Contact Support
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandGroup heading="Keyboard Shortcuts">
+                <CommandItem
+                  className="mx-2 rounded-lg py-2.5"
+                  onSelect={() => setOpen(false)}
+                >
+                  <IconKeyboard aria-hidden />
+                  View Keyboard Shortcuts
+                </CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}

@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import {
   IconBell,
   IconBolt,
@@ -23,7 +21,7 @@ import {
   IconTrendingUp,
   IconUsers,
 } from "@tabler/icons-react";
-
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -33,6 +31,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Kbd } from "@/components/ui/kbd";
 
 const workspaceItems = [
   { icon: IconLayoutDashboard, label: "Dashboard" },
@@ -69,7 +68,7 @@ export function CommandMenu01() {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen((prev) => !prev);
       }
     };
 
@@ -79,14 +78,14 @@ export function CommandMenu01() {
 
   return (
     <>
-      <Button variant="outline" onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)} variant="outline">
         Open Command Menu
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen} showCloseButton={false}>
+      <CommandDialog onOpenChange={setOpen} open={open} showCloseButton={false}>
         <CommandInput
-          placeholder="Type a command or search..."
           className="h-12"
+          placeholder="Type a command or search..."
         />
         <CommandList className="h-[320px] max-h-[320px]">
           <CommandEmpty>No results found.</CommandEmpty>
@@ -117,13 +116,12 @@ export function CommandMenu01() {
         </CommandList>
         <div className="flex h-12 items-center justify-end border-t px-3">
           <button
+            className="flex items-center gap-1 text-muted-foreground text-sm hover:text-foreground"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+            type="button"
           >
             <span>Close</span>
-            <kbd className="pointer-events-none ml-1 inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
-              Esc
-            </kbd>
+            <Kbd className="ml-1">Esc</Kbd>
           </button>
         </div>
       </CommandDialog>

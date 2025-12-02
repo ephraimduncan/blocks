@@ -1,10 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
 import { IconArrowRight, IconCornerDownLeft } from "@tabler/icons-react";
-
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -21,6 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Kbd } from "@/components/ui/kbd";
 
 const navItems = [
   { href: "/", label: "Home", keywords: ["home", "main", "index"] },
@@ -157,7 +156,7 @@ export function CommandMenu03() {
           return;
         }
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen((prev) => !prev);
       }
     };
 
@@ -167,11 +166,11 @@ export function CommandMenu03() {
 
   return (
     <>
-      <Button variant="outline" onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)} variant="outline">
         Open Command Menu
       </Button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog onOpenChange={setOpen} open={open}>
         <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800">
           <DialogHeader className="sr-only">
             <DialogTitle>Search documentation...</DialogTitle>
@@ -180,27 +179,27 @@ export function CommandMenu03() {
             </DialogDescription>
           </DialogHeader>
 
-          <Command className="rounded-none bg-transparent **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input]:!h-9 **:data-[slot=command-input]:py-0">
+          <Command className="**:data-[slot=command-input-wrapper]:!h-9 **:data-[slot=command-input]:!h-9 rounded-none bg-transparent **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border **:data-[slot=command-input-wrapper]:border-input **:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input]:py-0">
             <CommandInput placeholder="Search documentation..." />
-            <CommandList className="no-scrollbar min-h-80 scroll-pb-1.5 scroll-pt-2">
-              <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
+            <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
+              <CommandEmpty className="py-12 text-center text-muted-foreground text-sm">
                 No results found.
               </CommandEmpty>
 
               {navItems.length > 0 && (
                 <CommandGroup
-                  heading="Pages"
                   className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1 [&_[cmdk-group-heading]]:scroll-mt-16"
+                  heading="Pages"
                 >
                   {navItems.map((item) => (
                     <CommandItem
+                      className="!px-3 h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
                       key={item.href}
-                      value={`Navigation ${item.label}`}
                       keywords={item.keywords}
                       onSelect={() => {
                         runCommand(() => router.push(item.href));
                       }}
-                      className="h-9 rounded-md border border-transparent !px-3 font-medium hover:border-input hover:bg-input/50"
+                      value={`Navigation ${item.label}`}
                     >
                       <IconArrowRight aria-hidden="true" className="size-4" />
                       {item.label}
@@ -211,24 +210,24 @@ export function CommandMenu03() {
 
               {pageGroups.map((group) => (
                 <CommandGroup
-                  key={group.name}
-                  heading={group.name}
                   className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1 [&_[cmdk-group-heading]]:scroll-mt-16"
+                  heading={group.name}
+                  key={group.name}
                 >
                   {group.pages.map((page) => {
                     const isComponent = page.href.includes("/components/");
                     return (
                       <CommandItem
+                        className="!px-3 h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
                         key={page.href}
-                        value={`${group.name} ${page.name}`}
                         keywords={page.keywords}
                         onSelect={() => {
                           runCommand(() => router.push(page.href));
                         }}
-                        className="h-9 rounded-md border border-transparent !px-3 font-medium hover:border-input hover:bg-input/50"
+                        value={`${group.name} ${page.name}`}
                       >
                         {isComponent ? (
-                          <div className="aspect-square size-4 rounded-full border border-dashed border-muted-foreground" />
+                          <div className="aspect-square size-4 rounded-full border border-muted-foreground border-dashed" />
                         ) : (
                           <IconArrowRight
                             aria-hidden="true"
@@ -244,26 +243,26 @@ export function CommandMenu03() {
 
               {colorGroups.map((colorGroup) => (
                 <CommandGroup
-                  key={colorGroup.name}
-                  heading={colorGroup.name}
                   className="!p-0 [&_[cmdk-group-heading]]:!p-3"
+                  heading={colorGroup.name}
+                  key={colorGroup.name}
                 >
                   {colorGroup.colors.map((color) => (
                     <CommandItem
+                      className="!px-3 h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
                       key={color.className}
-                      value={color.className}
                       keywords={["color", color.name, color.className]}
                       onSelect={() => {
                         runCommand(() => copyToClipboard(color.value));
                       }}
-                      className="h-9 rounded-md border border-transparent !px-3 font-medium hover:border-input hover:bg-input/50"
+                      value={color.className}
                     >
                       <div
                         className="aspect-square size-4 rounded-sm border"
                         style={{ backgroundColor: color.value }}
                       />
                       {color.className}
-                      <span className="ml-auto font-mono text-xs font-normal tabular-nums text-muted-foreground">
+                      <span className="ml-auto font-mono font-normal text-muted-foreground text-xs tabular-nums">
                         {color.value}
                       </span>
                     </CommandItem>
@@ -273,10 +272,10 @@ export function CommandMenu03() {
             </CommandList>
           </Command>
 
-          <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground dark:border-t-neutral-700 dark:bg-neutral-800">
-            <kbd className="pointer-events-none flex h-5 select-none items-center justify-center gap-1 rounded border bg-background px-1 font-sans text-[0.7rem] font-medium text-muted-foreground [&_svg:not([class*='size-'])]:size-3">
+          <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 font-medium text-muted-foreground text-xs dark:border-t-neutral-700 dark:bg-neutral-800">
+            <Kbd>
               <IconCornerDownLeft aria-hidden="true" className="size-3" />
-            </kbd>
+            </Kbd>
             Select
           </div>
         </DialogContent>

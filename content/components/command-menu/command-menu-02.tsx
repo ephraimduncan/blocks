@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import {
   IconArrowRight,
   IconAt,
@@ -22,9 +20,8 @@ import {
   IconUser,
   IconUsers,
 } from "@tabler/icons-react";
-
 import { Command as CommandPrimitive } from "cmdk";
-
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -40,6 +37,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
 export function CommandMenu02() {
   const [open, setOpen] = useState(true);
@@ -49,7 +47,7 @@ export function CommandMenu02() {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen((prev) => !prev);
       }
     };
 
@@ -59,11 +57,11 @@ export function CommandMenu02() {
 
   return (
     <>
-      <Button variant="outline" onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)} variant="outline">
         Open Command Menu
       </Button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog onOpenChange={setOpen} open={open}>
         <DialogHeader className="sr-only">
           <DialogTitle>Command Menu</DialogTitle>
           <DialogDescription>
@@ -71,20 +69,21 @@ export function CommandMenu02() {
           </DialogDescription>
         </DialogHeader>
         <DialogContent
-          className="overflow-hidden p-0 shadow-lg sm:max-w-lg gap-0 rounded-xl border-border/50"
+          className="gap-0 overflow-hidden rounded-xl border-border/50 p-0 shadow-lg sm:max-w-lg"
           showCloseButton={false}
         >
           <Command className="flex h-full w-full flex-col overflow-hidden bg-popover">
-            <div className="flex items-center h-12 px-4 border-b border-border/50">
+            <div className="flex h-12 items-center border-border/50 border-b px-4">
               <CommandPrimitive.Input
-                className="flex-1 bg-transparent text-[15px] text-foreground placeholder:text-muted-foreground outline-none"
+                className="flex-1 bg-transparent text-[15px] text-foreground outline-none placeholder:text-muted-foreground"
+                onValueChange={setInputValue}
                 placeholder="What do you need?"
                 value={inputValue}
-                onValueChange={setInputValue}
               />
               <button
-                className="h-6 px-1.5 text-xs font-medium text-muted-foreground bg-muted rounded border border-border/50 hover:bg-accent transition-colors"
+                className="h-6 rounded border border-border/50 bg-muted px-1.5 font-medium text-muted-foreground text-xs transition-colors hover:bg-accent"
                 onClick={() => setOpen(false)}
+                type="button"
               >
                 Esc
               </button>
@@ -100,6 +99,10 @@ export function CommandMenu02() {
                 >
                   <IconSettings aria-hidden />
                   Account Settings...
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>,</Kbd>
+                  </KbdGroup>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -114,6 +117,10 @@ export function CommandMenu02() {
                 >
                   <IconLogout aria-hidden />
                   Log Out
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>Q</Kbd>
+                  </KbdGroup>
                 </CommandItem>
               </CommandGroup>
 
@@ -124,6 +131,10 @@ export function CommandMenu02() {
                 >
                   <IconFile aria-hidden />
                   Search Documents...
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>F</Kbd>
+                  </KbdGroup>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -131,6 +142,10 @@ export function CommandMenu02() {
                 >
                   <IconPlus aria-hidden />
                   Create New Document...
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>N</Kbd>
+                  </KbdGroup>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -138,6 +153,10 @@ export function CommandMenu02() {
                 >
                   <IconFile aria-hidden />
                   Upload Document...
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>U</Kbd>
+                  </KbdGroup>
                 </CommandItem>
               </CommandGroup>
 
@@ -189,6 +208,10 @@ export function CommandMenu02() {
                 >
                   <IconDeviceDesktop aria-hidden />
                   Change Theme...
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>T</Kbd>
+                  </KbdGroup>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -196,6 +219,11 @@ export function CommandMenu02() {
                 >
                   <IconCopy aria-hidden />
                   Copy Current URL
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>C</Kbd>
+                  </KbdGroup>
                 </CommandItem>
               </CommandGroup>
 
@@ -226,7 +254,9 @@ export function CommandMenu02() {
                   <IconArrowRight aria-hidden />
                   <span>
                     Go to&nbsp;
-                    <strong className="font-semibold">Waiting for Others</strong>
+                    <strong className="font-semibold">
+                      Waiting for Others
+                    </strong>
                   </span>
                 </CommandItem>
                 <CommandItem
@@ -264,7 +294,8 @@ export function CommandMenu02() {
                 >
                   <IconArrowRight aria-hidden />
                   <span>
-                    Go to&nbsp;<strong className="font-semibold">Archive</strong>
+                    Go to&nbsp;
+                    <strong className="font-semibold">Archive</strong>
                   </span>
                 </CommandItem>
                 <CommandItem
@@ -336,6 +367,10 @@ export function CommandMenu02() {
                 >
                   <IconKeyboard aria-hidden />
                   View Keyboard Shortcuts
+                  <KbdGroup className="ml-auto">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>/</Kbd>
+                  </KbdGroup>
                 </CommandItem>
               </CommandGroup>
             </CommandList>

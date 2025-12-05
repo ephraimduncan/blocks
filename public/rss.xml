@@ -4,48 +4,13 @@
     <title>@blocks</title>
     <link>https://blocks.so</link>
     <description>Subscribe to @blocks updates</description>
-    <lastBuildDate>Tue, 02 Dec 2025 19:44:23 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 05 Dec 2025 21:03:01 GMT</lastBuildDate>
     <item>
       <title>Grid List with Dropdown</title>
       <link>https://blocks.so/grid-list#grid-list-01</link>
       <description>A grid list with dropdown block.</description>
       <pubDate>Fri, 04 Apr 2025 19:25:15 GMT</pubDate>
       <guid>https://blocks.so/grid-list#grid-list-01</guid>
-    </item>
-    <item>
-      <title>Form with Workspace Fields</title>
-      <link>https://blocks.so/form-layout#form-layout-01</link>
-      <description>A form with workspace fields block.</description>
-      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
-      <guid>https://blocks.so/form-layout#form-layout-01</guid>
-    </item>
-    <item>
-      <title>Form with Side Labels</title>
-      <link>https://blocks.so/form-layout#form-layout-02</link>
-      <description>A form with side labels block.</description>
-      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
-      <guid>https://blocks.so/form-layout#form-layout-02</guid>
-    </item>
-    <item>
-      <title>Form with Checkbox Settings</title>
-      <link>https://blocks.so/form-layout#form-layout-03</link>
-      <description>A form with checkbox settings block.</description>
-      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
-      <guid>https://blocks.so/form-layout#form-layout-03</guid>
-    </item>
-    <item>
-      <title>Form with Package Selection</title>
-      <link>https://blocks.so/form-layout#form-layout-04</link>
-      <description>A form with package selection block.</description>
-      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
-      <guid>https://blocks.so/form-layout#form-layout-04</guid>
-    </item>
-    <item>
-      <title>Form with Plan Selection</title>
-      <link>https://blocks.so/form-layout#form-layout-05</link>
-      <description>A form with plan selection block.</description>
-      <pubDate>Sat, 05 Apr 2025 05:22:12 GMT</pubDate>
-      <guid>https://blocks.so/form-layout#form-layout-05</guid>
     </item>
     <item>
       <title>Login with Email and Password</title>
@@ -494,6 +459,41 @@
       <description>A command menu with documentation search block.</description>
       <pubDate>Tue, 02 Dec 2025 19:25:01 GMT</pubDate>
       <guid>https://blocks.so/command-menu#command-menu-03</guid>
+    </item>
+    <item>
+      <title>Form with Workspace Fields</title>
+      <link>https://blocks.so/form-layout#form-layout-01</link>
+      <description>A form with workspace fields block.</description>
+      <pubDate>Tue, 02 Dec 2025 20:08:25 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-01</guid>
+    </item>
+    <item>
+      <title>Form with Side Labels</title>
+      <link>https://blocks.so/form-layout#form-layout-02</link>
+      <description>A form with side labels block.</description>
+      <pubDate>Tue, 02 Dec 2025 20:08:25 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-02</guid>
+    </item>
+    <item>
+      <title>Form with Checkbox Settings</title>
+      <link>https://blocks.so/form-layout#form-layout-03</link>
+      <description>A form with checkbox settings block.</description>
+      <pubDate>Tue, 02 Dec 2025 20:08:25 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-03</guid>
+    </item>
+    <item>
+      <title>Form with Package Selection</title>
+      <link>https://blocks.so/form-layout#form-layout-04</link>
+      <description>A form with package selection block.</description>
+      <pubDate>Tue, 02 Dec 2025 20:08:25 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-04</guid>
+    </item>
+    <item>
+      <title>Form with Plan Selection</title>
+      <link>https://blocks.so/form-layout#form-layout-05</link>
+      <description>A form with plan selection block.</description>
+      <pubDate>Tue, 02 Dec 2025 20:08:25 GMT</pubDate>
+      <guid>https://blocks.so/form-layout#form-layout-05</guid>
     </item>
   </channel>
 </rss>

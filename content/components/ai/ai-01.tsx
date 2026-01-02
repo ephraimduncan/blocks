@@ -26,6 +26,7 @@ import { useRef, useState } from "react";
 export default function Ai01() {
   const [message, setMessage] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [chatHistory, setChatHistory] = useState<Array<{ role: "user"; content: string }>>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -33,6 +34,7 @@ export default function Ai01() {
     e.preventDefault();
 
     if (message.trim()) {
+      setChatHistory((prev) => [...prev, { role: "user", content: message }]);
       setMessage("");
       setIsExpanded(false);
 
@@ -65,6 +67,22 @@ export default function Ai01() {
       <h1 className="mb-7 mx-auto max-w-2xl text-center text-2xl font-semibold leading-9 text-foreground px-1 text-pretty whitespace-pre-wrap">
         How can I help you today?
       </h1>
+
+
+      {/* Chat history */}
+      {chatHistory.length > 0 && (
+        <div className="mb-6 mx-auto max-w-2xl bg-muted/40 rounded-xl p-4 border border-border">
+          <div className="space-y-3">
+            {chatHistory.map((msg, idx) => (
+              <div key={idx} className="flex">
+                <div className="rounded-lg px-3 py-2 bg-background border border-border text-foreground text-sm max-w-[80%]">
+                  {msg.content}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="group/composer w-full">
         <input
@@ -112,6 +130,7 @@ export default function Ai01() {
                 rows={1}
               />
             </div>
+            {/* ...existing code... */}
           </div>
 
           <div
@@ -170,7 +189,6 @@ export default function Ai01() {
             <div className="ms-auto flex items-center gap-1.5">
               <Button
                 type="button"
-                variant="ghost"
                 size="icon"
                 className="h-9 w-9 rounded-full hover:bg-accent"
               >
@@ -178,7 +196,6 @@ export default function Ai01() {
               </Button>
 
               <Button
-                type="button"
                 variant="ghost"
                 size="icon"
                 className="h-9 w-9 rounded-full hover:bg-accent relative"

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useRef } from "react";
+
 import {
   CheckCircle,
   FileTextIcon,
@@ -8,17 +10,16 @@ import {
   PlayIcon,
   Trash2Icon,
 } from "lucide-react";
-import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Table,
-  TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
+  TableBody,
 } from "@/components/ui/table";
 import {
   Tooltip,
@@ -150,6 +151,8 @@ function getStatusBadge(status: Task["status"]) {
 }
 
 export default function Table02() {
+    const [liveMessage, setLiveMessage] = useState("");
+    const liveRegionRef = useRef<HTMLDivElement>(null);
   const [pendingAction, setPendingAction] = useState<{
     id: string;
     type: TaskActionType;

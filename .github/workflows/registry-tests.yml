@@ -1,0 +1,30 @@
+name: Registry Tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run generate:registry
+      - run: bun run test:ci
+
+  installation:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: bun install
+      - run: bun run generate:registry
+      - run: bun run test tests/registry/suites/installation-simulation.test.ts
+        timeout-minutes: 10

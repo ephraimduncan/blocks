@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+tests/registry/.cache
 
 # next.js
 /.next/

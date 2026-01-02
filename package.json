@@ -13,7 +13,11 @@
     "build": "bun run generate:registry && bun run generate:markdown && bun run generate:rss && next build",
     "generate": "bun run generate:registry && bun run generate:markdown",
     "start": "next start",
-    "lint": "bunx ultracite lint"
+    "lint": "bunx ultracite lint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ci": "vitest run --reporter=verbose"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -84,10 +88,14 @@
     "@types/node": "^20",
     "@types/react": "19.1.11",
     "@types/react-dom": "19.1.7",
+    "@vitest/coverage-v8": "^3.0.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "tailwindcss": "^4.1.12",
     "ts-morph": "^25.0.1",
     "typescript": "^5",
-    "ultracite": "5.0.39"
+    "ultracite": "5.0.39",
+    "vitest": "^3.0.0"
   },
   "overrides": {
     "@types/react": "19.1.11",

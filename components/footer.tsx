@@ -2,6 +2,7 @@ import { siteConfig } from "@/config";
 import { IconSquareRoundedFilled } from "@tabler/icons-react";
 
 export function Footer() {
+  const year = new Date().getFullYear();
   return (
     <div className="mx-auto w-full max-w-(--breakpoint-xl) px-4 sm:px-8">
       <footer className="flex items-center justify-center w-full sm:flex-row sm:items-center gap-4 py-5 pb-20">
@@ -12,7 +13,7 @@ export function Footer() {
           </div>
 
           <div className="text-center font-xl font-semibold tracking-tight text-[#C6C6C6]">
-            <span>© Blocks.so 2025</span>
+            <span>© Blocks.so {year}</span>
             <br />
             <span>All rights reserved</span>
           </div>

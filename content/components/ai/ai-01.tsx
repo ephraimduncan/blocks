@@ -78,7 +78,9 @@ export default function Ai01() {
         <div
           className={cn(
             "w-full max-w-2xl mx-auto bg-transparent dark:bg-muted/50 cursor-text overflow-clip bg-clip-padding p-2.5 shadow-lg border border-border transition-[border-radius] duration-200 ease-out",
-            isExpanded ? "rounded-3xl grid-ai-composer-expanded" : "rounded-3xl grid-ai-composer-collapsed"
+            isExpanded
+              ? "rounded-3xl grid [grid-template-columns:1fr] [grid-template-rows:auto_1fr_auto] [grid-template-areas:'header'_'primary'_'footer']"
+              : "rounded-3xl grid [grid-template-columns:auto_1fr_auto] [grid-template-rows:auto_1fr_auto] [grid-template-areas:'header_header_header'_'leading_primary_trailing'_'._footer_.']"
           )}
         >
           <div

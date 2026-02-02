@@ -133,7 +133,7 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <TableRow
         className={cn(
-          'grid grid-table-6-col bg-muted/50 hover:bg-muted/50',
+          'grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50 hover:bg-muted/50',
           isOpen && 'border-b-0'
         )}
       >
@@ -177,13 +177,13 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
       </TableRow>
 
       {hasChildren && (
-        <TableRow className="grid grid-table-6-col border-b-0 hover:bg-transparent">
+        <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 hover:bg-transparent">
           <TableCell className="col-span-6 p-0" colSpan={6}>
             <CollapsibleContent>
               <div className="w-full border-border border-b bg-muted/20">
                 <Table>
                   <TableHeader>
-                    <TableRow className="grid grid-table-6-col border-b-0 bg-muted/30">
+                    <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 bg-muted/30">
                       <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5" />
                       <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
                         ID
@@ -205,7 +205,7 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
                   <TableBody>
                     {row.children?.map((childRow) => (
                       <TableRow
-                        className="grid grid-table-6-col"
+                        className="grid grid-cols-[40px_80px_180px_110px_100px_110px]"
                         key={childRow.id}
                       >
                         <TableCell className="px-3 py-2" />
@@ -243,7 +243,7 @@ export default function Table01() {
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="grid grid-table-6-col bg-muted/50">
+            <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50">
               <TableHead className="p-3" />
               <TableHead className="p-3 font-semibold text-foreground text-sm">
                 ID

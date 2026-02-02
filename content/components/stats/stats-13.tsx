@@ -39,7 +39,7 @@ export default function Stats13({
   return (
     <Card className={cn("w-full max-w-4xl shadow-sm", className)}>
       <CardContent className="py-0">
-        <p className="mb-4 text-base text-muted-foreground">
+        <p className="text-pretty mb-4 text-base text-muted-foreground">
           {title}{" "}
           <span className="font-semibold tabular-nums text-foreground">
             {used.toLocaleString(undefined, {

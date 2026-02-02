@@ -48,25 +48,25 @@ export default function Dialog11() {
                       />
                     </div>
                     <div className="space-y-0.5">
-                      <h3 className="text-sm font-medium text-foreground">
+                      <h3 className="text-balance text-sm font-medium text-foreground">
                         Project Starter
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-pretty text-sm text-muted-foreground">
                         Configure your new codebase
                       </p>
                     </div>
                   </div>
                   <Separator className="my-4" />
-                  <h4 className="text-sm font-medium text-foreground">
+                  <h4 className="text-balance text-sm font-medium text-foreground">
                     Description
                   </h4>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                  <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
                     Quickly set up the foundational tools for your project.
                   </p>
-                  <h4 className="mt-6 text-sm font-medium text-foreground">
+                  <h4 className="text-balance mt-6 text-sm font-medium text-foreground">
                     Info
                   </h4>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                  <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
                     Select your preferred stack and configurations.
                   </p>
                 </div>
@@ -153,7 +153,7 @@ export default function Dialog11() {
                     Configure Linter/Formatter
                   </Label>
                 </div>
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p className="text-pretty mt-1 text-xs text-muted-foreground">
                   Ensure code quality and consistency.
                 </p>
                 <Select defaultValue="eslint-prettier">
@@ -188,7 +188,7 @@ export default function Dialog11() {
                     Select Testing Tool
                   </Label>
                 </div>
-                <p className="mt-1 text-xs text-muted-foreground">
+                <p className="text-pretty mt-1 text-xs text-muted-foreground">
                   Choose a framework for unit/integration tests.
                 </p>
                 <Select defaultValue="jest">

@@ -41,6 +41,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: 1.5rem;
+  --size-icon-sm: 2rem;
+  --size-icon: 2.25rem;
+  --size-icon-lg: 2.5rem;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -138,6 +143,30 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .grid-table-6-col {
+    grid-template-columns: 40px 80px 180px 110px 100px 110px;
+  }
+
+  .grid-ai-composer-collapsed {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'header header header'
+      'leading primary trailing'
+      '. footer .';
+  }
+
+  .grid-ai-composer-expanded {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'header'
+      'primary'
+      'footer';
   }
 }
 

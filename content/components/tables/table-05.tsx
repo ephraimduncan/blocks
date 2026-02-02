@@ -336,7 +336,7 @@ export default function Table05() {
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-pretty text-sm text-muted-foreground">
           Showing{" "}
           {table.getState().pagination.pageIndex *
             table.getState().pagination.pageSize +
@@ -356,6 +356,7 @@ export default function Table05() {
             className="h-8 w-8"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            aria-label="Previous page"
           >
             <ChevronLeft className="h-4 w-4" />
             <span className="sr-only">Previous page</span>
@@ -367,6 +368,7 @@ export default function Table05() {
               size="icon"
               className="h-8 w-8"
               onClick={() => table.setPageIndex(page - 1)}
+              aria-label={`Go to page ${page}`}
             >
               {page}
             </Button>
@@ -377,6 +379,7 @@ export default function Table05() {
             className="h-8 w-8"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            aria-label="Next page"
           >
             <ChevronRight className="h-4 w-4" />
             <span className="sr-only">Next page</span>

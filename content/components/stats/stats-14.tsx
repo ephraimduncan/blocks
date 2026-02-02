@@ -26,7 +26,7 @@ export function Stats14() {
       <CardContent className="flex flex-col justify-between pt-0">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold text-foreground">Usage</h3>
+            <h3 className="text-balance text-sm font-bold text-foreground">Usage</h3>
             <Badge
               variant="secondary"
               className="bg-amber-50 text-amber-700 ring-1 ring-amber-500/30 dark:bg-amber-400/10 dark:text-amber-300 dark:ring-amber-400/20"
@@ -35,13 +35,13 @@ export function Stats14() {
             </Badge>
           </div>
 
-          <p className="mt-2 flex items-baseline gap-2">
+          <p className="text-pretty mt-2 flex items-baseline gap-2">
             <span className="text-xl text-foreground">$860</span>
             <span className="text-sm text-muted-foreground">this month</span>
           </p>
 
           <div className="mt-4">
-            <p className="text-sm font-medium text-foreground">
+            <p className="text-pretty text-sm font-medium text-foreground">
               Resource breakdown
             </p>
             <div className="mt-2 flex items-center gap-0.5">
@@ -71,7 +71,7 @@ export function Stats14() {
           </ul>
         </div>
 
-        <p className="mt-6 text-xs text-muted-foreground">
+        <p className="text-pretty mt-6 text-xs text-muted-foreground">
           Configure limits in{" "}
           <a
             href="#"

@@ -92,7 +92,7 @@ export default function FileUpload04() {
   return (
     <div className="flex items-center justify-center p-10 w-full max-w-lg">
       <form className="w-full" onSubmit={(e) => e.preventDefault()}>
-        <h3 className="text-lg font-semibold text-foreground">File Upload</h3>
+        <h3 className="text-balance text-lg font-semibold text-foreground">File Upload</h3>
 
         <div
           className="flex justify-center rounded-md border mt-2 border-dashed border-input px-6 py-12"
@@ -121,12 +121,12 @@ export default function FileUpload04() {
                   ref={fileInputRef}
                 />
               </label>
-              <p className="pl-1">to upload</p>
+              <p className="text-pretty pl-1">to upload</p>
             </div>
           </div>
         </div>
 
-        <p className="mt-2 text-xs leading-5 text-muted-foreground sm:flex sm:items-center sm:justify-between">
+        <p className="text-pretty mt-2 text-xs leading-5 text-muted-foreground sm:flex sm:items-center sm:justify-between">
           <span>Accepted file types: CSV, XLSX or XLS files.</span>
           <span className="pl-1 sm:pl-0">Max. size: 10MB</span>
         </p>
@@ -136,8 +136,8 @@ export default function FileUpload04() {
             <Button
               type="button"
               variant="ghost"
-              size="icon"
-              className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+              size="icon-sm"
+              className="absolute right-1 top-1 text-muted-foreground hover:text-foreground"
               aria-label="Remove"
               onClick={() => setShowDummy(false)}
             >
@@ -152,10 +152,10 @@ export default function FileUpload04() {
                 />
               </span>
               <div>
-                <p className="text-xs font-medium text-foreground">
+                <p className="text-pretty text-xs font-medium text-foreground">
                   Revenue_Q1_2024.xlsx
                 </p>
-                <p className="mt-0.5 text-xs text-muted-foreground">3.1 MB</p>
+                <p className="text-pretty mt-0.5 text-xs text-muted-foreground">3.1 MB</p>
               </div>
             </div>
 
@@ -171,8 +171,8 @@ export default function FileUpload04() {
             <Button
               type="button"
               variant="ghost"
-              size="icon"
-              className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+              size="icon-sm"
+              className="absolute right-1 top-1 text-muted-foreground hover:text-foreground"
               aria-label="Remove"
               onClick={resetFile}
             >
@@ -184,10 +184,10 @@ export default function FileUpload04() {
                 {getFileIcon()}
               </span>
               <div>
-                <p className="text-xs font-medium text-foreground">
+                <p className="text-pretty text-xs font-medium text-foreground">
                   {file?.name}
                 </p>
-                <p className="mt-0.5 text-xs text-muted-foreground">
+                <p className="text-pretty mt-0.5 text-xs text-muted-foreground">
                   {file && formatFileSize(file.size)}
                 </p>
               </div>

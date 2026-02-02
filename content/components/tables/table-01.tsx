@@ -2,6 +2,10 @@
 
 import { Button } from '@/components/ui/button';
 import {
+  Collapsible,
+  CollapsibleContent,
+} from '@/components/ui/collapsible';
+import {
   Table,
   TableBody,
   TableCell,
@@ -125,10 +129,10 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
   const hasChildren = row.children && row.children.length > 0;
 
   return (
-    <>
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <TableRow
         className={cn(
-          'grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50 hover:bg-muted/50',
+          'grid grid-table-6-col bg-muted/50 hover:bg-muted/50',
           isOpen && 'border-b-0'
         )}
       >
@@ -163,7 +167,7 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
         <TableCell className="p-3 text-muted-foreground text-sm">
           {row.category}
         </TableCell>
-        <TableCell className="p-3 text-right font-mono font-semibold text-sm">
+        <TableCell className="tabular-nums p-3 text-right font-mono font-semibold text-sm">
           ${row.value.toLocaleString()}
         </TableCell>
         <TableCell className="p-3 text-muted-foreground text-sm">
@@ -172,18 +176,13 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
       </TableRow>
 
       {hasChildren && (
-        <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 hover:bg-transparent">
+        <TableRow className="grid grid-table-6-col border-b-0 hover:bg-transparent">
           <TableCell className="col-span-6 p-0" colSpan={6}>
-            <div
-              className={cn(
-                'overflow-hidden transition-all duration-300 ease-in-out',
-                isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-              )}
-            >
+            <CollapsibleContent>
               <div className="w-full border-border border-b bg-muted/20">
                 <Table>
                   <TableHeader>
-                    <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 bg-muted/30">
+                    <TableRow className="grid grid-table-6-col border-b-0 bg-muted/30">
                       <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5" />
                       <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
                         ID
@@ -205,11 +204,11 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
                   <TableBody>
                     {row.children?.map((childRow) => (
                       <TableRow
-                        className="grid grid-cols-[40px_80px_180px_110px_100px_110px]"
+                        className="grid grid-table-6-col"
                         key={childRow.id}
                       >
                         <TableCell className="px-3 py-2" />
-                        <TableCell className="px-3 py-2 font-mono text-muted-foreground text-xs">
+                        <TableCell className="tabular-nums px-3 py-2 font-mono text-muted-foreground text-xs">
                           {childRow.id}
                         </TableCell>
                         <TableCell className="px-3 py-2 font-medium text-xs">
@@ -218,7 +217,7 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
                         <TableCell className="px-3 py-2 text-muted-foreground text-xs">
                           {childRow.category}
                         </TableCell>
-                        <TableCell className="px-3 py-2 text-right font-mono font-semibold text-xs">
+                        <TableCell className="tabular-nums px-3 py-2 text-right font-mono font-semibold text-xs">
                           ${childRow.value.toLocaleString()}
                         </TableCell>
                         <TableCell className="px-3 py-2 text-muted-foreground text-xs">
@@ -229,11 +228,11 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
                   </TableBody>
                 </Table>
               </div>
-            </div>
+            </CollapsibleContent>
           </TableCell>
         </TableRow>
       )}
-    </>
+    </Collapsible>
   );
 }
 
@@ -243,7 +242,7 @@ export default function Table01() {
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50">
+            <TableRow className="grid grid-table-6-col bg-muted/50">
               <TableHead className="p-3" />
               <TableHead className="p-3 font-semibold text-foreground text-sm">
                 ID

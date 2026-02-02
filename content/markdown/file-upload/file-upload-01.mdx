@@ -82,10 +82,10 @@ export default function FileUpload01() {
           <div className="p-6 pb-4">
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="text-lg font-medium text-foreground">
+                <h2 className="text-balance text-lg font-medium text-foreground">
                   Create a new project
                 </h2>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-pretty text-sm text-muted-foreground mt-1">
                   Drag and drop files to create a new project.
                 </p>
               </div>
@@ -162,10 +162,10 @@ export default function FileUpload01() {
               <div className="mb-2 bg-muted rounded-full p-3">
                 <Upload className="h-5 w-5 text-muted-foreground" />
               </div>
-              <p className="text-sm font-medium text-foreground">
+              <p className="text-pretty text-sm font-medium text-foreground">
                 Upload a project image
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-pretty text-sm text-muted-foreground mt-1">
                 or,{" "}
                 <label
                   htmlFor="fileUpload"
@@ -225,8 +225,8 @@ export default function FileUpload01() {
                         </div>
                         <Button
                           variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 bg-transparent! hover:text-red-500"
+                          size="icon-sm"
+                          className="bg-transparent! hover:text-red-500"
                           onClick={() => removeFile(file.name)}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -268,8 +268,8 @@ export default function FileUpload01() {
                 </TooltipTrigger>
                 <TooltipContent className="py-3 bg-background text-foreground border">
                   <div className="space-y-1">
-                    <p className="text-[13px] font-medium">Need assistance?</p>
-                    <p className="text-muted-foreground dark:text-muted-background text-xs max-w-[200px]">
+                    <p className="text-pretty text-[13px] font-medium">Need assistance?</p>
+                    <p className="text-pretty text-muted-foreground dark:text-muted-background text-xs max-w-[200px]">
                       Upload project images by dragging and dropping files or
                       using the file browser. Supported formats: JPG, PNG, SVG.
                       Maximum file size: 4MB.

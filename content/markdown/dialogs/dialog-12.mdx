@@ -50,7 +50,7 @@ export default function Dialog12() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg p-0 rounded-3xl gap-0">
         <DialogHeader className="border-b px-6 py-4">
-          <DialogTitle className="font-medium">Add a writer</DialogTitle>
+          <DialogTitle className="text-balance font-medium">Add a writer</DialogTitle>
         </DialogHeader>
 
         <div className="grid grid-cols-1 md:grid-cols-5 px-6 pt-4 pb-6">
@@ -68,8 +68,8 @@ export default function Dialog12() {
               </Avatar>
               <Button
                 variant="ghost"
-                size="icon"
-                className="absolute -top-0.5 -right-0.5 bg-accent rounded-full border-[3px] border-background h-8 w-8 hover:bg-accent"
+                size="icon-sm"
+                className="absolute -top-0.5 -right-0.5 bg-accent rounded-full border-[3px] border-background hover:bg-accent"
                 onClick={() => {
                   if (image) {
                     setImage(null);
@@ -92,8 +92,8 @@ export default function Dialog12() {
               </Button>
             </div>
 
-            <p className="text-center font-medium">Upload Image</p>
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-pretty text-center font-medium">Upload Image</p>
+            <p className="text-pretty text-center text-sm text-muted-foreground">
               Max file size: 1MB
             </p>
             <input

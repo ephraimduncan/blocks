@@ -6,7 +6,7 @@ import { AppSidebar } from "../app-sidebar";
 export default function Page() {
   return (
     <SidebarProvider>
-      <div className="flex h-screen w-full">
+      <div className="flex h-dvh w-full">
         <AppSidebar />
       </div>
     </SidebarProvider>

@@ -31,8 +31,8 @@ export default function Dialog01() {
         </div>
 
         <DialogHeader className="text-center gap-0">
-          <DialogTitle className="text-center">Payment successful</DialogTitle>
-          <DialogDescription className="mt-2 text-center mx-auto sm:max-w-[90%]">
+          <DialogTitle className="text-balance text-center">Payment successful</DialogTitle>
+          <DialogDescription className="text-pretty mt-2 text-center mx-auto sm:max-w-[90%]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
             amet labore.
           </DialogDescription>

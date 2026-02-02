@@ -48,8 +48,8 @@ export default function Stats07() {
   return (
     <div className="flex items-center justify-center p-10 w-full">
       <div className="w-full">
-        <h2 className="text-xl font-medium text-foreground">Plan overview</h2>
-        <p className="mt-1 text-sm leading-6 text-muted-foreground">
+        <h2 className="text-balance text-xl font-medium text-foreground">Plan overview</h2>
+        <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
           You are currently on the{" "}
           <span className="font-medium text-foreground">starter plan</span>.{" "}
           <Link

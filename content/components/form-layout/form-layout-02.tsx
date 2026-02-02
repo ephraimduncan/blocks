@@ -18,10 +18,10 @@ export default function FormLayout02() {
       <form>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="font-semibold text-foreground dark:text-foreground">
+            <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
               Personal information
             </h2>
-            <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
@@ -95,10 +95,10 @@ export default function FormLayout02() {
         <Separator className="my-8" />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="font-semibold text-foreground dark:text-foreground">
+            <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
               Workspace settings
             </h2>
-            <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
@@ -150,10 +150,10 @@ export default function FormLayout02() {
         <Separator className="my-8" />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="font-semibold text-foreground dark:text-foreground">
+            <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
               Notification settings
             </h2>
-            <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>

@@ -61,7 +61,7 @@ export default function Stats04() {
                   {item.change}
                 </Badge>
               </div>
-              <dd className="text-3xl font-semibold text-foreground mt-2">
+              <dd className="tabular-nums tabular-nums text-3xl font-semibold text-foreground mt-2">
                 {item.stat}
               </dd>
             </CardContent>

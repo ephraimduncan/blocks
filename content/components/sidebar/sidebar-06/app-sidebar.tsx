@@ -355,7 +355,7 @@ export function AppSidebar() {
   };
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-dvh bg-background">
       <Sidebar
         side="left"
         variant="sidebar"

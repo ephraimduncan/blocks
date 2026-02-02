@@ -35,7 +35,7 @@ export default function GridList02() {
         {people.map((person) => (
           <Card
             key={person.email}
-            className="relative border transition-all duration-100 hover:border-muted-foreground hover:shadow-sm focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 py-0"
+            className="relative border transition-[border-color,box-shadow] duration-100 ease-out hover:border-muted-foreground hover:shadow-sm focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 py-0"
           >
             <CardContent className="flex items-center space-x-4 p-4">
               <Avatar className="h-10 w-10">
@@ -45,10 +45,10 @@ export default function GridList02() {
               <div className="min-w-0 flex-1">
                 <a href="#" className="focus:outline-none">
                   <span aria-hidden="true" className="absolute inset-0" />
-                  <p className="text-sm font-medium text-foreground">
+                  <p className="text-pretty text-sm font-medium text-foreground">
                     {person.name}
                   </p>
-                  <p className="truncate text-sm text-muted-foreground">
+                  <p className="text-pretty truncate text-sm text-muted-foreground">
                     {person.role}
                   </p>
                 </a>

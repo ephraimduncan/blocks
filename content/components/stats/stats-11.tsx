@@ -57,14 +57,13 @@ function MetricCard({
       return (
         <div className="relative h-1 w-full overflow-hidden rounded-full bg-muted">
           <div
-            className="absolute left-0 h-full bg-emerald-500 transition-all duration-300"
-            style={{ width: `${writesPercentage}%` }}
+            className="absolute left-0 h-full w-full origin-left bg-emerald-500 transition-transform duration-200 ease-out"
+            style={{ transform: `scaleX(${writesPercentage / 100})` }}
           />
           <div
-            className="absolute h-full bg-blue-500 transition-all duration-300"
+            className="absolute left-0 h-full w-full origin-left bg-blue-500 transition-transform duration-200 ease-out"
             style={{
-              left: `${writesPercentage}%`,
-              width: `${readsPercentage}%`,
+              transform: `translateX(${writesPercentage}%) scaleX(${readsPercentage / 100})`,
             }}
           />
         </div>
@@ -74,8 +73,8 @@ function MetricCard({
     return (
       <div className="relative h-1 w-full overflow-hidden rounded-full bg-muted">
         <div
-          className={`h-full transition-all duration-300 ${progressColor}`}
-          style={{ width: `${Math.min(percentage, 100)}%` }}
+          className={`h-full w-full origin-left transition-transform duration-200 ease-out ${progressColor}`}
+          style={{ transform: `scaleX(${Math.min(percentage, 100) / 100})` }}
         />
       </div>
     );

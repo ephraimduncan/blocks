@@ -49,7 +49,7 @@ export default function Stats05() {
                   {item.change}
                 </span>
               </dd>
-              <dd className="mt-1 text-3xl font-semibold text-foreground">
+              <dd className="tabular-nums mt-1 text-3xl font-semibold text-foreground">
                 {item.value}
               </dd>
             </CardContent>

@@ -159,21 +159,23 @@ export default function Ai02() {
           <div className="ml-auto flex items-center gap-3">
             <Button
               variant="ghost"
-              size="icon"
-              className="h-6 w-6 text-muted-foreground hover:text-foreground transition-all duration-100"
+              size="icon-sm"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-100 ease-out"
               title="Attach images"
+              aria-label="Attach images"
             >
               <IconPhotoScan className="h-5 w-5" />
             </Button>
 
             <Button
               variant="ghost"
-              size="icon"
+              size="icon-sm"
               className={cn(
-                "h-6 w-6 rounded-full transition-all duration-100 cursor-pointer bg-primary",
+                "rounded-full transition-colors duration-100 ease-out cursor-pointer bg-primary",
                 inputValue && "bg-primary hover:bg-primary/90!"
               )}
               disabled={!inputValue}
+              aria-label="Send message"
             >
               <IconArrowUp className="h-4 w-4 text-primary-foreground" />
             </Button>
@@ -188,7 +190,7 @@ export default function Ai02() {
             <Button
               key={button.text}
               variant="ghost"
-              className="group flex items-center gap-2 rounded-full border px-3 py-2 text-sm text-foreground transition-all duration-200 hover:bg-muted/30 h-auto bg-transparent dark:bg-muted"
+              className="group flex items-center gap-2 rounded-full border px-3 py-2 text-sm text-foreground transition-colors duration-200 ease-out hover:bg-muted/30 h-auto bg-transparent dark:bg-muted"
               onClick={() => handlePromptClick(button.prompt)}
             >
               <IconComponent className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />

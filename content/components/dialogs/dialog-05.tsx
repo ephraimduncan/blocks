@@ -2,14 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
@@ -22,18 +24,18 @@ export default function Dialog05() {
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+      <AlertDialogTrigger asChild>
         <Button variant="destructive">Delete Workspace</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Delete workspace</DialogTitle>
-          <DialogDescription>
+      </AlertDialogTrigger>
+      <AlertDialogContent className="sm:max-w-md">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-balance">Delete workspace</AlertDialogTitle>
+          <AlertDialogDescription className="text-pretty">
             All workspace data will be permanently deleted. There is no coming
             back after you press delete.
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
         <form>
           <div>
             <Label htmlFor="delete-workspace" className="text-sm font-medium">
@@ -63,13 +65,16 @@ export default function Dialog05() {
               </button>
             </div>
           </div>
-          <DialogFooter className="mt-4">
-            <Button type="submit" variant="destructive" className="w-full">
-              Delete workspace permanently
-            </Button>
-          </DialogFooter>
+          <AlertDialogFooter className="mt-4">
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction asChild>
+              <Button type="submit" variant="destructive">
+                Delete workspace permanently
+              </Button>
+            </AlertDialogAction>
+          </AlertDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

@@ -79,7 +79,7 @@ export default function FormLayout05() {
   return (
     <div className="flex items-center justify-center p-10">
       <form className="sm:mx-auto sm:max-w-7xl">
-        <h3 className="text-xl font-semibold text-foreground">
+        <h3 className="text-balance text-xl font-semibold text-foreground">
           Create new design workspace
         </h3>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
@@ -144,7 +144,7 @@ export default function FormLayout05() {
                 </Field>
               </div>
             </div>
-            <h4 className="mt-14 font-medium">
+            <h4 className="text-balance mt-14 font-medium">
               Plan type<span className="text-red-500">*</span>
             </h4>
             <RadioGroup
@@ -172,7 +172,7 @@ export default function FormLayout05() {
                       <RadioGroupItem value={plan.name} id={plan.name} />
                     </div>
                     <div className="w-full">
-                      <p className="leading-6">
+                      <p className="text-pretty leading-6">
                         <span className="font-semibold text-foreground">
                           {plan.name}
                         </span>
@@ -220,10 +220,10 @@ export default function FormLayout05() {
           <div className="lg:col-span-5">
             <Card className="bg-muted">
               <CardContent>
-                <h4 className="text-sm font-semibold text-foreground">
+                <h4 className="text-balance text-sm font-semibold text-foreground">
                   Choose the right plan for your design team
                 </h4>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                <p className="text-pretty mt-2 text-sm leading-6 text-muted-foreground">
                   Our flexible plans are designed to scale with your team&apos;s
                   needs. All plans include core design collaboration features
                   with varying levels of storage and support.

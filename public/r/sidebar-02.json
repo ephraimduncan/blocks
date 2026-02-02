@@ -27,7 +27,7 @@
       "path": "content/components/sidebar/sidebar-02/index.tsx",
       "type": "registry:component",
       "target": "components/sidebar-02/index.tsx",
-      "content": "import { SidebarInset, SidebarProvider } from \"@/components/ui/sidebar\";\nimport { DashboardSidebar } from \"@/components/sidebar-02/app-sidebar\";\n\nexport default function Sidebar02() {\n  return (\n    <SidebarProvider>\n      <div className=\"relative flex h-screen w-full\">\n        <DashboardSidebar />\n        <SidebarInset className=\"flex flex-col\" />\n      </div>\n    </SidebarProvider>\n  );\n}\n"
+      "content": "import { SidebarInset, SidebarProvider } from \"@/components/ui/sidebar\";\nimport { DashboardSidebar } from \"@/components/sidebar-02/app-sidebar\";\n\nexport default function Sidebar02() {\n  return (\n    <SidebarProvider>\n      <div className=\"relative flex h-dvh w-full\">\n        <DashboardSidebar />\n        <SidebarInset className=\"flex flex-col\" />\n      </div>\n    </SidebarProvider>\n  );\n}\n"
     },
     {
       "path": "content/components/sidebar/sidebar-02/logo.tsx",

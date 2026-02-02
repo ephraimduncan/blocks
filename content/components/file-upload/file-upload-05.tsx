@@ -6,7 +6,7 @@ export default function FileUpload05() {
   return (
     <div className="sm:mx-auto sm:max-w-lg flex items-center justify-center p-10 w-full max-w-lg">
       <form>
-        <h3 className="text-lg font-semibold text-foreground">File Upload</h3>
+        <h3 className="text-balance text-lg font-semibold text-foreground">File Upload</h3>
         <div className="mt-4 flex justify-center space-x-4 rounded-md border border-dashed border-input px-6 py-10">
           <div className="sm:flex sm:items-center sm:gap-x-3">
             <Upload
@@ -27,11 +27,11 @@ export default function FileUpload05() {
                   className="sr-only"
                 />
               </Label>
-              <p className="pl-1">to upload</p>
+              <p className="text-pretty pl-1">to upload</p>
             </div>
           </div>
         </div>
-        <p className="mt-2 flex items-center justify-between text-xs leading-5 text-muted-foreground">
+        <p className="text-pretty mt-2 flex items-center justify-between text-xs leading-5 text-muted-foreground">
           Recommended max. size: 10 MB, Accepted file types: XLSX, XLS, CSV.
         </p>
         <div className="relative mt-8 rounded-lg bg-muted p-3">
@@ -54,10 +54,10 @@ export default function FileUpload05() {
               />
             </span>
             <div className="w-full">
-              <p className="text-xs font-medium text-foreground">
+              <p className="text-pretty text-xs font-medium text-foreground">
                 Revenue_Q1_2024.xlsx
               </p>
-              <p className="mt-0.5 flex justify-between text-xs text-muted-foreground">
+              <p className="text-pretty mt-0.5 flex justify-between text-xs text-muted-foreground">
                 <span>3.1 MB</span>
                 <span>Completed</span>
               </p>

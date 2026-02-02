@@ -42,15 +42,15 @@ export default function SignIn() {
   const togglePasswordVisibility = () => setIsPasswordVisible((prev) => !prev);
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-dvh">
       <Card className="w-full max-w-md mx-4 pb-0">
         <CardHeader className="space-y-1 text-center mb-2 mt-4">
           <div className="flex justify-center">
             <Logo />
           </div>
           <div>
-            <h2 className="text-2xl font-semibold">Sign in to Acme</h2>
-            <p className="text-muted-foreground text-sm">
+            <h2 className="text-balance text-2xl font-semibold">Sign in to Acme</h2>
+            <p className="text-pretty text-muted-foreground text-sm">
               Welcome back! Please enter your details.
             </p>
           </div>
@@ -110,7 +110,7 @@ export default function SignIn() {
           </div>
         </CardContent>
         <CardFooter className="flex justify-center border-t py-4!">
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-pretty text-center text-sm text-muted-foreground">
             New to Acme?{" "}
             <Link href="#" className="text-primary hover:underline">
               Sign up

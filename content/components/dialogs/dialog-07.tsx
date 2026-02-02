@@ -2,40 +2,44 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export default function Dialog08() {
   const [open, setOpen] = useState(true);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setOpen(false);
+  };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogTrigger asChild>
         <Button variant="destructive">Deactivate 2FA</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle>Deactivate two-step authentication</DialogTitle>
-          <DialogDescription>
+      </AlertDialogTrigger>
+      <AlertDialogContent className="sm:max-w-lg">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-balance">Deactivate two-step authentication</AlertDialogTitle>
+          <AlertDialogDescription className="text-pretty">
             Enter your password to deactivate the two-step authentication login.
             Make sure to have your smartphone ready.
-          </DialogDescription>
-        </DialogHeader>
-        <form className="space-y-4">
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <Label htmlFor="email" className="text-sm font-medium">
               Email
@@ -60,6 +64,7 @@ export default function Dialog08() {
                 type={isVisible ? "text" : "password"}
                 placeholder="Password"
                 className="pe-9"
+                required
               />
               <button
                 className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md"
@@ -78,20 +83,14 @@ export default function Dialog08() {
             </div>
           </div>
 
-          <DialogFooter>
-            <div className="flex justify-end space-x-2">
-              <DialogClose asChild>
-                <Button type="button" variant="ghost">
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button type="submit" variant="destructive">
-                Deactivate
-              </Button>
-            </div>
-          </DialogFooter>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <Button type="submit" variant="destructive">
+              Deactivate
+            </Button>
+          </AlertDialogFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

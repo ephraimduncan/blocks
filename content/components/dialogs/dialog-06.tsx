@@ -25,10 +25,10 @@ export default function Dialog06() {
       </DialogTrigger>
       <DialogContent className="p-0 sm:max-w-lg">
         <DialogHeader className="px-6 pt-4">
-          <DialogTitle className="text-lg font-semibold text-foreground">
+          <DialogTitle className="text-balance text-lg font-semibold text-foreground">
             Create workspace
           </DialogTitle>
-          <DialogDescription className="mt-2 text-sm leading-6 text-muted-foreground">
+          <DialogDescription className="text-pretty mt-2 text-sm leading-6 text-muted-foreground">
             Workspaces are shared environments where teams can connect to data
             sources, run queries and create reports.
           </DialogDescription>
@@ -66,7 +66,7 @@ export default function Dialog06() {
                 >
                   Set workspace to private
                 </Label>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-pretty text-sm text-muted-foreground">
                   Only those invited can access or view
                 </p>
               </div>

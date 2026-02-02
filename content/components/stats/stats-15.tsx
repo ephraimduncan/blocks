@@ -21,7 +21,7 @@ const data = [
 export function Stats15() {
   return (
     <div className="w-full max-w-2xs">
-      <h3 className="text-sm font-medium text-foreground">
+      <h3 className="text-balance text-sm font-medium text-foreground">
         Investment growth projection
       </h3>
       <ul role="list" className="mt-2 divide-y divide-border text-sm">

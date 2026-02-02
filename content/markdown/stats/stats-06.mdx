@@ -40,7 +40,7 @@ export default function Stats06() {
               <dt className="text-sm font-medium text-muted-foreground">
                 {item.name}
               </dt>
-              <dd className="text-3xl font-semibold text-foreground">
+              <dd className="tabular-nums tabular-nums text-3xl font-semibold text-foreground">
                 {item.stat}
               </dd>
               <div className="group relative mt-6 flex items-center space-x-4 rounded-md bg-muted/60 p-2 hover:bg-muted">
@@ -68,7 +68,7 @@ export default function Stats06() {
                       )}
                     </span>
                     <dd>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-pretty text-sm text-muted-foreground">
                         <Link href={item.href} className="focus:outline-none">
                           {/* Extend link to entire card */}
                           <span

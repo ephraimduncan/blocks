@@ -48,7 +48,7 @@ export function NavCollapsible({
                       <SidebarMenuButton asChild>
                         <a href={item.href} className="flex items-center gap-3">
                           <div
-                            className={`h-3 w-3 rounded-[4px] ${item.color}`}
+                            className={`h-3 w-3 rounded ${item.color}`}
                           ></div>
                           <span>{item.title}</span>
                         </a>

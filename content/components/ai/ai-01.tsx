@@ -62,7 +62,7 @@ export default function Ai01() {
 
   return (
     <div className="w-full">
-      <h1 className="mb-7 mx-auto max-w-2xl text-center text-2xl font-semibold leading-9 text-foreground px-1 text-pretty whitespace-pre-wrap">
+      <h1 className="text-balance mb-8 mx-auto max-w-2xl text-center text-2xl font-semibold leading-9 text-foreground px-1 text-pretty whitespace-pre-wrap">
         How can I help you today?
       </h1>
 
@@ -77,19 +77,11 @@ export default function Ai01() {
 
         <div
           className={cn(
-            "w-full max-w-2xl mx-auto bg-transparent dark:bg-muted/50 cursor-text overflow-clip bg-clip-padding p-2.5 shadow-lg border border-border transition-all duration-200",
-            {
-              "rounded-3xl grid grid-cols-1 grid-rows-[auto_1fr_auto]":
-                isExpanded,
-              "rounded-[28px] grid grid-cols-[auto_1fr_auto] grid-rows-[auto_1fr_auto]":
-                !isExpanded,
-            }
+            "w-full max-w-2xl mx-auto bg-transparent dark:bg-muted/50 cursor-text overflow-clip bg-clip-padding p-2.5 shadow-lg border border-border transition-[border-radius] duration-200 ease-out",
+            isExpanded
+              ? "rounded-3xl grid [grid-template-columns:1fr] [grid-template-rows:auto_1fr_auto] [grid-template-areas:'header'_'primary'_'footer']"
+              : "rounded-3xl grid [grid-template-columns:auto_1fr_auto] [grid-template-rows:auto_1fr_auto] [grid-template-areas:'header_header_header'_'leading_primary_trailing'_'._footer_.']"
           )}
-          style={{
-            gridTemplateAreas: isExpanded
-              ? "'header' 'primary' 'footer'"
-              : "'header header header' 'leading primary trailing' '. footer .'",
-          }}
         >
           <div
             className={cn(
@@ -124,7 +116,8 @@ export default function Ai01() {
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="h-9 w-9 rounded-full hover:bg-accent outline-none ring-0"
+                  className="rounded-full hover:bg-accent outline-none ring-0"
+                  aria-label="Add attachments"
                 >
                   <IconPlus className="size-6 text-muted-foreground" />
                 </Button>
@@ -136,14 +129,14 @@ export default function Ai01() {
               >
                 <DropdownMenuGroup className="space-y-1">
                   <DropdownMenuItem
-                    className="rounded-[calc(1rem-6px)]"
+                    className="rounded-md"
                     onClick={() => fileInputRef.current?.click()}
                   >
                     <IconPaperclip size={20} className="opacity-60" />
                     Add photos & files
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    className="rounded-[calc(1rem-6px)]"
+                    className="rounded-md"
                     onClick={() => {}}
                   >
                     <div className="flex items-center gap-2">
@@ -152,7 +145,7 @@ export default function Ai01() {
                     </div>
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    className="rounded-[calc(1rem-6px)]"
+                    className="rounded-md"
                     onClick={() => {}}
                   >
                     <IconSearch size={20} className="opacity-60" />
@@ -172,7 +165,8 @@ export default function Ai01() {
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="h-9 w-9 rounded-full hover:bg-accent"
+                className="rounded-full hover:bg-accent"
+                aria-label="Record audio message"
               >
                 <IconMicrophone className="size-5 text-muted-foreground" />
               </Button>
@@ -182,6 +176,7 @@ export default function Ai01() {
                 variant="ghost"
                 size="icon"
                 className="h-9 w-9 rounded-full hover:bg-accent relative"
+                aria-label="Audio visualization"
               >
                 <IconWaveSine className="size-5 text-muted-foreground" />
               </Button>
@@ -190,7 +185,8 @@ export default function Ai01() {
                 <Button
                   type="submit"
                   size="icon"
-                  className="h-9 w-9 rounded-full"
+                  className="rounded-full"
+                  aria-label="Send message"
                 >
                   <IconSend className="size-5" />
                 </Button>

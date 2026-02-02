@@ -41,7 +41,7 @@ export default function Stats03() {
                 {item.name}
               </dt>
               <dd className="mt-2 flex items-baseline space-x-2.5">
-                <span className="text-3xl font-semibold text-foreground">
+                <span className="tabular-nums tabular-nums text-3xl font-semibold text-foreground">
                   {item.stat}
                 </span>
                 <span

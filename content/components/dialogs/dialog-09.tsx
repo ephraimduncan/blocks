@@ -45,7 +45,7 @@ export default function Dialog09() {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share & Collaborate</DialogTitle>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-pretty text-sm text-muted-foreground">
             Share this project with your team to collaborate on it.
           </p>
         </DialogHeader>
@@ -80,7 +80,7 @@ export default function Dialog09() {
                     >
                       <div
                         className={cn(
-                          "transition-all",
+                          "transition-[transform,opacity] duration-200 ease-out",
                           copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
                         )}
                       >
@@ -92,7 +92,7 @@ export default function Dialog09() {
                       </div>
                       <div
                         className={cn(
-                          "absolute transition-all",
+                          "absolute transition-[transform,opacity] duration-200 ease-out",
                           copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
                         )}
                       >

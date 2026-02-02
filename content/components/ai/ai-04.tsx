@@ -144,10 +144,10 @@ export default function Ai04({
 
   return (
     <div className="mx-auto flex w-full flex-col gap-4">
-      <h1 className="text-pretty text-center font-heading font-semibold text-[29px] text-foreground tracking-tighter sm:text-[32px] md:text-[46px]">
+      <h1 className="text-balance text-pretty text-center font-heading font-semibold text-[29px] text-foreground tracking-tighter sm:text-[32px] md:text-[46px]">
         Prompt. Refine. Ship.
       </h1>
-      <h2 className="-my-5 pb-4 text-center text-xl text-muted-foreground">
+      <h2 className="text-balance -my-5 pb-4 text-center text-xl text-muted-foreground">
         Build real, working software just by describing it
       </h2>
 
@@ -181,7 +181,7 @@ export default function Ai04({
                         <IconPaperclip className="opacity-60" size={12} />
                       )}
                     </div>
-                    <span className="inline overflow-hidden truncate pr-1.5 transition-all">
+                    <span className="inline overflow-hidden truncate pr-1.5">
                       {file.name}
                     </span>
                   </span>
@@ -217,10 +217,11 @@ export default function Ai04({
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    className="ml-[-2px] h-7 w-7 rounded-md"
-                    size="icon"
+                    className="ml-[-2px] rounded-md"
+                    size="icon-sm"
                     type="button"
                     variant="ghost"
+                    aria-label="Add attachments"
                   >
                     <IconPlus size={16} />
                   </Button>
@@ -231,7 +232,7 @@ export default function Ai04({
                 >
                   <DropdownMenuGroup className="space-y-1">
                     <DropdownMenuItem
-                      className="rounded-[calc(1rem-6px)] text-xs"
+                      className="rounded-md text-xs"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <div className="flex items-center gap-2">
@@ -239,19 +240,19 @@ export default function Ai04({
                         <span>Attach Files</span>
                       </div>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="rounded-[calc(1rem-6px)] text-xs">
+                    <DropdownMenuItem className="rounded-md text-xs">
                       <div className="flex items-center gap-2">
                         <IconLink className="text-muted-foreground" size={16} />
                         <span>Import from URL</span>
                       </div>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="rounded-[calc(1rem-6px)] text-xs">
+                    <DropdownMenuItem className="rounded-md text-xs">
                       <div className="flex items-center gap-2">
                         <IconClipboard className="text-muted-foreground" size={16} />
                         <span>Paste from Clipboard</span>
                       </div>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="rounded-[calc(1rem-6px)] text-xs">
+                    <DropdownMenuItem className="rounded-md text-xs">
                       <div className="flex items-center gap-2">
                         <IconTemplate className="text-muted-foreground" size={16} />
                         <span>Use Template</span>
@@ -264,10 +265,11 @@ export default function Ai04({
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    className="size-7 rounded-md"
-                    size="icon"
+                    className="rounded-md"
+                    size="icon-sm"
                     type="button"
                     variant="ghost"
+                    aria-label="Adjust settings"
                   >
                     <IconAdjustmentsHorizontal size={16} />
                   </Button>
@@ -325,11 +327,12 @@ export default function Ai04({
 
             <div className="ml-auto flex items-center gap-0.5 sm:gap-1">
               <Button
-                className="h-7 w-7 rounded-md"
+                className="rounded-md"
                 disabled={!prompt.trim()}
-                size="icon"
+                size="icon-sm"
                 type="submit"
                 variant="default"
+                aria-label="Send message"
               >
                 <IconArrowUp size={16} />
               </Button>

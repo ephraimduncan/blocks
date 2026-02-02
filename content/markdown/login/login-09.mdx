@@ -48,16 +48,16 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-dvh">
       <div className="w-full max-w-md">
         <Card className="border-none shadow-lg pb-0">
           <CardHeader className="flex flex-col items-center space-y-1.5 pb-4 pt-6">
             <Logo className="w-12 h-12" />
             <div className="space-y-0.5 flex flex-col items-center">
-              <h2 className="text-2xl font-semibold text-foreground">
+              <h2 className="text-balance text-2xl font-semibold text-foreground">
                 Create an account
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-pretty text-muted-foreground">
                 Welcome! Create an account to get started.
               </p>
             </div>
@@ -153,7 +153,7 @@ export default function SignupForm() {
             </Button>
           </CardContent>
           <CardFooter className="flex justify-center border-t py-4!">
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-pretty text-center text-sm text-muted-foreground">
               Already have an account?{" "}
               <Link href="#" className="text-primary hover:underline">
                 Sign in

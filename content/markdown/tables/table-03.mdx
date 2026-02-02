@@ -158,10 +158,10 @@ export default function Table03() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">
+          <h3 className="text-balance text-lg font-semibold text-foreground">
             Product Inventory
           </h3>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="text-pretty mt-1 text-sm text-muted-foreground">
             Track and manage product stock levels across all warehouse
             locations.
           </p>
@@ -205,7 +205,7 @@ export default function Table03() {
             {filteredData.length > 0 ? (
               filteredData.map((item) => (
                 <TableRow key={item.sku} className="hover:bg-muted/50">
-                  <TableCell className="h-14 px-4 font-mono text-sm font-medium">
+                  <TableCell className="tabular-nums h-14 px-4 font-mono text-sm font-medium">
                     {item.sku}
                   </TableCell>
                   <TableCell className="h-14 px-4 font-medium">
@@ -217,7 +217,7 @@ export default function Table03() {
                   <TableCell className="h-14 px-4">
                     {getStatusBadge(item.status)}
                   </TableCell>
-                  <TableCell className="h-14 px-4 text-right font-mono text-sm font-semibold">
+                  <TableCell className="tabular-nums h-14 px-4 text-right font-mono text-sm font-semibold">
                     {item.unitPrice}
                   </TableCell>
                   <TableCell className="h-14 px-4 text-right text-sm text-muted-foreground">

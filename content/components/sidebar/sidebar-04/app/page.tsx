@@ -30,7 +30,7 @@ export default function Page() {
   return (
     <SidebarProvider>
       <MailProvider>
-        <div className="flex h-screen w-full">
+        <div className="flex h-dvh w-full">
           <AppSidebar />
           <SidebarInset>
             <div className="flex-1 rounded-xl border m-2">

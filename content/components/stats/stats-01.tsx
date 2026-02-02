@@ -47,7 +47,7 @@ export default function Stats01() {
               </div>
               <div
                 className={cn(
-                  "text-xs font-medium",
+                  "tabular-nums text-xs font-medium",
                   stat.changeType === "positive"
                     ? "text-green-800 dark:text-green-400"
                     : "text-red-800 dark:text-red-400"
@@ -55,7 +55,7 @@ export default function Stats01() {
               >
                 {stat.change}
               </div>
-              <div className="w-full flex-none text-3xl font-medium tracking-tight text-foreground">
+              <div className="tabular-nums w-full flex-none text-3xl font-medium tracking-tight text-foreground">
                 {stat.value}
               </div>
             </CardContent>

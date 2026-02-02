@@ -210,6 +210,7 @@ export default function Table02() {
                       className="h-8 w-8"
                       onClick={() => handleAction(task, "start")}
                       disabled={busy}
+                      aria-label="Start"
                     >
                       {startPending ? (
                         <Loader2 className="size-4 animate-spin" />
@@ -231,6 +232,7 @@ export default function Table02() {
                         className="h-8 w-8"
                         onClick={() => handleAction(task, "pause")}
                         disabled={busy}
+                        aria-label="Pause"
                       >
                         {pausePending ? (
                           <Loader2 className="size-4 animate-spin" />
@@ -249,6 +251,7 @@ export default function Table02() {
                         className="h-8 w-8"
                         onClick={() => handleAction(task, "complete")}
                         disabled={busy}
+                        aria-label="Complete"
                       >
                         {completePending ? (
                           <Loader2 className="size-4 animate-spin" />
@@ -269,6 +272,7 @@ export default function Table02() {
                     className="h-8 w-8 text-destructive hover:bg-destructive hover:text-white"
                     onClick={() => handleAction(task, "delete")}
                     disabled={busy}
+                    aria-label="Delete"
                   >
                     {deletePending ? (
                       <Loader2 className="size-4 animate-spin" />
@@ -287,6 +291,7 @@ export default function Table02() {
                     className="h-8 w-8"
                     onClick={() => handleAction(task, "view")}
                     disabled={busy}
+                    aria-label="View details"
                   >
                     <FileTextIcon className="size-4" />
                   </Button>

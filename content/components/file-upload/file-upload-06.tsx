@@ -110,7 +110,7 @@ export default function FileUpload06() {
       <div className="flex flex-col gap-y-4">
         {activeUploads.length > 0 && (
           <div>
-            <h2 className="text-foreground text-lg flex items-center font-mono font-normal uppercase sm:text-xs mb-4">
+            <h2 className="text-balance text-foreground text-lg flex items-center font-mono font-normal uppercase sm:text-xs mb-4">
               <Loader2 className="size-4 mr-1 animate-spin" />
               Uploading
             </h2>
@@ -155,7 +155,7 @@ export default function FileUpload06() {
 
         {completedUploads.length > 0 && (
           <div>
-            <h2 className="text-foreground text-lg flex items-center font-mono font-normal uppercase sm:text-xs mb-4">
+            <h2 className="text-balance text-foreground text-lg flex items-center font-mono font-normal uppercase sm:text-xs mb-4">
               <CheckCircle className="mr-1 size-4" />
               Finished
             </h2>

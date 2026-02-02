@@ -98,13 +98,13 @@ export default function GridList03() {
                 </span>
               </div>
               <div className="mt-4">
-                <h3 className="text-base font-semibold text-foreground">
+                <h3 className="text-balance text-base font-semibold text-foreground">
                   <a href={action.href} className="focus:outline-none">
                     <span aria-hidden="true" className="absolute inset-0" />
                     {action.title}
                   </a>
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="text-pretty mt-2 text-sm text-muted-foreground">
                   {action.description}
                 </p>
               </div>

@@ -13,6 +13,10 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
+  Collapsible,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -168,9 +172,9 @@ export function Onboarding01() {
 
   if (dismissed) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background p-4">
+      <div className="flex min-h-dvh items-center justify-center bg-background p-4">
         <div className="text-center">
-          <p className="text-muted-foreground">Checklist dismissed</p>
+          <p className="text-pretty text-muted-foreground">Checklist dismissed</p>
           <button
             onClick={() => setDismissed(false)}
             className="mt-2 text-sm text-primary underline"
@@ -183,11 +187,11 @@ export function Onboarding01() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+    <div className="flex min-h-dvh items-center justify-center bg-background p-4">
       <div className="w-full max-w-xl">
         <div className="w-xl rounded-lg border bg-card p-4 text-card-foreground shadow-xs">
           <div className="mb-4 mr-2 flex flex-col justify-between sm:flex-row sm:items-center">
-            <h3 className="ml-2 font-semibold text-foreground">
+            <h3 className="text-balance ml-2 font-semibold text-foreground">
               Get started with Documenso
             </h3>
             <div className="mt-2 flex items-center justify-end sm:mt-0">
@@ -291,27 +295,24 @@ export function Onboarding01() {
                             >
                               {step.title}
                             </h4>
-                            <div
-                              className={cn(
-                                "overflow-hidden transition-all duration-200",
-                                isOpen ? "h-auto opacity-100" : "h-0 opacity-0"
-                              )}
-                            >
-                              <p className="mt-2 text-sm text-muted-foreground sm:max-w-64 md:max-w-xs">
-                                {step.description}
-                              </p>
-                              <Button
-                                size="sm"
-                                className="mt-3"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleStepAction(step);
-                                }}
-                                asChild
-                              >
-                                <a href={step.actionHref}>{step.actionLabel}</a>
-                              </Button>
-                            </div>
+                            <Collapsible open={isOpen}>
+                              <CollapsibleContent>
+                                <p className="text-pretty mt-2 text-sm text-muted-foreground sm:max-w-64 md:max-w-xs">
+                                  {step.description}
+                                </p>
+                                <Button
+                                  size="sm"
+                                  className="mt-3"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleStepAction(step);
+                                  }}
+                                  asChild
+                                >
+                                  <a href={step.actionHref}>{step.actionLabel}</a>
+                                </Button>
+                              </CollapsibleContent>
+                            </Collapsible>
                           </div>
                         </div>
                         {!isOpen && (

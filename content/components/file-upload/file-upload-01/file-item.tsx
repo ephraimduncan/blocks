@@ -45,8 +45,8 @@ export function UploadedFileItem({
             </div>
             <Button
               variant="ghost"
-              size="sm"
-              className="h-8 w-8 bg-transparent! hover:text-red-500"
+              size="icon-sm"
+              className="bg-transparent! hover:text-red-500"
               onClick={() => onRemove(file.name)}
             >
               <Trash2 className="h-4 w-4" />

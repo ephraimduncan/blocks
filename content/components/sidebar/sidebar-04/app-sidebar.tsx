@@ -240,7 +240,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <SidebarMenuButton asChild className="px-2.5 md:px-2">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`h-3 w-3 rounded-[4px] ${label.color}`}
+                          className={`h-3 w-3 rounded ${label.color}`}
                         ></div>
                         <span>{label.title}</span>
                       </div>

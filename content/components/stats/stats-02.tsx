@@ -41,9 +41,9 @@ export default function Stats02() {
                 {item.metric}
               </CardTitle>
               <div className="mt-1 flex items-baseline gap-2 md:block lg:flex">
-                <div className="flex items-baseline text-2xl font-semibold text-primary">
+                <div className="tabular-nums flex items-baseline text-2xl font-semibold text-primary">
                   {item.current}
-                  <span className="ml-2 text-sm font-medium text-muted-foreground">
+                  <span className="tabular-nums ml-2 text-sm font-medium text-muted-foreground">
                     from {item.previous}
                   </span>
                 </div>
@@ -51,7 +51,7 @@ export default function Stats02() {
                 <Badge
                   variant="outline"
                   className={cn(
-                    "inline-flex items-center px-1.5 ps-2.5 py-0.5 text-xs font-medium md:mt-2 lg:mt-0",
+                    "tabular-nums inline-flex items-center px-1.5 ps-2.5 py-0.5 text-xs font-medium md:mt-2 lg:mt-0",
                     item.trend === "up"
                       ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
                       : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"

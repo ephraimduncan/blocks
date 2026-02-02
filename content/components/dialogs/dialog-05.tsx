@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -15,13 +14,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export default function Dialog05() {
   const [isOpen, setIsOpen] = useState(true);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsOpen(false);
+  };
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
@@ -36,7 +39,7 @@ export default function Dialog05() {
             back after you press delete.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <Label htmlFor="delete-workspace" className="text-sm font-medium">
               Confirm password
@@ -48,6 +51,7 @@ export default function Dialog05() {
                 type={isVisible ? "text" : "password"}
                 placeholder="Password"
                 className="pe-9"
+                required
               />
               <button
                 className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md"
@@ -67,11 +71,9 @@ export default function Dialog05() {
           </div>
           <AlertDialogFooter className="mt-4">
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction asChild>
-              <Button type="submit" variant="destructive">
-                Delete workspace permanently
-              </Button>
-            </AlertDialogAction>
+            <Button type="submit" variant="destructive">
+              Delete workspace permanently
+            </Button>
           </AlertDialogFooter>
         </form>
       </AlertDialogContent>

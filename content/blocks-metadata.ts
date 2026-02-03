@@ -450,6 +450,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "650px",
     type: "file",
   },
+  {
+    id: "ai-05",
+    category: categoryIds.AI,
+    name: "AI Elements Chat",
+    iframeHeight: "720px",
+    type: "file",
+  },
 
   {
     id: "table-01",

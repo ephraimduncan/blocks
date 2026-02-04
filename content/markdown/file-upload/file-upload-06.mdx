@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Upload, FileText, X, CheckCircle, Loader2 } from "lucide-react";
+import { IconUpload, IconFileText, IconX, IconCircleCheck, IconLoader2 } from "@tabler/icons-react";
 
 interface UploadItem {
   id: string;
@@ -81,7 +81,7 @@ export default function FileUpload06() {
       >
         <div className="grid space-y-3">
           <div className="flex items-center gap-x-2 text-muted-foreground">
-            <Upload className="size-5" />
+            <IconUpload className="size-5" />
             <div>
               Drop files here or{" "}
               <Button
@@ -112,14 +112,14 @@ export default function FileUpload06() {
         {activeUploads.length > 0 && (
           <div>
             <h2 className="text-balance text-foreground text-lg flex items-center font-mono font-normal uppercase sm:text-xs mb-4">
-              <Loader2 className="size-4 mr-1 animate-spin" />
+              <IconLoader2 className="size-4 mr-1 animate-spin" />
               Uploading
             </h2>
             <div className="-mt-2 divide-y">
               {activeUploads.map((file) => (
                 <div key={file.id} className="group flex items-center py-4">
                   <div className="mr-3 grid size-10 shrink-0 place-content-center rounded border bg-muted">
-                    <FileText className="inline size-4 group-hover:hidden" />
+                    <IconFileText className="inline size-4 group-hover:hidden" />
                     <Button
                       variant="ghost"
                       size="icon"
@@ -127,7 +127,7 @@ export default function FileUpload06() {
                       onClick={() => removeUploadById(file.id)}
                       aria-label="Cancel"
                     >
-                      <X className="size-4" />
+                      <IconX className="size-4" />
                     </Button>
                   </div>
                   <div className="flex flex-col w-full mb-1">
@@ -157,14 +157,14 @@ export default function FileUpload06() {
         {completedUploads.length > 0 && (
           <div>
             <h2 className="text-balance text-foreground text-lg flex items-center font-mono font-normal uppercase sm:text-xs mb-4">
-              <CheckCircle className="mr-1 size-4" />
+              <IconCircleCheck className="mr-1 size-4" />
               Finished
             </h2>
             <div className="-mt-2 divide-y">
               {completedUploads.map((file) => (
                 <div key={file.id} className="group flex items-center py-4">
                   <div className="mr-3 grid size-10 shrink-0 place-content-center rounded border bg-muted">
-                    <FileText className="inline size-4 group-hover:hidden" />
+                    <IconFileText className="inline size-4 group-hover:hidden" />
                     <Button
                       variant="ghost"
                       size="icon"
@@ -172,7 +172,7 @@ export default function FileUpload06() {
                       onClick={() => removeUploadById(file.id)}
                       aria-label="Remove"
                     >
-                      <X className="size-4" />
+                      <IconX className="size-4" />
                     </Button>
                   </div>
                   <div className="flex flex-col w-full mb-1">

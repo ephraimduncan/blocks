@@ -8,7 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { HelpCircle } from "lucide-react";
+import { IconHelpCircle } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 import { FileDropzone } from "./dropzone";
 import { FileList } from "./file-list";
@@ -103,7 +103,7 @@ export default function FileUpload01() {
                     size="sm"
                     className="flex items-center text-muted-foreground hover:text-foreground"
                   >
-                    <HelpCircle className="h-4 w-4 mr-1" />
+                    <IconHelpCircle className="h-4 w-4 mr-1" />
                     Need help?
                   </Button>
                 </TooltipTrigger>

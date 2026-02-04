@@ -11,7 +11,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { EyeIcon, EyeOffIcon, Key } from "lucide-react";
+import { IconEye, IconEyeOff, IconKey } from "@tabler/icons-react";
 import Link from "next/link";
 import { JSX, SVGProps, useState } from "react";
 
@@ -86,9 +86,9 @@ export default function SignIn() {
                 aria-controls="password"
               >
                 {isPasswordVisible ? (
-                  <EyeOffIcon size={16} aria-hidden="true" />
+                  <IconEyeOff size={16} aria-hidden="true" />
                 ) : (
-                  <EyeIcon size={16} aria-hidden="true" />
+                  <IconEye size={16} aria-hidden="true" />
                 )}
               </button>
             </div>
@@ -105,7 +105,7 @@ export default function SignIn() {
               Sign In
             </Button>
             <Button variant="outline" className="w-full" type="button">
-              <Key className="mr-2 h-4 w-4" />
+              <IconKey className="mr-2 h-4 w-4" />
               Single sign-on (SSO)
             </Button>
           </div>

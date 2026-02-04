@@ -2,13 +2,13 @@
 "use client";
 
 import {
-  CheckCircle,
-  FileTextIcon,
-  Loader2,
-  PauseIcon,
-  PlayIcon,
-  Trash2Icon,
-} from "lucide-react";
+  IconCircleCheck,
+  IconFileText,
+  IconLoader2,
+  IconPlayerPause,
+  IconPlayerPlay,
+  IconTrash,
+} from "@tabler/icons-react";
 import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -214,9 +214,9 @@ export default function Table02() {
                       aria-label="Start"
                     >
                       {startPending ? (
-                        <Loader2 className="size-4 animate-spin" />
+                        <IconLoader2 className="size-4 animate-spin" />
                       ) : (
-                        <PlayIcon className="size-4" />
+                        <IconPlayerPlay className="size-4" />
                       )}
                     </Button>
                   </TooltipTrigger>
@@ -236,9 +236,9 @@ export default function Table02() {
                         aria-label="Pause"
                       >
                         {pausePending ? (
-                          <Loader2 className="size-4 animate-spin" />
+                          <IconLoader2 className="size-4 animate-spin" />
                         ) : (
-                          <PauseIcon className="size-4" />
+                          <IconPlayerPause className="size-4" />
                         )}
                       </Button>
                     </TooltipTrigger>
@@ -255,9 +255,9 @@ export default function Table02() {
                         aria-label="Complete"
                       >
                         {completePending ? (
-                          <Loader2 className="size-4 animate-spin" />
+                          <IconLoader2 className="size-4 animate-spin" />
                         ) : (
-                          <CheckCircle className="size-4" />
+                          <IconCircleCheck className="size-4" />
                         )}
                       </Button>
                     </TooltipTrigger>
@@ -276,9 +276,9 @@ export default function Table02() {
                     aria-label="Delete"
                   >
                     {deletePending ? (
-                      <Loader2 className="size-4 animate-spin" />
+                      <IconLoader2 className="size-4 animate-spin" />
                     ) : (
-                      <Trash2Icon className="size-4" />
+                      <IconTrash className="size-4" />
                     )}
                   </Button>
                 </TooltipTrigger>
@@ -294,7 +294,7 @@ export default function Table02() {
                     disabled={busy}
                     aria-label="View details"
                   >
-                    <FileTextIcon className="size-4" />
+                    <IconFileText className="size-4" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>View Details</TooltipContent>

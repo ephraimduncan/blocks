@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreVertical } from "lucide-react";
+import { IconDotsVertical } from "@tabler/icons-react";
 
 const bookCollections = [
   { name: "Science Fiction", initials: "SF", href: "#", books: 37 },
@@ -54,7 +54,7 @@ export default function GridList01() {
                           className="h-8 w-8 rounded-full"
                         >
                           <span className="sr-only">Open options</span>
-                          <MoreVertical className="h-5 w-5" />
+                          <IconDotsVertical className="h-5 w-5" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">

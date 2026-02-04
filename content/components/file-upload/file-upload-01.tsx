@@ -19,7 +19,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { HelpCircle, Trash2, Upload } from "lucide-react";
+import { IconHelpCircle, IconTrash, IconUpload } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
 export default function FileUpload01() {
@@ -159,7 +159,7 @@ export default function FileUpload01() {
               onDrop={handleDrop}
             >
               <div className="mb-2 bg-muted rounded-full p-3">
-                <Upload className="h-5 w-5 text-muted-foreground" />
+                <IconUpload className="h-5 w-5 text-muted-foreground" />
               </div>
               <p className="text-pretty text-sm font-medium text-foreground">
                 Upload a project image
@@ -228,7 +228,7 @@ export default function FileUpload01() {
                           className="bg-transparent! hover:text-red-500"
                           onClick={() => removeFile(file.name)}
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <IconTrash className="h-4 w-4" />
                         </Button>
                       </div>
 
@@ -261,7 +261,7 @@ export default function FileUpload01() {
                     size="sm"
                     className="flex items-center text-muted-foreground hover:text-foreground"
                   >
-                    <HelpCircle className="h-4 w-4 mr-1" />
+                    <IconHelpCircle className="h-4 w-4 mr-1" />
                     Need help?
                   </Button>
                 </TooltipTrigger>

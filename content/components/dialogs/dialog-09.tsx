@@ -18,7 +18,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { CheckIcon, CopyIcon, ExternalLink, Link, Share2 } from "lucide-react";
+import { IconCheck, IconCopy, IconExternalLink, IconLink, IconShare } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
 export default function Dialog09() {
@@ -38,7 +38,7 @@ export default function Dialog09() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
-          <Share2 className="mr-2 h-4 w-4" />
+          <IconShare className="mr-2 h-4 w-4" />
           Share
         </Button>
       </DialogTrigger>
@@ -84,7 +84,7 @@ export default function Dialog09() {
                           copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
                         )}
                       >
-                        <CheckIcon
+                        <IconCheck
                           className="text-primary"
                           size={16}
                           aria-hidden="true"
@@ -96,7 +96,7 @@ export default function Dialog09() {
                           copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
                         )}
                       >
-                        <CopyIcon size={16} aria-hidden="true" />
+                        <IconCopy size={16} aria-hidden="true" />
                       </div>
                     </button>
                   </TooltipTrigger>
@@ -110,11 +110,11 @@ export default function Dialog09() {
 
           <div className="flex space-x-2">
             <Button className="flex-1 gap-2" onClick={handleCopy}>
-              <Link className="h-4 w-4" />
+              <IconLink className="h-4 w-4" />
               Copy Link
             </Button>
             <Button variant="outline" className="flex-1 gap-2">
-              <ExternalLink className="h-4 w-4" />
+              <IconExternalLink className="h-4 w-4" />
               Preview
             </Button>
           </div>

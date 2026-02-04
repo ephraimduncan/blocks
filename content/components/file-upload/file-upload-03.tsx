@@ -1,6 +1,6 @@
 "use client";
 
-import { File, Trash } from "lucide-react";
+import { IconFile, IconTrash } from "@tabler/icons-react";
 import React from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -45,12 +45,12 @@ export default function FileUpload03() {
               )
             }
           >
-            <Trash className="h-5 w-5" aria-hidden={true} />
+            <IconTrash className="h-5 w-5" aria-hidden={true} />
           </Button>
         </div>
         <CardContent className="flex items-center space-x-3 p-0">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-muted">
-            <File className="h-5 w-5 text-foreground" aria-hidden={true} />
+            <IconFile className="h-5 w-5 text-foreground" aria-hidden={true} />
           </span>
           <div>
             <p className="text-pretty font-medium text-foreground">{file.name}</p>
@@ -122,7 +122,7 @@ export default function FileUpload03() {
                   )}
                 >
                   <div>
-                    <File
+                    <IconFile
                       className="mx-auto h-12 w-12 text-muted-foreground/80"
                       aria-hidden={true}
                     />

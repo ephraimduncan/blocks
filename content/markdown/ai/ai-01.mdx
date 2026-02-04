@@ -30,7 +30,7 @@ export default function Ai01() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (message.trim()) {
@@ -54,18 +54,18 @@ export default function Ai01() {
     setIsExpanded(e.target.value.length > 100 || e.target.value.includes("\n"));
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e as any);
+      handleSubmit(e);
     }
   };
 
   return (
     <div className="w-full">
-      <h1 className="text-balance mb-8 mx-auto max-w-2xl text-center text-2xl font-semibold leading-9 text-foreground px-1 text-pretty whitespace-pre-wrap">
+      <div className="text-balance mb-8 mx-auto max-w-2xl text-center text-2xl font-semibold leading-9 text-foreground px-1 text-pretty whitespace-pre-wrap">
         How can I help you today?
-      </h1>
+      </div>
 
       <form onSubmit={handleSubmit} className="group/composer w-full">
         <input
@@ -73,7 +73,6 @@ export default function Ai01() {
           type="file"
           multiple
           className="sr-only"
-          onChange={(e) => {}}
         />
 
         <div
@@ -136,19 +135,13 @@ export default function Ai01() {
                     <IconPaperclip size={20} className="opacity-60" />
                     Add photos & files
                   </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="rounded-md"
-                    onClick={() => {}}
-                  >
+                  <DropdownMenuItem className="rounded-md">
                     <div className="flex items-center gap-2">
                       <IconSparkles size={20} className="opacity-60" />
                       Agent mode
                     </div>
                   </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="rounded-md"
-                    onClick={() => {}}
-                  >
+                  <DropdownMenuItem className="rounded-md">
                     <IconSearch size={20} className="opacity-60" />
                     Deep Research
                   </DropdownMenuItem>

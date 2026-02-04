@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
+import { IconArrowRight, IconEye, IconEyeOff, IconLock, IconMail } from "@tabler/icons-react";
 import { JSX, SVGProps, useState } from "react";
 
 const GoogleIcon = (
@@ -69,18 +69,20 @@ export default function Login07() {
             <Separator className="flex-1" />
           </div>
 
-          <div className="space-y-6">
+          <form className="space-y-6">
             <div>
               <Label htmlFor="email">Email</Label>
               <div className="relative mt-2.5">
                 <Input
                   id="email"
+                  name="email"
                   className="peer ps-9"
                   placeholder="ephraim@blocks.so"
                   type="email"
+                  autoComplete="email"
                 />
                 <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-                  <Mail size={16} aria-hidden="true" />
+                  <IconMail size={16} aria-hidden="true" />
                 </div>
               </div>
             </div>
@@ -95,12 +97,14 @@ export default function Login07() {
               <div className="relative mt-2.5">
                 <Input
                   id="password"
+                  name="password"
                   className="ps-9 pe-9"
                   placeholder="Enter your password"
                   type={isVisible ? "text" : "password"}
+                  autoComplete="current-password"
                 />
                 <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
-                  <Lock size={16} aria-hidden="true" />
+                  <IconLock size={16} aria-hidden="true" />
                 </div>
                 <button
                   className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
@@ -111,9 +115,9 @@ export default function Login07() {
                   aria-controls="password"
                 >
                   {isVisible ? (
-                    <EyeOff size={16} aria-hidden="true" />
+                    <IconEyeOff size={16} aria-hidden="true" />
                   ) : (
-                    <Eye size={16} aria-hidden="true" />
+                    <IconEye size={16} aria-hidden="true" />
                   )}
                 </button>
               </div>
@@ -123,11 +127,11 @@ export default function Login07() {
               <Checkbox id="remember-me" />
               <Label htmlFor="remember-me">Remember for 30 days</Label>
             </div>
-          </div>
+          </form>
 
           <Button className="w-full">
             Sign in
-            <ArrowRight className="h-4 w-4" />
+            <IconArrowRight className="h-4 w-4" />
           </Button>
 
           <div className="text-center text-sm">

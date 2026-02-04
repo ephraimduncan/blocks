@@ -1,4 +1,4 @@
-import { Upload } from "lucide-react";
+import { IconUpload } from "@tabler/icons-react";
 import React, { RefObject } from "react";
 
 interface FileDropzoneProps {
@@ -25,7 +25,7 @@ export function FileDropzone({
         onDrop={handleDrop}
       >
         <div className="mb-2 bg-muted rounded-full p-3">
-          <Upload className="h-5 w-5 text-muted-foreground" />
+          <IconUpload className="h-5 w-5 text-muted-foreground" />
         </div>
         <p className="text-sm font-medium text-foreground">
           Upload a project image

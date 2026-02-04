@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { IconTrash } from "@tabler/icons-react";
 import { useEffect } from "react";
 
 interface UploadedFileItemProps {
@@ -49,7 +49,7 @@ export function UploadedFileItem({
               className="bg-transparent! hover:text-red-500"
               onClick={() => onRemove(file.name)}
             >
-              <Trash2 className="h-4 w-4" />
+              <IconTrash className="h-4 w-4" />
             </Button>
           </div>
 

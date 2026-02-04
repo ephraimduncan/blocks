@@ -15,7 +15,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from "next/link";
 import type React from "react";
 import { useState } from "react";
@@ -72,9 +72,9 @@ export default function DashboardNavigation({ routes }: { routes: Route[] }) {
                     {!isCollapsed && hasSubRoutes && (
                       <span className="ml-auto">
                         {isOpen ? (
-                          <ChevronUp className="size-4" />
+                          <IconChevronUp className="size-4" />
                         ) : (
-                          <ChevronDown className="size-4" />
+                          <IconChevronDown className="size-4" />
                         )}
                       </span>
                     )}

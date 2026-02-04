@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { FileSpreadsheet, Upload, X } from "lucide-react";
+import { IconFileSpreadsheet, IconUpload, IconX } from "@tabler/icons-react";
 
 export default function FileUpload05() {
   return (
@@ -9,7 +9,7 @@ export default function FileUpload05() {
         <h3 className="text-balance text-lg font-semibold text-foreground">File Upload</h3>
         <div className="mt-4 flex justify-center space-x-4 rounded-md border border-dashed border-input px-6 py-10">
           <div className="sm:flex sm:items-center sm:gap-x-3">
-            <Upload
+            <IconUpload
               className="mx-auto h-8 w-8 text-muted-foreground sm:mx-0 sm:h-6 sm:w-6"
               aria-hidden={true}
             />
@@ -43,12 +43,12 @@ export default function FileUpload05() {
               className="rounded-sm p-2 text-muted-foreground hover:text-foreground"
               aria-label="Remove"
             >
-              <X className="size-4 shrink-0" aria-hidden={true} />
+              <IconX className="size-4 shrink-0" aria-hidden={true} />
             </Button>
           </div>
           <div className="flex items-center space-x-2.5">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background shadow-sm ring-1 ring-inset ring-input">
-              <FileSpreadsheet
+              <IconFileSpreadsheet
                 className="size-5 text-foreground"
                 aria-hidden={true}
               />

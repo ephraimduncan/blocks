@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { Check, CircleCheck, ExternalLink } from "lucide-react";
+import { IconCheck, IconCircleCheck, IconExternalLink } from "@tabler/icons-react";
 import { useState } from "react";
 
 const highlights = [
@@ -188,7 +188,7 @@ export default function FormLayout05() {
                             key={index}
                             className="flex items-center gap-2 text-sm"
                           >
-                            <Check
+                            <IconCheck
                               className="h-4 w-4 text-muted-foreground"
                               aria-hidden={true}
                             />
@@ -204,7 +204,7 @@ export default function FormLayout05() {
                       className="inline-flex items-center gap-1 text-sm text-primary hover:underline hover:underline-offset-4"
                     >
                       Learn more
-                      <ExternalLink className="h-4 w-4" aria-hidden={true} />
+                      <IconExternalLink className="h-4 w-4" aria-hidden={true} />
                     </a>
                     <div>
                       <span className="text-lg font-semibold text-foreground">
@@ -234,7 +234,7 @@ export default function FormLayout05() {
                       key={item.id}
                       className="flex items-center space-x-2 py-1.5 text-foreground"
                     >
-                      <CircleCheck className="h-5 w-5 text-primary" />
+                      <IconCircleCheck className="h-5 w-5 text-primary" />
                       <span className="truncate text-sm">{item.feature}</span>
                     </li>
                   ))}
@@ -244,7 +244,7 @@ export default function FormLayout05() {
                   className="mt-4 inline-flex items-center gap-1 text-sm text-primary"
                 >
                   Learn more
-                  <ExternalLink className="h-4 w-4" aria-hidden={true} />
+                  <IconExternalLink className="h-4 w-4" aria-hidden={true} />
                 </a>
               </CardContent>
             </Card>

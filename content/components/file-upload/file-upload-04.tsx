@@ -1,6 +1,6 @@
 "use client";
 
-import { File, FileSpreadsheet, X } from "lucide-react";
+import { IconFile, IconFileSpreadsheet, IconX } from "@tabler/icons-react";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -68,13 +68,13 @@ export default function FileUpload04() {
   };
 
   const getFileIcon = () => {
-    if (!uploadState.file) return <File />;
+    if (!uploadState.file) return <IconFile />;
 
     const fileExt = uploadState.file.name.split(".").pop()?.toLowerCase() || "";
     return ["csv", "xlsx", "xls"].includes(fileExt) ? (
-      <FileSpreadsheet className="h-5 w-5 text-foreground" />
+      <IconFileSpreadsheet className="h-5 w-5 text-foreground" />
     ) : (
-      <File className="h-5 w-5 text-foreground" />
+      <IconFile className="h-5 w-5 text-foreground" />
     );
   };
 
@@ -99,20 +99,20 @@ export default function FileUpload04() {
           onDrop={handleDrop}
         >
           <div>
-            <File
+            <IconFile
               className="mx-auto h-12 w-12 text-muted-foreground"
               aria-hidden={true}
             />
             <div className="flex text-sm leading-6 text-muted-foreground">
               <p>Drag and drop or</p>
               <label
-                htmlFor="file-upload-03"
+                htmlFor="file-upload-04"
                 className="relative cursor-pointer rounded-sm pl-1 font-medium text-primary hover:underline hover:underline-offset-4"
               >
                 <span>choose file</span>
                 <input
-                  id="file-upload-03"
-                  name="file-upload-03"
+                  id="file-upload-04"
+                  name="file-upload-04"
                   type="file"
                   className="sr-only"
                   accept=".csv, .xlsx, .xls"
@@ -140,12 +140,12 @@ export default function FileUpload04() {
               aria-label="Remove"
               onClick={() => setShowDummy(false)}
             >
-              <X className="h-5 w-5 shrink-0" aria-hidden={true} />
+              <IconX className="h-5 w-5 shrink-0" aria-hidden={true} />
             </Button>
 
             <div className="flex items-center space-x-2.5">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-background shadow-sm ring-1 ring-inset ring-border">
-                <FileSpreadsheet
+                <IconFileSpreadsheet
                   className="h-5 w-5 text-foreground"
                   aria-hidden={true}
                 />
@@ -175,7 +175,7 @@ export default function FileUpload04() {
               aria-label="Remove"
               onClick={resetFile}
             >
-              <X className="h-5 w-5 shrink-0" aria-hidden={true} />
+              <IconX className="h-5 w-5 shrink-0" aria-hidden={true} />
             </Button>
 
             <div className="flex items-center space-x-2.5">

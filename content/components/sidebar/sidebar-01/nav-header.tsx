@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { IconSearch } from "@tabler/icons-react";
 import * as React from "react";
 
 import {
@@ -43,7 +43,7 @@ export function NavHeader({ data }: NavHeaderProps) {
           onClick={() => setOpen(true)}
         >
           <div className="flex items-center flex-1 gap-3">
-            <Search className="h-4 w-4 text-muted-foreground" />
+            <IconSearch className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground font-normal">
               Search
             </span>

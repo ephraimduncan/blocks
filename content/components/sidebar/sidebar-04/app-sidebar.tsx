@@ -1,6 +1,6 @@
 "use client";
 
-import { Archive, Flag } from "lucide-react";
+import { IconArchive, IconFlag } from "@tabler/icons-react";
 import * as React from "react";
 
 import {
@@ -49,7 +49,7 @@ const data = {
     {
       title: "Important",
       url: "#",
-      icon: Flag,
+      icon: IconFlag,
       isActive: false,
     },
     {
@@ -61,7 +61,7 @@ const data = {
     {
       title: "Archive",
       url: "#",
-      icon: Archive,
+      icon: IconArchive,
       isActive: false,
     },
   ],

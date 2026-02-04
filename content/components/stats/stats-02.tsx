@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { TrendingDown, TrendingUp } from "lucide-react";
+import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
 
 const stats = [
   {
@@ -58,9 +58,9 @@ export default function Stats02() {
                   )}
                 >
                   {item.trend === "up" ? (
-                    <TrendingUp className="mr-0.5 -ml-1 h-5 w-5 shrink-0 self-center text-green-500" />
+                    <IconTrendingUp className="mr-0.5 -ml-1 h-5 w-5 shrink-0 self-center text-green-500" />
                   ) : (
-                    <TrendingDown className="mr-0.5 -ml-1 h-5 w-5 shrink-0 self-center text-red-500" />
+                    <IconTrendingDown className="mr-0.5 -ml-1 h-5 w-5 shrink-0 self-center text-red-500" />
                   )}
 
                   <span className="sr-only">

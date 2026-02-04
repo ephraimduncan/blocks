@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { BarChart, Code, Eye, EyeOff, User } from "lucide-react";
+import { IconChartBar, IconCode, IconEye, IconEyeOff, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { JSX, SVGProps, useState } from "react";
 
@@ -73,15 +73,15 @@ export default function SignupForm() {
                 </SelectTrigger>
                 <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0">
                   <SelectItem value="designer">
-                    <User size={16} aria-hidden="true" />
+                    <IconUser size={16} aria-hidden="true" />
                     <span className="truncate">Product Designer</span>
                   </SelectItem>
                   <SelectItem value="developer">
-                    <Code size={16} aria-hidden="true" />
+                    <IconCode size={16} aria-hidden="true" />
                     <span className="truncate">Developer</span>
                   </SelectItem>
                   <SelectItem value="manager">
-                    <BarChart size={16} aria-hidden="true" />
+                    <IconChartBar size={16} aria-hidden="true" />
                     <span className="truncate">Product Manager</span>
                   </SelectItem>
                 </SelectContent>
@@ -106,7 +106,7 @@ export default function SignupForm() {
 
             <div className="space-y-2">
               <Label htmlFor="email">Email address</Label>
-              <Input id="email" type="email" />
+              <Input id="email" type="email" autoComplete="email" />
             </div>
 
             <div className="space-y-2">
@@ -115,6 +115,7 @@ export default function SignupForm() {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
+                  autoComplete="new-password"
                   className="pr-10"
                 />
                 <Button
@@ -123,11 +124,14 @@ export default function SignupForm() {
                   size="icon"
                   className="absolute right-0 top-0 h-full px-3 text-muted-foreground hover:bg-transparent"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                  aria-controls="password"
                 >
                   {showPassword ? (
-                    <EyeOff className="h-4 w-4" />
+                    <IconEyeOff className="h-4 w-4" aria-hidden="true" />
                   ) : (
-                    <Eye className="h-4 w-4" />
+                    <IconEye className="h-4 w-4" aria-hidden="true" />
                   )}
                 </Button>
               </div>
@@ -135,7 +139,7 @@ export default function SignupForm() {
 
             <div className="flex items-center space-x-2">
               <Checkbox id="terms" />
-              <label htmlFor="terms" className="text-sm text-muted-foreground">
+              <Label htmlFor="terms" className="text-sm text-muted-foreground font-normal">
                 I agree to the{" "}
                 <Link href="#" className="text-primary hover:underline">
                   Terms
@@ -144,7 +148,7 @@ export default function SignupForm() {
                 <Link href="#" className="text-primary hover:underline">
                   Conditions
                 </Link>
-              </label>
+              </Label>
             </div>
 
             <Button className="w-full bg-primary text-primary-foreground">

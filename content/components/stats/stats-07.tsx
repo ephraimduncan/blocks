@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
-import { ExternalLink } from "lucide-react";
+import { IconExternalLink } from "@tabler/icons-react";
 import Link from "next/link";
 import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 
@@ -57,7 +57,7 @@ export default function Stats07() {
             className="inline-flex items-center gap-1 text-primary hover:underline hover:underline-offset-4"
           >
             View other plans
-            <ExternalLink className="size-4" aria-hidden={true} />
+            <IconExternalLink className="size-4" aria-hidden={true} />
           </Link>
         </p>
         <dl className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

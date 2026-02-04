@@ -73,12 +73,12 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 function DonutChart({ percentage }: { percentage: number }) {
-  const backgroundData = [{ name: "background", value: 100, fill: "#E5E7EB" }];
+  const backgroundData = [{ name: "background", value: 100, fill: "var(--muted)" }];
   const foregroundData = [
     {
       name: "used",
       value: Math.max(0, Math.min(100, Number(percentage))),
-      fill: "#3B82F6",
+      fill: "var(--primary)",
     },
     {
       name: "empty",

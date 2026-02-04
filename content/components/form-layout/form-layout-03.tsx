@@ -18,10 +18,10 @@ export default function FormLayout03() {
       <form>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
+            <h2 className="text-balance font-semibold text-foreground">
               Personal information
             </h2>
-            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
@@ -95,10 +95,10 @@ export default function FormLayout03() {
         <Separator className="my-8" />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
+            <h2 className="text-balance font-semibold text-foreground">
               Workspace settings
             </h2>
-            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
@@ -150,16 +150,16 @@ export default function FormLayout03() {
         <Separator className="my-8" />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
+            <h2 className="text-balance font-semibold text-foreground">
               Notification settings
             </h2>
-            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
           <div className="sm:max-w-3xl md:col-span-2">
             <fieldset>
-              <legend className="text-sm font-medium text-foreground dark:text-foreground">
+              <legend className="text-sm font-medium text-foreground">
                 Team
               </legend>
               <FieldDescription className="mt-1 leading-6">
@@ -191,7 +191,7 @@ export default function FormLayout03() {
               </div>
             </fieldset>
             <fieldset className="mt-6">
-              <legend className="text-sm font-medium text-foreground dark:text-foreground">
+              <legend className="text-sm font-medium text-foreground">
                 Usage
               </legend>
               <FieldDescription className="mt-1 leading-6">

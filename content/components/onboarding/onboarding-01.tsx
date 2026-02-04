@@ -148,7 +148,7 @@ function StepIndicator({ completed }: { completed: boolean }) {
   );
 }
 
-export function Onboarding01() {
+export default function Onboarding01() {
   const [currentSteps, setCurrentSteps] = useState<OnboardingStep[]>(steps);
   const [openStepId, setOpenStepId] = useState<string | null>(() => {
     const firstIncomplete = steps.find((s) => !s.completed);
@@ -257,16 +257,9 @@ export function Onboarding01() {
                     showBorderTop && "border-t border-border"
                   )}
                 >
-                  <div
-                    role="button"
-                    tabIndex={0}
+                  <button
+                    type="button"
                     onClick={() => handleStepClick(step.id)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        handleStepClick(step.id);
-                      }
-                    }}
                     className={cn(
                       "block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                       isOpen && "rounded-lg"
@@ -322,7 +315,7 @@ export function Onboarding01() {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </button>
                 </div>
               );
             })}

@@ -1,1 +1,1 @@
-export { Onboarding01 } from "./onboarding-01";
+export { default as Onboarding01 } from "./onboarding-01";

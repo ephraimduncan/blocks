@@ -10,9 +10,10 @@ import {
   IconNews,
   IconNotebook,
   IconProgressCheck,
+  IconLayoutDashboard,
+  IconPackage,
   IconSettingsCode,
 } from "@tabler/icons-react";
-import { LayoutDashboard, Package } from "lucide-react";
 import { NavCollapsible } from "./nav-collapsible";
 import { NavFooter } from "./nav-footer";
 import { NavHeader } from "./nav-header";
@@ -30,7 +31,7 @@ const data: SidebarData = {
       id: "overview",
       title: "Overview",
       url: "#",
-      icon: LayoutDashboard,
+      icon: IconLayoutDashboard,
       isActive: true,
     },
     {
@@ -113,7 +114,7 @@ const data: SidebarData = {
       {
         id: "product-updates",
         title: "Product Updates",
-        icon: Package,
+        icon: IconPackage,
       },
       {
         id: "company-news",

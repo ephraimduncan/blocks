@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Check } from "lucide-react";
+import { IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
 
 export default function Dialog04() {
@@ -26,7 +26,7 @@ export default function Dialog04() {
       <DialogContent className="sm:max-w-sm flex flex-col items-center">
         <div className="flex justify-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-            <Check className="h-6 w-6 text-green-600" />
+            <IconCheck className="h-6 w-6 text-green-600" />
           </div>
         </div>
 

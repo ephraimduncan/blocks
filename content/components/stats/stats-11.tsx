@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Box, Edit } from "lucide-react";
+import { IconBox, IconEdit } from "@tabler/icons-react";
 
 interface MetricCardProps {
   title: string;
@@ -213,7 +213,7 @@ export default function Stats11() {
             { label: "Reads", value: "2,548,921", color: "bg-blue-500" },
           ]}
           actionLabel="Upgrade"
-          actionIcon={<Box className="h-4 w-4" />}
+          actionIcon={<IconBox className="h-4 w-4" />}
         />
 
         <MetricCard
@@ -224,7 +224,7 @@ export default function Stats11() {
           progressColor="bg-orange-500"
           warningMessage="There will be a charge for the excessive bandwidth over the limit."
           actionLabel="Upgrade"
-          actionIcon={<Box className="h-4 w-4" />}
+          actionIcon={<IconBox className="h-4 w-4" />}
         />
 
         <MetricCard
@@ -235,7 +235,7 @@ export default function Stats11() {
           progressColor="bg-emerald-500"
           status="It's all right."
           actionLabel="Upgrade"
-          actionIcon={<Box className="h-4 w-4" />}
+          actionIcon={<IconBox className="h-4 w-4" />}
         />
 
         <MetricCard
@@ -246,7 +246,7 @@ export default function Stats11() {
           progressColor="bg-emerald-500"
           status="It's all right."
           actionLabel="Change Budget"
-          actionIcon={<Edit className="h-4 w-4" />}
+          actionIcon={<IconEdit className="h-4 w-4" />}
           onActionClick={() => setBudgetDialogOpen(true)}
         />
       </div>

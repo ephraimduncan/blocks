@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/dialog";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
-export function CommandMenu02() {
+export default function CommandMenu02() {
   const [open, setOpen] = useState(true);
   const [inputValue, setInputValue] = useState("");
 

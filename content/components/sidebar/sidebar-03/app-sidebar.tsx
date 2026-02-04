@@ -11,21 +11,21 @@ import {
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import {
-  Activity,
-  DollarSign,
-  Home,
-  Infinity,
-  LinkIcon,
-  Package2,
-  Percent,
-  PieChart,
-  Settings,
-  ShoppingBag,
-  Sparkles,
-  Store,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+  IconActivity,
+  IconBuildingStore,
+  IconChartPie,
+  IconCurrencyDollar,
+  IconHome,
+  IconInfinity,
+  IconLink,
+  IconPackage,
+  IconPercentage,
+  IconSettings,
+  IconShoppingBag,
+  IconSparkles,
+  IconTrendingUp,
+  IconUsers,
+} from "@tabler/icons-react";
 import { Logo } from "./logo";
 import type { Route } from "./nav-main";
 import DashboardNavigation from "./nav-main";
@@ -60,96 +60,96 @@ const dashboardRoutes: Route[] = [
   {
     id: "home",
     title: "Home",
-    icon: <Home className="size-4" />,
+    icon: <IconHome className="size-4" />,
     link: "#",
   },
   {
     id: "products",
     title: "Products",
-    icon: <Package2 className="size-4" />,
+    icon: <IconPackage className="size-4" />,
     link: "#",
     subs: [
       {
         title: "Catalogue",
         link: "#",
-        icon: <Package2 className="size-4" />,
+        icon: <IconPackage className="size-4" />,
       },
       {
         title: "Checkout Links",
         link: "#",
-        icon: <LinkIcon className="size-4" />,
+        icon: <IconLink className="size-4" />,
       },
       {
         title: "Discounts",
         link: "#",
-        icon: <Percent className="size-4" />,
+        icon: <IconPercentage className="size-4" />,
       },
     ],
   },
   {
     id: "usage-billing",
     title: "Usage Billing",
-    icon: <PieChart className="size-4" />,
+    icon: <IconChartPie className="size-4" />,
     link: "#",
     subs: [
       {
         title: "Meters",
         link: "#",
-        icon: <PieChart className="size-4" />,
+        icon: <IconChartPie className="size-4" />,
       },
       {
         title: "Events",
         link: "#",
-        icon: <Activity className="size-4" />,
+        icon: <IconActivity className="size-4" />,
       },
     ],
   },
   {
     id: "benefits",
     title: "Benefits",
-    icon: <Sparkles className="size-4" />,
+    icon: <IconSparkles className="size-4" />,
     link: "#",
   },
   {
     id: "customers",
     title: "Customers",
-    icon: <Users className="size-4" />,
+    icon: <IconUsers className="size-4" />,
     link: "#",
   },
   {
     id: "sales",
     title: "Sales",
-    icon: <ShoppingBag className="size-4" />,
+    icon: <IconShoppingBag className="size-4" />,
     link: "#",
     subs: [
       {
         title: "Orders",
         link: "#",
-        icon: <ShoppingBag className="size-4" />,
+        icon: <IconShoppingBag className="size-4" />,
       },
       {
         title: "Subscriptions",
         link: "#",
-        icon: <Infinity className="size-4" />,
+        icon: <IconInfinity className="size-4" />,
       },
     ],
   },
   {
     id: "storefront",
     title: "Storefront",
-    icon: <Store className="size-4" />,
+    icon: <IconBuildingStore className="size-4" />,
     link: "#",
   },
   {
     id: "analytics",
     title: "Analytics",
-    icon: <TrendingUp className="size-4" />,
+    icon: <IconTrendingUp className="size-4" />,
     link: "#",
   },
   {
     id: "finance",
     title: "Finance",
-    icon: <DollarSign className="size-4" />,
+    icon: <IconCurrencyDollar className="size-4" />,
     link: "#",
     subs: [
       { title: "Incoming", link: "#" },
@@ -160,7 +160,7 @@ const dashboardRoutes: Route[] = [
   {
     id: "settings",
     title: "Settings",
-    icon: <Settings className="size-4" />,
+    icon: <IconSettings className="size-4" />,
     link: "#",
     subs: [
       { title: "General", link: "#" },

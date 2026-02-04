@@ -1,7 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { IconCalendar } from "@tabler/icons-react";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -103,7 +103,7 @@ export default function Dialog10() {
                         !date && "text-muted-foreground"
                       )}
                     >
-                      <CalendarIcon className="mr-1 h-4 w-4 shrink-0" />{" "}
+                      <IconCalendar className="mr-1 h-4 w-4 shrink-0" />{" "}
                       {date ? format(date, "PPP") : <span>Pick a date</span>}
                     </Button>
                   </PopoverTrigger>

@@ -1,7 +1,8 @@
 "use client";
 
-import { Plus, UserRoundIcon, X } from "lucide-react";
+import { IconPlus, IconUserCircle, IconX } from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import { toast } from "sonner";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ export default function Dialog12() {
     const file = e.target.files?.[0];
     if (file) {
       if (file.size > 1048576) {
-        alert("File size exceeds 1MB limit");
+        toast.error("File size exceeds 1MB limit");
         return;
       }
 
@@ -58,7 +59,7 @@ export default function Dialog12() {
               <Avatar className="h-24 w-24 border-2 border-muted">
                 <AvatarImage src={image || undefined} alt="Profile" />
                 <AvatarFallback>
-                  <UserRoundIcon
+                  <IconUserCircle
                     size={52}
                     className="text-muted-foreground"
                     aria-hidden="true"
@@ -81,9 +82,9 @@ export default function Dialog12() {
                 }}
               >
                 {image ? (
-                  <X className="h-4 w-4 text-muted-foreground" />
+                  <IconX className="h-4 w-4 text-muted-foreground" />
                 ) : (
-                  <Plus className="h-3 w-3 text-muted-foreground" />
+                  <IconPlus className="h-3 w-3 text-muted-foreground" />
                 )}
                 <span className="sr-only">
                   {image ? "Remove image" : "Upload image"}

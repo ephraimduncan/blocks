@@ -21,15 +21,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
-  BookmarkPlus,
-  CircleHelp,
-  LogOut,
-  Plus,
-  PlusCircle,
-  Puzzle,
-  Settings,
-  User,
-} from "lucide-react";
+  IconBookmarkPlus,
+  IconCirclePlus,
+  IconHelpCircle,
+  IconLogout,
+  IconPlus,
+  IconPuzzle,
+  IconSettings,
+  IconUser,
+} from "@tabler/icons-react";
 
 export function NavFooter({
   user,
@@ -55,11 +55,11 @@ export function NavFooter({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="m-2">
                   <DropdownMenuItem>
-                    <User size={16} className="opacity-80" aria-hidden="true" />
+                    <IconUser size={16} className="opacity-80" aria-hidden="true" />
                     Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Settings
+                    <IconSettings
                       size={16}
                       className="opacity-80"
                       aria-hidden="true"
@@ -67,7 +67,7 @@ export function NavFooter({
                     Settings
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <LogOut
+                    <IconLogout
                       size={16}
                       className="opacity-80"
                       aria-hidden="true"
@@ -80,7 +80,7 @@ export function NavFooter({
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <CircleHelp
+                    <IconHelpCircle
                       size={16}
                       aria-hidden="true"
                       className="cursor-pointer opacity-60 hover:opacity-100"
@@ -109,13 +109,13 @@ export function NavFooter({
                   className="rounded-full shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
                   aria-label="Open edit menu"
                 >
-                  <Plus size={16} aria-hidden="true" />
+                  <IconPlus size={16} aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="pb-2">
                 <DropdownMenuLabel>Add New</DropdownMenuLabel>
                 <DropdownMenuItem>
-                  <PlusCircle
+                  <IconCirclePlus
                     size={16}
                     className="mr-2 opacity-80"
                     aria-hidden="true"
@@ -123,7 +123,7 @@ export function NavFooter({
                   Add New Item
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <BookmarkPlus
+                  <IconBookmarkPlus
                     size={16}
                     className="mr-2 opacity-80"
                     aria-hidden="true"
@@ -131,7 +131,7 @@ export function NavFooter({
                   Add Bookmark
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Puzzle
+                  <IconPuzzle
                     size={16}
                     className="mr-2 opacity-80"
                     aria-hidden="true"

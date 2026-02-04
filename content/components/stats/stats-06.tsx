@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { AlertTriangle, Check, ChevronRight, Eye } from "lucide-react";
+import { IconAlertTriangle, IconCheck, IconChevronRight, IconEye } from "@tabler/icons-react";
 import Link from "next/link";
 
 const data = [
@@ -56,11 +56,11 @@ export default function Stats06() {
                       )}
                     >
                       {item.status === "within" ? (
-                        <Check className="size-4 shrink-0" aria-hidden={true} />
+                        <IconCheck className="size-4 shrink-0" aria-hidden={true} />
                       ) : item.status === "observe" ? (
-                        <Eye className="size-4 shrink-0" aria-hidden={true} />
+                        <IconEye className="size-4 shrink-0" aria-hidden={true} />
                       ) : (
-                        <AlertTriangle
+                        <IconAlertTriangle
                           className="size-4 shrink-0"
                           aria-hidden={true}
                         />
@@ -91,7 +91,7 @@ export default function Stats06() {
                       </p>
                     </dd>
                   </div>
-                  <ChevronRight
+                  <IconChevronRight
                     className="size-5 shrink-0 text-muted-foreground/60 group-hover:text-muted-foreground"
                     aria-hidden={true}
                   />

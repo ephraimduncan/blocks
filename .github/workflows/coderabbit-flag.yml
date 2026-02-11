@@ -1,0 +1,13 @@
+name: CodeRabbit Flag (caller)
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  pull-requests: read
+  issues: write
+
+jobs:
+  flag:
+    uses: aleaguilar/coderabbit/.github/workflows/coderabbit-flag.yml@main

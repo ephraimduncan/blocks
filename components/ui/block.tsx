@@ -1,9 +1,17 @@
 "use client";
 
-import { Fullscreen, Monitor, Smartphone, Tablet } from "lucide-react";
+import {
+  Check,
+  Clipboard,
+  Fullscreen,
+  Monitor,
+  Smartphone,
+  Tablet,
+} from "lucide-react";
 import Link from "next/link";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { ImperativePanelHandle } from "react-resizable-panels";
+import { toast } from "sonner";
 
 import { OpenInV0Button } from "@/components/open-in-v0-button";
 import {
@@ -11,7 +19,8 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { BlocksProps } from "@/lib/blocks";
+import { useCopyToClipboard } from "@/hooks/use-copy";
+import { BlocksProps, FileTreeItem } from "@/lib/blocks";
 
 import { CodeBlockEditor } from "../code-block-editor";
 import { SingleFileCodeView } from "../single-file-code-view";
@@ -27,6 +36,18 @@ interface BlockViewState {
   size: "desktop" | "tablet" | "mobile";
 }
 
+function getAllFileContents(items: FileTreeItem[]): string {
+  const parts: string[] = [];
+  for (const item of items) {
+    if (item.type === "file") {
+      parts.push(`// file: ${item.path}\n${item.content}`);
+    } else {
+      parts.push(getAllFileContents(item.children));
+    }
+  }
+  return parts.filter(Boolean).join("\n\n");
+}
+
 export const Block = ({
   name,
   blocksId,
@@ -35,11 +56,11 @@ export const Block = ({
   meta,
   fileTree,
 }: BlocksProps) => {
-  const [hasCopied, setHasCopied] = useState(false);
   const [state, setState] = useState<BlockViewState>({
     view: "preview",
     size: "desktop",
   });
+  const { isCopied, copyToClipboard } = useCopyToClipboard();
 
   const resizablePanelRef = useRef<ImperativePanelHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? "930px";
@@ -84,20 +105,16 @@ export const Block = ({
     }
   };
 
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
-    if (hasCopied) {
-      timeoutId = setTimeout(() => {
-        setHasCopied(false);
-      }, 2000);
+  const handleCopyCode = () => {
+    let content: string;
+    if (meta?.type === "directory" && fileTree) {
+      content = getAllFileContents(fileTree);
+    } else {
+      content = getCleanCode(code);
     }
-
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [hasCopied]);
+    copyToClipboard(content);
+    toast.success("Code copied to clipboard");
+  };
 
   return (
     <div
@@ -198,6 +215,20 @@ export const Block = ({
             />
 
             <div className="flex items-center gap-1">
+              <Button
+                className="h-8 w-8 rounded-lg p-0"
+                onClick={handleCopyCode}
+                size="sm"
+                title="Copy code"
+                variant="ghost"
+              >
+                {isCopied ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  <Clipboard className="h-4 w-4" />
+                )}
+                <span className="sr-only">Copy code</span>
+              </Button>
               <AddCommand name={blocksId} />
             </div>
 

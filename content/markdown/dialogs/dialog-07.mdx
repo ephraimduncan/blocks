@@ -4,7 +4,6 @@
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -16,13 +15,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export default function Dialog08() {
   const [open, setOpen] = useState(true);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setOpen(false);
+  };
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -37,7 +40,7 @@ export default function Dialog08() {
             Make sure to have your smartphone ready.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <Label htmlFor="email" className="text-sm font-medium">
               Email
@@ -62,6 +65,7 @@ export default function Dialog08() {
                 type={isVisible ? "text" : "password"}
                 placeholder="Password"
                 className="pe-9"
+                required
               />
               <button
                 className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md"
@@ -82,11 +86,9 @@ export default function Dialog08() {
 
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction asChild>
-              <Button type="submit" variant="destructive">
-                Deactivate
-              </Button>
-            </AlertDialogAction>
+            <Button type="submit" variant="destructive">
+              Deactivate
+            </Button>
           </AlertDialogFooter>
         </form>
       </AlertDialogContent>

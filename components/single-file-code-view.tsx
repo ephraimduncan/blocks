@@ -73,7 +73,9 @@ export function SingleFileCodeView({
 
   const styles = useMemo(
     () => ({
-      container: isDark ? 'bg-[#1b1d23]' : 'bg-[#f9f9fb]',
+      container: isDark
+        ? 'border-neutral-700/50 bg-[#1b1d23]'
+        : 'border-neutral-300/70 bg-[#f7f8fc]',
       tabBar: isDark
         ? 'border-neutral-700/50 bg-neutral-900'
         : 'border-neutral-200 bg-neutral-50',
@@ -125,7 +127,7 @@ export function SingleFileCodeView({
   return (
     <div
       className={cn(
-        'overflow-hidden rounded-lg transition-colors',
+        'overflow-hidden rounded-lg border transition-colors',
         styles.container
       )}
     >

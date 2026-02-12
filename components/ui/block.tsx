@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/resizable';
 import type { BlocksProps } from '@/lib/blocks';
 import { AddCommand } from '../add-command';
+import { CodeBlockEditor } from '../code-block-editor';
 import { SingleFileCodeView } from '../single-file-code-view';
 import { Button } from './button';
 import { Separator } from './separator';
@@ -85,69 +86,11 @@ export const Block = ({
     }
   };
 
-  const findFirstDirectoryFile = (
-    items: NonNullable<BlocksProps['fileTree']>
-  ): { path: string; content: string } | null => {
-    for (const item of items) {
-      if (item.type === 'file') {
-        return { path: item.path, content: item.content };
-      }
-
-      const nested = findFirstDirectoryFile(item.children);
-      if (nested) {
-        return nested;
-      }
-    }
-
-    return null;
+  const activeSingleFileCode = {
+    code: getCleanCode(code),
+    language: getCodeLanguage(code),
+    fileName: `${blocksId}.tsx`,
   };
-
-  const getLanguageFromPath = (path: string): SupportedLanguages => {
-    const extension = path.split('.').pop()?.toLowerCase();
-
-    switch (extension) {
-      case 'ts':
-        return 'typescript';
-      case 'tsx':
-        return 'tsx';
-      case 'js':
-        return 'javascript';
-      case 'jsx':
-        return 'jsx';
-      case 'css':
-        return 'css';
-      case 'html':
-        return 'html';
-      case 'json':
-        return 'json';
-      case 'md':
-      case 'mdx':
-        return 'markdown';
-      default:
-        return 'tsx';
-    }
-  };
-
-  const activeCodeData =
-    meta?.type === 'directory'
-      ? (() => {
-          const firstFile = fileTree ? findFirstDirectoryFile(fileTree) : null;
-
-          if (!firstFile) {
-            return null;
-          }
-
-          return {
-            code: firstFile.content,
-            language: getLanguageFromPath(firstFile.path),
-            fileName: firstFile.path,
-          };
-        })()
-      : {
-          code: getCleanCode(code),
-          language: getCodeLanguage(code),
-          fileName: `${blocksId}.tsx`,
-        };
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as 'preview' | 'code' }));
@@ -320,19 +263,19 @@ export const Block = ({
           </div>
         )}
 
-        {state.view === 'code' && (
+        {state.view === 'code' && meta?.type === 'file' && (
           <div className="group-data-[view=preview]/block-view-wrapper:hidden">
-            {activeCodeData ? (
-              <SingleFileCodeView
-                code={activeCodeData.code}
-                fileName={activeCodeData.fileName}
-                language={activeCodeData.language}
-              />
-            ) : (
-              <div className="p-4 text-muted-foreground">
-                No code available.
-              </div>
-            )}
+            <SingleFileCodeView
+              code={activeSingleFileCode.code}
+              fileName={activeSingleFileCode.fileName}
+              language={activeSingleFileCode.language}
+            />
+          </div>
+        )}
+
+        {state.view === 'code' && meta?.type === 'directory' && (
+          <div className="overflow-auto rounded-lg group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)">
+            <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
           </div>
         )}
       </div>

@@ -196,6 +196,8 @@ export function SingleFileCodeView({
           {
             '--diffs-font-family':
               'var(--font-mono), var(--diffs-font-fallback)',
+            '--diffs-font-size': '14px',
+            '--diffs-line-height': '22px',
           } as CSSProperties
         }
       />

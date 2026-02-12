@@ -519,6 +519,8 @@ function CodeView() {
             {
               '--diffs-font-family':
                 'var(--font-mono), var(--diffs-font-fallback)',
+              '--diffs-font-size': '14px',
+              '--diffs-line-height': '22px',
             } as React.CSSProperties
           }
         />

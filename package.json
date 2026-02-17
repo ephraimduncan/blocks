@@ -13,7 +13,11 @@
     "build": "bun run generate:registry && bun run generate:markdown && bun run generate:rss && next build",
     "generate": "bun run generate:registry && bun run generate:markdown",
     "start": "next start",
-    "lint": "bunx ultracite lint"
+    "lint": "bunx ultracite lint",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "commit-msg": "bunx commitlint --edit $1"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -95,11 +99,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "19.1.11",
     "@types/react-dom": "19.1.7",
+    "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4.1.12",
     "ts-morph": "^25.0.1",
     "typescript": "^5",

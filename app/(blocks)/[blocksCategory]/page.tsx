@@ -1,13 +1,14 @@
-import { BreadcrumbJsonLd } from "@/components/breadcrumb-jsonld";
-import { Block } from "@/components/ui/block";
-import { CustomMDX } from "@/components/ui/mdx";
-import { siteConfig } from "@/config";
-import { blocksCategoriesMetadata } from "@/content/blocks-categories";
-import { getBlocks } from "@/lib/blocks";
-import { IconChevronLeft } from "@tabler/icons-react";
-import { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { IconChevronLeft } from '@tabler/icons-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { BreadcrumbJsonLd } from '@/components/breadcrumb-jsonld';
+import { CategoryItemListJsonLd } from '@/components/category-itemlist-jsonld';
+import { Block } from '@/components/ui/block';
+import { CustomMDX } from '@/components/ui/mdx';
+import { siteConfig } from '@/config';
+import { blocksCategoriesMetadata } from '@/content/blocks-categories';
+import { getBlocks } from '@/lib/blocks';
 
 type PageProps = {
   params: Promise<{ blocksCategory: string }>;
@@ -19,7 +20,7 @@ type Params = {
   }>;
 };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return blocksCategoriesMetadata.map((category) => ({
     blocksCategory: category.id,
   }));
@@ -65,8 +66,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui Components`,
       description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks.`,
       url: `${siteConfig.url}/${params.blocksCategory}`,
-      siteName: "blocks.so",
-      type: "website",
+      siteName: 'blocks.so',
+      type: 'website',
       images: [
         {
           url: siteConfig.ogImage,
@@ -77,11 +78,11 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: `${categoryName} Shadcn Blocks - ${blockCount} Free Components`,
       description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} accessible UI blocks.`,
-      creator: "@ephraimduncan_",
-      site: "@ephraimduncan_",
+      creator: '@ephraimduncan_',
+      site: '@ephraimduncan_',
       images: [siteConfig.ogImage],
     },
   };
@@ -99,45 +100,53 @@ export default async function Page({ params }: PageProps) {
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Shadcn Blocks" },
+          { name: 'Shadcn Blocks' },
           { name: blocks.name, path: `/${blocksCategory}` },
         ]}
       />
+      <CategoryItemListJsonLd
+        categoryName={blocks.name}
+        categoryPath={`/${blocksCategory}`}
+        items={blocks.blocksData.map((block) => ({
+          id: block.blocksId,
+          name: block.name,
+        }))}
+      />
       <div className="flex flex-col">
-      <div className="space-y-2 flex flex-col items-center justify-center my-10">
-        <Link
-          href="/"
-          className="text-sm text-muted-foreground flex gap-0.5 items-center"
-        >
-          <IconChevronLeft className="size-5 text-[#A6A6A6] " />
-          <span className="font-medium text-base text-[#A6A6A6]">
-            Back to blocks
-          </span>
-        </Link>
+        <div className="my-10 flex flex-col items-center justify-center space-y-2">
+          <Link
+            className="flex items-center gap-0.5 text-muted-foreground text-sm"
+            href="/"
+          >
+            <IconChevronLeft className="size-5 text-[#A6A6A6] " />
+            <span className="font-medium text-[#A6A6A6] text-base">
+              Back to blocks
+            </span>
+          </Link>
 
-        <h1 className="text-3xl/[1.1] sm:text-4xl/[1.1] md:text-5xl/[1.1] font-bold tracking-tight">
-          {blocks.name}
-        </h1>
-      </div>
+          <h1 className="font-bold text-3xl/[1.1] tracking-tight sm:text-4xl/[1.1] md:text-5xl/[1.1]">
+            {blocks.name}
+          </h1>
+        </div>
 
-      <div className="mt-0 overflow-hidden px-px pb-px">
-        {blocks.blocksData?.map((block) => (
-          <Block
-            key={block.blocksId}
-            name={block.name}
-            code={block.codeSource}
-            meta={block.meta}
-            codeSource={
-              block.codeSource && (
-                <CustomMDX source={block.codeSource.toString()} />
-              )
-            }
-            blocksId={block.blocksId}
-            blocksCategory={block.blocksCategory}
-            fileTree={block.fileTree}
-          />
-        ))}
-      </div>
+        <div className="mt-0 overflow-hidden px-px pb-px">
+          {blocks.blocksData?.map((block) => (
+            <Block
+              blocksCategory={block.blocksCategory}
+              blocksId={block.blocksId}
+              code={block.codeSource}
+              codeSource={
+                block.codeSource && (
+                  <CustomMDX source={block.codeSource.toString()} />
+                )
+              }
+              fileTree={block.fileTree}
+              key={block.blocksId}
+              meta={block.meta}
+              name={block.name}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

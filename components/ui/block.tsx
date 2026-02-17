@@ -32,6 +32,7 @@ const CODE_LANG_REGEX = /^`{3,4}([a-zA-Z0-9#+-]+)\n/;
 export const Block = ({
   name,
   blocksId,
+  blocksCategory,
   code,
   meta,
   fileTree,
@@ -132,12 +133,12 @@ export const Block = ({
       <div className="">
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-4">
           <div className="flex cursor-pointer items-center gap-4 font-medium text-foreground sm:text-lg">
-            <a
+            <Link
               className="font-semibold text-base underline-offset-2 hover:underline"
-              href={`#${blocksId}`}
+              href={`/${blocksCategory}/${blocksId}`}
             >
               {name}
-            </a>
+            </Link>
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-0">
             <Tabs

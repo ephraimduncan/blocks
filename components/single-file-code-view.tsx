@@ -9,6 +9,7 @@ import {
   IconCopy,
   IconFileCode,
 } from '@pierre/icons';
+import posthog from 'posthog-js';
 import {
   type CSSProperties,
   useEffect,
@@ -16,7 +17,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
 import { cn } from '@/lib/utils';
 
 preloadHighlighter({
@@ -30,12 +30,16 @@ interface SingleFileCodeViewProps {
   code: string;
   language?: SupportedLanguages;
   fileName?: string;
+  blockId: string;
+  categoryId: string;
 }
 
 export function SingleFileCodeView({
   code,
   language = 'tsx',
   fileName = 'App.tsx',
+  blockId,
+  categoryId,
 }: SingleFileCodeViewProps) {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
@@ -104,6 +108,13 @@ export function SingleFileCodeView({
     try {
       await navigator.clipboard.writeText(file.contents);
       setCopied(true);
+
+      posthog.capture('snippet_copied', {
+        block_id: blockId,
+        category_id: categoryId,
+        snippet_type: 'source_code',
+        language,
+      });
 
       if (copiedTimeoutRef.current !== null) {
         window.clearTimeout(copiedTimeoutRef.current);

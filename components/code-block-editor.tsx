@@ -17,8 +17,8 @@ import {
   IconFolderOpen,
 } from '@tabler/icons-react';
 import { ChevronRight } from 'lucide-react';
+import posthog from 'posthog-js';
 import * as React from 'react';
-
 import {
   Sidebar,
   SidebarContent,
@@ -59,6 +59,8 @@ type CodeBlockEditorContext = {
   expandedFolders: Set<string>;
   toggleFolder: (path: string) => void;
   blockTitle?: string;
+  blockId?: string;
+  categoryId?: string;
 };
 
 const CodeBlockEditorContext =
@@ -78,10 +80,14 @@ function CodeBlockEditorProvider({
   children,
   fileTree,
   blockTitle,
+  blockId,
+  categoryId,
 }: {
   children: React.ReactNode;
   fileTree: FileTreeItem[];
   blockTitle?: string;
+  blockId?: string;
+  categoryId?: string;
 }) {
   const initialFilePath = findFirstFile(fileTree)?.path || null;
 
@@ -135,6 +141,8 @@ function CodeBlockEditorProvider({
         expandedFolders,
         toggleFolder,
         blockTitle,
+        blockId,
+        categoryId,
       }}
     >
       <div className="flex min-w-0 flex-col items-stretch rounded-lg border">
@@ -318,8 +326,14 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
 }
 
 function CodeView() {
-  const { activeFile, fileTree, openFiles, setActiveFile } =
-    useCodeBlockEditor();
+  const {
+    activeFile,
+    fileTree,
+    openFiles,
+    setActiveFile,
+    blockId,
+    categoryId,
+  } = useCodeBlockEditor();
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
@@ -401,6 +415,15 @@ function CodeView() {
     try {
       await navigator.clipboard.writeText(content);
       setCopied(true);
+
+      if (file && blockId && categoryId) {
+        posthog.capture('snippet_copied', {
+          block_id: blockId,
+          category_id: categoryId,
+          snippet_type: 'source_code',
+          language: getLanguageFromPath(file.path),
+        });
+      }
 
       if (copiedTimeoutRef.current !== null) {
         window.clearTimeout(copiedTimeoutRef.current);
@@ -533,6 +556,8 @@ export interface CodeBlockEditorProps {
   fileTree: FileTreeItem[];
   blockTitle?: string;
   height?: string;
+  blockId?: string;
+  categoryId?: string;
 }
 
 export function buildFileTree(paths: string[]): FileTreeItem[] {
@@ -591,6 +616,8 @@ export function CodeBlockEditor({
   fileTree,
   blockTitle,
   height = '700px',
+  blockId,
+  categoryId,
 }: CodeBlockEditorProps) {
   if (!fileTree || fileTree.length === 0) {
     return (
@@ -620,7 +647,12 @@ export function CodeBlockEditor({
   }, [fileTree]);
 
   return (
-    <CodeBlockEditorProvider blockTitle={blockTitle} fileTree={sortedFileTree}>
+    <CodeBlockEditorProvider
+      blockId={blockId}
+      blockTitle={blockTitle}
+      categoryId={categoryId}
+      fileTree={sortedFileTree}
+    >
       <div className="flex w-full overflow-hidden" style={{ height }}>
         <div className="w-[240px] shrink-0 border-r">
           <FileTreeView />

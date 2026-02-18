@@ -3,9 +3,9 @@
 import type { SupportedLanguages } from '@pierre/diffs/react';
 import { Fullscreen, Monitor, Smartphone, Tablet } from 'lucide-react';
 import Link from 'next/link';
-import { type ReactNode, useRef, useState } from 'react';
+import posthog from 'posthog-js';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import type { ImperativePanelHandle } from 'react-resizable-panels';
-
 import { OpenInV0Button } from '@/components/open-in-v0-button';
 import {
   ResizableHandle,
@@ -43,7 +43,18 @@ export const Block = ({
   });
 
   const resizablePanelRef = useRef<ImperativePanelHandle>(null);
+  const hasTrackedPreview = useRef(false);
   const iframeHeight = meta?.iframeHeight ?? '930px';
+
+  useEffect(() => {
+    if (state.view === 'preview' && !hasTrackedPreview.current) {
+      hasTrackedPreview.current = true;
+      posthog.capture('block_preview_opened', {
+        block_id: blocksId,
+        category_id: blocksCategory,
+      });
+    }
+  }, [state.view, blocksId, blocksCategory]);
 
   const getCleanCode = (rawCode: string | ReactNode): string => {
     const cleanCode = typeof rawCode === 'string' ? rawCode : '';
@@ -95,6 +106,14 @@ export const Block = ({
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as 'preview' | 'code' }));
+
+    if (value === 'preview' && !hasTrackedPreview.current) {
+      hasTrackedPreview.current = true;
+      posthog.capture('block_preview_opened', {
+        block_id: blocksId,
+        category_id: blocksCategory,
+      });
+    }
   };
 
   const handleSizeChange = (value: string) => {
@@ -222,7 +241,7 @@ export const Block = ({
             />
 
             <div className="flex items-center gap-1">
-              <AddCommand name={blocksId} />
+              <AddCommand category={blocksCategory} name={blocksId} />
             </div>
 
             <Separator
@@ -230,7 +249,7 @@ export const Block = ({
               orientation="vertical"
             />
             <div>
-              <OpenInV0Button name={blocksId} />
+              <OpenInV0Button category={blocksCategory} name={blocksId} />
             </div>
           </div>
         </div>
@@ -267,6 +286,8 @@ export const Block = ({
         {state.view === 'code' && meta?.type === 'file' && (
           <div className="group-data-[view=preview]/block-view-wrapper:hidden">
             <SingleFileCodeView
+              blockId={blocksId}
+              categoryId={blocksCategory}
               code={activeSingleFileCode.code}
               fileName={activeSingleFileCode.fileName}
               language={activeSingleFileCode.language}
@@ -276,7 +297,12 @@ export const Block = ({
 
         {state.view === 'code' && meta?.type === 'directory' && (
           <div className="overflow-auto rounded-lg group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)">
-            <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
+            <CodeBlockEditor
+              blockId={blocksId}
+              blockTitle={name}
+              categoryId={blocksCategory}
+              fileTree={fileTree ?? []}
+            />
           </div>
         )}
       </div>

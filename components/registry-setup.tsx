@@ -1,7 +1,10 @@
 // https://github.com/shadcn-ui/alpine-registry/blob/main/components/registry-setup.tsx
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { CheckIcon, CopyIcon } from 'lucide-react';
+import posthog from 'posthog-js';
+import type * as React from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,11 +12,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { useCopyToClipboard } from "@/hooks/use-copy";
-import { cn } from "@/lib/utils";
-import { CheckIcon, CopyIcon } from "lucide-react";
-import * as React from "react";
+} from '@/components/ui/dialog';
+import { useCopyToClipboard } from '@/hooks/use-copy';
+import { cn } from '@/lib/utils';
 
 export function RegistrySetup({
   className,
@@ -24,38 +25,39 @@ export function RegistrySetup({
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
+          className={cn(className, 'rounded-full')}
           size="default"
-          className={cn(className, "rounded-full")}
+          variant="ghost"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 256 256"
+            aria-hidden="true"
             className="size-4"
+            viewBox="0 0 256 256"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="256" height="256" fill="none"></rect>
+            <rect fill="none" height="256" width="256" />
             <line
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="32"
               x1="208"
-              y1="128"
               x2="128"
+              y1="128"
               y2="208"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="32"
-            ></line>
+            />
             <line
-              x1="192"
-              y1="40"
-              x2="40"
-              y2="192"
               fill="none"
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="32"
-            ></line>
+              x1="192"
+              x2="40"
+              y1="40"
+              y2="192"
+            />
           </svg>
           Registry
         </Button>
@@ -69,20 +71,25 @@ export function RegistrySetup({
           </DialogDescription>
         </DialogHeader>
         <div className="font-medium">
-          Copy and paste the code into{" "}
+          Copy and paste the code into{' '}
           <code className="font-mono text-foreground">components.json</code>
         </div>
         <div className="relative">
           <Button
-            variant="outline"
+            className="absolute top-4 right-4 z-10 size-8 rounded-md bg-background"
+            onClick={() => {
+              copyToClipboard(registrySetupCode);
+              posthog.capture('snippet_copied', {
+                snippet_type: 'registry_config',
+              });
+            }}
             size="icon"
-            className="absolute bg-background right-4 z-10 top-4 size-8 rounded-md"
-            onClick={() => copyToClipboard(registrySetupCode)}
+            variant="outline"
           >
             {isCopied ? <CheckIcon /> : <CopyIcon />}
           </Button>
-          <div className="overflow-x-auto bg-muted p-8 rounded-md min-h-[120px]">
-            <pre className="text-sm font-mono">
+          <div className="min-h-[120px] overflow-x-auto rounded-md bg-muted p-8">
+            <pre className="font-mono text-sm">
               <code>{registrySetupCode}</code>
             </pre>
           </div>
@@ -90,16 +97,16 @@ export function RegistrySetup({
         <div className="font-medium">
           Then use the following command to add components:
         </div>
-        <div className="overflow-x-auto bg-muted p-8 rounded-md min-h-[50px]">
-          <pre className="text-sm font-mono">
+        <div className="min-h-[50px] overflow-x-auto rounded-md bg-muted p-8">
+          <pre className="font-mono text-sm">
             <code>npx shadcn@latest add @blocks/[component-name]</code>
           </pre>
         </div>
         <div className="font-medium">
           To setup the MCP server, run the following command:
         </div>
-        <div className="overflow-x-auto bg-muted p-8 rounded-md min-h-[50px]">
-          <pre className="text-sm font-mono">
+        <div className="min-h-[50px] overflow-x-auto rounded-md bg-muted p-8">
+          <pre className="font-mono text-sm">
             <code>npx shadcn@latest mcp init</code>
           </pre>
         </div>

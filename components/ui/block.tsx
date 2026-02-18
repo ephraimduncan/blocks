@@ -6,6 +6,7 @@ import Link from 'next/link';
 import posthog from 'posthog-js';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import type { ImperativePanelHandle } from 'react-resizable-panels';
+import { OpenInPlaygroundButton } from '@/components/open-in-playground-button';
 import { OpenInV0Button } from '@/components/open-in-v0-button';
 import {
   ResizableHandle,
@@ -248,7 +249,13 @@ export const Block = ({
               className="mx-1 hidden h-4 xl:flex"
               orientation="vertical"
             />
-            <div>
+            <div className="flex items-center gap-2">
+              {meta?.type === 'file' && (
+                <OpenInPlaygroundButton
+                  category={blocksCategory}
+                  name={blocksId}
+                />
+              )}
               <OpenInV0Button category={blocksCategory} name={blocksId} />
             </div>
           </div>

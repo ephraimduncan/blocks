@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { ThemeProvider } from 'next-themes';
+import { Suspense } from 'react';
+import { PostHogPageView } from '@/app/providers/posthog-pageview';
+import { PostHogProvider } from '@/app/providers/posthog-provider';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { Toaster } from '@/components/ui/sonner';
@@ -154,19 +157,24 @@ export default function RootLayout({
         className={cn(fontSans.variable, fontMono.variable, 'antialiased')}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-          enableSystem={false}
-          forcedTheme="light"
-        >
-          {children}
+        <PostHogProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            disableTransitionOnChange
+            enableSystem={false}
+            forcedTheme="light"
+          >
+            <Suspense fallback={null}>
+              <PostHogPageView />
+            </Suspense>
+            {children}
 
-          <TailwindIndicator />
-          <Toaster />
-          <SeoJsonLd />
-        </ThemeProvider>
+            <TailwindIndicator />
+            <Toaster />
+            <SeoJsonLd />
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

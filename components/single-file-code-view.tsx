@@ -17,6 +17,7 @@ import {
   useState,
 } from 'react';
 
+import { capture } from '@/lib/analytics/capture';
 import { cn } from '@/lib/utils';
 
 preloadHighlighter({
@@ -30,12 +31,16 @@ interface SingleFileCodeViewProps {
   code: string;
   language?: SupportedLanguages;
   fileName?: string;
+  blockId: string;
+  categoryId: string;
 }
 
 export function SingleFileCodeView({
   code,
   language = 'tsx',
   fileName = 'App.tsx',
+  blockId,
+  categoryId,
 }: SingleFileCodeViewProps) {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
@@ -104,6 +109,14 @@ export function SingleFileCodeView({
     try {
       await navigator.clipboard.writeText(file.contents);
       setCopied(true);
+
+      capture('snippet_copied', {
+        block_id: blockId,
+        category_id: categoryId,
+        snippet_type: 'source_code',
+        language,
+        ui_surface: 'code_viewer',
+      });
 
       if (copiedTimeoutRef.current !== null) {
         window.clearTimeout(copiedTimeoutRef.current);

@@ -12,6 +12,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
+import { capture } from '@/lib/analytics/capture';
 import type { BlocksProps } from '@/lib/blocks';
 import { AddCommand } from '../add-command';
 import { CodeBlockEditor } from '../code-block-editor';
@@ -95,6 +96,14 @@ export const Block = ({
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as 'preview' | 'code' }));
+
+    if (value === 'preview') {
+      capture('block_preview_opened', {
+        block_id: blocksId,
+        category_id: blocksCategory,
+        ui_surface: 'block_card',
+      });
+    }
   };
 
   const handleSizeChange = (value: string) => {
@@ -222,7 +231,7 @@ export const Block = ({
             />
 
             <div className="flex items-center gap-1">
-              <AddCommand name={blocksId} />
+              <AddCommand category={blocksCategory} name={blocksId} />
             </div>
 
             <Separator
@@ -230,7 +239,7 @@ export const Block = ({
               orientation="vertical"
             />
             <div>
-              <OpenInV0Button name={blocksId} />
+              <OpenInV0Button category={blocksCategory} name={blocksId} />
             </div>
           </div>
         </div>
@@ -267,6 +276,8 @@ export const Block = ({
         {state.view === 'code' && meta?.type === 'file' && (
           <div className="group-data-[view=preview]/block-view-wrapper:hidden">
             <SingleFileCodeView
+              blockId={blocksId}
+              categoryId={blocksCategory}
               code={activeSingleFileCode.code}
               fileName={activeSingleFileCode.fileName}
               language={activeSingleFileCode.language}
@@ -276,7 +287,12 @@ export const Block = ({
 
         {state.view === 'code' && meta?.type === 'directory' && (
           <div className="overflow-auto rounded-lg group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)">
-            <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
+            <CodeBlockEditor
+              blockId={blocksId}
+              blockTitle={name}
+              categoryId={blocksCategory}
+              fileTree={fileTree ?? []}
+            />
           </div>
         )}
       </div>

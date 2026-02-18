@@ -1,7 +1,7 @@
 'use client';
 
+import posthog from 'posthog-js';
 import { Button } from '@/components/ui/button';
-import { capture } from '@/lib/analytics/capture';
 import { cn } from '@/lib/utils';
 
 export function OpenInV0Button({
@@ -24,10 +24,7 @@ export function OpenInV0Button({
           process.env.NEXT_PUBLIC_BASE_URL || 'https://blocks.so'
         }/r/${name}.json`}
         onClick={() => {
-          capture('cta_clicked', {
-            cta_id: 'open_in_v0',
-            destination_host: 'v0.dev',
-            ui_surface: 'block_card',
+          posthog.capture('cta_clicked', {
             block_id: name,
             category_id: category,
           });

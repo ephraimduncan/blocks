@@ -17,8 +17,8 @@ import {
   IconFolderOpen,
 } from '@tabler/icons-react';
 import { ChevronRight } from 'lucide-react';
+import posthog from 'posthog-js';
 import * as React from 'react';
-
 import {
   Sidebar,
   SidebarContent,
@@ -26,7 +26,6 @@ import {
   SidebarGroupContent,
   SidebarProvider,
 } from '@/components/ui/sidebar';
-import { capture } from '@/lib/analytics/capture';
 import { cn } from '@/lib/utils';
 
 preloadHighlighter({
@@ -418,12 +417,11 @@ function CodeView() {
       setCopied(true);
 
       if (file && blockId && categoryId) {
-        capture('snippet_copied', {
+        posthog.capture('snippet_copied', {
           block_id: blockId,
           category_id: categoryId,
           snippet_type: 'source_code',
           language: getLanguageFromPath(file.path),
-          ui_surface: 'code_viewer',
         });
       }
 

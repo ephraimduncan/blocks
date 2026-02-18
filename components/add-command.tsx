@@ -1,10 +1,10 @@
 'use client';
 
 import { CheckIcon } from 'lucide-react';
+import posthog from 'posthog-js';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { useCopyToClipboard } from '@/hooks/use-copy';
-import { capture } from '@/lib/analytics/capture';
 
 export function AddCommand({
   name,
@@ -21,10 +21,9 @@ export function AddCommand({
       onClick={() => {
         copyToClipboard(`npx shadcn@latest add @blocks/${name}`);
         toast.success('npx command copied to clipboard');
-        capture('registry_install_clicked', {
+        posthog.capture('registry_install_clicked', {
           block_id: name,
           category_id: category,
-          ui_surface: 'block_card',
         });
       }}
       size="sm"

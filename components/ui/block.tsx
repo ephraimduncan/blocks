@@ -3,16 +3,15 @@
 import type { SupportedLanguages } from '@pierre/diffs/react';
 import { Fullscreen, Monitor, Smartphone, Tablet } from 'lucide-react';
 import Link from 'next/link';
-import { type ReactNode, useRef, useState } from 'react';
+import posthog from 'posthog-js';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import type { ImperativePanelHandle } from 'react-resizable-panels';
-
 import { OpenInV0Button } from '@/components/open-in-v0-button';
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
-import { capture } from '@/lib/analytics/capture';
 import type { BlocksProps } from '@/lib/blocks';
 import { AddCommand } from '../add-command';
 import { CodeBlockEditor } from '../code-block-editor';
@@ -44,7 +43,18 @@ export const Block = ({
   });
 
   const resizablePanelRef = useRef<ImperativePanelHandle>(null);
+  const hasTrackedPreview = useRef(false);
   const iframeHeight = meta?.iframeHeight ?? '930px';
+
+  useEffect(() => {
+    if (state.view === 'preview' && !hasTrackedPreview.current) {
+      hasTrackedPreview.current = true;
+      posthog.capture('block_preview_opened', {
+        block_id: blocksId,
+        category_id: blocksCategory,
+      });
+    }
+  }, [state.view, blocksId, blocksCategory]);
 
   const getCleanCode = (rawCode: string | ReactNode): string => {
     const cleanCode = typeof rawCode === 'string' ? rawCode : '';
@@ -97,11 +107,11 @@ export const Block = ({
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as 'preview' | 'code' }));
 
-    if (value === 'preview') {
-      capture('block_preview_opened', {
+    if (value === 'preview' && !hasTrackedPreview.current) {
+      hasTrackedPreview.current = true;
+      posthog.capture('block_preview_opened', {
         block_id: blocksId,
         category_id: blocksCategory,
-        ui_surface: 'block_card',
       });
     }
   };

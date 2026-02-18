@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { ThemeProvider } from 'next-themes';
-import { Suspense } from 'react';
-import { PostHogPageView } from '@/app/providers/posthog-pageview';
 import { PostHogProvider } from '@/app/providers/posthog-provider';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -165,9 +163,6 @@ export default function RootLayout({
             enableSystem={false}
             forcedTheme="light"
           >
-            <Suspense fallback={null}>
-              <PostHogPageView />
-            </Suspense>
             {children}
 
             <TailwindIndicator />

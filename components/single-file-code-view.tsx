@@ -9,6 +9,7 @@ import {
   IconCopy,
   IconFileCode,
 } from '@pierre/icons';
+import posthog from 'posthog-js';
 import {
   type CSSProperties,
   useEffect,
@@ -16,8 +17,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
-import { capture } from '@/lib/analytics/capture';
 import { cn } from '@/lib/utils';
 
 preloadHighlighter({
@@ -110,12 +109,11 @@ export function SingleFileCodeView({
       await navigator.clipboard.writeText(file.contents);
       setCopied(true);
 
-      capture('snippet_copied', {
+      posthog.capture('snippet_copied', {
         block_id: blockId,
         category_id: categoryId,
         snippet_type: 'source_code',
         language,
-        ui_surface: 'code_viewer',
       });
 
       if (copiedTimeoutRef.current !== null) {

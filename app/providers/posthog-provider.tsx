@@ -18,7 +18,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       api_host: POSTHOG_HOST ?? '/ingest',
       ui_host: 'https://us.posthog.com',
       defaults: '2025-11-30',
-      capture_pageview: false,
+      capture_pageview: 'history_change',
       disable_session_recording: true,
       person_profiles: 'always',
     });

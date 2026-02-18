@@ -5,7 +5,6 @@ import posthog from 'posthog-js';
 import { useEffect } from 'react';
 
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 const IS_PRODUCTION = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
@@ -15,7 +14,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     }
 
     posthog.init(POSTHOG_KEY, {
-      api_host: POSTHOG_HOST ?? '/ingest',
+      api_host: '/ingest',
       ui_host: 'https://us.posthog.com',
       defaults: '2025-11-30',
       capture_pageview: 'history_change',

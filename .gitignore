@@ -43,6 +43,7 @@ next-env.d.ts
 # generated files
 /.component-sources
 content/index.ts
+public/rss.xml
 
 # AI
 .claude

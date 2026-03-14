@@ -11,7 +11,7 @@ To use blocks from this registry, configure your `components.json` file with the
 ```json
 {
   "registries": {
-    "@blocks": "https://blocks.so/r/{name}.json"
+    "@blocks-so": "https://blocks.so/r/{name}.json"
   }
 }
 ```
@@ -20,13 +20,13 @@ Then add blocks to your project using the shadcn CLI:
 
 ```bash
 # Add a specific block
-npx shadcn@latest add @blocks/login-01
+npx shadcn@latest add @blocks-so/login-01
 
 # Add a dialog block
-npx shadcn@latest add @blocks/dialog-01
+npx shadcn@latest add @blocks-so/dialog-01
 
 # Add a sidebar block
-npx shadcn@latest add @blocks/sidebar-01
+npx shadcn@latest add @blocks-so/sidebar-01
 ```
 
 Alternatively, you can add blocks directly from the registry:

@@ -66,7 +66,7 @@ export function RegistrySetup({
         <DialogHeader>
           <DialogTitle>Setup Registry</DialogTitle>
           <DialogDescription>
-            Use the code below to configure the @blocks registry for your
+            Use the code below to configure the @blocks-so registry for your
             project.
           </DialogDescription>
         </DialogHeader>
@@ -99,7 +99,7 @@ export function RegistrySetup({
         </div>
         <div className="min-h-[50px] overflow-x-auto rounded-md bg-muted p-8">
           <pre className="font-mono text-sm">
-            <code>npx shadcn@latest add @blocks/[component-name]</code>
+            <code>npx shadcn@latest add @blocks-so/[component-name]</code>
           </pre>
         </div>
         <div className="font-medium">
@@ -116,6 +116,6 @@ export function RegistrySetup({
 }
 
 const registrySetupCode = `"registries": {
-  "@blocks": "https://blocks.so/r/{name}.json"
+  "@blocks-so": "https://blocks.so/r/{name}.json"
 }
 `;

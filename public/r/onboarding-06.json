@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "onboarding-06",
+  "type": "registry:block",
+  "title": "Onboarding Timeline",
+  "description": "A onboarding timeline block.",
+  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "registryDependencies": [],
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "files": [
+    {
+      "path": "content/components/onboarding/onboarding-06.tsx",
+      "type": "registry:component",
+      "target": "components/onboarding-06.tsx",
+      "content": "import { IconCheck } from '@tabler/icons-react';\nimport { cn } from '@/lib/utils';\n\nconst steps = [\n  {\n    id: 1,\n    type: 'done',\n    title: 'Repository connected',\n    description: 'Linked GitHub repository to deployment pipeline',\n    activityTime: '3d ago',\n  },\n  {\n    id: 2,\n    type: 'done',\n    title: 'Build configuration set',\n    description: 'Configured build commands and environment variables',\n    activityTime: '2d ago',\n  },\n  {\n    id: 3,\n    type: 'done',\n    title: 'Domain configured',\n    description: 'Custom domain verified and SSL certificate issued',\n    activityTime: '31min ago',\n  },\n  {\n    id: 4,\n    type: 'in progress',\n    title: 'Running health checks',\n    description: 'Verifying all endpoints respond correctly',\n    activityTime: 'Running now...',\n  },\n  {\n    id: 5,\n    type: 'open',\n    title: 'Go live',\n    description: 'Switch traffic to the new deployment',\n    activityTime: 'Upcoming',\n  },\n];\n\nexport function Onboarding06() {\n  return (\n    <div className=\"flex min-h-dvh items-center justify-center bg-background p-4\">\n      <div className=\"sm:mx-auto sm:max-w-lg\">\n        <h3 className=\"font-medium text-foreground\">Deployment progress</h3>\n        <ul className=\"mt-6 space-y-6\">\n          {steps.map((step, stepIdx) => (\n            <li className=\"relative flex gap-x-3\" key={step.id}>\n              <div\n                className={cn(\n                  'absolute top-0 left-0 flex w-6 justify-center',\n                  stepIdx === steps.length - 1 ? 'h-6' : '-bottom-6'\n                )}\n              >\n                <span aria-hidden className=\"w-px bg-border\" />\n              </div>\n              <div className=\"flex items-start space-x-2.5\">\n                <div className=\"relative flex size-6 flex-none items-center justify-center bg-background\">\n                  {step.type === 'done' ? (\n                    <IconCheck aria-hidden className=\"size-5 text-primary\" />\n                  ) : step.type === 'in progress' ? (\n                    <div\n                      aria-hidden\n                      className=\"size-2.5 rounded-full bg-primary ring-4 ring-background\"\n                    />\n                  ) : (\n                    <div\n                      aria-hidden\n                      className=\"size-3 rounded-full border border-border bg-background ring-4 ring-background\"\n                    />\n                  )}\n                </div>\n                <div>\n                  <p className=\"mt-0.5 font-medium text-foreground text-sm\">\n                    {step.title}{' '}\n                    <span className=\"font-normal text-muted-foreground/60\">\n                      &#8729; {step.activityTime}\n                    </span>\n                  </p>\n                  <p className=\"mt-0.5 text-muted-foreground text-sm leading-6\">\n                    {step.description}\n                  </p>\n                </div>\n              </div>\n            </li>\n          ))}\n        </ul>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "categories": [
+    "onboarding"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "onboarding-03",
+  "type": "registry:block",
+  "title": "Onboarding Steps with Progress",
+  "description": "A onboarding steps with progress block.",
+  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "registryDependencies": [
+    "progress"
+  ],
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "files": [
+    {
+      "path": "content/components/onboarding/onboarding-03.tsx",
+      "type": "registry:component",
+      "target": "components/onboarding-03.tsx",
+      "content": "'use client';\n\nimport { IconCircleCheckFilled } from '@tabler/icons-react';\nimport { useState } from 'react';\nimport { Progress } from '@/components/ui/progress';\nimport { cn } from '@/lib/utils';\n\nconst steps = [\n  {\n    id: '1.',\n    title: 'Create your store',\n    description:\n      \"Choose a name, pick a subdomain, and configure your store's basic settings.\",\n  },\n  {\n    id: '2.',\n    title: 'Add your products',\n    description:\n      'Upload your catalog with photos, pricing, and inventory details.',\n  },\n  {\n    id: '3.',\n    title: 'Set up payments',\n    description:\n      'Connect Stripe or PayPal to start accepting orders from customers.',\n  },\n  {\n    id: '4.',\n    title: 'Launch your store',\n    description: 'Review everything and publish your storefront to the world.',\n  },\n];\n\nexport function Onboarding03() {\n  const [activeStep, setActiveStep] = useState(0);\n\n  return (\n    <div className=\"flex min-h-dvh items-center justify-center bg-background p-4\">\n      <div className=\"sm:mx-auto sm:max-w-lg\">\n        <h3 className=\"font-semibold text-foreground text-lg\">Store setup</h3>\n        <p className=\"mt-1 text-muted-foreground text-sm leading-6\">\n          Complete each step to launch your online store.\n        </p>\n        <div className=\"mt-4 flex items-center justify-end space-x-4\">\n          <span className=\"text-muted-foreground text-sm\">\n            Step {activeStep + 1}/{steps.length}\n          </span>\n          <Progress\n            className=\"w-32\"\n            value={(activeStep / steps.length) * 100}\n          />\n        </div>\n        <ul className=\"mt-4 space-y-4\">\n          {steps.map((step, index) => (\n            <li key={step.id}>\n              <button\n                className={cn(\n                  'relative w-full cursor-pointer rounded-lg border bg-card p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',\n                  index === activeStep\n                    ? 'border-foreground/20'\n                    : 'border-border'\n                )}\n                onClick={() => setActiveStep(index)}\n                type=\"button\"\n              >\n                <div className=\"flex items-start space-x-3\">\n                  {index < activeStep ? (\n                    <IconCircleCheckFilled\n                      aria-hidden={true}\n                      className=\"size-6 shrink-0 text-foreground\"\n                    />\n                  ) : (\n                    <span\n                      aria-hidden={true}\n                      className=\"flex size-6 items-center justify-center font-medium text-muted-foreground\"\n                    >\n                      {step.id}\n                    </span>\n                  )}\n                  <div>\n                    <h3\n                      className={cn(\n                        'font-medium',\n                        index < activeStep\n                          ? 'text-muted-foreground line-through'\n                          : 'text-foreground'\n                      )}\n                    >\n                      {step.title}\n                    </h3>\n                    <p className=\"mt-1 text-muted-foreground text-sm leading-6\">\n                      {step.description}\n                    </p>\n                  </div>\n                </div>\n              </button>\n            </li>\n          ))}\n        </ul>\n        <div className=\"mt-6 rounded-lg bg-muted p-4\">\n          <h4 className=\"font-medium text-foreground text-sm\">Need help?</h4>\n          <p className=\"mt-1 text-muted-foreground text-sm\">\n            Connect with a member of our team at{' '}\n            <a\n              className=\"font-medium text-primary\"\n              href=\"mailto:help@example.com\"\n            >\n              help@example.com\n            </a>\n            .\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "categories": [
+    "onboarding"
+  ]
+}

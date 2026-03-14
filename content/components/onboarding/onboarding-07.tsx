@@ -1,0 +1,206 @@
+'use client';
+
+import {
+  IconCircleCheckFilled,
+  IconLoader2,
+  IconRefresh,
+} from '@tabler/icons-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
+
+const initialSteps = [
+  {
+    id: 1,
+    type: 'created' as const,
+    description: 'Export records',
+    value: 100,
+    createdOn: '2024-03-10 09:32',
+    runTime: '12min 18s',
+  },
+  {
+    id: 2,
+    type: 'created' as const,
+    description: 'Transform schema',
+    value: 100,
+    createdOn: '2024-03-10 10:03',
+    runTime: '18min 45s',
+  },
+  {
+    id: 3,
+    type: 'in progress' as const,
+    description: 'Import to new system',
+    value: 45,
+    createdOn: null as string | null,
+    runTime: null as string | null,
+  },
+];
+
+export function Onboarding07() {
+  const [steps, setSteps] = useState(initialSteps);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const allComplete = steps.every((s) => s.value === 100);
+
+  const startAnimation = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
+      setSteps((prev) => {
+        const next = prev.map((step) => {
+          if (step.id !== 3 || step.value >= 100) {
+            return step;
+          }
+          const increment = Math.random() * 0.8 + 0.3;
+          const newValue = Math.min(step.value + increment, 100);
+          if (newValue >= 100) {
+            return {
+              ...step,
+              value: 100,
+              type: 'created' as const,
+              createdOn: '2024-03-10 10:47',
+              runTime: '6min 32s',
+            };
+          }
+          return { ...step, value: newValue };
+        });
+        if (next[2].value >= 100 && intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
+        return next;
+      });
+    }, 50);
+  }, []);
+
+  useEffect(() => {
+    startAnimation();
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [startAnimation]);
+
+  const handleRunAgain = () => {
+    setSteps(
+      initialSteps.map((step) =>
+        step.id === 3
+          ? {
+              ...step,
+              value: 45,
+              type: 'in progress' as const,
+              createdOn: null,
+              runTime: null,
+            }
+          : step
+      )
+    );
+    startAnimation();
+  };
+
+  return (
+    <div className="flex min-h-dvh items-center justify-center bg-background p-4">
+      <div className="w-full max-w-xl">
+        <div className="flex items-center justify-between">
+          <h3 className="font-semibold text-foreground">Data Migration</h3>
+          <Button
+            className={
+              allComplete ? 'opacity-100' : 'pointer-events-none opacity-0'
+            }
+            onClick={handleRunAgain}
+            size="icon"
+            variant="secondary"
+          >
+            <IconRefresh aria-hidden="true" className="size-4" />
+          </Button>
+        </div>
+        <p className="mt-1 text-muted-foreground text-sm leading-6">
+          Migrating records from your legacy system
+        </p>
+        <div className="mt-6 flex items-center space-x-2">
+          {steps.map((step) => (
+            <div className="w-full truncate" key={step.id}>
+              <Progress className="h-1.5" value={step.value} />
+              <div className="mt-2 flex items-center space-x-1 truncate">
+                {step.value === 100 ? (
+                  <IconCircleCheckFilled
+                    aria-hidden={true}
+                    className="size-4 shrink-0 text-primary"
+                  />
+                ) : (
+                  <IconLoader2
+                    aria-hidden={true}
+                    className="size-4 shrink-0 animate-spin text-primary"
+                  />
+                )}
+                <p className="truncate text-muted-foreground text-xs">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <Accordion
+          className="mt-8"
+          collapsible
+          defaultValue="logs"
+          type="single"
+        >
+          <AccordionItem className="rounded-sm border-b-0" value="logs">
+            <AccordionTrigger className="font-medium text-foreground text-sm">
+              Logs overview ({steps.length})
+            </AccordionTrigger>
+            <AccordionContent>
+              <ul className="mt-2 space-y-6 pb-2">
+                {steps.map((step, stepIdx) => (
+                  <li className="relative flex gap-x-3" key={step.id}>
+                    <div
+                      className={cn(
+                        'absolute top-0 left-0 flex w-6 justify-center',
+                        stepIdx === steps.length - 1 ? 'h-6' : '-bottom-6'
+                      )}
+                    >
+                      <span aria-hidden={true} className="w-px bg-border" />
+                    </div>
+                    <div className="flex items-start space-x-2.5">
+                      <div className="relative flex size-6 flex-none items-center justify-center bg-background">
+                        {step.type === 'created' ? (
+                          <div className="size-3 rounded-full border border-border bg-muted/50 ring-4 ring-background" />
+                        ) : (
+                          <div className="size-3 rounded-full border border-border bg-background ring-4 ring-background" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="mt-0.5 font-medium text-foreground text-sm">
+                          {step.description}
+                        </p>
+                        {step.type === 'created' ? (
+                          <p className="text-muted-foreground text-sm leading-6">
+                            Created on {step.createdOn}, Runtime: {step.runTime}
+                          </p>
+                        ) : (
+                          <p className="text-muted-foreground text-sm leading-6">
+                            12,847 of 28,500 records processed...
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </div>
+  );
+}

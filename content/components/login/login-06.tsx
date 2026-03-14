@@ -5,13 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { JSX, SVGProps } from "react";
 
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
-  <svg
-    fill="currentColor"
-    height="48"
-    viewBox="0 0 40 48"
-    width="40"
-    {...props}
-  >
+  <svg fill="currentColor" height="48" viewBox="0 0 40 48" width="40" {...props}>
     <clipPath id="a">
       <path d="m0 0h40v48h-40z" />
     </clipPath>
@@ -29,15 +23,13 @@ const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
 export default function Login06() {
   return (
     <div className="flex items-center justify-center min-h-dvh">
-      <Card className="w-full max-w-sm rounded-4xl px-6 py-10 pt-14">
+      <Card className="w-full max-w-sm rounded-4xl px-6 py-10 pt-14 shadow-2xs">
         <CardContent className="">
           <div className="flex flex-col items-center space-y-8">
             <Logo />
 
             <div className="space-y-2 text-center">
-              <h1 className="text-balance text-3xl font-semibold text-foreground">
-                Welcome back!
-              </h1>
+              <h1 className="text-balance text-3xl font-semibold text-foreground">Welcome back!</h1>
               <p className="text-pretty text-muted-foreground text-sm">
                 First time here?{" "}
                 <a href="#" className="text-foreground hover:underline">
@@ -47,19 +39,12 @@ export default function Login06() {
             </div>
 
             <div className="w-full space-y-4">
-              <Input
-                type="email"
-                placeholder="Your email"
-                className="w-full rounded-xl"
-              />
+              <Input type="email" placeholder="Your email" className="w-full rounded-xl" />
               <div className="flex flex-col gap-2">
                 <Button className="w-full rounded-xl" size="lg">
                   Send me the magic link
                 </Button>
-                <Button
-                  variant="link"
-                  className="w-full text-sm text-muted-foreground"
-                >
+                <Button variant="link" className="w-full text-sm text-muted-foreground">
                   Sign in using password
                 </Button>
               </div>

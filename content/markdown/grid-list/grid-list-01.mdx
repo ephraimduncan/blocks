@@ -23,13 +23,10 @@ export default function GridList01() {
         <h2 className="text-balance text-sm font-medium text-muted-foreground">
           Favorite Book Collections
         </h2>
-        <ul
-          role="list"
-          className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3"
-        >
+        <ul role="list" className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3">
           {bookCollections.map((collection) => (
             <li key={collection.name} className="col-span-1">
-              <Card className="flex flex-row w-full gap-0 rounded-md shadow-sm overflow-hidden py-0">
+              <Card className="flex flex-row w-full gap-0 rounded-md shadow-2xs overflow-hidden py-0">
                 <div className="flex w-16 shrink-0 items-center justify-center bg-primary text-sm font-medium text-primary-foreground">
                   {collection.initials}
                 </div>
@@ -41,9 +38,7 @@ export default function GridList01() {
                     >
                       {collection.name}
                     </a>
-                    <p className="text-pretty text-muted-foreground">
-                      {collection.books} Books
-                    </p>
+                    <p className="text-pretty text-muted-foreground">{collection.books} Books</p>
                   </div>
                   <div className="shrink-0 pr-2">
                     <DropdownMenu>

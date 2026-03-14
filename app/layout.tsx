@@ -7,6 +7,7 @@ import { PostHogProvider } from '@/app/providers/posthog-provider';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { Toaster } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
 
@@ -163,11 +164,13 @@ export default function RootLayout({
             enableSystem={false}
             forcedTheme="light"
           >
-            {children}
+            <TooltipProvider delayDuration={0}>
+              {children}
 
-            <TailwindIndicator />
-            <Toaster />
-            <SeoJsonLd />
+              <TailwindIndicator />
+              <Toaster />
+              <SeoJsonLd />
+            </TooltipProvider>
           </ThemeProvider>
         </PostHogProvider>
       </body>

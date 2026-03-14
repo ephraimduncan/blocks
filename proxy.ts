@@ -5,7 +5,7 @@ const blockToCategory = new Map(
   blocksMetadata.map((b) => [b.id, b.category])
 );
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const slug = request.nextUrl.pathname.slice(1);
   const category = blockToCategory.get(slug);
   if (category) {

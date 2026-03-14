@@ -81,7 +81,7 @@ function MetricCard({
   };
 
   return (
-    <Card className="relative overflow-hidden max-w-[280px]">
+    <Card className="relative overflow-hidden max-w-[280px] shadow-2xs">
       <CardContent className="p-4 py-0">
         <h5 className="text-xs font-normal leading-none tracking-wide text-muted-foreground dark:text-foreground/80 uppercase">
           {title}
@@ -91,9 +91,7 @@ function MetricCard({
           <div className="text-[1.2rem] font-medium leading-none text-foreground tabular-nums">
             {value}
           </div>
-          <div className="text-xs leading-none text-muted-foreground">
-            / {limit}
-          </div>
+          <div className="text-xs leading-none text-muted-foreground">/ {limit}</div>
         </div>
 
         <div className="mt-3">
@@ -107,9 +105,7 @@ function MetricCard({
                     key={index}
                     className="flex w-full items-center text-xs leading-none text-muted-foreground dark:text-foreground/70"
                   >
-                    <div
-                      className={`mr-[6px] h-2 w-2 rounded-full ${detail.color}`}
-                    />
+                    <div className={`mr-[6px] h-2 w-2 rounded-full ${detail.color}`} />
                     <div className="mr-1">{detail.label}</div>
                     <div className="h-[9px] flex-1 border-b-2 border-dotted border-border" />
                     <div className="ml-1 tabular-nums">{detail.value}</div>
@@ -127,9 +123,7 @@ function MetricCard({
 
           {warningMessage && (
             <div className="pt-2">
-              <div className="text-sm text-amber-700 dark:text-amber-400">
-                {warningMessage}
-              </div>
+              <div className="text-sm text-amber-700 dark:text-amber-400">{warningMessage}</div>
             </div>
           )}
         </div>
@@ -168,9 +162,8 @@ function BudgetDialog({
         <DialogHeader>
           <DialogTitle>Update budget</DialogTitle>
           <DialogDescription>
-            When your monthly cost reaches the max budget, we send an email and
-            throttle your database. You will not be charged beyond your set
-            budget for this database.
+            When your monthly cost reaches the max budget, we send an email and throttle your
+            database. You will not be charged beyond your set budget for this database.
           </DialogDescription>
         </DialogHeader>
 
@@ -251,10 +244,7 @@ export default function Stats11() {
         />
       </div>
 
-      <BudgetDialog
-        open={budgetDialogOpen}
-        onOpenChange={setBudgetDialogOpen}
-      />
+      <BudgetDialog open={budgetDialogOpen} onOpenChange={setBudgetDialogOpen} />
     </>
   );
 }

@@ -7,13 +7,7 @@ import { Label } from "@/components/ui/label";
 import { JSX, SVGProps } from "react";
 
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
-  <svg
-    fill="currentColor"
-    height="48"
-    viewBox="0 0 40 48"
-    width="40"
-    {...props}
-  >
+  <svg fill="currentColor" height="48" viewBox="0 0 40 48" width="40" {...props}>
     <clipPath id="a">
       <path d="m0 0h40v48h-40z" />
     </clipPath>
@@ -42,7 +36,7 @@ export default function Login05() {
           </h3>
         </div>
 
-        <Card className="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+        <Card className="mt-4 shadow-2xs sm:mx-auto sm:w-full sm:max-w-md">
           <CardContent>
             <form action="#" method="post" className="space-y-4">
               <div>

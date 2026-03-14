@@ -5,7 +5,7 @@ import { Fullscreen, Monitor, Smartphone, Tablet } from 'lucide-react';
 import Link from 'next/link';
 import posthog from 'posthog-js';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
-import type { ImperativePanelHandle } from 'react-resizable-panels';
+import type { PanelImperativeHandle } from 'react-resizable-panels';
 import { OpenInPlaygroundButton } from '@/components/open-in-playground-button';
 import { OpenInV0Button } from '@/components/open-in-v0-button';
 import {
@@ -43,7 +43,7 @@ export const Block = ({
     size: 'desktop',
   });
 
-  const resizablePanelRef = useRef<ImperativePanelHandle>(null);
+  const resizablePanelRef = useRef<PanelImperativeHandle>(null);
   const hasTrackedPreview = useRef(false);
   const iframeHeight = meta?.iframeHeight ?? '930px';
 
@@ -268,13 +268,13 @@ export const Block = ({
             <div className="grid w-full gap-4">
               <ResizablePanelGroup
                 className="relative z-10"
-                direction="horizontal"
+                orientation="horizontal"
               >
                 <ResizablePanel
                   className="relative rounded-lg border border-accent bg-background"
                   defaultSize={100}
                   minSize={30}
-                  ref={resizablePanelRef}
+                  panelRef={resizablePanelRef}
                 >
                   <iframe
                     className="relative z-20 w-full bg-background"

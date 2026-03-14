@@ -35,12 +35,10 @@ export default function Stats09() {
     <div className="flex items-center justify-center p-10 w-full">
       <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 w-full">
         {data.map((item) => (
-          <Card key={item.name} className="py-4">
+          <Card key={item.name} className="py-4 shadow-2xs">
             <CardContent className="">
               <dt className="text-sm text-muted-foreground">{item.name}</dt>
-              <dd className="tabular-nums tabular-nums text-2xl font-semibold text-foreground">
-                {item.stat}
-              </dd>
+              <dd className="tabular-nums text-2xl font-semibold text-foreground">{item.stat}</dd>
               <Progress value={item.percentage} className="mt-6 h-2" />
               <dd className="mt-2 flex items-center justify-between text-sm">
                 <span className="text-primary">{item.percentage}&#37;</span>

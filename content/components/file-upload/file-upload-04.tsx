@@ -131,7 +131,7 @@ export default function FileUpload04() {
         </p>
 
         {!file && showDummy && (
-          <Card className="relative mt-8 bg-muted p-4 gap-4">
+          <Card className="relative mt-8 bg-muted p-4 gap-4 shadow-none">
             <Button
               type="button"
               variant="ghost"
@@ -166,7 +166,7 @@ export default function FileUpload04() {
         )}
 
         {file && (
-          <Card className="relative mt-8 bg-muted p-4 gap-4">
+          <Card className="relative mt-8 bg-muted p-4 gap-4 shadow-none">
             <Button
               type="button"
               variant="ghost"

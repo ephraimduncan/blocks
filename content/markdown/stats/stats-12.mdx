@@ -89,10 +89,7 @@ function DonutChart({ percentage }: { percentage: number }) {
   ];
 
   return (
-    <ChartContainer
-      config={chartConfig}
-      className="w-6 h-6 shrink-0 aspect-square"
-    >
+    <ChartContainer config={chartConfig} className="w-6 h-6 shrink-0 aspect-square">
       <PieChart>
         <Pie
           data={backgroundData}
@@ -130,7 +127,7 @@ function DonutChart({ percentage }: { percentage: number }) {
 
 export default function Stats12() {
   return (
-    <Card className="w-full max-w-md gap-3 py-5">
+    <Card className="w-full max-w-md gap-3 py-5 shadow-2xs">
       <CardHeader className="px-5">
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
@@ -155,12 +152,9 @@ export default function Stats12() {
               }`}
             >
               <DonutChart percentage={item.percentage} />
-              <span className="text-sm flex-1 truncate leading-4">
-                {item.name}
-              </span>
+              <span className="text-sm flex-1 truncate leading-4">{item.name}</span>
               <span className="text-xs font-medium tabular-nums tracking-tighter text-muted-foreground">
-                {item.current} /{" "}
-                <span className="text-foreground">{item.limit}</span>
+                {item.current} / <span className="text-foreground">{item.limit}</span>
               </span>
             </div>
           ))}

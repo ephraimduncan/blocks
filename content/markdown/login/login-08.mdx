@@ -2,12 +2,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,13 +11,7 @@ import Link from "next/link";
 import { JSX, SVGProps, useState } from "react";
 
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
-  <svg
-    fill="currentColor"
-    height="48"
-    viewBox="0 0 40 48"
-    width="40"
-    {...props}
-  >
+  <svg fill="currentColor" height="48" viewBox="0 0 40 48" width="40" {...props}>
     <clipPath id="a">
       <path d="m0 0h40v48h-40z" />
     </clipPath>
@@ -44,7 +33,7 @@ export default function SignIn() {
 
   return (
     <div className="flex items-center justify-center min-h-dvh">
-      <Card className="w-full max-w-md mx-4 pb-0">
+      <Card className="w-full max-w-md mx-4 pb-0 shadow-2xs">
         <CardHeader className="space-y-1 text-center mb-2 mt-4">
           <div className="flex justify-center">
             <Logo />
@@ -79,9 +68,7 @@ export default function SignIn() {
                 className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                 type="button"
                 onClick={togglePasswordVisibility}
-                aria-label={
-                  isPasswordVisible ? "Hide password" : "Show password"
-                }
+                aria-label={isPasswordVisible ? "Hide password" : "Show password"}
                 aria-pressed={isPasswordVisible}
                 aria-controls="password"
               >

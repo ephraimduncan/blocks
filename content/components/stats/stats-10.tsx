@@ -141,19 +141,15 @@ export default function Stats10() {
           const gradientId = `gradient-${sanitizedName}`;
 
           const color =
-            item.changeType === "positive"
-              ? "hsl(142.1 76.2% 36.3%)"
-              : "hsl(0 72.2% 50.6%)";
+            item.changeType === "positive" ? "hsl(142.1 76.2% 36.3%)" : "hsl(0 72.2% 50.6%)";
 
           return (
-            <Card key={item.name} className="p-0">
+            <Card key={item.name} className="p-0 shadow-2xs">
               <CardContent className="p-4 pb-0">
                 <div>
                   <dt className="text-sm font-medium text-foreground">
                     {item.name}{" "}
-                    <span className="font-normal text-muted-foreground">
-                      ({item.tickerSymbol})
-                    </span>
+                    <span className="font-normal text-muted-foreground">({item.tickerSymbol})</span>
                   </dt>
                   <div className="flex items-baseline justify-between">
                     <dd
@@ -161,20 +157,18 @@ export default function Stats10() {
                         item.changeType === "positive"
                           ? "text-green-600 dark:text-green-500"
                           : "text-red-600 dark:text-red-500",
-                        "text-lg font-semibold"
+                        "text-lg font-semibold",
                       )}
                     >
                       {item.value}
                     </dd>
                     <dd className="flex items-center space-x-1 text-sm">
-                      <span className="font-medium text-foreground">
-                        {item.change}
-                      </span>
+                      <span className="font-medium text-foreground">{item.change}</span>
                       <span
                         className={cn(
                           item.changeType === "positive"
                             ? "text-green-600 dark:text-green-500"
-                            : "text-red-600 dark:text-red-500"
+                            : "text-red-600 dark:text-red-500",
                         )}
                       >
                         ({item.percentageChange})
@@ -195,23 +189,9 @@ export default function Stats10() {
                   >
                     <AreaChart data={data}>
                       <defs>
-                        <linearGradient
-                          id={gradientId}
-                          x1="0"
-                          y1="0"
-                          x2="0"
-                          y2="1"
-                        >
-                          <stop
-                            offset="5%"
-                            stopColor={color}
-                            stopOpacity={0.3}
-                          />
-                          <stop
-                            offset="95%"
-                            stopColor={color}
-                            stopOpacity={0}
-                          />
+                        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor={color} stopOpacity={0.3} />
+                          <stop offset="95%" stopColor={color} stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <XAxis dataKey="date" hide={true} />

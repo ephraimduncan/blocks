@@ -32,18 +32,16 @@ export default function Stats05() {
     <div className="flex items-center justify-center p-10 w-full">
       <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full">
         {data.map((item) => (
-          <Card key={item.name} className="p-0 gap-0">
+          <Card key={item.name} className="p-0 gap-0 shadow-2xs">
             <CardContent className="p-6">
               <dd className="flex items-start justify-between space-x-2">
-                <span className="truncate text-sm text-muted-foreground">
-                  {item.name}
-                </span>
+                <span className="truncate text-sm text-muted-foreground">{item.name}</span>
                 <span
                   className={cn(
                     "text-sm font-medium",
                     item.changeType === "positive"
                       ? "text-emerald-700 dark:text-emerald-500"
-                      : "text-red-700 dark:text-red-500"
+                      : "text-red-700 dark:text-red-500",
                   )}
                 >
                   {item.change}

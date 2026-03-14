@@ -1,7 +1,6 @@
 ````tsx
-"use client";
+'use client';
 
-import { useState } from "react";
 import {
   IconArchive,
   IconChevronRight,
@@ -9,74 +8,72 @@ import {
   IconCircleDashed,
   IconDots,
   IconMail,
-} from "@tabler/icons-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-} from "@/components/ui/collapsible";
+} from '@tabler/icons-react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 const steps = [
   {
-    id: "document",
-    title: "Send your first document",
+    id: 'profile',
+    title: 'Complete your profile',
     description:
-      "Upload a PDF and send it for signature. You'll see how easy it is to get documents signed.",
+      'Add your name, photo, and role so your team knows who you are.',
     completed: true,
-    actionLabel: "Upload document",
-    actionHref: "#",
+    actionLabel: 'Edit profile',
+    actionHref: '#',
   },
   {
-    id: "template",
-    title: "Create a reusable template",
+    id: 'workspace',
+    title: 'Set up your workspace',
     description:
-      "Save time by creating templates for documents you send frequently, like NDAs or contracts.",
+      'Customize your workspace with a name, icon, and default settings.',
     completed: false,
-    actionLabel: "Create template",
-    actionHref: "#",
+    actionLabel: 'Configure workspace',
+    actionHref: '#',
   },
   {
-    id: "team",
-    title: "Invite your team",
+    id: 'invite',
+    title: 'Invite your team',
     description:
-      "Add team members to collaborate on documents and manage signing workflows together.",
+      'Bring your teammates on board so you can collaborate in real time.',
     completed: false,
-    actionLabel: "Invite team",
-    actionHref: "#",
+    actionLabel: 'Send invites',
+    actionHref: '#',
   },
   {
-    id: "branding",
-    title: "Customize your branding",
+    id: 'integrations',
+    title: 'Connect integrations',
     description:
-      "Add your logo and brand colors to create a professional signing experience for recipients.",
+      'Link your favorite tools like Slack, GitHub, and Linear to streamline workflows.',
     completed: false,
-    actionLabel: "Add branding",
-    actionHref: "#",
+    actionLabel: 'Browse integrations',
+    actionHref: '#',
   },
   {
-    id: "api",
-    title: "Explore the API",
+    id: 'workflow',
+    title: 'Create your first workflow',
     description:
-      "Integrate document signing directly into your application with our developer-friendly API.",
+      'Automate a repetitive task with a simple drag-and-drop workflow builder.',
     completed: false,
-    actionLabel: "View API docs",
-    actionHref: "#",
+    actionLabel: 'Build workflow',
+    actionHref: '#',
   },
   {
-    id: "integrations",
-    title: "Connect your tools",
+    id: 'notifications',
+    title: 'Set up notifications',
     description:
-      "Link Documenso with Zapier, Slack, or your CRM to automate your document workflows.",
+      'Choose how and when you want to be notified about updates and mentions.',
     completed: false,
-    actionLabel: "Browse integrations",
-    actionHref: "#",
+    actionLabel: 'Manage notifications',
+    actionHref: '#',
   },
 ];
 
@@ -103,28 +100,28 @@ function CircularProgress({
     <svg
       className="-rotate-90 scale-y-[-1]"
       height="14"
-      width="14"
       viewBox="0 0 14 14"
+      width="14"
     >
       <circle
         className="stroke-muted"
         cx="7"
         cy="7"
         fill="none"
+        pathLength="100"
         r="6"
         strokeWidth="2"
-        pathLength="100"
       />
       <circle
         className="stroke-primary"
         cx="7"
         cy="7"
         fill="none"
-        r="6"
-        strokeWidth="2"
         pathLength="100"
+        r="6"
         strokeDasharray="100"
         strokeLinecap="round"
+        strokeWidth="2"
         style={{ strokeDashoffset }}
       />
     </svg>
@@ -135,16 +132,16 @@ function StepIndicator({ completed }: { completed: boolean }) {
   if (completed) {
     return (
       <IconCircleCheckFilled
-        className="mt-1 size-4.5 shrink-0 text-primary"
         aria-hidden="true"
+        className="mt-1 size-4.5 shrink-0 text-primary"
       />
     );
   }
   return (
     <IconCircleDashed
+      aria-hidden="true"
       className="mt-1 size-5 shrink-0 stroke-muted-foreground/40"
       strokeWidth={2}
-      aria-hidden="true"
     />
   );
 }
@@ -174,10 +171,12 @@ export function Onboarding01() {
     return (
       <div className="flex min-h-dvh items-center justify-center bg-background p-4">
         <div className="text-center">
-          <p className="text-pretty text-muted-foreground">Checklist dismissed</p>
+          <p className="text-pretty text-muted-foreground">
+            Checklist dismissed
+          </p>
           <button
+            className="mt-2 text-primary text-sm underline"
             onClick={() => setDismissed(false)}
-            className="mt-2 text-sm text-primary underline"
           >
             Show again
           </button>
@@ -190,48 +189,48 @@ export function Onboarding01() {
     <div className="flex min-h-dvh items-center justify-center bg-background p-4">
       <div className="w-full max-w-xl">
         <div className="w-xl rounded-lg border bg-card p-4 text-card-foreground shadow-xs">
-          <div className="mb-4 mr-2 flex flex-col justify-between sm:flex-row sm:items-center">
-            <h3 className="text-balance ml-2 font-semibold text-foreground">
-              Get started with Documenso
+          <div className="mr-2 mb-4 flex flex-col justify-between sm:flex-row sm:items-center">
+            <h3 className="ml-2 text-balance font-semibold text-foreground">
+              Get started with Acme
             </h3>
             <div className="mt-2 flex items-center justify-end sm:mt-0">
               <CircularProgress
                 completed={remainingCount}
                 total={currentSteps.length}
               />
-              <div className="ml-1.5 mr-3 text-sm text-muted-foreground">
+              <div className="mr-3 ml-1.5 text-muted-foreground text-sm">
                 <span className="font-medium text-foreground">
                   {remainingCount}
-                </span>{" "}
-                out of{" "}
+                </span>{' '}
+                out of{' '}
                 <span className="font-medium text-foreground">
                   {currentSteps.length} steps
-                </span>{" "}
+                </span>{' '}
                 left
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-6 w-6">
-                    <IconDots className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <Button className="h-6 w-6" size="icon" variant="ghost">
+                    <IconDots aria-hidden="true" className="h-4 w-4 shrink-0" />
                     <span className="sr-only">Options</span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-40">
                   <DropdownMenuItem onClick={() => setDismissed(true)}>
                     <IconArchive
-                      className="mr-2 h-4 w-4 shrink-0"
                       aria-hidden="true"
+                      className="mr-2 h-4 w-4 shrink-0"
                     />
                     Dismiss
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() =>
-                      window.open("mailto:hello@example.com?subject=Feedback")
+                      window.open('mailto:support@acme.com?subject=Feedback')
                     }
                   >
                     <IconMail
-                      className="mr-2 h-4 w-4 shrink-0"
                       aria-hidden="true"
+                      className="mr-2 h-4 w-4 shrink-0"
                     />
                     Give feedback
                   </DropdownMenuItem>
@@ -247,39 +246,39 @@ export function Onboarding01() {
               const prevStep = currentSteps[index - 1];
               const isPrevOpen = prevStep && openStepId === prevStep.id;
 
-              const showBorderTop = !isFirst && !isOpen && !isPrevOpen;
+              const showBorderTop = !(isFirst || isOpen || isPrevOpen);
 
               return (
                 <div
-                  key={step.id}
                   className={cn(
-                    "group",
-                    isOpen && "rounded-lg",
-                    showBorderTop && "border-t border-border"
+                    'group',
+                    isOpen && 'rounded-lg',
+                    showBorderTop && 'border-border border-t'
                   )}
+                  key={step.id}
                 >
                   <div
-                    role="button"
-                    tabIndex={0}
+                    className={cn(
+                      'block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                      isOpen && 'rounded-lg'
+                    )}
                     onClick={() => handleStepClick(step.id)}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
+                      if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         handleStepClick(step.id);
                       }
                     }}
-                    className={cn(
-                      "block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                      isOpen && "rounded-lg"
-                    )}
+                    role="button"
+                    tabIndex={0}
                   >
                     <div
                       className={cn(
-                        "relative overflow-hidden rounded-lg transition-colors",
-                        isOpen && "border border-border bg-muted"
+                        'relative overflow-hidden rounded-lg transition-colors',
+                        isOpen && 'border border-border bg-muted'
                       )}
                     >
-                      <div className="relative flex items-center justify-between gap-3 py-3 pl-4 pr-2">
+                      <div className="relative flex items-center justify-between gap-3 py-3 pr-2 pl-4">
                         <div className="flex w-full gap-3">
                           <div className="shrink-0">
                             <StepIndicator completed={step.completed} />
@@ -287,29 +286,31 @@ export function Onboarding01() {
                           <div className="mt-0.5 grow">
                             <h4
                               className={cn(
-                                "font-semibold",
+                                'font-semibold',
                                 step.completed
-                                  ? "text-primary"
-                                  : "text-foreground"
+                                  ? 'text-primary'
+                                  : 'text-foreground'
                               )}
                             >
                               {step.title}
                             </h4>
                             <Collapsible open={isOpen}>
                               <CollapsibleContent>
-                                <p className="text-pretty mt-2 text-sm text-muted-foreground sm:max-w-64 md:max-w-xs">
+                                <p className="mt-2 text-pretty text-muted-foreground text-sm sm:max-w-64 md:max-w-xs">
                                   {step.description}
                                 </p>
                                 <Button
-                                  size="sm"
+                                  asChild
                                   className="mt-3"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleStepAction(step);
                                   }}
-                                  asChild
+                                  size="sm"
                                 >
-                                  <a href={step.actionHref}>{step.actionLabel}</a>
+                                  <a href={step.actionHref}>
+                                    {step.actionLabel}
+                                  </a>
                                 </Button>
                               </CollapsibleContent>
                             </Collapsible>
@@ -317,8 +318,8 @@ export function Onboarding01() {
                         </div>
                         {!isOpen && (
                           <IconChevronRight
-                            className="h-4 w-4 shrink-0 text-muted-foreground"
                             aria-hidden="true"
+                            className="h-4 w-4 shrink-0 text-muted-foreground"
                           />
                         )}
                       </div>

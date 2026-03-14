@@ -1306,8 +1306,8 @@
     {
       "name": "onboarding-05",
       "type": "registry:block",
-      "title": "Onboarding 05",
-      "description": "A onboarding 05 block.",
+      "title": "Onboarding Activity Feed",
+      "description": "A onboarding activity feed block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [],
       "dependencies": [],
@@ -1318,6 +1318,9 @@
           "target": "components/onboarding-05.tsx",
           "content": "import { cn } from '@/lib/utils';\n\nconst steps = [\n  {\n    id: 1,\n    type: 'created',\n    description: 'Created project \"Brand Refresh\"',\n    user: { name: 'Sarah K.', initial: 'S', bgColor: 'bg-violet-500' },\n    activityTime: '3d ago',\n  },\n  {\n    id: 2,\n    type: 'created',\n    description: 'Uploaded 12 design assets',\n    user: { name: 'Marcus L.', initial: 'M', bgColor: 'bg-orange-500' },\n    activityTime: '2d ago',\n  },\n  {\n    id: 3,\n    type: 'created',\n    description: 'Shared prototype with stakeholders',\n    user: { name: 'Sarah K.', initial: 'S', bgColor: 'bg-emerald-500' },\n    activityTime: '2h ago',\n  },\n  {\n    id: 4,\n    type: 'created',\n    description: 'Left feedback on homepage layout',\n    user: { name: 'Jamie R.', initial: 'J', bgColor: 'bg-fuchsia-500' },\n    activityTime: '5min ago',\n  },\n  {\n    id: 5,\n    type: 'in progress',\n    description: 'Scheduled design review meeting',\n    user: { name: 'Team Ops', initial: 'T', bgColor: 'bg-blue-500' },\n    activityTime: 'today 2:30pm',\n  },\n];\n\nexport function Onboarding05() {\n  return (\n    <div className=\"flex min-h-dvh items-center justify-center bg-background p-4\">\n      <div className=\"sm:max-w-lg md:mx-auto\">\n        <h3 className=\"font-medium text-foreground\">Project activity</h3>\n        <p className=\"mt-1 text-muted-foreground text-sm leading-6\">\n          Recent updates from your team\n        </p>\n        <ul className=\"mt-6 space-y-6 pb-2\">\n          {steps.map((step, stepIdx) => (\n            <li className=\"relative flex gap-x-3\" key={step.id}>\n              <div\n                className={cn(\n                  'absolute top-0 left-0 flex w-6 justify-center',\n                  stepIdx === steps.length - 1 ? 'h-6' : '-bottom-6'\n                )}\n              >\n                <span aria-hidden className=\"w-px bg-border\" />\n              </div>\n              <div className=\"flex items-start space-x-2\">\n                <div className=\"flex items-center space-x-2\">\n                  <div className=\"relative flex size-6 flex-none items-center justify-center bg-background\">\n                    {step.type === 'created' ? (\n                      <div className=\"size-3 rounded-full border border-gray-300 bg-muted/50 ring-4 ring-background\" />\n                    ) : (\n                      <div className=\"size-3 rounded-full border border-gray-300 bg-background ring-4 ring-background\" />\n                    )}\n                  </div>\n                  <span\n                    aria-hidden\n                    className={cn(\n                      step.user.bgColor,\n                      'inline-flex size-6 flex-none items-center justify-center rounded-full text-primary-foreground text-xs'\n                    )}\n                  >\n                    {step.user.initial}\n                  </span>\n                </div>\n                <p className=\"mt-0.5 font-medium text-foreground text-sm\">\n                  {step.user.name}\n                  <span className=\"font-normal text-muted-foreground\">\n                    {' '}\n                    {step.description}\n                  </span>\n                  <span className=\"font-normal text-muted-foreground/60\">\n                    {' '}\n                    &#8729; {step.activityTime}\n                  </span>\n                </p>\n              </div>\n            </li>\n          ))}\n        </ul>\n      </div>\n    </div>\n  );\n}\n"
         }
+      ],
+      "categories": [
+        "onboarding"
       ]
     },
     {

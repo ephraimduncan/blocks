@@ -522,4 +522,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "650px",
     type: "file",
   },
+  {
+    id: "onboarding-05",
+    category: categoryIds.Onboarding,
+    name: "Onboarding Activity Feed",
+    iframeHeight: "500px",
+    type: "file",
+  },
 ];

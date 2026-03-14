@@ -98,7 +98,7 @@ function CircularProgress({
 
   return (
     <svg
-      className="-rotate-90 scale-y-[-1]"
+      className="-rotate-90"
       height="14"
       viewBox="0 0 14 14"
       width="14"
@@ -162,9 +162,12 @@ export function Onboarding01() {
   };
 
   const handleStepAction = (step: OnboardingStep) => {
-    setCurrentSteps((prev) =>
-      prev.map((s) => (s.id === step.id ? { ...s, completed: true } : s))
+    const updated = currentSteps.map((s) =>
+      s.id === step.id ? { ...s, completed: true } : s
     );
+    setCurrentSteps(updated);
+    const nextIncomplete = updated.find((s) => !s.completed);
+    setOpenStepId(nextIncomplete?.id ?? null);
   };
 
   if (dismissed) {
@@ -187,8 +190,8 @@ export function Onboarding01() {
 
   return (
     <div className="flex min-h-dvh items-center justify-center bg-background p-4">
-      <div className="w-full max-w-xl">
-        <div className="w-xl rounded-lg border bg-card p-4 text-card-foreground shadow-xs">
+      <div className="w-full max-w-lg">
+        <div className="w-md rounded-lg border bg-card p-4 text-card-foreground shadow-xs">
           <div className="mr-2 mb-4 flex flex-col justify-between sm:flex-row sm:items-center">
             <h3 className="ml-2 text-balance font-semibold text-foreground">
               Get started with Acme
@@ -200,13 +203,13 @@ export function Onboarding01() {
               />
               <div className="mr-3 ml-1.5 text-muted-foreground text-sm">
                 <span className="font-medium text-foreground">
-                  {remainingCount}
-                </span>{' '}
-                out of{' '}
+                  {completedCount}
+                </span>
+                {' / '}
                 <span className="font-medium text-foreground">
-                  {currentSteps.length} steps
+                  {currentSteps.length}
                 </span>{' '}
-                left
+                completed
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

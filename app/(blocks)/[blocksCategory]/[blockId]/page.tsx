@@ -155,7 +155,7 @@ export default async function BlockPage({ params }: Params) {
             Add this block to your project with the shadcn CLI.
           </p>
           <pre className="mt-4 overflow-x-auto rounded-md border bg-background px-4 py-3 text-sm">
-            <code>{`npx shadcn@latest add @blocks/${block.blocksId}`}</code>
+            <code>{`npx shadcn@latest add @blocks-so/${block.blocksId}`}</code>
           </pre>
         </section>
 

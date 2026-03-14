@@ -19,7 +19,7 @@ export function AddCommand({
     <Button
       className="rounded-lg pl-2!"
       onClick={() => {
-        copyToClipboard(`npx shadcn@latest add @blocks/${name}`);
+        copyToClipboard(`npx shadcn@latest add @blocks-so/${name}`);
         toast.success('npx command copied to clipboard');
         posthog.capture('registry_install_clicked', {
           block_id: name,
@@ -62,7 +62,7 @@ export function AddCommand({
           />
         </svg>
       )}
-      {`@blocks/${name}`}
+      {`@blocks-so/${name}`}
     </Button>
   );
 }

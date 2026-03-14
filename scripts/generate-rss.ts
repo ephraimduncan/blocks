@@ -74,9 +74,9 @@ const items = registry.items
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>@blocks</title>
+    <title>@blocks-so</title>
     <link>https://blocks.so</link>
-    <description>Subscribe to @blocks updates</description>
+    <description>Subscribe to @blocks-so updates</description>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${items}
   </channel>

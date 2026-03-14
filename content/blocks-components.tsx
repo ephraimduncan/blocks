@@ -86,4 +86,5 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "onboarding-04": components.Onboarding04,
   "onboarding-05": components.Onboarding05,
   "onboarding-06": components.Onboarding06,
+  "onboarding-07": components.Onboarding07,
 };

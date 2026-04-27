@@ -9,8 +9,6 @@ type Params = {
   }>;
 };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return blocksMetadata.map((block) => ({
     blockId: block.id,

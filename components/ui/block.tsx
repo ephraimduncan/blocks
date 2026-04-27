@@ -217,7 +217,7 @@ export const Block = ({
               title="Open in New Tab"
               variant="ghost"
             >
-              <Link href={`/blocks/preview/${blocksId}`} target="_blank">
+              <Link href={`/preview/${blocksId}`} target="_blank">
                 <span className="sr-only">Open in New Tab</span>
                 <Fullscreen className="size-3.5" />
               </Link>
@@ -264,7 +264,7 @@ export const Block = ({
                       className="relative z-20 w-full bg-background"
                       height={meta?.iframeHeight ?? 930}
                       loading="lazy"
-                      src={`/blocks/preview/${blocksId}`}
+                      src={`/preview/${blocksId}`}
                       title={`${name} preview`}
                     />
                   </div>

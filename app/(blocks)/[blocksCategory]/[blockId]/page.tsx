@@ -143,7 +143,7 @@ export default async function BlockPage({ params }: Params) {
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href={`/blocks/preview/${block.blocksId}`} target="_blank">
+            <Link href={`/preview/${block.blocksId}`} target="_blank">
               Open full preview
             </Link>
           </Button>

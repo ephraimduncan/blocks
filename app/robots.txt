@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /private/
-Disallow: /blocks/preview/
+Disallow: /preview/
 Disallow: /demo/
 
 Sitemap: https://blocks.so/sitemap.xml

@@ -169,51 +169,55 @@ export function getBlocks(params: { blocksCategory: string }) {
   blocksMetadata
     .filter((blocks) => blocks.category === params.blocksCategory)
     .forEach((block) => {
-      try {
-        let codeSource: string | ReactNode | undefined;
-        let fileTree: FileTreeItem[] | undefined;
+      let codeSource: string | ReactNode | undefined;
+      let fileTree: FileTreeItem[] | undefined;
 
-        if (block.type === 'directory') {
-          const blockDirPath = path.join(
-            process.cwd(),
-            'content',
-            'components',
-            block.category,
-            block.id
+      if (block.type === 'directory') {
+        const blockDirPath = path.join(
+          process.cwd(),
+          'content',
+          'components',
+          block.category,
+          block.id
+        );
+
+        console.log(blockDirPath);
+
+        fileTree = generateFileTree(blockDirPath);
+
+        if (fileTree.length === 0) {
+          console.warn(
+            `No files found or error generating file tree for directory block: ${block.id}`
           );
-
-          console.log(blockDirPath);
-
-          fileTree = generateFileTree(blockDirPath);
-
-          if (fileTree.length === 0) {
-            console.warn(
-              `No files found or error generating file tree for directory block: ${block.id}`
-            );
-          }
-        } else {
+        }
+      } else {
+        try {
           codeSource = getBlocksMDX(block.category).find(
             (b) => b.blocksCategory === block.id
           )?.content;
-          if (!codeSource) {
-            console.warn(`MDX content not found for file block: ${block.id}`);
-          }
+        } catch (err) {
+          console.error(
+            `Error reading MDX content for file block ${block.id}:`,
+            err
+          );
         }
 
-        blocksData.push({
-          name: block.name,
-          blocksId: block.id,
-          blocksCategory: block.category,
-          meta: {
-            iframeHeight: block.iframeHeight,
-            type: block.type,
-          },
-          ...(codeSource && { codeSource }),
-          ...(fileTree && { fileTree }),
-        });
-      } catch (err) {
-        console.error(`Error processing block ${block.id}:`, err);
+        if (!codeSource) {
+          console.warn(`MDX content not found for file block: ${block.id}`);
+        }
       }
+
+      blocksData.push({
+        name: block.name,
+        blocksId: block.id,
+        blocksCategory: block.category,
+        meta: {
+          iframeHeight: block.iframeHeight,
+          type: block.type,
+        },
+        ...(codeSource && { codeSource }),
+        ...(fileTree && { fileTree }),
+      });
     });
 
   if (categoryMetadata) {

@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "blocks-ui",
+  "name": "blocks",
   "compatibility_date": "2026-04-27",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
@@ -11,7 +11,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "blocks-ui"
+      "service": "blocks"
     }
   ],
   "images": {

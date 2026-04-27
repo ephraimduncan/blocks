@@ -259,7 +259,7 @@ export const Block = ({
                   minSize={30}
                   panelRef={resizablePanelRef}
                 >
-                  <div className="h-full overflow-hidden rounded-2xl ring-1 ring-black/5">
+                  <div className="h-full overflow-hidden rounded-2xl border border-black/10">
                     <iframe
                       className="relative z-20 w-full bg-background"
                       height={meta?.iframeHeight ?? 930}

@@ -3,7 +3,7 @@ import { blocksMetadata } from './content/blocks-metadata';
 
 const blockToCategory = new Map(blocksMetadata.map((b) => [b.id, b.category]));
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const slug = request.nextUrl.pathname.slice(1);
   const category = blockToCategory.get(slug);
   if (category) {

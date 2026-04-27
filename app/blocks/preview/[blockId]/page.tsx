@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-
-import { blocksComponents } from "@/content/blocks-components";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { blocksMetadata } from '@/content/blocks-metadata';
+import { BlockPreviewClient } from './block-preview-client';
 
 type Params = {
   params: Promise<{
@@ -9,30 +9,30 @@ type Params = {
   }>;
 };
 
-export function generateStaticParams() {
-  const blockIds = Object.keys(blocksComponents);
+export const dynamicParams = false;
 
-  return blockIds.map((blockId) => ({
-    blockId,
+export function generateStaticParams() {
+  return blocksMetadata.map((block) => ({
+    blockId: block.id,
   }));
 }
 
 export default async function BlockPreviewPage({ params }: Params) {
   const { blockId } = await params;
-  const BlocksComponent = blocksComponents[blockId];
+  const block = blocksMetadata.find((item) => item.id === blockId);
 
-  if (!BlocksComponent) {
+  if (!block) {
     notFound();
   }
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center">
-      <BlocksComponent />
+      <BlockPreviewClient blockId={blockId} />
     </div>
   );
 }
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: "Blocks.so — Preview",
+  title: 'Blocks.so — Preview',
 };

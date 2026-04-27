@@ -1,90 +1,291 @@
-import * as components from "./components";
+'use client';
 
-export const blocksComponents: { [blocksId: string]: React.ElementType } = {
-  "file-upload-01": components.FileUpload01,
-  "file-upload-02": components.FileUpload02,
-  "file-upload-03": components.FileUpload03,
-  "file-upload-04": components.FileUpload04,
-  "file-upload-05": components.FileUpload05,
-  "file-upload-06": components.FileUpload06,
+import dynamic from 'next/dynamic';
+import type { ComponentType } from 'react';
 
-  "form-layout-01": components.FormLayout01,
-  "form-layout-02": components.FormLayout02,
-  "form-layout-03": components.FormLayout03,
-  "form-layout-04": components.FormLayout04,
-  "form-layout-05": components.FormLayout05,
+export const blocksComponents: Record<string, ComponentType> = {
+  'file-upload-01': dynamic(
+    () => import('./components/file-upload/file-upload-01'),
+    { ssr: false }
+  ),
+  'file-upload-02': dynamic(
+    () => import('./components/file-upload/file-upload-02'),
+    { ssr: false }
+  ),
+  'file-upload-03': dynamic(
+    () => import('./components/file-upload/file-upload-03'),
+    { ssr: false }
+  ),
+  'file-upload-04': dynamic(
+    () => import('./components/file-upload/file-upload-04'),
+    { ssr: false }
+  ),
+  'file-upload-05': dynamic(
+    () => import('./components/file-upload/file-upload-05'),
+    { ssr: false }
+  ),
+  'file-upload-06': dynamic(
+    () => import('./components/file-upload/file-upload-06'),
+    { ssr: false }
+  ),
 
-  "login-01": components.Login01,
-  "login-02": components.Login02,
-  "login-03": components.Login03,
-  "login-04": components.Login04,
-  "login-05": components.Login05,
-  "login-06": components.Login06,
-  "login-07": components.Login07,
-  "login-08": components.Login08,
-  "login-09": components.Login09,
+  'form-layout-01': dynamic(
+    () => import('./components/form-layout/form-layout-01'),
+    { ssr: false }
+  ),
+  'form-layout-02': dynamic(
+    () => import('./components/form-layout/form-layout-02'),
+    { ssr: false }
+  ),
+  'form-layout-03': dynamic(
+    () => import('./components/form-layout/form-layout-03'),
+    { ssr: false }
+  ),
+  'form-layout-04': dynamic(
+    () => import('./components/form-layout/form-layout-04'),
+    { ssr: false }
+  ),
+  'form-layout-05': dynamic(
+    () => import('./components/form-layout/form-layout-05'),
+    { ssr: false }
+  ),
 
-  "stats-01": components.Stats01,
-  "stats-02": components.Stats02,
-  "stats-03": components.Stats03,
-  "stats-04": components.Stats04,
-  "stats-05": components.Stats05,
-  "stats-06": components.Stats06,
-  "stats-07": components.Stats07,
-  "stats-08": components.Stats08,
-  "stats-09": components.Stats09,
-  "stats-10": components.Stats10,
-  "stats-11": components.Stats11,
-  "stats-12": components.Stats12,
-  "stats-13": components.Stats13,
-  "stats-14": components.Stats14,
-  "stats-15": components.Stats15,
+  'login-01': dynamic(() => import('./components/login/login-01'), {
+    ssr: false,
+  }),
+  'login-02': dynamic(() => import('./components/login/login-02'), {
+    ssr: false,
+  }),
+  'login-03': dynamic(() => import('./components/login/login-03'), {
+    ssr: false,
+  }),
+  'login-04': dynamic(() => import('./components/login/login-04'), {
+    ssr: false,
+  }),
+  'login-05': dynamic(() => import('./components/login/login-05'), {
+    ssr: false,
+  }),
+  'login-06': dynamic(() => import('./components/login/login-06'), {
+    ssr: false,
+  }),
+  'login-07': dynamic(() => import('./components/login/login-07'), {
+    ssr: false,
+  }),
+  'login-08': dynamic(() => import('./components/login/login-08'), {
+    ssr: false,
+  }),
+  'login-09': dynamic(() => import('./components/login/login-09'), {
+    ssr: false,
+  }),
 
-  "grid-list-01": components.GridList01,
-  "grid-list-02": components.GridList02,
-  "grid-list-03": components.GridList03,
+  'stats-01': dynamic(() => import('./components/stats/stats-01'), {
+    ssr: false,
+  }),
+  'stats-02': dynamic(() => import('./components/stats/stats-02'), {
+    ssr: false,
+  }),
+  'stats-03': dynamic(() => import('./components/stats/stats-03'), {
+    ssr: false,
+  }),
+  'stats-04': dynamic(() => import('./components/stats/stats-04'), {
+    ssr: false,
+  }),
+  'stats-05': dynamic(() => import('./components/stats/stats-05'), {
+    ssr: false,
+  }),
+  'stats-06': dynamic(() => import('./components/stats/stats-06'), {
+    ssr: false,
+  }),
+  'stats-07': dynamic(() => import('./components/stats/stats-07'), {
+    ssr: false,
+  }),
+  'stats-08': dynamic(() => import('./components/stats/stats-08'), {
+    ssr: false,
+  }),
+  'stats-09': dynamic(() => import('./components/stats/stats-09'), {
+    ssr: false,
+  }),
+  'stats-10': dynamic(() => import('./components/stats/stats-10'), {
+    ssr: false,
+  }),
+  'stats-11': dynamic(() => import('./components/stats/stats-11'), {
+    ssr: false,
+  }),
+  'stats-12': dynamic(() => import('./components/stats/stats-12'), {
+    ssr: false,
+  }),
+  'stats-13': dynamic(() => import('./components/stats/stats-13'), {
+    ssr: false,
+  }),
+  'stats-14': dynamic(
+    () => import('./components/stats/stats-14').then((mod) => mod.Stats14),
+    { ssr: false }
+  ),
+  'stats-15': dynamic(
+    () => import('./components/stats/stats-15').then((mod) => mod.Stats15),
+    { ssr: false }
+  ),
 
-  "command-menu-01": components.CommandMenu01,
-  "command-menu-02": components.CommandMenu02,
-  "command-menu-03": components.CommandMenu03,
+  'grid-list-01': dynamic(() => import('./components/grid-list/grid-list-01'), {
+    ssr: false,
+  }),
+  'grid-list-02': dynamic(() => import('./components/grid-list/grid-list-02'), {
+    ssr: false,
+  }),
+  'grid-list-03': dynamic(() => import('./components/grid-list/grid-list-03'), {
+    ssr: false,
+  }),
 
-  "dialog-01": components.Dialog01,
-  "dialog-02": components.Dialog02,
-  "dialog-03": components.Dialog03,
-  "dialog-04": components.Dialog04,
-  "dialog-05": components.Dialog05,
-  "dialog-06": components.Dialog06,
-  "dialog-07": components.Dialog07,
-  "dialog-08": components.Dialog08,
-  "dialog-09": components.Dialog09,
-  "dialog-10": components.Dialog10,
-  "dialog-11": components.Dialog11,
-  "dialog-12": components.Dialog12,
+  'command-menu-01': dynamic(
+    () =>
+      import('./components/command-menu/command-menu-01').then(
+        (mod) => mod.CommandMenu01
+      ),
+    { ssr: false }
+  ),
+  'command-menu-02': dynamic(
+    () =>
+      import('./components/command-menu/command-menu-02').then(
+        (mod) => mod.CommandMenu02
+      ),
+    { ssr: false }
+  ),
+  'command-menu-03': dynamic(
+    () =>
+      import('./components/command-menu/command-menu-03').then(
+        (mod) => mod.CommandMenu03
+      ),
+    { ssr: false }
+  ),
 
-  "sidebar-01": components.Sidebar01,
-  "sidebar-02": components.Sidebar02,
-  "sidebar-03": components.Sidebar03,
-  "sidebar-04": components.Sidebar04,
-  "sidebar-05": components.Sidebar05,
-  "sidebar-06": components.Sidebar06,
+  'dialog-01': dynamic(() => import('./components/dialogs/dialog-01'), {
+    ssr: false,
+  }),
+  'dialog-02': dynamic(() => import('./components/dialogs/dialog-02'), {
+    ssr: false,
+  }),
+  'dialog-03': dynamic(() => import('./components/dialogs/dialog-03'), {
+    ssr: false,
+  }),
+  'dialog-04': dynamic(() => import('./components/dialogs/dialog-04'), {
+    ssr: false,
+  }),
+  'dialog-05': dynamic(() => import('./components/dialogs/dialog-05'), {
+    ssr: false,
+  }),
+  'dialog-06': dynamic(() => import('./components/dialogs/dialog-06'), {
+    ssr: false,
+  }),
+  'dialog-07': dynamic(() => import('./components/dialogs/dialog-07'), {
+    ssr: false,
+  }),
+  'dialog-08': dynamic(() => import('./components/dialogs/dialog-08'), {
+    ssr: false,
+  }),
+  'dialog-09': dynamic(() => import('./components/dialogs/dialog-09'), {
+    ssr: false,
+  }),
+  'dialog-10': dynamic(() => import('./components/dialogs/dialog-10'), {
+    ssr: false,
+  }),
+  'dialog-11': dynamic(() => import('./components/dialogs/dialog-11'), {
+    ssr: false,
+  }),
+  'dialog-12': dynamic(() => import('./components/dialogs/dialog-12'), {
+    ssr: false,
+  }),
 
-  "ai-01": components.Ai01,
-  "ai-02": components.Ai02,
-  "ai-03": components.Ai03,
-  "ai-04": components.Ai04,
-  "ai-05": components.Ai05,
+  'sidebar-01': dynamic(() => import('./components/sidebar/sidebar-01'), {
+    ssr: false,
+  }),
+  'sidebar-02': dynamic(() => import('./components/sidebar/sidebar-02'), {
+    ssr: false,
+  }),
+  'sidebar-03': dynamic(() => import('./components/sidebar/sidebar-03'), {
+    ssr: false,
+  }),
+  'sidebar-04': dynamic(
+    () => import('./components/sidebar/sidebar-04/app/page'),
+    { ssr: false }
+  ),
+  'sidebar-05': dynamic(
+    () => import('./components/sidebar/sidebar-05/app/page'),
+    { ssr: false }
+  ),
+  'sidebar-06': dynamic(
+    () => import('./components/sidebar/sidebar-06/app/page'),
+    { ssr: false }
+  ),
 
-  "table-01": components.Table01,
-  "table-02": components.Table02,
-  "table-03": components.Table03,
-  "table-04": components.Table04,
-  "table-05": components.Table05,
+  'ai-01': dynamic(() => import('./components/ai/ai-01'), { ssr: false }),
+  'ai-02': dynamic(() => import('./components/ai/ai-02'), { ssr: false }),
+  'ai-03': dynamic(() => import('./components/ai/ai-03'), { ssr: false }),
+  'ai-04': dynamic(() => import('./components/ai/ai-04'), { ssr: false }),
+  'ai-05': dynamic(() => import('./components/ai/ai-05'), { ssr: false }),
 
-  "onboarding-01": components.Onboarding01,
-  "onboarding-02": components.Onboarding02,
-  "onboarding-03": components.Onboarding03,
-  "onboarding-04": components.Onboarding04,
-  "onboarding-05": components.Onboarding05,
-  "onboarding-06": components.Onboarding06,
-  "onboarding-07": components.Onboarding07,
+  'table-01': dynamic(() => import('./components/tables/table-01'), {
+    ssr: false,
+  }),
+  'table-02': dynamic(() => import('./components/tables/table-02'), {
+    ssr: false,
+  }),
+  'table-03': dynamic(() => import('./components/tables/table-03'), {
+    ssr: false,
+  }),
+  'table-04': dynamic(() => import('./components/tables/table-04'), {
+    ssr: false,
+  }),
+  'table-05': dynamic(() => import('./components/tables/table-05'), {
+    ssr: false,
+  }),
+
+  'onboarding-01': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-01').then(
+        (mod) => mod.Onboarding01
+      ),
+    { ssr: false }
+  ),
+  'onboarding-02': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-02').then(
+        (mod) => mod.Onboarding02
+      ),
+    { ssr: false }
+  ),
+  'onboarding-03': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-03').then(
+        (mod) => mod.Onboarding03
+      ),
+    { ssr: false }
+  ),
+  'onboarding-04': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-04').then(
+        (mod) => mod.Onboarding04
+      ),
+    { ssr: false }
+  ),
+  'onboarding-05': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-05').then(
+        (mod) => mod.Onboarding05
+      ),
+    { ssr: false }
+  ),
+  'onboarding-06': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-06').then(
+        (mod) => mod.Onboarding06
+      ),
+    { ssr: false }
+  ),
+  'onboarding-07': dynamic(
+    () =>
+      import('./components/onboarding/onboarding-07').then(
+        (mod) => mod.Onboarding07
+      ),
+    { ssr: false }
+  ),
 };

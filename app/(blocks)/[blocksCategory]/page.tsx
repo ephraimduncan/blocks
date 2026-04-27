@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { BreadcrumbJsonLd } from '@/components/breadcrumb-jsonld';
 import { CategoryItemListJsonLd } from '@/components/category-itemlist-jsonld';
 import { Block } from '@/components/ui/block';
-import { CustomMDX } from '@/components/ui/mdx';
 import { siteConfig } from '@/config';
 import { blocksCategoriesMetadata } from '@/content/blocks-categories';
 import { getBlocks } from '@/lib/blocks';
@@ -131,11 +130,6 @@ export default async function Page({ params }: PageProps) {
               blocksCategory={block.blocksCategory}
               blocksId={block.blocksId}
               code={block.codeSource}
-              codeSource={
-                block.codeSource && (
-                  <CustomMDX source={block.codeSource.toString()} />
-                )
-              }
               fileTree={block.fileTree}
               key={block.blocksId}
               meta={block.meta}

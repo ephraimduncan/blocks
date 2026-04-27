@@ -2,6 +2,7 @@
 
 import type { SupportedLanguages } from '@pierre/diffs/react';
 import { Fullscreen, Monitor, Smartphone, Tablet } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { type ReactNode, useRef, useState } from 'react';
 import type { PanelImperativeHandle } from 'react-resizable-panels';
@@ -14,8 +15,6 @@ import {
 } from '@/components/ui/resizable';
 import type { BlocksProps } from '@/lib/blocks';
 import { AddCommand } from '../add-command';
-import { CodeBlockEditor } from '../code-block-editor';
-import { SingleFileCodeView } from '../single-file-code-view';
 import { Button } from './button';
 import { Separator } from './separator';
 import { Tabs, TabsList, TabsTrigger } from './tabs';
@@ -28,6 +27,17 @@ interface BlockViewState {
 
 const CODE_BLOCK_REGEX = /`{3,4}(?:[a-zA-Z0-9#+-]+)?\n([\s\S]*?)`{3,4}/;
 const CODE_LANG_REGEX = /^`{3,4}([a-zA-Z0-9#+-]+)\n/;
+
+const CodeBlockEditor = dynamic(
+  () => import('../code-block-editor').then((mod) => mod.CodeBlockEditor),
+  { ssr: false }
+);
+
+const SingleFileCodeView = dynamic(
+  () =>
+    import('../single-file-code-view').then((mod) => mod.SingleFileCodeView),
+  { ssr: false }
+);
 
 export const Block = ({
   name,

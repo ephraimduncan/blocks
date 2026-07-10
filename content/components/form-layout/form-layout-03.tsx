@@ -1,16 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function FormLayout03() {
   return (
@@ -21,7 +21,7 @@ export default function FormLayout03() {
             <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
               Personal information
             </h2>
-            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="mt-1 text-pretty text-muted-foreground text-sm leading-6 dark:text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
@@ -31,11 +31,11 @@ export default function FormLayout03() {
                 <Field className="gap-2">
                   <FieldLabel htmlFor="first-name">First name</FieldLabel>
                   <Input
-                    type="text"
+                    autoComplete="given-name"
                     id="first-name"
                     name="first-name"
-                    autoComplete="given-name"
                     placeholder="Emma"
+                    type="text"
                   />
                 </Field>
               </div>
@@ -43,11 +43,11 @@ export default function FormLayout03() {
                 <Field className="gap-2">
                   <FieldLabel htmlFor="last-name">Last name</FieldLabel>
                   <Input
-                    type="text"
+                    autoComplete="family-name"
                     id="last-name"
                     name="last-name"
-                    autoComplete="family-name"
                     placeholder="Crown"
+                    type="text"
                   />
                 </Field>
               </div>
@@ -55,11 +55,11 @@ export default function FormLayout03() {
                 <Field className="gap-2">
                   <FieldLabel htmlFor="email">Email</FieldLabel>
                   <Input
-                    type="email"
+                    autoComplete="email"
                     id="email"
                     name="email"
-                    autoComplete="email"
                     placeholder="emma@company.com"
+                    type="email"
                   />
                 </Field>
               </div>
@@ -67,10 +67,10 @@ export default function FormLayout03() {
                 <Field className="gap-2">
                   <FieldLabel htmlFor="birthyear">Birth year</FieldLabel>
                   <Input
-                    type="number"
                     id="birthyear"
                     name="year"
                     placeholder="1990"
+                    type="number"
                   />
                 </Field>
               </div>
@@ -78,11 +78,11 @@ export default function FormLayout03() {
                 <Field className="gap-2">
                   <FieldLabel htmlFor="role">Role</FieldLabel>
                   <Input
-                    type="text"
+                    disabled
                     id="role"
                     name="role"
                     placeholder="Senior Manager"
-                    disabled
+                    type="text"
                   />
                   <FieldDescription>
                     Roles can only be changed by system admin.
@@ -98,7 +98,7 @@ export default function FormLayout03() {
             <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
               Workspace settings
             </h2>
-            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="mt-1 text-pretty text-muted-foreground text-sm leading-6 dark:text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
@@ -106,19 +106,21 @@ export default function FormLayout03() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
               <div className="col-span-full sm:col-span-3">
                 <Field className="gap-2">
-                  <FieldLabel htmlFor="workspace-name">Workspace name</FieldLabel>
+                  <FieldLabel htmlFor="workspace-name">
+                    Workspace name
+                  </FieldLabel>
                   <Input
-                    type="text"
                     id="workspace-name"
                     name="workspace-name"
                     placeholder="Test workspace"
+                    type="text"
                   />
                 </Field>
               </div>
               <div className="col-span-full sm:col-span-3">
                 <Field className="gap-2">
                   <FieldLabel htmlFor="visibility">Visibility</FieldLabel>
-                  <Select name="visibility" defaultValue="private">
+                  <Select defaultValue="private" name="visibility">
                     <SelectTrigger id="visibility">
                       <SelectValue placeholder="Select visibility" />
                     </SelectTrigger>
@@ -153,13 +155,13 @@ export default function FormLayout03() {
             <h2 className="text-balance font-semibold text-foreground dark:text-foreground">
               Notification settings
             </h2>
-            <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+            <p className="mt-1 text-pretty text-muted-foreground text-sm leading-6 dark:text-muted-foreground">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
             </p>
           </div>
           <div className="sm:max-w-3xl md:col-span-2">
             <fieldset>
-              <legend className="text-sm font-medium text-foreground dark:text-foreground">
+              <legend className="font-medium text-foreground text-sm dark:text-foreground">
                 Team
               </legend>
               <FieldDescription className="mt-1 leading-6">
@@ -168,11 +170,11 @@ export default function FormLayout03() {
               <div className="mt-2">
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox
+                    defaultChecked
                     id="team-requests"
                     name="team-requests"
-                    defaultChecked
                   />
-                  <FieldLabel htmlFor="team-requests" className="font-normal">
+                  <FieldLabel className="font-normal" htmlFor="team-requests">
                     Team join requests
                   </FieldLabel>
                 </div>
@@ -182,8 +184,8 @@ export default function FormLayout03() {
                     name="team-activity-digest"
                   />
                   <FieldLabel
-                    htmlFor="team-activity-digest"
                     className="font-normal"
+                    htmlFor="team-activity-digest"
                   >
                     Weekly team activity digest
                   </FieldLabel>
@@ -191,7 +193,7 @@ export default function FormLayout03() {
               </div>
             </fieldset>
             <fieldset className="mt-6">
-              <legend className="text-sm font-medium text-foreground dark:text-foreground">
+              <legend className="font-medium text-foreground text-sm dark:text-foreground">
                 Usage
               </legend>
               <FieldDescription className="mt-1 leading-6">
@@ -200,7 +202,7 @@ export default function FormLayout03() {
               <div className="mt-2">
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox id="api-requests" name="api-requests" />
-                  <FieldLabel htmlFor="api-requests" className="font-normal">
+                  <FieldLabel className="font-normal" htmlFor="api-requests">
                     API requests
                   </FieldLabel>
                 </div>
@@ -210,25 +212,25 @@ export default function FormLayout03() {
                     name="workspace-execution"
                   />
                   <FieldLabel
-                    htmlFor="workspace-execution"
                     className="font-normal"
+                    htmlFor="workspace-execution"
                   >
                     Workspace loading times
                   </FieldLabel>
                 </div>
                 <div className="flex items-center gap-x-3 py-1">
                   <Checkbox
+                    defaultChecked
                     id="query-caching"
                     name="query-caching"
-                    defaultChecked
                   />
-                  <FieldLabel htmlFor="query-caching" className="font-normal">
+                  <FieldLabel className="font-normal" htmlFor="query-caching">
                     Query caching
                   </FieldLabel>
                 </div>
                 <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox id="storage" name="storage" defaultChecked />
-                  <FieldLabel htmlFor="storage" className="font-normal">
+                  <Checkbox defaultChecked id="storage" name="storage" />
+                  <FieldLabel className="font-normal" htmlFor="storage">
                     Storage
                   </FieldLabel>
                 </div>
@@ -238,10 +240,10 @@ export default function FormLayout03() {
         </div>
         <Separator className="my-8" />
         <div className="flex items-center justify-end space-x-4">
-          <Button type="button" variant="outline" className="whitespace-nowrap">
+          <Button className="whitespace-nowrap" type="button" variant="outline">
             Go back
           </Button>
-          <Button type="submit" className="whitespace-nowrap">
+          <Button className="whitespace-nowrap" type="submit">
             Save settings
           </Button>
         </div>

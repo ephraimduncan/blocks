@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import type { NavItem } from "./types";
+} from '@/components/ui/sidebar';
+import type { NavItem } from './types';
 
 export function NavMain({ items }: { items: NavItem[] }) {
   return (

@@ -1,25 +1,5 @@
-"use client";
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  SidebarFooter,
-  SidebarMenu,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import {
   BookmarkPlus,
   CircleHelp,
@@ -29,7 +9,27 @@ import {
   Puzzle,
   Settings,
   User,
-} from "lucide-react";
+} from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  SidebarFooter,
+  SidebarMenu,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export function NavFooter({
   user,
@@ -44,51 +44,54 @@ export function NavFooter({
     <SidebarFooter className="p-4">
       <SidebarMenu>
         <SidebarMenuItem>
-          <div className="flex items-center gap-2 justify-between">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Avatar className="h-8 w-8 rounded-full">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className="rounded-full">CN</AvatarFallback>
-                  </Avatar>
+                <DropdownMenuTrigger
+                  nativeButton={false}
+                  render={<Avatar className="h-8 w-8 rounded-full" />}
+                >
+                  <AvatarImage alt={user.name} src={user.avatar} />
+                  <AvatarFallback className="rounded-full">CN</AvatarFallback>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="m-2">
                   <DropdownMenuItem>
-                    <User size={16} className="opacity-80" aria-hidden="true" />
+                    <User aria-hidden="true" className="opacity-80" size={16} />
                     Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Settings
-                      size={16}
-                      className="opacity-80"
                       aria-hidden="true"
+                      className="opacity-80"
+                      size={16}
                     />
                     Settings
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <LogOut
-                      size={16}
-                      className="opacity-80"
                       aria-hidden="true"
+                      className="opacity-80"
+                      size={16}
                     />
                     Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <TooltipProvider delayDuration={0}>
+              <TooltipProvider delay={0}>
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <CircleHelp
-                      size={16}
-                      aria-hidden="true"
-                      className="cursor-pointer opacity-60 hover:opacity-100"
-                    />
-                  </TooltipTrigger>
+                  <TooltipTrigger
+                    render={
+                      <CircleHelp
+                        aria-hidden="true"
+                        className="cursor-pointer opacity-60 hover:opacity-100"
+                        size={16}
+                      />
+                    }
+                  />
                   <TooltipContent
+                    className="m-2 max-w-[150px] border bg-popover px-2 py-1 text-popover-foreground"
                     side="top"
-                    className="py-1 px-2 m-2 max-w-[150px] border bg-popover text-popover-foreground"
                   >
                     <div className="space-y-1 text-xs">
                       <p className="font-medium">User Information</p>
@@ -102,39 +105,41 @@ export function NavFooter({
               </TooltipProvider>
             </div>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="rounded-full shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                  aria-label="Open edit menu"
-                >
-                  <Plus size={16} aria-hidden="true" />
-                </Button>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    aria-label="Open edit menu"
+                    className="rounded-full shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    size="icon"
+                    variant="ghost"
+                  />
+                }
+              >
+                <Plus aria-hidden="true" size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="pb-2">
                 <DropdownMenuLabel>Add New</DropdownMenuLabel>
                 <DropdownMenuItem>
                   <PlusCircle
-                    size={16}
-                    className="mr-2 opacity-80"
                     aria-hidden="true"
+                    className="mr-2 opacity-80"
+                    size={16}
                   />
                   Add New Item
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <BookmarkPlus
-                    size={16}
-                    className="mr-2 opacity-80"
                     aria-hidden="true"
+                    className="mr-2 opacity-80"
+                    size={16}
                   />
                   Add Bookmark
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Puzzle
-                    size={16}
-                    className="mr-2 opacity-80"
                     aria-hidden="true"
+                    className="mr-2 opacity-80"
+                    size={16}
                   />
                   Add Integration
                 </DropdownMenuItem>

@@ -1,5 +1,5 @@
 ````tsx
-"use client";
+'use client';
 
 import {
   IconArrowRight,
@@ -20,9 +20,9 @@ import {
   IconTemplate,
   IconUser,
   IconUsers,
-} from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+} from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -30,30 +30,30 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
+} from '@/components/ui/dialog';
+import { Kbd, KbdGroup } from '@/components/ui/kbd';
 
 export function CommandMenu02() {
   const [open, setOpen] = useState(true);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((prev) => !prev);
       }
     };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
   return (

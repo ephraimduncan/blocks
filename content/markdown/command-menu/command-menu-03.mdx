@@ -1,10 +1,10 @@
 ````tsx
-"use client";
+'use client';
 
-import { IconArrowRight, IconCornerDownLeft } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { IconArrowRight, IconCornerDownLeft } from '@tabler/icons-react';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -12,68 +12,68 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Kbd } from "@/components/ui/kbd";
+} from '@/components/ui/dialog';
+import { Kbd } from '@/components/ui/kbd';
 
 const navItems = [
-  { href: "/", label: "Home", keywords: ["home", "main", "index"] },
+  { href: '/', label: 'Home', keywords: ['home', 'main', 'index'] },
   {
-    href: "/dashboard",
-    label: "Dashboard",
-    keywords: ["dashboard", "overview"],
+    href: '/dashboard',
+    label: 'Dashboard',
+    keywords: ['dashboard', 'overview'],
   },
   {
-    href: "/settings",
-    label: "Settings",
-    keywords: ["settings", "preferences"],
+    href: '/settings',
+    label: 'Settings',
+    keywords: ['settings', 'preferences'],
   },
 ];
 
 const pageGroups = [
   {
-    name: "Getting Started",
+    name: 'Getting Started',
     pages: [
       {
-        name: "Introduction",
-        href: "/docs/introduction",
-        keywords: ["intro", "start"],
+        name: 'Introduction',
+        href: '/docs/introduction',
+        keywords: ['intro', 'start'],
       },
       {
-        name: "Installation",
-        href: "/docs/installation",
-        keywords: ["install", "setup"],
+        name: 'Installation',
+        href: '/docs/installation',
+        keywords: ['install', 'setup'],
       },
       {
-        name: "Quick Start",
-        href: "/docs/quick-start",
-        keywords: ["quick", "begin"],
+        name: 'Quick Start',
+        href: '/docs/quick-start',
+        keywords: ['quick', 'begin'],
       },
     ],
   },
   {
-    name: "Utilities",
+    name: 'Utilities',
     pages: [
       {
-        name: "Typography",
-        href: "/docs/utilities/typography",
-        keywords: ["text", "font"],
+        name: 'Typography',
+        href: '/docs/utilities/typography',
+        keywords: ['text', 'font'],
       },
       {
-        name: "Colors",
-        href: "/docs/utilities/colors",
-        keywords: ["color", "theme"],
+        name: 'Colors',
+        href: '/docs/utilities/colors',
+        keywords: ['color', 'theme'],
       },
       {
-        name: "Spacing",
-        href: "/docs/utilities/spacing",
-        keywords: ["margin", "padding"],
+        name: 'Spacing',
+        href: '/docs/utilities/spacing',
+        keywords: ['margin', 'padding'],
       },
     ],
   },
@@ -81,52 +81,52 @@ const pageGroups = [
 
 const colorGroups = [
   {
-    name: "Neutral",
+    name: 'Neutral',
     colors: [
       {
-        name: "Neutral 50",
-        className: "neutral-50",
-        value: "oklch(0.985 0 0)",
+        name: 'Neutral 50',
+        className: 'neutral-50',
+        value: 'oklch(0.985 0 0)',
       },
       {
-        name: "Neutral 100",
-        className: "neutral-100",
-        value: "oklch(0.97 0 0)",
+        name: 'Neutral 100',
+        className: 'neutral-100',
+        value: 'oklch(0.97 0 0)',
       },
       {
-        name: "Neutral 200",
-        className: "neutral-200",
-        value: "oklch(0.922 0 0)",
+        name: 'Neutral 200',
+        className: 'neutral-200',
+        value: 'oklch(0.922 0 0)',
       },
       {
-        name: "Neutral 500",
-        className: "neutral-500",
-        value: "oklch(0.556 0 0)",
+        name: 'Neutral 500',
+        className: 'neutral-500',
+        value: 'oklch(0.556 0 0)',
       },
       {
-        name: "Neutral 900",
-        className: "neutral-900",
-        value: "oklch(0.205 0 0)",
+        name: 'Neutral 900',
+        className: 'neutral-900',
+        value: 'oklch(0.205 0 0)',
       },
     ],
   },
   {
-    name: "Blue",
+    name: 'Blue',
     colors: [
       {
-        name: "Blue 50",
-        className: "blue-50",
-        value: "oklch(0.97 0.014 254.604)",
+        name: 'Blue 50',
+        className: 'blue-50',
+        value: 'oklch(0.97 0.014 254.604)',
       },
       {
-        name: "Blue 500",
-        className: "blue-500",
-        value: "oklch(0.623 0.214 259.815)",
+        name: 'Blue 500',
+        className: 'blue-500',
+        value: 'oklch(0.623 0.214 259.815)',
       },
       {
-        name: "Blue 600",
-        className: "blue-600",
-        value: "oklch(0.546 0.245 262.881)",
+        name: 'Blue 600',
+        className: 'blue-600',
+        value: 'oklch(0.546 0.245 262.881)',
       },
     ],
   },
@@ -147,7 +147,7 @@ export function CommandMenu03() {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+      if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || e.key === '/') {
         if (
           (e.target instanceof HTMLElement && e.target.isContentEditable) ||
           e.target instanceof HTMLInputElement ||
@@ -161,8 +161,8 @@ export function CommandMenu03() {
       }
     };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
   return (
@@ -194,7 +194,7 @@ export function CommandMenu03() {
                 >
                   {navItems.map((item) => (
                     <CommandItem
-                      className="px-3! h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
+                      className="h-9 rounded-md border border-transparent px-3! font-medium hover:border-input hover:bg-input/50"
                       key={item.href}
                       keywords={item.keywords}
                       onSelect={() => {
@@ -216,10 +216,10 @@ export function CommandMenu03() {
                   key={group.name}
                 >
                   {group.pages.map((page) => {
-                    const isComponent = page.href.includes("/components/");
+                    const isComponent = page.href.includes('/components/');
                     return (
                       <CommandItem
-                        className="px-3! h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
+                        className="h-9 rounded-md border border-transparent px-3! font-medium hover:border-input hover:bg-input/50"
                         key={page.href}
                         keywords={page.keywords}
                         onSelect={() => {
@@ -250,9 +250,9 @@ export function CommandMenu03() {
                 >
                   {colorGroup.colors.map((color) => (
                     <CommandItem
-                      className="px-3! h-9 rounded-md border border-transparent font-medium hover:border-input hover:bg-input/50"
+                      className="h-9 rounded-md border border-transparent px-3! font-medium hover:border-input hover:bg-input/50"
                       key={color.className}
-                      keywords={["color", color.name, color.className]}
+                      keywords={['color', color.name, color.className]}
                       onSelect={() => {
                         runCommand(() => copyToClipboard(color.value));
                       }}

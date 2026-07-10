@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { JSX, SVGProps } from "react";
+import type { JSX, SVGProps } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 
 const GoogleIcon = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -14,46 +14,46 @@ const GoogleIcon = (
 
 export default function Login02() {
   return (
-    <div className="flex items-center justify-center min-h-dvh">
+    <div className="flex min-h-dvh items-center justify-center">
       <div className="flex flex-1 flex-col justify-center px-4 py-10 lg:px-6">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="text-balance text-center text-xl font-semibold text-foreground">
+          <h2 className="text-balance text-center font-semibold text-foreground text-xl">
             Log in or create account
           </h2>
-          <form action="#" method="post" className="mt-6 space-y-4">
+          <form action="#" className="mt-6 space-y-4" method="post">
             <div>
               <Label
+                className="font-medium text-foreground text-sm dark:text-foreground"
                 htmlFor="email-login-02"
-                className="text-sm font-medium text-foreground dark:text-foreground"
               >
                 Email
               </Label>
               <Input
-                type="email"
+                autoComplete="email"
+                className="mt-2"
                 id="email-login-02"
                 name="email-login-02"
-                autoComplete="email"
                 placeholder="ephraim@blocks.so"
-                className="mt-2"
+                type="email"
               />
             </div>
             <div>
               <Label
+                className="font-medium text-foreground text-sm dark:text-foreground"
                 htmlFor="password-login-02"
-                className="text-sm font-medium text-foreground dark:text-foreground"
               >
                 Password
               </Label>
               <Input
-                type="password"
+                autoComplete="password"
+                className="mt-2"
                 id="password-login-02"
                 name="password-login-02"
-                autoComplete="password"
                 placeholder="**************"
-                className="mt-2"
+                type="password"
               />
             </div>
-            <Button type="submit" className="mt-4 w-full py-2 font-medium">
+            <Button className="mt-4 w-full py-2 font-medium" type="submit">
               Sign in
             </Button>
           </form>
@@ -70,23 +70,22 @@ export default function Login02() {
           </div>
 
           <Button
-            variant="outline"
             className="flex w-full items-center justify-center space-x-2 py-2"
-            asChild
+            nativeButton={false}
+            render={<a href="#" />}
+            variant="outline"
           >
-            <a href="#">
-              <GoogleIcon className="size-5" aria-hidden={true} />
-              <span className="text-sm font-medium">Sign in with Google</span>
-            </a>
+            <GoogleIcon aria-hidden={true} className="size-5" />
+            <span className="font-medium text-sm">Sign in with Google</span>
           </Button>
 
-          <p className="text-pretty mt-4 text-xs text-muted-foreground dark:text-muted-foreground">
-            By signing in, you agree to our{" "}
-            <a href="#" className="underline underline-offset-4">
+          <p className="mt-4 text-pretty text-muted-foreground text-xs dark:text-muted-foreground">
+            By signing in, you agree to our{' '}
+            <a className="underline underline-offset-4" href="#">
               terms of service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="underline underline-offset-4">
+            </a>{' '}
+            and{' '}
+            <a className="underline underline-offset-4" href="#">
               privacy policy
             </a>
             .

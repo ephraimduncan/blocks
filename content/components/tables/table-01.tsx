@@ -1,10 +1,9 @@
 'use client';
 
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import {
-  Collapsible,
-  CollapsibleContent,
-} from '@/components/ui/collapsible';
+import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible';
 import {
   Table,
   TableBody,
@@ -14,8 +13,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
 
 interface TableRowData {
   id: string;
@@ -129,111 +126,115 @@ function AccordionRow({ row, defaultOpen = false }: AccordionRowProps) {
   const hasChildren = row.children && row.children.length > 0;
 
   return (
-    <Collapsible asChild open={isOpen} onOpenChange={setIsOpen}>
-      <TableBody className="[&_tr:last-child]:border-b last:[&_tr:last-child]:border-0">
-        <TableRow
-          className={cn(
-            'grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50 hover:bg-muted/50',
-            isOpen && 'border-b-0'
-          )}
-        >
-          <TableCell className="p-0">
-            <Button
-              aria-label={isOpen ? 'Collapse row' : 'Expand row'}
-              className={cn(
-                'h-full w-full rounded-none p-3 text-muted-foreground transition-colors',
-                hasChildren && 'hover:bg-transparent hover:text-foreground',
-                !hasChildren && 'cursor-default opacity-30'
-              )}
-              disabled={!hasChildren}
-              onClick={() => setIsOpen(!isOpen)}
-              size="icon"
-              variant="ghost"
-            >
-              {hasChildren ? (
-                isOpen ? (
-                  <ChevronDown className="h-4 w-4 transition-transform duration-200" />
-                ) : (
-                  <ChevronRight className="h-4 w-4 transition-transform duration-200" />
-                )
+    <Collapsible
+      onOpenChange={setIsOpen}
+      open={isOpen}
+      render={
+        <TableBody className="[&_tr:last-child]:border-b last:[&_tr:last-child]:border-0" />
+      }
+    >
+      <TableRow
+        className={cn(
+          'grid grid-cols-[40px_80px_180px_110px_100px_110px] bg-muted/50 hover:bg-muted/50',
+          isOpen && 'border-b-0'
+        )}
+      >
+        <TableCell className="p-0">
+          <Button
+            aria-label={isOpen ? 'Collapse row' : 'Expand row'}
+            className={cn(
+              'h-full w-full rounded-none p-3 text-muted-foreground transition-colors',
+              hasChildren && 'hover:bg-transparent hover:text-foreground',
+              !hasChildren && 'cursor-default opacity-30'
+            )}
+            disabled={!hasChildren}
+            onClick={() => setIsOpen(!isOpen)}
+            size="icon"
+            variant="ghost"
+          >
+            {hasChildren ? (
+              isOpen ? (
+                <ChevronDown className="h-4 w-4 transition-transform duration-200" />
               ) : (
-                <div className="h-4 w-4" />
-              )}
-            </Button>
-          </TableCell>
-          <TableCell className="p-3 font-medium font-mono text-muted-foreground text-sm">
-            {row.id}
-          </TableCell>
-          <TableCell className="p-3 font-medium text-sm">{row.name}</TableCell>
-          <TableCell className="p-3 text-muted-foreground text-sm">
-            {row.category}
-          </TableCell>
-          <TableCell className="tabular-nums p-3 text-right font-mono font-semibold text-sm">
-            ${row.value.toLocaleString()}
-          </TableCell>
-          <TableCell className="p-3 text-muted-foreground text-sm">
-            {row.date}
+                <ChevronRight className="h-4 w-4 transition-transform duration-200" />
+              )
+            ) : (
+              <div className="h-4 w-4" />
+            )}
+          </Button>
+        </TableCell>
+        <TableCell className="p-3 font-medium font-mono text-muted-foreground text-sm">
+          {row.id}
+        </TableCell>
+        <TableCell className="p-3 font-medium text-sm">{row.name}</TableCell>
+        <TableCell className="p-3 text-muted-foreground text-sm">
+          {row.category}
+        </TableCell>
+        <TableCell className="p-3 text-right font-mono font-semibold text-sm tabular-nums">
+          ${row.value.toLocaleString()}
+        </TableCell>
+        <TableCell className="p-3 text-muted-foreground text-sm">
+          {row.date}
+        </TableCell>
+      </TableRow>
+
+      {hasChildren && (
+        <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 hover:bg-transparent">
+          <TableCell className="col-span-6 p-0" colSpan={6}>
+            <CollapsibleContent>
+              <div className="w-full border-border border-b bg-muted/20">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 bg-muted/30">
+                      <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5" />
+                      <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
+                        ID
+                      </TableHead>
+                      <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
+                        Name
+                      </TableHead>
+                      <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
+                        Category
+                      </TableHead>
+                      <TableHead className="flex h-7 items-center justify-end border-border border-y px-3 py-1.5 text-right text-xs">
+                        Value
+                      </TableHead>
+                      <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
+                        Date
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {row.children?.map((childRow) => (
+                      <TableRow
+                        className="grid grid-cols-[40px_80px_180px_110px_100px_110px]"
+                        key={childRow.id}
+                      >
+                        <TableCell className="px-3 py-2" />
+                        <TableCell className="px-3 py-2 font-mono text-muted-foreground text-xs tabular-nums">
+                          {childRow.id}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 font-medium text-xs">
+                          {childRow.name}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-muted-foreground text-xs">
+                          {childRow.category}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-right font-mono font-semibold text-xs tabular-nums">
+                          ${childRow.value.toLocaleString()}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-muted-foreground text-xs">
+                          {childRow.date}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </CollapsibleContent>
           </TableCell>
         </TableRow>
-
-        {hasChildren && (
-          <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 hover:bg-transparent">
-            <TableCell className="col-span-6 p-0" colSpan={6}>
-              <CollapsibleContent>
-                <div className="w-full border-border border-b bg-muted/20">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="grid grid-cols-[40px_80px_180px_110px_100px_110px] border-b-0 bg-muted/30">
-                        <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5" />
-                        <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
-                          ID
-                        </TableHead>
-                        <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
-                          Name
-                        </TableHead>
-                        <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
-                          Category
-                        </TableHead>
-                        <TableHead className="flex h-7 items-center justify-end border-border border-y px-3 py-1.5 text-right text-xs">
-                          Value
-                        </TableHead>
-                        <TableHead className="flex h-7 items-center border-border border-y px-3 py-1.5 text-xs">
-                          Date
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {row.children?.map((childRow) => (
-                        <TableRow
-                          className="grid grid-cols-[40px_80px_180px_110px_100px_110px]"
-                          key={childRow.id}
-                        >
-                          <TableCell className="px-3 py-2" />
-                          <TableCell className="tabular-nums px-3 py-2 font-mono text-muted-foreground text-xs">
-                            {childRow.id}
-                          </TableCell>
-                          <TableCell className="px-3 py-2 font-medium text-xs">
-                            {childRow.name}
-                          </TableCell>
-                          <TableCell className="px-3 py-2 text-muted-foreground text-xs">
-                            {childRow.category}
-                          </TableCell>
-                          <TableCell className="tabular-nums px-3 py-2 text-right font-mono font-semibold text-xs">
-                            ${childRow.value.toLocaleString()}
-                          </TableCell>
-                          <TableCell className="px-3 py-2 text-muted-foreground text-xs">
-                            {childRow.date}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </CollapsibleContent>
-            </TableCell>
-          </TableRow>
-        )}
-      </TableBody>
+      )}
     </Collapsible>
   );
 }

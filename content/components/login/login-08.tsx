@@ -1,16 +1,27 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { EyeIcon, EyeOffIcon, Key } from "lucide-react";
-import Link from "next/link";
-import { JSX, SVGProps, useState } from "react";
+import { EyeIcon, EyeOffIcon, Key } from 'lucide-react';
+import Link from 'next/link';
+import { type JSX, type SVGProps, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
-  <svg fill="currentColor" height="48" viewBox="0 0 40 48" width="40" {...props}>
+  <svg
+    fill="currentColor"
+    height="48"
+    viewBox="0 0 40 48"
+    width="40"
+    {...props}
+  >
     <clipPath id="a">
       <path d="m0 0h40v48h-40z" />
     </clipPath>
@@ -31,14 +42,16 @@ export default function SignIn() {
   const togglePasswordVisibility = () => setIsPasswordVisible((prev) => !prev);
 
   return (
-    <div className="flex items-center justify-center min-h-dvh">
-      <Card className="w-full max-w-md mx-4 pb-0 shadow-2xs">
-        <CardHeader className="space-y-1 text-center mb-2 mt-4">
+    <div className="flex min-h-dvh items-center justify-center">
+      <Card className="mx-4 w-full max-w-md pb-0 shadow-2xs">
+        <CardHeader className="mt-4 mb-2 space-y-1 text-center">
           <div className="flex justify-center">
             <Logo />
           </div>
           <div>
-            <h2 className="text-balance text-2xl font-semibold">Sign in to Acme</h2>
+            <h2 className="text-balance font-semibold text-2xl">
+              Sign in to Acme
+            </h2>
             <p className="text-pretty text-muted-foreground text-sm">
               Welcome back! Please enter your details.
             </p>
@@ -47,41 +60,43 @@ export default function SignIn() {
         <CardContent className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="email">Email address</Label>
-            <Input id="email" type="email" placeholder="ephraim@blocks.so" />
+            <Input id="email" placeholder="ephraim@blocks.so" type="email" />
           </div>
           <div className="space-y-0">
-            <div className="flex items-center justify-between mb-2">
+            <div className="mb-2 flex items-center justify-between">
               <Label htmlFor="password">Password</Label>
-              <Link href="#" className="text-sm text-primary hover:underline">
+              <Link className="text-primary text-sm hover:underline" href="#">
                 Reset password
               </Link>
             </div>
             <div className="relative">
               <Input
-                id="password"
                 className="pe-9"
+                id="password"
                 placeholder="Enter your password"
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
               />
               <button
-                className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
-                type="button"
-                onClick={togglePasswordVisibility}
-                aria-label={isPasswordVisible ? "Hide password" : "Show password"}
-                aria-pressed={isPasswordVisible}
                 aria-controls="password"
+                aria-label={
+                  isPasswordVisible ? 'Hide password' : 'Show password'
+                }
+                aria-pressed={isPasswordVisible}
+                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus:z-10 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={togglePasswordVisibility}
+                type="button"
               >
                 {isPasswordVisible ? (
-                  <EyeOffIcon size={16} aria-hidden="true" />
+                  <EyeOffIcon aria-hidden="true" size={16} />
                 ) : (
-                  <EyeIcon size={16} aria-hidden="true" />
+                  <EyeIcon aria-hidden="true" size={16} />
                 )}
               </button>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox id="remember" defaultChecked />
-            <Label htmlFor="remember" className="text-sm font-normal">
+            <Checkbox defaultChecked id="remember" />
+            <Label className="font-normal text-sm" htmlFor="remember">
               Remember me
             </Label>
           </div>
@@ -90,16 +105,16 @@ export default function SignIn() {
             <Button className="w-full" type="submit">
               Sign In
             </Button>
-            <Button variant="outline" className="w-full" type="button">
+            <Button className="w-full" type="button" variant="outline">
               <Key className="mr-2 h-4 w-4" />
               Single sign-on (SSO)
             </Button>
           </div>
         </CardContent>
         <CardFooter className="flex justify-center border-t py-4!">
-          <p className="text-pretty text-center text-sm text-muted-foreground">
-            New to Acme?{" "}
-            <Link href="#" className="text-primary hover:underline">
+          <p className="text-pretty text-center text-muted-foreground text-sm">
+            New to Acme?{' '}
+            <Link className="text-primary hover:underline" href="#">
               Sign up
             </Link>
           </p>

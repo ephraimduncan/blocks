@@ -150,12 +150,7 @@ export function Onboarding07() {
             </div>
           ))}
         </div>
-        <Accordion
-          className="mt-8"
-          collapsible
-          defaultValue="logs"
-          type="single"
-        >
+        <Accordion className="mt-8" defaultValue={['logs']}>
           <AccordionItem className="rounded-sm border-b-0" value="logs">
             <AccordionTrigger className="font-medium text-foreground text-sm">
               Logs overview ({steps.length})

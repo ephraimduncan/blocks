@@ -73,10 +73,8 @@ export function Onboarding04() {
         </p>
         <Accordion
           className="mt-6 space-y-2"
-          collapsible
-          onValueChange={setOpenItem}
-          type="single"
-          value={openItem}
+          onValueChange={(value) => setOpenItem(value[0] ?? '')}
+          value={openItem ? [openItem] : []}
         >
           {steps.map((step, index) => {
             let status: 'complete' | 'current' | 'upcoming' = 'upcoming';

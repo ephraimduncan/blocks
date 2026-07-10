@@ -41,7 +41,7 @@ export function SeoJsonLd() {
           url: 'https://ephraimduncan.com',
         },
         keywords:
-          'shadcn blocks, shadcn ui blocks, shadcn/ui components, React UI blocks, Tailwind CSS components, Next.js components, free UI blocks, shadcn, shadcn ui, radix ui',
+          'shadcn blocks, shadcn ui blocks, shadcn/ui components, React UI blocks, Tailwind CSS components, Next.js components, free UI blocks, shadcn, shadcn ui, base ui',
         softwareVersion: '1.0',
       },
       {

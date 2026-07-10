@@ -65,8 +65,8 @@ export const metadata: Metadata = {
     'shadcn ui library',
     'shadcn examples',
     'shadcn starter',
-    'radix ui blocks',
-    'radix ui components',
+    'base ui blocks',
+    'base ui components',
     'shadcn dialog component',
     'shadcn form component',
     'shadcn table component',
@@ -162,7 +162,7 @@ export default function RootLayout({
           enableSystem={false}
           forcedTheme="light"
         >
-          <TooltipProvider delayDuration={0}>
+          <TooltipProvider delay={0}>
             {children}
 
             <TailwindIndicator />

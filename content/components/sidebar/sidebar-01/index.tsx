@@ -2,8 +2,8 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { AppSidebar } from "./app-sidebar";
+} from '@/components/ui/sidebar';
+import { AppSidebar } from './app-sidebar';
 
 export default function Sidebar01() {
   return (

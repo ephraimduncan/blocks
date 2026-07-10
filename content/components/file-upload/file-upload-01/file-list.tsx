@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { UploadedFileItem } from "./file-item";
+import { cn } from '@/lib/utils';
+import { UploadedFileItem } from './file-item';
 
 interface UploadedFileListProps {
   uploadedFiles: File[];
@@ -17,13 +17,13 @@ export function FileList({
   }
 
   return (
-    <div className={cn("px-6 pb-5 space-y-3 mt-4")}>
+    <div className={cn('mt-4 space-y-3 px-6 pb-5')}>
       {uploadedFiles.map((file, index) => (
         <UploadedFileItem
-          key={file.name + index}
           file={file}
-          progress={fileProgresses[file.name] || 0}
+          key={file.name + index}
           onRemove={removeFile}
+          progress={fileProgresses[file.name] || 0}
         />
       ))}
     </div>

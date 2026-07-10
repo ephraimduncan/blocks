@@ -1,26 +1,26 @@
 ````tsx
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { BarChart, Code, Eye, EyeOff, User } from 'lucide-react';
+import Link from 'next/link';
+import { type JSX, type SVGProps, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { BarChart, Code, Eye, EyeOff, User } from "lucide-react";
-import Link from "next/link";
-import { JSX, SVGProps, useState } from "react";
+} from '@/components/ui/select';
 
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
   <svg
@@ -48,13 +48,13 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="flex items-center justify-center min-h-dvh">
+    <div className="flex min-h-dvh items-center justify-center">
       <div className="w-full max-w-md">
-        <Card className="border-none shadow-lg pb-0">
-          <CardHeader className="flex flex-col items-center space-y-1.5 pb-4 pt-6">
-            <Logo className="w-12 h-12" />
-            <div className="space-y-0.5 flex flex-col items-center">
-              <h2 className="text-balance text-2xl font-semibold text-foreground">
+        <Card className="border-none pb-0 shadow-lg">
+          <CardHeader className="flex flex-col items-center space-y-1.5 pt-6 pb-4">
+            <Logo className="h-12 w-12" />
+            <div className="flex flex-col items-center space-y-0.5">
+              <h2 className="text-balance font-semibold text-2xl text-foreground">
                 Create an account
               </h2>
               <p className="text-pretty text-muted-foreground">
@@ -67,22 +67,22 @@ export default function SignupForm() {
               <Label htmlFor="role">Role</Label>
               <Select defaultValue="designer">
                 <SelectTrigger
-                  id="role"
                   className="[&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0"
+                  id="role"
                 >
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
-                <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0">
+                <SelectContent className="[&_*[role=option]>span>svg]:shrink-0 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8">
                   <SelectItem value="designer">
-                    <User size={16} aria-hidden="true" />
+                    <User aria-hidden="true" size={16} />
                     <span className="truncate">Product Designer</span>
                   </SelectItem>
                   <SelectItem value="developer">
-                    <Code size={16} aria-hidden="true" />
+                    <Code aria-hidden="true" size={16} />
                     <span className="truncate">Developer</span>
                   </SelectItem>
                   <SelectItem value="manager">
-                    <BarChart size={16} aria-hidden="true" />
+                    <BarChart aria-hidden="true" size={16} />
                     <span className="truncate">Product Manager</span>
                   </SelectItem>
                 </SelectContent>
@@ -114,16 +114,16 @@ export default function SignupForm() {
               <Label htmlFor="password">Password</Label>
               <div className="relative">
                 <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
                   className="pr-10"
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
                 />
                 <Button
+                  className="absolute top-0 right-0 h-full px-3 text-muted-foreground hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                  size="icon"
                   type="button"
                   variant="ghost"
-                  size="icon"
-                  className="absolute right-0 top-0 h-full px-3 text-muted-foreground hover:bg-transparent"
-                  onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -136,13 +136,13 @@ export default function SignupForm() {
 
             <div className="flex items-center space-x-2">
               <Checkbox id="terms" />
-              <label htmlFor="terms" className="text-sm text-muted-foreground">
-                I agree to the{" "}
-                <Link href="#" className="text-primary hover:underline">
+              <label className="text-muted-foreground text-sm" htmlFor="terms">
+                I agree to the{' '}
+                <Link className="text-primary hover:underline" href="#">
                   Terms
-                </Link>{" "}
-                and{" "}
-                <Link href="#" className="text-primary hover:underline">
+                </Link>{' '}
+                and{' '}
+                <Link className="text-primary hover:underline" href="#">
                   Conditions
                 </Link>
               </label>
@@ -153,9 +153,9 @@ export default function SignupForm() {
             </Button>
           </CardContent>
           <CardFooter className="flex justify-center border-t py-4!">
-            <p className="text-pretty text-center text-sm text-muted-foreground">
-              Already have an account?{" "}
-              <Link href="#" className="text-primary hover:underline">
+            <p className="text-pretty text-center text-muted-foreground text-sm">
+              Already have an account?{' '}
+              <Link className="text-primary hover:underline" href="#">
                 Sign in
               </Link>
             </p>

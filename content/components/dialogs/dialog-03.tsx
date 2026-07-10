@@ -1,5 +1,7 @@
-"use client";
-import { Button } from "@/components/ui/button";
+'use client';
+import { AlertTriangleIcon } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -9,17 +11,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { AlertTriangleIcon } from "lucide-react";
-import { useState } from "react";
+} from '@/components/ui/dialog';
 
 export default function Dialog02() {
   const [open, setOpen] = useState(true);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="destructive">Deactivate</Button>
+    <Dialog onOpenChange={setOpen} open={open}>
+      <DialogTrigger render={<Button variant="destructive" />}>
+        Deactivate
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <div className="flex items-start space-x-4">
@@ -35,10 +35,10 @@ export default function Dialog02() {
           </DialogHeader>
         </div>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
+          <DialogClose render={<Button variant="outline" />}>
+            Cancel
           </DialogClose>
-          <Button variant="destructive" onClick={() => setOpen(false)}>
+          <Button onClick={() => setOpen(false)} variant="destructive">
             Deactivate
           </Button>
         </DialogFooter>

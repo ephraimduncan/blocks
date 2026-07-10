@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type React from "react";
-import { useState } from "react";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Box, Edit } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -12,10 +12,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Box, Edit } from "lucide-react";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface MetricCardProps {
   title: string;
@@ -38,7 +37,7 @@ function MetricCard({
   limit,
   percentage,
   status,
-  statusColor = "text-emerald-600 dark:text-emerald-400",
+  statusColor = 'text-emerald-600 dark:text-emerald-400',
   progressColor,
   details,
   actionLabel,
@@ -47,9 +46,9 @@ function MetricCard({
   onActionClick,
 }: MetricCardProps) {
   const renderProgressBar = () => {
-    if (details && title === "Commands") {
-      const writes = Number.parseInt(details[0].value.replace(/,/g, ""));
-      const reads = Number.parseInt(details[1].value.replace(/,/g, ""));
+    if (details && title === 'Commands') {
+      const writes = Number.parseInt(details[0].value.replace(/,/g, ''));
+      const reads = Number.parseInt(details[1].value.replace(/,/g, ''));
       const total = writes + reads;
       const writesPercentage = (writes / total) * 100;
       const readsPercentage = (reads / total) * 100;
@@ -81,17 +80,19 @@ function MetricCard({
   };
 
   return (
-    <Card className="relative overflow-hidden max-w-[280px] shadow-2xs">
+    <Card className="relative max-w-[280px] overflow-hidden shadow-2xs">
       <CardContent className="p-4 py-0">
-        <h5 className="text-xs font-normal leading-none tracking-wide text-muted-foreground dark:text-foreground/80 uppercase">
+        <h5 className="font-normal text-muted-foreground text-xs uppercase leading-none tracking-wide dark:text-foreground/80">
           {title}
         </h5>
 
         <div className="mt-2 flex items-baseline gap-1">
-          <div className="text-[1.2rem] font-medium leading-none text-foreground tabular-nums">
+          <div className="font-medium text-[1.2rem] text-foreground tabular-nums leading-none">
             {value}
           </div>
-          <div className="text-xs leading-none text-muted-foreground">/ {limit}</div>
+          <div className="text-muted-foreground text-xs leading-none">
+            / {limit}
+          </div>
         </div>
 
         <div className="mt-3">
@@ -102,12 +103,14 @@ function MetricCard({
               <div className="flex flex-col gap-3">
                 {details.map((detail, index) => (
                   <div
+                    className="flex w-full items-center text-muted-foreground text-xs leading-none dark:text-foreground/70"
                     key={index}
-                    className="flex w-full items-center text-xs leading-none text-muted-foreground dark:text-foreground/70"
                   >
-                    <div className={`mr-[6px] h-2 w-2 rounded-full ${detail.color}`} />
+                    <div
+                      className={`mr-[6px] h-2 w-2 rounded-full ${detail.color}`}
+                    />
                     <div className="mr-1">{detail.label}</div>
-                    <div className="h-[9px] flex-1 border-b-2 border-dotted border-border" />
+                    <div className="h-[9px] flex-1 border-border border-b-2 border-dotted" />
                     <div className="ml-1 tabular-nums">{detail.value}</div>
                   </div>
                 ))}
@@ -123,16 +126,18 @@ function MetricCard({
 
           {warningMessage && (
             <div className="pt-2">
-              <div className="text-sm text-amber-700 dark:text-amber-400">{warningMessage}</div>
+              <div className="text-amber-700 text-sm dark:text-amber-400">
+                {warningMessage}
+              </div>
             </div>
           )}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute right-0 bottom-0 left-0">
           <Button
-            variant="ghost"
-            className="h-8 w-full rounded-none text-blue-500 gap-0 justify-start hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 bg-muted/50"
+            className="h-8 w-full justify-start gap-0 rounded-none bg-muted/50 text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
             onClick={onActionClick}
+            variant="ghost"
           >
             {actionIcon}
             <span className="ml-1 text-xs">{actionLabel}</span>
@@ -150,20 +155,21 @@ function BudgetDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const [budget, setBudget] = useState("150");
+  const [budget, setBudget] = useState('150');
 
   const handleUpdate = () => {
     onOpenChange(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Update budget</DialogTitle>
           <DialogDescription>
-            When your monthly cost reaches the max budget, we send an email and throttle your
-            database. You will not be charged beyond your set budget for this database.
+            When your monthly cost reaches the max budget, we send an email and
+            throttle your database. You will not be charged beyond your set
+            budget for this database.
           </DialogDescription>
         </DialogHeader>
 
@@ -171,15 +177,15 @@ function BudgetDialog({
           <Label htmlFor="budget">Max budget per month</Label>
           <Input
             id="budget"
-            value={budget}
             onChange={(e) => setBudget(e.target.value)}
-            type="number"
             placeholder="150"
+            type="number"
+            value={budget}
           />
         </div>
 
         <DialogFooter className="pt-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button onClick={() => onOpenChange(false)} variant="outline">
             Cancel
           </Button>
           <Button onClick={handleUpdate}>Update</Button>
@@ -196,55 +202,58 @@ export default function Stats11() {
     <>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
         <MetricCard
-          title="Commands"
-          value="13.8M"
+          actionIcon={<Box className="h-4 w-4" />}
+          actionLabel="Upgrade"
+          details={[
+            { label: 'Writes', value: '11,276,493', color: 'bg-emerald-500' },
+            { label: 'Reads', value: '2,548,921', color: 'bg-blue-500' },
+          ]}
           limit="Unlimited"
           percentage={67}
           progressColor="bg-blue-500"
-          details={[
-            { label: "Writes", value: "11,276,493", color: "bg-emerald-500" },
-            { label: "Reads", value: "2,548,921", color: "bg-blue-500" },
-          ]}
-          actionLabel="Upgrade"
-          actionIcon={<Box className="h-4 w-4" />}
+          title="Commands"
+          value="13.8M"
         />
 
         <MetricCard
-          title="Bandwidth"
-          value="141 GB"
+          actionIcon={<Box className="h-4 w-4" />}
+          actionLabel="Upgrade"
           limit="150 GB"
           percentage={94}
           progressColor="bg-orange-500"
+          title="Bandwidth"
+          value="141 GB"
           warningMessage="There will be a charge for the excessive bandwidth over the limit."
-          actionLabel="Upgrade"
-          actionIcon={<Box className="h-4 w-4" />}
         />
 
         <MetricCard
-          title="Storage"
-          value="37 GB"
+          actionIcon={<Box className="h-4 w-4" />}
+          actionLabel="Upgrade"
           limit="500 GB"
           percentage={7.4}
           progressColor="bg-emerald-500"
           status="It's all right."
-          actionLabel="Upgrade"
-          actionIcon={<Box className="h-4 w-4" />}
+          title="Storage"
+          value="37 GB"
         />
 
         <MetricCard
-          title="Cost"
-          value="$73.42"
+          actionIcon={<Edit className="h-4 w-4" />}
+          actionLabel="Change Budget"
           limit="$150 Budget"
+          onActionClick={() => setBudgetDialogOpen(true)}
           percentage={48.95}
           progressColor="bg-emerald-500"
           status="It's all right."
-          actionLabel="Change Budget"
-          actionIcon={<Edit className="h-4 w-4" />}
-          onActionClick={() => setBudgetDialogOpen(true)}
+          title="Cost"
+          value="$73.42"
         />
       </div>
 
-      <BudgetDialog open={budgetDialogOpen} onOpenChange={setBudgetDialogOpen} />
+      <BudgetDialog
+        onOpenChange={setBudgetDialogOpen}
+        open={budgetDialogOpen}
+      />
     </>
   );
 }

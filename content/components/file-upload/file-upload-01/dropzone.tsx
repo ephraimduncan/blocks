@@ -1,5 +1,6 @@
-import { Upload } from "lucide-react";
-import React, { RefObject } from "react";
+import { Upload } from 'lucide-react';
+import type React from 'react';
+import type { RefObject } from 'react';
 
 interface FileDropzoneProps {
   fileInputRef: RefObject<HTMLInputElement | null>;
@@ -19,35 +20,35 @@ export function FileDropzone({
   return (
     <div className="px-6">
       <div
-        className="border-2 border-dashed border-border rounded-md p-8 flex flex-col items-center justify-center text-center cursor-pointer"
+        className="flex cursor-pointer flex-col items-center justify-center rounded-md border-2 border-border border-dashed p-8 text-center"
         onClick={handleBoxClick}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
-        <div className="mb-2 bg-muted rounded-full p-3">
+        <div className="mb-2 rounded-full bg-muted p-3">
           <Upload className="h-5 w-5 text-muted-foreground" />
         </div>
-        <p className="text-sm font-medium text-foreground">
+        <p className="font-medium text-foreground text-sm">
           Upload a project image
         </p>
-        <p className="text-sm text-muted-foreground mt-1">
-          or,{" "}
+        <p className="mt-1 text-muted-foreground text-sm">
+          or,{' '}
           <label
+            className="cursor-pointer font-medium text-primary hover:text-primary/90"
             htmlFor="fileUpload"
-            className="text-primary hover:text-primary/90 font-medium cursor-pointer"
             onClick={(e) => e.stopPropagation()} // Prevent triggering handleBoxClick
           >
             click to browse
-          </label>{" "}
+          </label>{' '}
           (4MB max)
         </p>
         <input
-          type="file"
-          id="fileUpload"
-          ref={fileInputRef}
-          className="hidden"
           accept="image/*"
+          className="hidden"
+          id="fileUpload"
           onChange={(e) => handleFileSelect(e.target.files)}
+          ref={fileInputRef}
+          type="file"
         />
       </div>
     </div>

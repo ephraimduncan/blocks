@@ -1,6 +1,7 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,20 +10,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function Dialog03() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <div className="flex items-center justify-center py-36">
-        <DialogTrigger asChild>
-          <Button>Edit Profile</Button>
-        </DialogTrigger>
+        <DialogTrigger render={<Button />}>Edit Profile</DialogTrigger>
       </div>
 
       <DialogContent className="sm:max-w-md">
@@ -33,18 +31,18 @@ export default function Dialog03() {
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2">
-          <Label htmlFor="username" className="text-sm font-medium">
+          <Label className="font-medium text-sm" htmlFor="username">
             Username
           </Label>
           <Input
             id="username"
             name="username"
-            type="text"
             placeholder="Your username"
+            type="text"
           />
         </div>
         <DialogFooter>
-          <Button type="submit" className="w-full">
+          <Button className="w-full" type="submit">
             Save Changes
           </Button>
         </DialogFooter>

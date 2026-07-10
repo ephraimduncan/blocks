@@ -1,19 +1,6 @@
 ````tsx
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
 import {
   IconAdjustmentsHorizontal,
   IconArrowUp,
@@ -31,9 +18,22 @@ import {
   IconSparkles,
   IconTemplate,
   IconX,
-} from "@tabler/icons-react";
-import Image from "next/image";
-import { useRef, useState } from "react";
+} from '@tabler/icons-react';
+import Image from 'next/image';
+import { useRef, useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
 interface AttachedFile {
   id: string;
@@ -43,10 +43,10 @@ interface AttachedFile {
 }
 
 const ACTIONS = [
-  { id: "clone-screenshot", icon: IconCamera, label: "Clone a Screenshot" },
-  { id: "import-figma", icon: IconBrandFigma, label: "Import from Figma" },
-  { id: "upload-project", icon: IconFileUpload, label: "Upload a Project" },
-  { id: "landing-page", icon: IconLayoutDashboard, label: "Landing Page" },
+  { id: 'clone-screenshot', icon: IconCamera, label: 'Clone a Screenshot' },
+  { id: 'import-figma', icon: IconBrandFigma, label: 'Import from Figma' },
+  { id: 'upload-project', icon: IconFileUpload, label: 'Upload a Project' },
+  { id: 'landing-page', icon: IconLayoutDashboard, label: 'Landing Page' },
 ];
 
 export default function Ai04({
@@ -54,7 +54,7 @@ export default function Ai04({
 }: {
   onSubmit?: (prompt: string) => void;
 }) {
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState('');
   const [isDragOver, setIsDragOver] = useState(false);
   const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -75,7 +75,7 @@ export default function Ai04({
         file,
       };
 
-      if (file.type.startsWith("image/")) {
+      if (file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = () => {
           setAttachedFiles((prev) =>
@@ -93,7 +93,7 @@ export default function Ai04({
   const submitPrompt = () => {
     if (prompt.trim() && onSubmit) {
       onSubmit(prompt.trim());
-      setPrompt("");
+      setPrompt('');
     }
   };
   const updateSetting = (key: keyof typeof settings, value: boolean) => {
@@ -124,7 +124,7 @@ export default function Ai04({
     setPrompt(e.target.value);
   };
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       submitPrompt();
     }
@@ -135,7 +135,7 @@ export default function Ai04({
     processFiles(files);
 
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      fileInputRef.current.value = '';
     }
   };
 
@@ -148,11 +148,11 @@ export default function Ai04({
       <h1 className="text-balance text-pretty text-center font-heading font-semibold text-[29px] text-foreground tracking-tighter sm:text-[32px] md:text-[46px]">
         Prompt. Refine. Ship.
       </h1>
-      <h2 className="text-balance -my-5 pb-4 text-center text-xl text-muted-foreground">
+      <h2 className="-my-5 text-balance pb-4 text-center text-muted-foreground text-xl">
         Build real, working software just by describing it
       </h2>
 
-      <div className="relative z-10 flex flex-col w-full mx-auto max-w-2xl content-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col content-center">
         <form
           className="overflow-visible rounded-xl border p-2 transition-colors duration-200 focus-within:border-ring"
           onDragLeave={handleDragLeave}
@@ -161,12 +161,12 @@ export default function Ai04({
           onSubmit={handleSubmit}
         >
           {attachedFiles.length > 0 && (
-            <div className="relative flex w-fit items-center gap-2 mb-2 overflow-hidden">
+            <div className="relative mb-2 flex w-fit items-center gap-2 overflow-hidden">
               {attachedFiles.map((file) => (
                 <Badge
-                  variant="outline"
-                  className="group relative h-6 max-w-30 cursor-pointer overflow-hidden text-[13px] transition-colors hover:bg-accent px-0"
+                  className="group relative h-6 max-w-30 cursor-pointer overflow-hidden px-0 text-[13px] transition-colors hover:bg-accent"
                   key={file.id}
+                  variant="outline"
                 >
                   <span className="flex h-full items-center gap-1.5 overflow-hidden pl-1 font-normal">
                     <div className="relative flex h-4 min-w-4 items-center justify-center">
@@ -174,9 +174,9 @@ export default function Ai04({
                         <Image
                           alt={file.name}
                           className="absolute inset-0 h-4 w-4 rounded border object-cover"
+                          height={16}
                           src={file.preview}
                           width={16}
-                          height={16}
                         />
                       ) : (
                         <IconPaperclip className="opacity-60" size={12} />
@@ -216,16 +216,18 @@ export default function Ai04({
               />
 
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    className="ml-[-2px] rounded-md"
-                    size="icon-sm"
-                    type="button"
-                    variant="ghost"
-                    aria-label="Add attachments"
-                  >
-                    <IconPlus size={16} />
-                  </Button>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      aria-label="Add attachments"
+                      className="ml-[-2px] rounded-md"
+                      size="icon-sm"
+                      type="button"
+                      variant="ghost"
+                    />
+                  }
+                >
+                  <IconPlus size={16} />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="start"
@@ -237,7 +239,10 @@ export default function Ai04({
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <div className="flex items-center gap-2">
-                        <IconPaperclip className="text-muted-foreground" size={16} />
+                        <IconPaperclip
+                          className="text-muted-foreground"
+                          size={16}
+                        />
                         <span>Attach Files</span>
                       </div>
                     </DropdownMenuItem>
@@ -249,13 +254,19 @@ export default function Ai04({
                     </DropdownMenuItem>
                     <DropdownMenuItem className="rounded-md text-xs">
                       <div className="flex items-center gap-2">
-                        <IconClipboard className="text-muted-foreground" size={16} />
+                        <IconClipboard
+                          className="text-muted-foreground"
+                          size={16}
+                        />
                         <span>Paste from Clipboard</span>
                       </div>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="rounded-md text-xs">
                       <div className="flex items-center gap-2">
-                        <IconTemplate className="text-muted-foreground" size={16} />
+                        <IconTemplate
+                          className="text-muted-foreground"
+                          size={16}
+                        />
                         <span>Use Template</span>
                       </div>
                     </DropdownMenuItem>
@@ -264,16 +275,18 @@ export default function Ai04({
               </DropdownMenu>
 
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    className="rounded-md"
-                    size="icon-sm"
-                    type="button"
-                    variant="ghost"
-                    aria-label="Adjust settings"
-                  >
-                    <IconAdjustmentsHorizontal size={16} />
-                  </Button>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      aria-label="Adjust settings"
+                      className="rounded-md"
+                      size="icon-sm"
+                      type="button"
+                      variant="ghost"
+                    />
+                  }
+                >
+                  <IconAdjustmentsHorizontal size={16} />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="start"
@@ -282,42 +295,51 @@ export default function Ai04({
                   <DropdownMenuGroup className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <IconSparkles className="text-muted-foreground" size={16} />
+                        <IconSparkles
+                          className="text-muted-foreground"
+                          size={16}
+                        />
                         <Label className="text-xs">Auto-complete</Label>
                       </div>
                       <Switch
                         checked={settings.autoComplete}
                         className="scale-75"
                         onCheckedChange={(value) =>
-                          updateSetting("autoComplete", value)
+                          updateSetting('autoComplete', value)
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <IconPlayerPlay className="text-muted-foreground" size={16} />
+                        <IconPlayerPlay
+                          className="text-muted-foreground"
+                          size={16}
+                        />
                         <Label className="text-xs">Streaming</Label>
                       </div>
                       <Switch
                         checked={settings.streaming}
                         className="scale-75"
                         onCheckedChange={(value) =>
-                          updateSetting("streaming", value)
+                          updateSetting('streaming', value)
                         }
                       />
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <IconHistory className="text-muted-foreground" size={16} />
+                        <IconHistory
+                          className="text-muted-foreground"
+                          size={16}
+                        />
                         <Label className="text-xs">Show History</Label>
                       </div>
                       <Switch
                         checked={settings.showHistory}
                         className="scale-75"
                         onCheckedChange={(value) =>
-                          updateSetting("showHistory", value)
+                          updateSetting('showHistory', value)
                         }
                       />
                     </div>
@@ -328,12 +350,12 @@ export default function Ai04({
 
             <div className="ml-auto flex items-center gap-0.5 sm:gap-1">
               <Button
+                aria-label="Send message"
                 className="rounded-md"
                 disabled={!prompt.trim()}
                 size="icon-sm"
                 type="submit"
                 variant="default"
-                aria-label="Send message"
               >
                 <IconArrowUp size={16} />
               </Button>
@@ -342,8 +364,8 @@ export default function Ai04({
 
           <div
             className={cn(
-              "absolute inset-0 flex items-center justify-center pointer-events-none z-20 rounded-[inherit] border border-border border-dashed bg-muted text-foreground text-sm transition-opacity duration-200",
-              isDragOver ? "opacity-100" : "opacity-0"
+              'pointer-events-none absolute inset-0 z-20 flex items-center justify-center rounded-[inherit] border border-border border-dashed bg-muted text-foreground text-sm transition-opacity duration-200',
+              isDragOver ? 'opacity-100' : 'opacity-0'
             )}
           >
             <span className="flex w-full items-center justify-center gap-1 font-medium">
@@ -354,7 +376,7 @@ export default function Ai04({
         </form>
       </div>
 
-      <div className="max-w-250 mx-auto flex-wrap gap-3 flex min-h-0 shrink-0 items-center justify-center">
+      <div className="mx-auto flex min-h-0 max-w-250 shrink-0 flex-wrap items-center justify-center gap-3">
         {ACTIONS.map((action) => (
           <Button
             className="gap-2 rounded-full"

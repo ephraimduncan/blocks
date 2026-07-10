@@ -1,19 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+import { Button } from '@/components/ui/button';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 
 export default function FormLayout01() {
   return (
     <div className="flex items-center justify-center p-10">
       <div className="sm:mx-auto sm:max-w-2xl">
-        <h3 className="text-balance text-2xl font-semibold text-foreground dark:text-foreground">
+        <h3 className="text-balance font-semibold text-2xl text-foreground dark:text-foreground">
           Register to workspace
         </h3>
-        <p className="text-pretty mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
+        <p className="mt-1 text-pretty text-muted-foreground text-sm dark:text-muted-foreground">
           Take a few moments to register for your company&apos;s workspace
         </p>
-        <form action="#" method="post" className="mt-8">
+        <form action="#" className="mt-8" method="post">
           <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
             <div className="col-span-full sm:col-span-3">
               <Field className="gap-2">
@@ -22,12 +22,12 @@ export default function FormLayout01() {
                   <span className="text-red-500">*</span>
                 </FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="first-name"
                   id="first-name"
                   name="first-name"
-                  autoComplete="first-name"
                   placeholder="First name"
                   required
+                  type="text"
                 />
               </Field>
             </div>
@@ -38,12 +38,12 @@ export default function FormLayout01() {
                   <span className="text-red-500">*</span>
                 </FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="last-name"
                   id="last-name"
                   name="last-name"
-                  autoComplete="last-name"
                   placeholder="Last name"
                   required
+                  type="text"
                 />
               </Field>
             </div>
@@ -54,12 +54,12 @@ export default function FormLayout01() {
                   <span className="text-red-500">*</span>
                 </FieldLabel>
                 <Input
-                  type="email"
+                  autoComplete="email"
                   id="email"
                   name="email"
-                  autoComplete="email"
                   placeholder="Email"
                   required
+                  type="email"
                 />
               </Field>
             </div>
@@ -67,11 +67,11 @@ export default function FormLayout01() {
               <Field className="gap-2">
                 <FieldLabel htmlFor="address">Address</FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="street-address"
                   id="address"
                   name="address"
-                  autoComplete="street-address"
                   placeholder="Address"
+                  type="text"
                 />
               </Field>
             </div>
@@ -79,11 +79,11 @@ export default function FormLayout01() {
               <Field className="gap-2">
                 <FieldLabel htmlFor="city">City</FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="address-level2"
                   id="city"
                   name="city"
-                  autoComplete="address-level2"
                   placeholder="City"
+                  type="text"
                 />
               </Field>
             </div>
@@ -91,11 +91,11 @@ export default function FormLayout01() {
               <Field className="gap-2">
                 <FieldLabel htmlFor="state">State</FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="address-level1"
                   id="state"
                   name="state"
-                  autoComplete="address-level1"
                   placeholder="State"
+                  type="text"
                 />
               </Field>
             </div>
@@ -103,9 +103,9 @@ export default function FormLayout01() {
               <Field className="gap-2">
                 <FieldLabel htmlFor="postal-code">Postal code</FieldLabel>
                 <Input
+                  autoComplete="postal-code"
                   id="postal-code"
                   name="postal-code"
-                  autoComplete="postal-code"
                   placeholder="Postal code"
                 />
               </Field>
@@ -114,13 +114,13 @@ export default function FormLayout01() {
           <Separator className="my-6" />
           <div className="flex items-center justify-end space-x-4">
             <Button
+              className="whitespace-nowrap"
               type="button"
               variant="outline"
-              className="whitespace-nowrap"
             >
               Cancel
             </Button>
-            <Button type="submit" className="whitespace-nowrap">
+            <Button className="whitespace-nowrap" type="submit">
               Submit
             </Button>
           </div>

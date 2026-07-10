@@ -1,37 +1,37 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 
 const workspaces = [
   {
     id: 1,
-    title: "Starter",
-    description: "Up to 10,000 requests per day.",
-    users: "Free",
+    title: 'Starter',
+    description: 'Up to 10,000 requests per day.',
+    users: 'Free',
   },
   {
     id: 2,
-    title: "Premium",
-    description: "500,000 requests per day¹",
-    users: "$900/month²",
+    title: 'Premium',
+    description: '500,000 requests per day¹',
+    users: '$900/month²',
   },
   {
     id: 3,
-    title: "Enterprise",
-    description: "Based on your specific needs",
-    users: "Custom",
+    title: 'Enterprise',
+    description: 'Based on your specific needs',
+    users: 'Custom',
   },
 ];
 
@@ -41,14 +41,14 @@ export default function FormLayout04() {
   return (
     <div className="flex items-center justify-center p-10">
       <div className="sm:mx-auto sm:max-w-2xl">
-        <h3 className="text-balance text-lg font-semibold text-foreground">
+        <h3 className="text-balance font-semibold text-foreground text-lg">
           Apply for early access
         </h3>
-        <p className="text-pretty mt-1 text-sm leading-6 text-muted-foreground">
+        <p className="mt-1 text-pretty text-muted-foreground text-sm leading-6">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
         </p>
-        <form action="#" method="post" className="mt-8">
+        <form action="#" className="mt-8" method="post">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
             <div className="col-span-full sm:col-span-3">
               <Field className="gap-2">
@@ -56,12 +56,12 @@ export default function FormLayout04() {
                   First name<span className="text-red-500">*</span>
                 </FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="given-name"
                   id="first-name"
                   name="first-name"
-                  autoComplete="given-name"
-                  required
                   placeholder="Emma"
+                  required
+                  type="text"
                 />
               </Field>
             </div>
@@ -69,11 +69,11 @@ export default function FormLayout04() {
               <Field className="gap-2">
                 <FieldLabel htmlFor="last-name">Last name</FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="family-name"
                   id="last-name"
                   name="last-name"
-                  autoComplete="family-name"
                   placeholder="Crown"
+                  type="text"
                 />
               </Field>
             </div>
@@ -83,12 +83,12 @@ export default function FormLayout04() {
                   Work email<span className="text-red-500">*</span>
                 </FieldLabel>
                 <Input
-                  type="email"
+                  autoComplete="email"
                   id="email"
                   name="email"
-                  autoComplete="email"
-                  required
                   placeholder="emma@company.com"
+                  required
+                  type="email"
                 />
               </Field>
             </div>
@@ -96,11 +96,11 @@ export default function FormLayout04() {
               <Field className="gap-2">
                 <FieldLabel htmlFor="company">Company</FieldLabel>
                 <Input
-                  type="text"
+                  autoComplete="organization"
                   id="company"
                   name="company"
-                  autoComplete="organization"
                   placeholder="Company, Inc."
+                  type="text"
                 />
               </Field>
             </div>
@@ -122,12 +122,12 @@ export default function FormLayout04() {
             </div>
             <Separator className="col-span-full my-4" />
             <div className="col-span-full">
-              <FieldLabel className="font-semibold text-foreground block mb-4">
+              <FieldLabel className="mb-4 block font-semibold text-foreground">
                 Select a workspace package
               </FieldLabel>
 
               <RadioGroup
-                className="grid grid-cols-1 sm:grid-cols-3 gap-5"
+                className="grid grid-cols-1 gap-5 sm:grid-cols-3"
                 defaultValue={selectedWorkspace.id.toString()}
                 onValueChange={(value) =>
                   setSelectedWorkspace(
@@ -139,28 +139,28 @@ export default function FormLayout04() {
               >
                 {workspaces.map((item) => (
                   <div
+                    className="relative flex flex-col gap-2 rounded-md border border-input p-4 shadow-xs outline-none has-data-[state=checked]:border-ring"
                     key={item.id.toString()}
-                    className="border-input has-data-[state=checked]:border-ring relative flex flex-col gap-2 rounded-md border p-4 shadow-xs outline-none"
                   >
                     <div className="flex justify-between">
                       <RadioGroupItem
+                        className="order-1 after:absolute after:inset-0"
                         id={item.id.toString()}
                         value={item.id.toString()}
-                        className="order-1 after:absolute after:inset-0"
                       />
 
                       <FieldLabel
+                        className="block font-medium text-foreground text-sm"
                         htmlFor={item.id.toString()}
-                        className="block text-sm font-medium text-foreground"
                       >
                         {item.title}
                       </FieldLabel>
                     </div>
-                    <div className="flex flex-col h-full justify-between">
-                      <p className="text-pretty mt-1 text-sm text-muted-foreground">
+                    <div className="flex h-full flex-col justify-between">
+                      <p className="mt-1 text-pretty text-muted-foreground text-sm">
                         {item.description}
                       </p>
-                      <span className="mt-4 block text-sm font-medium text-foreground">
+                      <span className="mt-4 block font-medium text-foreground text-sm">
                         {item.users}
                       </span>
                     </div>
@@ -179,13 +179,13 @@ export default function FormLayout04() {
           <Separator className="my-6" />
           <div className="flex items-center justify-end space-x-4">
             <Button
+              className="whitespace-nowrap"
               type="button"
               variant="outline"
-              className="whitespace-nowrap"
             >
               Go back
             </Button>
-            <Button type="submit" className="whitespace-nowrap">
+            <Button className="whitespace-nowrap" type="submit">
               Apply
             </Button>
           </div>

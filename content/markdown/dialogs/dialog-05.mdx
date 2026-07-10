@@ -1,7 +1,8 @@
 ````tsx
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { type FormEvent, useState } from 'react';
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -11,11 +12,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState, type FormEvent } from "react";
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function Dialog05() {
   const [isOpen, setIsOpen] = useState(true);
@@ -28,13 +28,15 @@ export default function Dialog05() {
   };
 
   return (
-    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
-      <AlertDialogTrigger asChild>
-        <Button variant="destructive">Delete Workspace</Button>
+    <AlertDialog onOpenChange={setIsOpen} open={isOpen}>
+      <AlertDialogTrigger render={<Button variant="destructive" />}>
+        Delete Workspace
       </AlertDialogTrigger>
       <AlertDialogContent className="sm:max-w-md">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-balance">Delete workspace</AlertDialogTitle>
+          <AlertDialogTitle className="text-balance">
+            Delete workspace
+          </AlertDialogTitle>
           <AlertDialogDescription className="text-pretty">
             All workspace data will be permanently deleted. There is no coming
             back after you press delete.
@@ -42,30 +44,30 @@ export default function Dialog05() {
         </AlertDialogHeader>
         <form onSubmit={handleSubmit}>
           <div>
-            <Label htmlFor="delete-workspace" className="text-sm font-medium">
+            <Label className="font-medium text-sm" htmlFor="delete-workspace">
               Confirm password
             </Label>
             <div className="relative mt-2">
               <Input
+                className="pe-9"
                 id="delete-workspace"
                 name="delete-workspace"
-                type={isVisible ? "text" : "password"}
                 placeholder="Password"
-                className="pe-9"
                 required
+                type={isVisible ? 'text' : 'password'}
               />
               <button
-                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md"
-                type="button"
-                onClick={toggleVisibility}
-                aria-label={isVisible ? "Hide password" : "Show password"}
-                aria-pressed={isVisible}
                 aria-controls="delete-workspace"
+                aria-label={isVisible ? 'Hide password' : 'Show password'}
+                aria-pressed={isVisible}
+                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md"
+                onClick={toggleVisibility}
+                type="button"
               >
                 {isVisible ? (
-                  <EyeOffIcon size={16} aria-hidden="true" />
+                  <EyeOffIcon aria-hidden="true" size={16} />
                 ) : (
-                  <EyeIcon size={16} aria-hidden="true" />
+                  <EyeIcon aria-hidden="true" size={16} />
                 )}
               </button>
             </div>

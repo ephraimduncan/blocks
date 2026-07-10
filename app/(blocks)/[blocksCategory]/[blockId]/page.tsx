@@ -137,15 +137,20 @@ export default async function BlockPage({ params }: Params) {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <Button asChild>
-            <Link href={`/${blocksCategory}#${block.blocksId}`}>
-              Preview in category
-            </Link>
+          <Button
+            nativeButton={false}
+            render={<Link href={`/${blocksCategory}#${block.blocksId}`} />}
+          >
+            Preview in category
           </Button>
-          <Button asChild variant="outline">
-            <Link href={`/preview/${block.blocksId}`} target="_blank">
-              Open full preview
-            </Link>
+          <Button
+            nativeButton={false}
+            render={
+              <Link href={`/preview/${block.blocksId}`} target="_blank" />
+            }
+            variant="outline"
+          >
+            Open full preview
           </Button>
         </div>
 

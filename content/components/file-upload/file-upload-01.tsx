@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { HelpCircle, Trash2, Upload } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -11,16 +13,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import { HelpCircle, Trash2, Upload } from "lucide-react";
-import { useRef, useState } from "react";
+} from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 export default function FileUpload01() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -76,71 +76,71 @@ export default function FileUpload01() {
 
   return (
     <div className="flex items-center justify-center p-10">
-      <Card className="w-full mx-auto max-w-lg bg-background rounded-lg p-0 shadow-md">
+      <Card className="mx-auto w-full max-w-lg rounded-lg bg-background p-0 shadow-md">
         <CardContent className="p-0">
           <div className="p-6 pb-4">
-            <div className="flex justify-between items-start">
+            <div className="flex items-start justify-between">
               <div>
-                <h2 className="text-balance text-lg font-medium text-foreground">
+                <h2 className="text-balance font-medium text-foreground text-lg">
                   Create a new project
                 </h2>
-                <p className="text-pretty text-sm text-muted-foreground mt-1">
+                <p className="mt-1 text-pretty text-muted-foreground text-sm">
                   Drag and drop files to create a new project.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="px-6 pb-4 mt-2">
+          <div className="mt-2 px-6 pb-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="projectName" className="mb-2">
+                <Label className="mb-2" htmlFor="projectName">
                   Project name
                 </Label>
                 <Input
+                  defaultValue="Open Source Stripe"
                   id="projectName"
                   type="text"
-                  defaultValue="Open Source Stripe"
                 />
               </div>
 
               <div>
-                <Label htmlFor="projectLead" className="mb-2">
+                <Label className="mb-2" htmlFor="projectLead">
                   Project lead
                 </Label>
                 <Select defaultValue="1">
-                  <SelectTrigger id="projectLead" className="ps-2 w-full">
+                  <SelectTrigger className="w-full ps-2" id="projectLead">
                     <SelectValue placeholder="Select project lead" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       <SelectItem value="1">
                         <img
-                          className="size-5 rounded"
-                          src="https://blocks.so/avatar-01.png"
                           alt="Ephraim Duncan"
-                          width={20}
+                          className="size-5 rounded"
                           height={20}
+                          src="https://blocks.so/avatar-01.png"
+                          width={20}
                         />
                         <span className="truncate">Ephraim Duncan</span>
                       </SelectItem>
                       <SelectItem value="2">
                         <img
-                          className="size-5 rounded"
-                          src="https://blocks.so/avatar-03.png"
                           alt="Lucas Smith"
-                          width={20}
+                          className="size-5 rounded"
                           height={20}
+                          src="https://blocks.so/avatar-03.png"
+                          width={20}
                         />
                         <span className="truncate">Lucas Smith</span>
                       </SelectItem>
                       <SelectItem value="3">
                         <img
-                          className="size-5 rounded"
-                          src="https://blocks.so/avatar-02.jpg"
                           alt="Timur Ercan"
-                          width={20}
+                          className="size-5 rounded"
                           height={20}
+                          src="https://blocks.so/avatar-02.jpg"
+                          width={20}
                         />
                         <span className="truncate">Timur Ercan</span>
                       </SelectItem>
@@ -153,43 +153,43 @@ export default function FileUpload01() {
 
           <div className="px-6">
             <div
-              className="border-2 border-dashed border-border rounded-md p-8 flex flex-col items-center justify-center text-center cursor-pointer"
+              className="flex cursor-pointer flex-col items-center justify-center rounded-md border-2 border-border border-dashed p-8 text-center"
               onClick={handleBoxClick}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
-              <div className="mb-2 bg-muted rounded-full p-3">
+              <div className="mb-2 rounded-full bg-muted p-3">
                 <Upload className="h-5 w-5 text-muted-foreground" />
               </div>
-              <p className="text-pretty text-sm font-medium text-foreground">
+              <p className="text-pretty font-medium text-foreground text-sm">
                 Upload a project image
               </p>
-              <p className="text-pretty text-sm text-muted-foreground mt-1">
-                or,{" "}
+              <p className="mt-1 text-pretty text-muted-foreground text-sm">
+                or,{' '}
                 <label
+                  className="cursor-pointer font-medium text-primary hover:text-primary/90"
                   htmlFor="fileUpload"
-                  className="text-primary hover:text-primary/90 font-medium cursor-pointer"
                   onClick={(e) => e.stopPropagation()}
                 >
                   click to browse
-                </label>{" "}
+                </label>{' '}
                 (4MB max)
               </p>
               <input
-                type="file"
-                id="fileUpload"
-                ref={fileInputRef}
-                className="hidden"
                 accept="image/*"
+                className="hidden"
+                id="fileUpload"
                 onChange={(e) => handleFileSelect(e.target.files)}
+                ref={fileInputRef}
+                type="file"
               />
             </div>
           </div>
 
           <div
             className={cn(
-              "px-6 pb-5 space-y-3",
-              uploadedFiles.length > 0 ? "mt-4" : ""
+              'space-y-3 px-6 pb-5',
+              uploadedFiles.length > 0 ? 'mt-4' : ''
             )}
           >
             {uploadedFiles.map((file, index) => {
@@ -197,51 +197,51 @@ export default function FileUpload01() {
 
               return (
                 <div
-                  className="border border-border rounded-lg p-2 flex flex-col"
+                  className="flex flex-col rounded-lg border border-border p-2"
                   key={file.name + index}
                   onLoad={() => {
                     return () => URL.revokeObjectURL(imageUrl);
                   }}
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-18 h-14 bg-muted rounded-sm flex items-center justify-center self-start row-span-2 overflow-hidden">
+                    <div className="row-span-2 flex h-14 w-18 items-center justify-center self-start overflow-hidden rounded-sm bg-muted">
                       <img
-                        src={imageUrl}
                         alt={file.name}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
+                        src={imageUrl}
                       />
                     </div>
 
                     <div className="flex-1 pr-1">
-                      <div className="flex justify-between items-center">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-foreground truncate max-w-[250px]">
+                          <span className="max-w-[250px] truncate text-foreground text-sm">
                             {file.name}
                           </span>
-                          <span className="text-sm text-muted-foreground whitespace-nowrap">
+                          <span className="whitespace-nowrap text-muted-foreground text-sm">
                             {Math.round(file.size / 1024)} KB
                           </span>
                         </div>
                         <Button
-                          variant="ghost"
-                          size="icon-sm"
                           className="bg-transparent! hover:text-red-500"
                           onClick={() => removeFile(file.name)}
+                          size="icon-sm"
+                          variant="ghost"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <div className="h-2 bg-muted rounded-full overflow-hidden flex-1">
+                        <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
                           <div
                             className="h-full bg-primary"
                             style={{
                               width: `${fileProgresses[file.name] || 0}%`,
                             }}
-                          ></div>
+                          />
                         </div>
-                        <span className="text-xs text-muted-foreground whitespace-nowrap">
+                        <span className="whitespace-nowrap text-muted-foreground text-xs">
                           {Math.round(fileProgresses[file.name] || 0)}%
                         </span>
                       </div>
@@ -252,23 +252,27 @@ export default function FileUpload01() {
             })}
           </div>
 
-          <div className="px-6 py-3 border-t border-border bg-muted rounded-b-lg flex justify-between items-center">
-            <TooltipProvider delayDuration={0}>
+          <div className="flex items-center justify-between rounded-b-lg border-border border-t bg-muted px-6 py-3">
+            <TooltipProvider delay={0}>
               <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="flex items-center text-muted-foreground hover:text-foreground"
-                  >
-                    <HelpCircle className="h-4 w-4 mr-1" />
-                    Need help?
-                  </Button>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      className="flex items-center text-muted-foreground hover:text-foreground"
+                      size="sm"
+                      variant="ghost"
+                    />
+                  }
+                >
+                  <HelpCircle className="mr-1 h-4 w-4" />
+                  Need help?
                 </TooltipTrigger>
-                <TooltipContent className="py-3 bg-background text-foreground border">
+                <TooltipContent className="border bg-background py-3 text-foreground">
                   <div className="space-y-1">
-                    <p className="text-pretty text-[13px] font-medium">Need assistance?</p>
-                    <p className="text-pretty text-muted-foreground dark:text-muted-background text-xs max-w-[200px]">
+                    <p className="text-pretty font-medium text-[13px]">
+                      Need assistance?
+                    </p>
+                    <p className="max-w-[200px] text-pretty text-muted-foreground text-xs dark:text-muted-background">
                       Upload project images by dragging and dropping files or
                       using the file browser. Supported formats: JPG, PNG, SVG.
                       Maximum file size: 4MB.
@@ -280,12 +284,12 @@ export default function FileUpload01() {
 
             <div className="flex gap-2">
               <Button
+                className="h-9 px-4 font-medium text-sm"
                 variant="outline"
-                className="h-9 px-4 text-sm font-medium"
               >
                 Cancel
               </Button>
-              <Button className="h-9 px-4 text-sm font-medium">Continue</Button>
+              <Button className="h-9 px-4 font-medium text-sm">Continue</Button>
             </div>
           </div>
         </CardContent>

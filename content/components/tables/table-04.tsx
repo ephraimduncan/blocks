@@ -1,6 +1,8 @@
 'use client';
 
 import { Fragment } from 'react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import {
   Table,
   TableBody,
@@ -9,8 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 
 interface AssignedPerson {
@@ -52,17 +52,20 @@ function getAvatarColor(initials: string) {
 
 function AvatarStack({ people }: { people: AssignedPerson[] }) {
   return (
-    <div className="flex -space-x-2">
+    <div className="-space-x-2 flex">
       {people.map((person, index) => (
         <Avatar
-          key={index}
           className={cn(
             'h-6 w-6 border-2 border-background text-[10px]',
             getAvatarColor(person.initials)
           )}
+          key={index}
         >
           <AvatarFallback
-            className={cn('font-medium text-white', getAvatarColor(person.initials))}
+            className={cn(
+              'font-medium text-white',
+              getAvatarColor(person.initials)
+            )}
           >
             {person.initials}
           </AvatarFallback>
@@ -101,8 +104,14 @@ function StatusBadge({
 }) {
   const styles = statusStyles[variant];
   return (
-    <Badge variant="outline" className={cn('gap-1.5 rounded-full', styles.badge)}>
-      <span className={cn('size-1.5 rounded-full', styles.dot)} aria-hidden="true" />
+    <Badge
+      className={cn('gap-1.5 rounded-full', styles.badge)}
+      variant="outline"
+    >
+      <span
+        aria-hidden="true"
+        className={cn('size-1.5 rounded-full', styles.dot)}
+      />
       {status}
     </Badge>
   );
@@ -226,10 +235,8 @@ export default function Table04() {
         <TableBody>
           {data.map((group) => (
             <Fragment key={group.name}>
-              <TableRow
-                className="bg-muted/50 hover:bg-muted/50"
-              >
-                <TableCell colSpan={5} className="py-2 font-semibold">
+              <TableRow className="bg-muted/50 hover:bg-muted/50">
+                <TableCell className="py-2 font-semibold" colSpan={5}>
                   {group.name}
                   <span className="ml-2 font-normal text-muted-foreground">
                     {group.items.length}

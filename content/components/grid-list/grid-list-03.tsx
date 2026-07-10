@@ -1,5 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,81 +6,83 @@ import {
   Hand,
   Server,
   UserCircle,
-} from "lucide-react";
+} from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 const actions = [
   {
-    title: "Getting Started",
+    title: 'Getting Started',
     description:
-      "Everything you need to know to get started and get to work in ChatCloud.",
-    href: "#",
+      'Everything you need to know to get started and get to work in ChatCloud.',
+    href: '#',
     icon: ArrowRight,
-    iconForeground: "text-green-700",
-    iconBackground: "bg-green-50 dark:bg-green-950/30",
-    ringColorClass: "ring-green-700/30",
+    iconForeground: 'text-green-700',
+    iconBackground: 'bg-green-50 dark:bg-green-950/30',
+    ringColorClass: 'ring-green-700/30',
   },
   {
-    title: "Admin Settings",
+    title: 'Admin Settings',
     description:
-      "Learn how to manage your current workspace or your enterprise space.",
-    href: "#",
+      'Learn how to manage your current workspace or your enterprise space.',
+    href: '#',
     icon: UserCircle,
-    iconForeground: "text-red-700",
-    iconBackground: "bg-red-50 dark:bg-red-950/30",
-    ringColorClass: "ring-red-700/30",
+    iconForeground: 'text-red-700',
+    iconBackground: 'bg-red-50 dark:bg-red-950/30',
+    ringColorClass: 'ring-red-700/30',
   },
   {
-    title: "Server Setup",
+    title: 'Server Setup',
     description:
-      "Connect, simplify, and automate. Discover the power of apps and tools.",
-    href: "#",
+      'Connect, simplify, and automate. Discover the power of apps and tools.',
+    href: '#',
     icon: Server,
-    iconForeground: "text-blue-700",
-    iconBackground: "bg-blue-50 dark:bg-blue-950/30",
-    ringColorClass: "ring-blue-700/30",
+    iconForeground: 'text-blue-700',
+    iconBackground: 'bg-blue-50 dark:bg-blue-950/30',
+    ringColorClass: 'ring-blue-700/30',
   },
   {
-    title: "Login and Verification",
+    title: 'Login and Verification',
     description:
-      "Read on to learn how to sign in with your email address, or your Apple or Google.",
-    href: "#",
+      'Read on to learn how to sign in with your email address, or your Apple or Google.',
+    href: '#',
     icon: CheckCircle,
-    iconForeground: "text-sky-700",
-    iconBackground: "bg-sky-50 dark:bg-sky-950/30",
-    ringColorClass: "ring-sky-700/30",
+    iconForeground: 'text-sky-700',
+    iconBackground: 'bg-sky-50 dark:bg-sky-950/30',
+    ringColorClass: 'ring-sky-700/30',
   },
   {
-    title: "Account Setup",
+    title: 'Account Setup',
     description:
-      "Adjust your profile and preferences to make ChatCloud work just for you.",
-    href: "#",
+      'Adjust your profile and preferences to make ChatCloud work just for you.',
+    href: '#',
     icon: ContactRound,
-    iconForeground: "text-pink-700",
-    iconBackground: "bg-pink-50 dark:bg-pink-950/30",
-    ringColorClass: "ring-pink-700/30",
+    iconForeground: 'text-pink-700',
+    iconBackground: 'bg-pink-50 dark:bg-pink-950/30',
+    ringColorClass: 'ring-pink-700/30',
   },
   {
-    title: "Trust & Safety",
+    title: 'Trust & Safety',
     description:
-      "Trust on our current database and learn how we distribute your data.",
-    href: "#",
+      'Trust on our current database and learn how we distribute your data.',
+    href: '#',
     icon: Hand,
-    iconForeground: "text-orange-700",
-    iconBackground: "bg-orange-50 dark:bg-orange-950/30",
-    ringColorClass: "ring-orange-700/30",
+    iconForeground: 'text-orange-700',
+    iconBackground: 'bg-orange-50 dark:bg-orange-950/30',
+    ringColorClass: 'ring-orange-700/30',
   },
 ];
 
 export default function GridList03() {
   return (
     <div className="flex items-center justify-center p-8">
-      <div className="overflow-hidden rounded-2xl bg-muted shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-0.5 space-y-0.5 sm:space-y-0 p-0.5">
+      <div className="grid grid-cols-1 space-y-0.5 overflow-hidden rounded-2xl bg-muted p-0.5 shadow-sm sm:grid-cols-2 sm:gap-0.5 sm:space-y-0 lg:grid-cols-3">
         {actions.map((action) => (
           <Card
-            key={action.title}
             className={cn(
-              "group relative rounded-xl border-0 bg-card p-0 shadow-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-inset"
+              'group relative rounded-xl border-0 bg-card p-0 shadow-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-inset'
             )}
+            key={action.title}
           >
             <CardContent className="p-6">
               <div>
@@ -90,7 +90,7 @@ export default function GridList03() {
                   className={cn(
                     action.iconBackground,
                     action.iconForeground,
-                    "inline-flex rounded-lg p-3 ring-2 ring-inset",
+                    'inline-flex rounded-lg p-3 ring-2 ring-inset',
                     action.ringColorClass
                   )}
                 >
@@ -98,13 +98,13 @@ export default function GridList03() {
                 </span>
               </div>
               <div className="mt-4">
-                <h3 className="text-balance text-base font-semibold text-foreground">
-                  <a href={action.href} className="focus:outline-none">
+                <h3 className="text-balance font-semibold text-base text-foreground">
+                  <a className="focus:outline-none" href={action.href}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {action.title}
                   </a>
                 </h3>
-                <p className="text-pretty mt-2 text-sm text-muted-foreground">
+                <p className="mt-2 text-pretty text-muted-foreground text-sm">
                   {action.description}
                 </p>
               </div>

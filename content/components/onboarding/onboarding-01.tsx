@@ -96,12 +96,7 @@ function CircularProgress({
   const strokeDashoffset = 100 - progress;
 
   return (
-    <svg
-      className="-rotate-90"
-      height="14"
-      viewBox="0 0 14 14"
-      width="14"
-    >
+    <svg className="-rotate-90" height="14" viewBox="0 0 14 14" width="14">
       <circle
         className="stroke-muted"
         cx="7"
@@ -211,11 +206,13 @@ export function Onboarding01() {
                 completed
               </div>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button className="h-6 w-6" size="icon" variant="ghost">
-                    <IconDots aria-hidden="true" className="h-4 w-4 shrink-0" />
-                    <span className="sr-only">Options</span>
-                  </Button>
+                <DropdownMenuTrigger
+                  render={
+                    <Button className="h-6 w-6" size="icon" variant="ghost" />
+                  }
+                >
+                  <IconDots aria-hidden="true" className="h-4 w-4 shrink-0" />
+                  <span className="sr-only">Options</span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-40">
                   <DropdownMenuItem onClick={() => setDismissed(true)}>
@@ -302,17 +299,16 @@ export function Onboarding01() {
                                   {step.description}
                                 </p>
                                 <Button
-                                  asChild
                                   className="mt-3"
+                                  nativeButton={false}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleStepAction(step);
                                   }}
+                                  render={<a href={step.actionHref} />}
                                   size="sm"
                                 >
-                                  <a href={step.actionHref}>
-                                    {step.actionLabel}
-                                  </a>
+                                  {step.actionLabel}
                                 </Button>
                               </CollapsibleContent>
                             </Collapsible>

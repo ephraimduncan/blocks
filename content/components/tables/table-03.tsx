@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
@@ -16,7 +17,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 type Status = 'active' | 'pending' | 'discontinued' | 'on-hold';
@@ -102,8 +102,8 @@ function getStatusBadge(status: Status) {
     case 'active':
       return (
         <Badge
-          variant="outline"
           className="border-0 bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20"
+          variant="outline"
         >
           Active
         </Badge>
@@ -111,8 +111,8 @@ function getStatusBadge(status: Status) {
     case 'pending':
       return (
         <Badge
-          variant="outline"
           className="border-0 bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20"
+          variant="outline"
         >
           Pending
         </Badge>
@@ -120,8 +120,8 @@ function getStatusBadge(status: Status) {
     case 'discontinued':
       return (
         <Badge
-          variant="outline"
           className="border-0 bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20"
+          variant="outline"
         >
           Discontinued
         </Badge>
@@ -129,8 +129,8 @@ function getStatusBadge(status: Status) {
     case 'on-hold':
       return (
         <Badge
-          variant="outline"
           className="border-0 bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"
+          variant="outline"
         >
           On Hold
         </Badge>
@@ -157,16 +157,23 @@ export default function Table03() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h3 className="text-balance text-lg font-semibold text-foreground">
+          <h3 className="text-balance font-semibold text-foreground text-lg">
             Product Inventory
           </h3>
-          <p className="text-pretty mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-pretty text-muted-foreground text-sm">
             Track and manage product stock levels across all warehouse
             locations.
           </p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+          <Select
+            onValueChange={(value) => {
+              if (value) {
+                setSelectedCategory(value);
+              }
+            }}
+            value={selectedCategory}
+          >
             <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Filter by category" />
             </SelectTrigger>
@@ -203,23 +210,23 @@ export default function Table03() {
           <TableBody>
             {filteredData.length > 0 ? (
               filteredData.map((item) => (
-                <TableRow key={item.sku} className="hover:bg-muted/50">
-                  <TableCell className="tabular-nums h-14 px-4 font-mono text-sm font-medium">
+                <TableRow className="hover:bg-muted/50" key={item.sku}>
+                  <TableCell className="h-14 px-4 font-medium font-mono text-sm tabular-nums">
                     {item.sku}
                   </TableCell>
                   <TableCell className="h-14 px-4 font-medium">
                     {item.productName}
                   </TableCell>
-                  <TableCell className="h-14 px-4 text-sm text-muted-foreground">
+                  <TableCell className="h-14 px-4 text-muted-foreground text-sm">
                     {item.category}
                   </TableCell>
                   <TableCell className="h-14 px-4">
                     {getStatusBadge(item.status)}
                   </TableCell>
-                  <TableCell className="tabular-nums h-14 px-4 text-right font-mono text-sm font-semibold">
+                  <TableCell className="h-14 px-4 text-right font-mono font-semibold text-sm tabular-nums">
                     {item.unitPrice}
                   </TableCell>
-                  <TableCell className="h-14 px-4 text-right text-sm text-muted-foreground">
+                  <TableCell className="h-14 px-4 text-right text-muted-foreground text-sm">
                     {item.lastRestocked}
                   </TableCell>
                 </TableRow>
@@ -227,8 +234,8 @@ export default function Table03() {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={6}
                   className="h-24 text-center text-muted-foreground"
+                  colSpan={6}
                 >
                   No products found matching the selected filters.
                 </TableCell>

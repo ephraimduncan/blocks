@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { BellIcon } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { BellIcon } from "lucide-react";
+} from '@/components/ui/dropdown-menu';
 
 type Notification = {
   id: string;
@@ -27,33 +27,35 @@ export function NotificationsPopover({
 }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full"
-          aria-label="Open notifications"
-        >
-          <BellIcon className="size-5" />
-        </Button>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            aria-label="Open notifications"
+            className="rounded-full"
+            size="icon"
+            variant="ghost"
+          />
+        }
+      >
+        <BellIcon className="size-5" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent side="right" className="w-80 my-6">
+      <DropdownMenuContent className="my-6 w-80" side="right">
         <DropdownMenuLabel>Notifications</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {notifications.map(({ id, avatar, fallback, text, time }) => (
-          <DropdownMenuItem key={id} className="flex items-start gap-3">
+          <DropdownMenuItem className="flex items-start gap-3" key={id}>
             <Avatar className="size-8">
-              <AvatarImage src={avatar} alt="Avatar" />
+              <AvatarImage alt="Avatar" src={avatar} />
               <AvatarFallback>{fallback}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-sm font-medium">{text}</span>
-              <span className="text-xs text-muted-foreground">{time}</span>
+              <span className="font-medium text-sm">{text}</span>
+              <span className="text-muted-foreground text-xs">{time}</span>
             </div>
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="justify-center text-sm text-muted-foreground hover:text-primary">
+        <DropdownMenuItem className="justify-center text-muted-foreground text-sm hover:text-primary">
           View all notifications
         </DropdownMenuItem>
       </DropdownMenuContent>

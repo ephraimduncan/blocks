@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { CheckIcon, CopyIcon, ExternalLink, Link, Share2 } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import { CheckIcon, CopyIcon, ExternalLink, Link, Share2 } from "lucide-react";
-import { useRef, useState } from "react";
+} from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 export default function Dialog09() {
   const [open, setOpen] = useState<boolean>(true);
@@ -35,17 +35,15 @@ export default function Dialog09() {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button>
-          <Share2 className="mr-2 h-4 w-4" />
-          Share
-        </Button>
+    <Dialog onOpenChange={setOpen} open={open}>
+      <DialogTrigger render={<Button />}>
+        <Share2 className="mr-2 h-4 w-4" />
+        Share
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share & Collaborate</DialogTitle>
-          <p className="text-pretty text-sm text-muted-foreground">
+          <p className="text-pretty text-muted-foreground text-sm">
             Share this project with your team to collaborate on it.
           </p>
         </DialogHeader>
@@ -58,50 +56,52 @@ export default function Dialog09() {
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="share-link" className="sr-only">
+            <Label className="sr-only" htmlFor="share-link">
               Share Link
             </Label>
             <div className="relative">
               <Input
-                ref={inputRef}
+                className="pe-9"
                 id="share-link"
                 readOnly
+                ref={inputRef}
                 value="https://writer.so/app/projects/123?share=true"
-                className="pe-9"
               />
-              <TooltipProvider delayDuration={0}>
+              <TooltipProvider delay={0}>
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button
-                      onClick={handleCopy}
-                      className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
-                      aria-label={copied ? "Copied" : "Copy to clipboard"}
-                      disabled={copied}
+                  <TooltipTrigger
+                    render={
+                      <button
+                        aria-label={copied ? 'Copied' : 'Copy to clipboard'}
+                        className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus:z-10 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed"
+                        disabled={copied}
+                        onClick={handleCopy}
+                      />
+                    }
+                  >
+                    <div
+                      className={cn(
+                        'transition-[transform,opacity] duration-200 ease-out',
+                        copied ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                      )}
                     >
-                      <div
-                        className={cn(
-                          "transition-[transform,opacity] duration-200 ease-out",
-                          copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                        )}
-                      >
-                        <CheckIcon
-                          className="text-primary"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div
-                        className={cn(
-                          "absolute transition-[transform,opacity] duration-200 ease-out",
-                          copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
-                        )}
-                      >
-                        <CopyIcon size={16} aria-hidden="true" />
-                      </div>
-                    </button>
+                      <CheckIcon
+                        aria-hidden="true"
+                        className="text-primary"
+                        size={16}
+                      />
+                    </div>
+                    <div
+                      className={cn(
+                        'absolute transition-[transform,opacity] duration-200 ease-out',
+                        copied ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
+                      )}
+                    >
+                      <CopyIcon aria-hidden="true" size={16} />
+                    </div>
                   </TooltipTrigger>
                   <TooltipContent className="px-2 py-1 text-xs">
-                    {copied ? "Copied!" : "Copy to clipboard"}
+                    {copied ? 'Copied!' : 'Copy to clipboard'}
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -113,7 +113,7 @@ export default function Dialog09() {
               <Link className="h-4 w-4" />
               Copy Link
             </Button>
-            <Button variant="outline" className="flex-1 gap-2">
+            <Button className="flex-1 gap-2" variant="outline">
               <ExternalLink className="h-4 w-4" />
               Preview
             </Button>

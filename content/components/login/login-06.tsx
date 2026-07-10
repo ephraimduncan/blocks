@@ -1,11 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { JSX, SVGProps } from "react";
+import type { JSX, SVGProps } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
-  <svg fill="currentColor" height="48" viewBox="0 0 40 48" width="40" {...props}>
+  <svg
+    fill="currentColor"
+    height="48"
+    viewBox="0 0 40 48"
+    width="40"
+    {...props}
+  >
     <clipPath id="a">
       <path d="m0 0h40v48h-40z" />
     </clipPath>
@@ -22,51 +28,60 @@ const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
 
 export default function Login06() {
   return (
-    <div className="flex items-center justify-center min-h-dvh">
+    <div className="flex min-h-dvh items-center justify-center">
       <Card className="w-full max-w-sm rounded-4xl px-6 py-10 pt-14 shadow-2xs">
         <CardContent className="">
           <div className="flex flex-col items-center space-y-8">
             <Logo />
 
             <div className="space-y-2 text-center">
-              <h1 className="text-balance text-3xl font-semibold text-foreground">Welcome back!</h1>
+              <h1 className="text-balance font-semibold text-3xl text-foreground">
+                Welcome back!
+              </h1>
               <p className="text-pretty text-muted-foreground text-sm">
-                First time here?{" "}
-                <a href="#" className="text-foreground hover:underline">
+                First time here?{' '}
+                <a className="text-foreground hover:underline" href="#">
                   Sign up for free
                 </a>
               </p>
             </div>
 
             <div className="w-full space-y-4">
-              <Input type="email" placeholder="Your email" className="w-full rounded-xl" />
+              <Input
+                className="w-full rounded-xl"
+                placeholder="Your email"
+                type="email"
+              />
               <div className="flex flex-col gap-2">
                 <Button className="w-full rounded-xl" size="lg">
                   Send me the magic link
                 </Button>
-                <Button variant="link" className="w-full text-sm text-muted-foreground">
+                <Button
+                  className="w-full text-muted-foreground text-sm"
+                  variant="link"
+                >
                   Sign in using password
                 </Button>
               </div>
 
               <div className="flex items-center gap-4 py-2">
                 <Separator className="flex-1" />
-                <span className="text-sm text-muted-foreground">OR</span>
+                <span className="text-muted-foreground text-sm">OR</span>
                 <Separator className="flex-1" />
               </div>
 
-              <Button variant="outline" className="w-full rounded-xl" size="lg">
+              <Button className="w-full rounded-xl" size="lg" variant="outline">
                 Single sign-on (SSO)
               </Button>
             </div>
 
-            <p className="text-pretty text-center text-xs w-11/12 text-muted-foreground">
-              You acknowledge that you read, and agree, to our{" "}
-              <a href="#" className="underline hover:text-foreground">
+            <p className="w-11/12 text-pretty text-center text-muted-foreground text-xs">
+              You acknowledge that you read, and agree, to our{' '}
+              <a className="underline hover:text-foreground" href="#">
                 Terms of Service
-              </a>{" "}
-              and our{" "}
-              <a href="#" className="underline hover:text-foreground">
+              </a>{' '}
+              and our{' '}
+              <a className="underline hover:text-foreground" href="#">
                 Privacy Policy
               </a>
               .

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface Props {
   title?: string;
@@ -17,19 +17,19 @@ interface Props {
   className?: string;
 }
 
-const defaultSegments: NonNullable<Props["segments"]> = [
-  { label: "Documents", value: 2400, color: "bg-blue-500" },
-  { label: "Photos", value: 1800, color: "bg-emerald-500" },
-  { label: "Videos", value: 3200, color: "bg-amber-500" },
-  { label: "Music", value: 900, color: "bg-purple-500" },
+const defaultSegments: NonNullable<Props['segments']> = [
+  { label: 'Documents', value: 2400, color: 'bg-blue-500' },
+  { label: 'Photos', value: 1800, color: 'bg-emerald-500' },
+  { label: 'Videos', value: 3200, color: 'bg-amber-500' },
+  { label: 'Music', value: 900, color: 'bg-purple-500' },
 ];
 
 export default function Stats13({
-  title = "Using Storage",
+  title = 'Using Storage',
   used = 8300,
   total = 15,
-  usedLabel = "MB",
-  totalLabel = "GB",
+  usedLabel = 'MB',
+  totalLabel = 'GB',
   segments = defaultSegments,
   className,
 }: Props) {
@@ -37,17 +37,17 @@ export default function Stats13({
   const freeValue = totalValue - used;
 
   return (
-    <Card className={cn("w-full max-w-4xl shadow-sm", className)}>
+    <Card className={cn('w-full max-w-4xl shadow-sm', className)}>
       <CardContent className="py-0">
-        <p className="text-pretty mb-4 text-base text-muted-foreground">
-          {title}{" "}
-          <span className="font-semibold tabular-nums text-foreground">
+        <p className="mb-4 text-pretty text-base text-muted-foreground">
+          {title}{' '}
+          <span className="font-semibold text-foreground tabular-nums">
             {used.toLocaleString(undefined, {
               minimumFractionDigits: 0,
               maximumFractionDigits: 2,
-            })}{" "}
+            })}{' '}
             {usedLabel}
-          </span>{" "}
+          </span>{' '}
           of {total} {totalLabel}
         </p>
 
@@ -56,14 +56,14 @@ export default function Stats13({
             const percentage = (segment.value / totalValue) * 100;
             return (
               <div
-                key={segment.label}
-                className={cn("h-full", segment.color)}
-                style={{ width: `${percentage}%` }}
-                role="progressbar"
                 aria-label={segment.label}
-                aria-valuenow={segment.value}
-                aria-valuemin={0}
                 aria-valuemax={totalValue}
+                aria-valuemin={0}
+                aria-valuenow={segment.value}
+                className={cn('h-full', segment.color)}
+                key={segment.label}
+                role="progressbar"
+                style={{ width: `${percentage}%` }}
               />
             );
           })}
@@ -71,15 +71,15 @@ export default function Stats13({
 
         <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
           {segments.map((segment) => (
-            <div key={segment.label} className="flex items-center gap-2">
+            <div className="flex items-center gap-2" key={segment.label}>
               <span
-                className={cn("size-3 shrink-0 rounded", segment.color)}
                 aria-hidden="true"
+                className={cn('size-3 shrink-0 rounded', segment.color)}
               />
-              <span className="text-sm text-muted-foreground">
+              <span className="text-muted-foreground text-sm">
                 {segment.label}
               </span>
-              <span className="text-sm tabular-nums text-muted-foreground">
+              <span className="text-muted-foreground text-sm tabular-nums">
                 {Math.round(segment.value)}
                 {usedLabel}
               </span>
@@ -87,11 +87,11 @@ export default function Stats13({
           ))}
           <div className="flex items-center gap-2">
             <span
-              className="size-3 shrink-0 rounded-sm bg-muted"
               aria-hidden="true"
+              className="size-3 shrink-0 rounded-sm bg-muted"
             />
-            <span className="text-sm text-muted-foreground">Free</span>
-            <span className="text-sm tabular-nums text-muted-foreground">
+            <span className="text-muted-foreground text-sm">Free</span>
+            <span className="text-muted-foreground text-sm tabular-nums">
               {Math.round(freeValue)}
               {usedLabel}
             </span>

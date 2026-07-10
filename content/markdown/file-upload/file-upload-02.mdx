@@ -1,8 +1,14 @@
 ````tsx
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function FileUpload02() {
   return (
@@ -22,25 +28,30 @@ export default function FileUpload02() {
                   Workspace <span className="text-destructive">*</span>
                 </Label>
                 <Input
-                  type="text"
+                  autoComplete="workspace-name"
                   id="workspace-name"
                   name="workspace-name"
-                  autoComplete="workspace-name"
                   placeholder="Workspace name"
                   required
+                  type="text"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="file-1">
                   Upload file <span className="text-destructive">*</span>
                 </Label>
-                <Input id="file-1" name="file-1" type="file" accept=".csv, .xlsx, .xls" />
-                <p className="text-pretty text-sm text-muted-foreground">
+                <Input
+                  accept=".csv, .xlsx, .xls"
+                  id="file-1"
+                  name="file-1"
+                  type="file"
+                />
+                <p className="text-pretty text-muted-foreground text-sm">
                   You are only allowed to upload CSV, XLSX or XLS files.
                 </p>
               </div>
             </div>
-            <div className="flex justify-end space-x-3 mt-8">
+            <div className="mt-8 flex justify-end space-x-3">
               <Button type="button" variant="outline">
                 Cancel
               </Button>

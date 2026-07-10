@@ -1,19 +1,5 @@
-"use client";
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuBadge,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
 import {
   IconActivityHeartbeat,
   IconArchive,
@@ -54,32 +40,46 @@ import {
   IconUser,
   IconUserPlus,
   IconWebhook,
-} from "@tabler/icons-react";
-import type React from "react";
-import { useState } from "react";
-import { TeamSwitcher } from "./team-switcher";
+} from '@tabler/icons-react';
+import type React from 'react';
+import { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
+import { cn } from '@/lib/utils';
+import { TeamSwitcher } from './team-switcher';
 
 const data = {
   teams: [
     {
-      name: "OpenAI",
+      name: 'OpenAI',
       logo: IconBrandOpenai,
-      plan: "Enterprise",
+      plan: 'Enterprise',
     },
     {
-      name: "Anthropic",
+      name: 'Anthropic',
       logo: IconNorthStar,
-      plan: "Pro",
+      plan: 'Pro',
     },
     {
-      name: "Google",
+      name: 'Google',
       logo: IconBrandGoogle,
-      plan: "Free",
+      plan: 'Free',
     },
     {
-      name: "Meta",
+      name: 'Meta',
       logo: IconBrandMeta,
-      plan: "Free",
+      plan: 'Free',
     },
   ],
 };
@@ -101,229 +101,229 @@ interface SidebarItem {
 
 const sidebarItems: SidebarItem[] = [
   {
-    id: "overview",
-    label: "Overview",
+    id: 'overview',
+    label: 'Overview',
     icon: IconHome,
     hasSubItems: true,
     subItems: [
       {
-        id: "dashboard",
-        label: "Dashboard",
+        id: 'dashboard',
+        label: 'Dashboard',
         icon: IconChartBar,
-        route: "/overview/dashboard",
+        route: '/overview/dashboard',
       },
       {
-        id: "activity",
-        label: "Activity",
+        id: 'activity',
+        label: 'Activity',
         icon: IconActivityHeartbeat,
-        route: "/overview/activity",
+        route: '/overview/activity',
       },
       {
-        id: "insights",
-        label: "Insights",
+        id: 'insights',
+        label: 'Insights',
         icon: IconTarget,
-        route: "/overview/insights",
+        route: '/overview/insights',
       },
     ],
   },
   {
-    id: "repositories",
-    label: "Repositories",
+    id: 'repositories',
+    label: 'Repositories',
     icon: IconFolders,
-    badge: "12",
+    badge: '12',
     hasSubItems: true,
     subItems: [
       {
-        id: "all-repos",
-        label: "All Repositories",
+        id: 'all-repos',
+        label: 'All Repositories',
         icon: IconFolder,
-        route: "/repositories",
+        route: '/repositories',
       },
       {
-        id: "starred",
-        label: "Starred",
+        id: 'starred',
+        label: 'Starred',
         icon: IconStar,
-        route: "/repositories/starred",
+        route: '/repositories/starred',
       },
       {
-        id: "archived",
-        label: "Archived",
+        id: 'archived',
+        label: 'Archived',
         icon: IconArchive,
-        route: "/repositories/archived",
+        route: '/repositories/archived',
       },
     ],
   },
   {
-    id: "pull-requests",
-    label: "Pull Requests",
+    id: 'pull-requests',
+    label: 'Pull Requests',
     icon: IconGitPullRequest,
-    badge: "3",
+    badge: '3',
     hasSubItems: true,
     subItems: [
       {
-        id: "open-prs",
-        label: "Open",
+        id: 'open-prs',
+        label: 'Open',
         icon: IconGitPullRequest,
-        route: "/pull-requests/open",
+        route: '/pull-requests/open',
       },
       {
-        id: "review-requests",
-        label: "Review Requests",
+        id: 'review-requests',
+        label: 'Review Requests',
         icon: IconScanEye,
-        route: "/pull-requests/review",
+        route: '/pull-requests/review',
       },
       {
-        id: "merged",
-        label: "Merged",
+        id: 'merged',
+        label: 'Merged',
         icon: IconGitMerge,
-        route: "/pull-requests/merged",
+        route: '/pull-requests/merged',
       },
     ],
   },
   {
-    id: "issues",
-    label: "Issues",
+    id: 'issues',
+    label: 'Issues',
     icon: IconBug,
-    badge: "7",
+    badge: '7',
     hasSubItems: true,
     subItems: [
       {
-        id: "open-issues",
-        label: "Open Issues",
+        id: 'open-issues',
+        label: 'Open Issues',
         icon: IconBug,
-        route: "/issues/open",
+        route: '/issues/open',
       },
       {
-        id: "assigned",
-        label: "Assigned to Me",
+        id: 'assigned',
+        label: 'Assigned to Me',
         icon: IconUserPlus,
-        route: "/issues/assigned",
+        route: '/issues/assigned',
       },
       {
-        id: "created",
-        label: "Created by Me",
+        id: 'created',
+        label: 'Created by Me',
         icon: IconGitCommit,
-        route: "/issues/created",
+        route: '/issues/created',
       },
     ],
   },
   {
-    id: "actions",
-    label: "Actions",
+    id: 'actions',
+    label: 'Actions',
     icon: IconBackground,
     hasSubItems: true,
     subItems: [
       {
-        id: "workflows",
-        label: "Workflows",
+        id: 'workflows',
+        label: 'Workflows',
         icon: IconPlayerPlay,
-        route: "/actions/workflows",
+        route: '/actions/workflows',
       },
       {
-        id: "runners",
-        label: "Runners",
+        id: 'runners',
+        label: 'Runners',
         icon: IconTerminal2,
-        route: "/actions/runners",
+        route: '/actions/runners',
       },
       {
-        id: "deployments",
-        label: "Deployments",
+        id: 'deployments',
+        label: 'Deployments',
         icon: IconCloud,
-        route: "/actions/deployments",
+        route: '/actions/deployments',
       },
     ],
   },
   {
-    id: "packages",
-    label: "Packages",
+    id: 'packages',
+    label: 'Packages',
     icon: IconPackages,
     hasSubItems: true,
     subItems: [
       {
-        id: "published",
-        label: "Published",
+        id: 'published',
+        label: 'Published',
         icon: IconPackageExport,
-        route: "/packages/published",
+        route: '/packages/published',
       },
       {
-        id: "container-registry",
-        label: "Container Registry",
+        id: 'container-registry',
+        label: 'Container Registry',
         icon: IconDatabase,
-        route: "/packages/containers",
+        route: '/packages/containers',
       },
       {
-        id: "npm-packages",
-        label: "npm Packages",
+        id: 'npm-packages',
+        label: 'npm Packages',
         icon: IconBrandNpm,
-        route: "/packages/npm",
+        route: '/packages/npm',
       },
     ],
   },
   {
-    id: "security",
-    label: "Security",
+    id: 'security',
+    label: 'Security',
     icon: IconLockPassword,
-    badge: "2",
+    badge: '2',
     hasSubItems: true,
     subItems: [
       {
-        id: "alerts",
-        label: "Security Alerts",
+        id: 'alerts',
+        label: 'Security Alerts',
         icon: IconLockExclamation,
-        route: "/security/alerts",
+        route: '/security/alerts',
       },
       {
-        id: "advisories",
-        label: "Advisories",
+        id: 'advisories',
+        label: 'Advisories',
         icon: IconShieldLock,
-        route: "/security/advisories",
+        route: '/security/advisories',
       },
       {
-        id: "secrets",
-        label: "Secrets",
+        id: 'secrets',
+        label: 'Secrets',
         icon: IconPasswordFingerprint,
-        route: "/security/secrets",
+        route: '/security/secrets',
       },
     ],
   },
   {
-    id: "settings",
-    label: "Settings",
+    id: 'settings',
+    label: 'Settings',
     icon: IconSettings,
     hasSubItems: true,
     subItems: [
       {
-        id: "profile",
-        label: "Profile",
+        id: 'profile',
+        label: 'Profile',
         icon: IconUser,
-        route: "/settings/profile",
+        route: '/settings/profile',
       },
       {
-        id: "notifications",
-        label: "Notifications",
+        id: 'notifications',
+        label: 'Notifications',
         icon: IconBellRinging,
-        route: "/settings/notifications",
+        route: '/settings/notifications',
       },
       {
-        id: "webhooks",
-        label: "Webhooks",
+        id: 'webhooks',
+        label: 'Webhooks',
         icon: IconWebhook,
-        route: "/settings/webhooks",
+        route: '/settings/webhooks',
       },
       {
-        id: "api-keys",
-        label: "API Keys",
+        id: 'api-keys',
+        label: 'API Keys',
         icon: IconKey,
-        route: "/settings/api-keys",
+        route: '/settings/api-keys',
       },
     ],
   },
   {
-    id: "docs",
-    label: "Documentation",
+    id: 'docs',
+    label: 'Documentation',
     icon: IconFileText,
     hasSubItems: false,
-    route: "/docs",
+    route: '/docs',
   },
 ];
 
@@ -357,12 +357,59 @@ export function AppSidebar() {
   return (
     <div className="flex h-dvh bg-background">
       <Sidebar
+        className="w-64 border-r"
+        collapsible="none"
         side="left"
         variant="sidebar"
-        collapsible="none"
-        className="w-64 border-r"
       >
-        {!activeItem ? (
+        {activeItem ? (
+          activeItemData?.subItems && (
+            <>
+              <SidebarHeader className="flex flex-row items-center justify-between border-b px-4">
+                <button
+                  className="flex h-8 w-8 items-center justify-center rounded-md p-0 hover:bg-sidebar-accent"
+                  onClick={handleBackToMain}
+                >
+                  <IconArrowLeft className="h-4 w-4" />
+                </button>
+                <h3 className="flex-1 text-center font-medium">
+                  {activeItemData.label}
+                </h3>
+                <div className="w-8" />
+              </SidebarHeader>
+
+              <SidebarContent>
+                <SidebarGroup>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {activeItemData.subItems.map((subItem) => {
+                        const SubIcon = subItem.icon;
+                        const isSelected = selectedSubItem === subItem.id;
+
+                        return (
+                          <SidebarMenuItem key={subItem.id}>
+                            <SidebarMenuButton
+                              className="h-10 w-full px-3"
+                              isActive={isSelected}
+                              onClick={() => handleSubItemClick(subItem)}
+                            >
+                              <div className="flex min-w-0 flex-1 items-center gap-3">
+                                <SubIcon className="h-4 w-4 shrink-0" />
+                                <span className="truncate">
+                                  {subItem.label}
+                                </span>
+                              </div>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        );
+                      })}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
+              </SidebarContent>
+            </>
+          )
+        ) : (
           <>
             <SidebarHeader>
               <TeamSwitcher teams={data.teams} />
@@ -375,26 +422,26 @@ export function AppSidebar() {
                     {sidebarItems.map((item) => {
                       const Icon = item.icon;
                       const chevronIndicator = (
-                        <IconChevronRight className="h-4 w-4 transition-transform shrink-0" />
+                        <IconChevronRight className="h-4 w-4 shrink-0 transition-transform" />
                       );
 
                       return (
                         <SidebarMenuItem key={item.id}>
                           <SidebarMenuButton
-                            className="w-full h-10 px-3"
+                            className="h-10 w-full px-3"
                             onClick={() => handleItemClick(item)}
                           >
-                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                            <div className="flex min-w-0 flex-1 items-center gap-3">
                               <Icon className="h-4 w-4 shrink-0" />
                               <span className="truncate">{item.label}</span>
                             </div>
-                            <div className="flex items-center gap-1 shrink-0 ml-auto min-w-fit">
+                            <div className="ml-auto flex min-w-fit shrink-0 items-center gap-1">
                               {(item.badge || item.hasSubItems) &&
                                 (item.badge ? (
                                   <SidebarMenuBadge
                                     className={cn(
-                                      "min-w-fit",
-                                      item.hasSubItems && "gap-x-3"
+                                      'min-w-fit',
+                                      item.hasSubItems && 'gap-x-3'
                                     )}
                                   >
                                     {item.badge}
@@ -416,15 +463,19 @@ export function AppSidebar() {
             <SidebarFooter>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton className="w-full h-12 px-3">
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                  <SidebarMenuButton className="h-12 w-full px-3">
+                    <div className="flex min-w-0 flex-1 items-center gap-3">
                       <Avatar className="h-8 w-8 rounded-full">
-                        <AvatarImage src="/avatar-01.png" alt="ephraim" />
-                        <AvatarFallback className="rounded-full">E</AvatarFallback>
+                        <AvatarImage alt="ephraim" src="/avatar-01.png" />
+                        <AvatarFallback className="rounded-full">
+                          E
+                        </AvatarFallback>
                       </Avatar>
-                      <div className="flex-1 text-left min-w-0">
-                        <div className="text-sm font-medium truncate">ephraim</div>
-                        <div className="text-xs text-muted-foreground truncate">
+                      <div className="min-w-0 flex-1 text-left">
+                        <div className="truncate font-medium text-sm">
+                          ephraim
+                        </div>
+                        <div className="truncate text-muted-foreground text-xs">
                           ephraim@blocks.so
                         </div>
                       </div>
@@ -435,49 +486,6 @@ export function AppSidebar() {
               </SidebarMenu>
             </SidebarFooter>
           </>
-        ) : (
-          activeItemData?.subItems && (
-            <>
-              <SidebarHeader className="flex flex-row items-center justify-between border-b px-4">
-                <button
-                  onClick={handleBackToMain}
-                  className="h-8 w-8 p-0 rounded-md hover:bg-sidebar-accent flex items-center justify-center"
-                >
-                  <IconArrowLeft className="h-4 w-4" />
-                </button>
-                <h3 className="font-medium flex-1 text-center">{activeItemData.label}</h3>
-                <div className="w-8" />
-              </SidebarHeader>
-
-              <SidebarContent>
-                <SidebarGroup>
-                  <SidebarGroupContent>
-                    <SidebarMenu>
-                      {activeItemData.subItems.map((subItem) => {
-                        const SubIcon = subItem.icon;
-                        const isSelected = selectedSubItem === subItem.id;
-
-                        return (
-                          <SidebarMenuItem key={subItem.id}>
-                            <SidebarMenuButton
-                              isActive={isSelected}
-                              className="w-full h-10 px-3"
-                              onClick={() => handleSubItemClick(subItem)}
-                            >
-                              <div className="flex items-center gap-3 flex-1 min-w-0">
-                                <SubIcon className="h-4 w-4 shrink-0" />
-                                <span className="truncate">{subItem.label}</span>
-                              </div>
-                            </SidebarMenuButton>
-                          </SidebarMenuItem>
-                        );
-                      })}
-                    </SidebarMenu>
-                  </SidebarGroupContent>
-                </SidebarGroup>
-              </SidebarContent>
-            </>
-          )
         )}
       </Sidebar>
     </div>

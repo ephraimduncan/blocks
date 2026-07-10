@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,25 +10,25 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 
 export default function Dialog06() {
   const [open, setOpen] = useState(true);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button onClick={() => setOpen(true)}>Create Workspace</Button>
+    <Dialog onOpenChange={setOpen} open={open}>
+      <DialogTrigger render={<Button onClick={() => setOpen(true)} />}>
+        Create Workspace
       </DialogTrigger>
       <DialogContent className="p-0 sm:max-w-lg">
         <DialogHeader className="px-6 pt-4">
-          <DialogTitle className="text-balance text-lg font-semibold text-foreground">
+          <DialogTitle className="text-balance font-semibold text-foreground text-lg">
             Create workspace
           </DialogTitle>
-          <DialogDescription className="text-pretty mt-2 text-sm leading-6 text-muted-foreground">
+          <DialogDescription className="mt-2 text-pretty text-muted-foreground text-sm leading-6">
             Workspaces are shared environments where teams can connect to data
             sources, run queries and create reports.
           </DialogDescription>
@@ -36,22 +36,22 @@ export default function Dialog06() {
 
         <form action="#" method="POST">
           <div className="px-6 pb-4">
-            <Label htmlFor="workspace-name" className="text-sm font-medium">
+            <Label className="font-medium text-sm" htmlFor="workspace-name">
               Workspace Name<span className="text-destructive">*</span>
             </Label>
             <Input
-              type="text"
+              className="mt-2"
               id="workspace-name"
               name="workspace-name"
               placeholder="My workspace"
-              className="mt-2"
               required
+              type="text"
             />
-            <Button type="submit" className="mt-4 w-full">
+            <Button className="mt-4 w-full" type="submit">
               Create workspace
             </Button>
           </div>
-          <div className="border-t bg-muted rounded-b-md px-6 py-4">
+          <div className="rounded-b-md border-t bg-muted px-6 py-4">
             <div className="flex items-start space-x-3">
               <div className="mt-1 pt-0.5">
                 <Switch
@@ -61,12 +61,12 @@ export default function Dialog06() {
               </div>
               <div>
                 <Label
+                  className="font-medium text-sm"
                   htmlFor="enable-private-workspace"
-                  className="text-sm font-medium"
                 >
                   Set workspace to private
                 </Label>
-                <p className="text-pretty text-sm text-muted-foreground">
+                <p className="text-pretty text-muted-foreground text-sm">
                   Only those invited can access or view
                 </p>
               </div>

@@ -1,9 +1,10 @@
-"use client";
+'use client';
+import { ChevronDown } from 'lucide-react';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from '@/components/ui/collapsible';
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -11,9 +12,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { ChevronDown } from "lucide-react";
-import { FavoriteItem, TeamItem, TopicItem } from "./types";
+} from '@/components/ui/sidebar';
+import type { FavoriteItem, TeamItem, TopicItem } from './types';
 
 interface NavCollapsibleProps {
   favorites: FavoriteItem[];
@@ -29,29 +29,30 @@ export function NavCollapsible({
   return (
     <div className="space-y-0">
       {favorites && favorites.length > 0 && (
-        <Collapsible defaultOpen className="group/collapsible">
+        <Collapsible className="group/collapsible" defaultOpen>
           <SidebarGroup>
             <SidebarGroupLabel
-              asChild
               className="text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              render={<CollapsibleTrigger />}
             >
-              <CollapsibleTrigger>
-                Favorites
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
+              Favorites
+              <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {favorites.map((item) => (
                     <SidebarMenuItem key={item.id}>
-                      <SidebarMenuButton asChild>
-                        <a href={item.href} className="flex items-center gap-3">
-                          <div
-                            className={`h-3 w-3 rounded ${item.color}`}
-                          ></div>
-                          <span>{item.title}</span>
-                        </a>
+                      <SidebarMenuButton
+                        render={
+                          <a
+                            className="flex items-center gap-3"
+                            href={item.href}
+                          />
+                        }
+                      >
+                        <div className={`h-3 w-3 rounded ${item.color}`} />
+                        <span>{item.title}</span>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
@@ -66,13 +67,11 @@ export function NavCollapsible({
         <Collapsible className="group/collapsible">
           <SidebarGroup>
             <SidebarGroupLabel
-              asChild
               className="text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              render={<CollapsibleTrigger />}
             >
-              <CollapsibleTrigger>
-                Teams
-                <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-0 group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
+              Teams
+              <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-0 group-data-[state=open]/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>
@@ -99,13 +98,11 @@ export function NavCollapsible({
         <Collapsible className="group/collapsible">
           <SidebarGroup>
             <SidebarGroupLabel
-              asChild
               className="text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              render={<CollapsibleTrigger />}
             >
-              <CollapsibleTrigger>
-                Topics
-                <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-0 group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
+              Topics
+              <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-0 group-data-[state=open]/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>

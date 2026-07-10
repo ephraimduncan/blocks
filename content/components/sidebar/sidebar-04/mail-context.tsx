@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
 export type Mail = {
   name: string;
@@ -31,6 +31,6 @@ export function MailProvider({ children }: { children: React.ReactNode }) {
 
 export function useMail() {
   const ctx = React.useContext(MailContext);
-  if (!ctx) throw new Error("useMail must be used within MailProvider");
+  if (!ctx) throw new Error('useMail must be used within MailProvider');
   return ctx;
 }

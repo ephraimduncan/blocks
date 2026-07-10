@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { HelpCircle } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { HelpCircle } from "lucide-react";
-import { useRef, useState } from "react";
-import { FileDropzone } from "./dropzone";
-import { FileList } from "./file-list";
-import { Form } from "./form";
+} from '@/components/ui/tooltip';
+import { FileDropzone } from './dropzone';
+import { FileList } from './file-list';
+import { Form } from './form';
 
 export default function FileUpload01() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -67,15 +67,15 @@ export default function FileUpload01() {
 
   return (
     <div className="flex items-center justify-center p-10">
-      <Card className="w-full mx-auto max-w-lg bg-background rounded-lg p-0 shadow-md">
+      <Card className="mx-auto w-full max-w-lg rounded-lg bg-background p-0 shadow-md">
         <CardContent className="p-0">
           <div className="p-6 pb-4">
-            <div className="flex justify-between items-start">
+            <div className="flex items-start justify-between">
               <div>
-                <h2 className="text-lg font-medium text-foreground">
+                <h2 className="font-medium text-foreground text-lg">
                   Create a new project
                 </h2>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="mt-1 text-muted-foreground text-sm">
                   Drag and drop files to create a new project.
                 </p>
               </div>
@@ -90,27 +90,29 @@ export default function FileUpload01() {
             handleFileSelect={handleFileSelect}
           />
           <FileList
-            uploadedFiles={uploadedFiles}
             fileProgresses={fileProgresses}
             removeFile={removeFile}
+            uploadedFiles={uploadedFiles}
           />
-          <div className="px-6 py-3 border-t border-border bg-muted rounded-b-lg flex justify-between items-center">
-            <TooltipProvider delayDuration={0}>
+          <div className="flex items-center justify-between rounded-b-lg border-border border-t bg-muted px-6 py-3">
+            <TooltipProvider delay={0}>
               <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="flex items-center text-muted-foreground hover:text-foreground"
-                  >
-                    <HelpCircle className="h-4 w-4 mr-1" />
-                    Need help?
-                  </Button>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      className="flex items-center text-muted-foreground hover:text-foreground"
+                      size="sm"
+                      variant="ghost"
+                    />
+                  }
+                >
+                  <HelpCircle className="mr-1 h-4 w-4" />
+                  Need help?
                 </TooltipTrigger>
-                <TooltipContent className="py-3 bg-background text-foreground border">
+                <TooltipContent className="border bg-background py-3 text-foreground">
                   <div className="space-y-1">
-                    <p className="text-[13px] font-medium">Need assistance?</p>
-                    <p className="text-muted-foreground dark:text-muted-background text-xs max-w-[200px]">
+                    <p className="font-medium text-[13px]">Need assistance?</p>
+                    <p className="max-w-[200px] text-muted-foreground text-xs dark:text-muted-background">
                       Upload project images by dragging and dropping files or
                       using the file browser. Supported formats: JPG, PNG, SVG.
                       Maximum file size: 4MB.
@@ -122,12 +124,12 @@ export default function FileUpload01() {
 
             <div className="flex gap-2">
               <Button
+                className="h-9 px-4 font-medium text-sm"
                 variant="outline"
-                className="h-9 px-4 text-sm font-medium"
               >
                 Cancel
               </Button>
-              <Button className="h-9 px-4 text-sm font-medium">Continue</Button>
+              <Button className="h-9 px-4 font-medium text-sm">Continue</Button>
             </div>
           </div>
         </CardContent>

@@ -1,5 +1,5 @@
 ````tsx
-"use client";
+'use client';
 
 import {
   CheckCircle,
@@ -8,11 +8,11 @@ import {
   PauseIcon,
   PlayIcon,
   Trash2Icon,
-} from "lucide-react";
-import { useState } from "react";
+} from 'lucide-react';
+import { useState } from 'react';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -20,127 +20,127 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
 
 interface Task {
   id: string;
   title: string;
   assignee: string;
-  status: "pending" | "in-progress" | "completed" | "blocked";
-  priority: "low" | "medium" | "high" | "urgent";
+  status: 'pending' | 'in-progress' | 'completed' | 'blocked';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
   dueDate: string;
   notes: string;
 }
 
-type TaskActionType = "start" | "pause" | "complete" | "delete" | "view";
+type TaskActionType = 'start' | 'pause' | 'complete' | 'delete' | 'view';
 
 const tasks: Task[] = [
   {
-    id: "TASK-001",
-    title: "Implement User Authentication",
-    assignee: "Sarah Chen",
-    status: "in-progress",
-    priority: "high",
-    dueDate: "2024-03-25",
-    notes: "OAuth 2.0 integration with Google and GitHub providers",
+    id: 'TASK-001',
+    title: 'Implement User Authentication',
+    assignee: 'Sarah Chen',
+    status: 'in-progress',
+    priority: 'high',
+    dueDate: '2024-03-25',
+    notes: 'OAuth 2.0 integration with Google and GitHub providers',
   },
   {
-    id: "TASK-002",
-    title: "Design Dashboard UI",
-    assignee: "Michael Torres",
-    status: "completed",
-    priority: "medium",
-    dueDate: "2024-03-20",
-    notes: "Finalize dashboard layout with responsive grid system",
+    id: 'TASK-002',
+    title: 'Design Dashboard UI',
+    assignee: 'Michael Torres',
+    status: 'completed',
+    priority: 'medium',
+    dueDate: '2024-03-20',
+    notes: 'Finalize dashboard layout with responsive grid system',
   },
   {
-    id: "TASK-003",
-    title: "API Performance Optimization",
-    assignee: "Emma Rodriguez",
-    status: "pending",
-    priority: "urgent",
-    dueDate: "2024-03-22",
-    notes: "Reduce API response time by implementing caching strategy",
+    id: 'TASK-003',
+    title: 'API Performance Optimization',
+    assignee: 'Emma Rodriguez',
+    status: 'pending',
+    priority: 'urgent',
+    dueDate: '2024-03-22',
+    notes: 'Reduce API response time by implementing caching strategy',
   },
   {
-    id: "TASK-004",
-    title: "Write Unit Tests",
-    assignee: "James Wilson",
-    status: "in-progress",
-    priority: "medium",
-    dueDate: "2024-03-28",
-    notes: "Achieve 80% code coverage for authentication module",
+    id: 'TASK-004',
+    title: 'Write Unit Tests',
+    assignee: 'James Wilson',
+    status: 'in-progress',
+    priority: 'medium',
+    dueDate: '2024-03-28',
+    notes: 'Achieve 80% code coverage for authentication module',
   },
   {
-    id: "TASK-005",
-    title: "Database Migration",
-    assignee: "Olivia Martinez",
-    status: "blocked",
-    priority: "high",
-    dueDate: "2024-03-24",
-    notes: "Waiting for infrastructure team approval before proceeding",
+    id: 'TASK-005',
+    title: 'Database Migration',
+    assignee: 'Olivia Martinez',
+    status: 'blocked',
+    priority: 'high',
+    dueDate: '2024-03-24',
+    notes: 'Waiting for infrastructure team approval before proceeding',
   },
   {
-    id: "TASK-006",
-    title: "Update Documentation",
-    assignee: "Lucas Anderson",
-    status: "pending",
-    priority: "low",
-    dueDate: "2024-03-30",
-    notes: "Document new API endpoints and authentication flow",
+    id: 'TASK-006',
+    title: 'Update Documentation',
+    assignee: 'Lucas Anderson',
+    status: 'pending',
+    priority: 'low',
+    dueDate: '2024-03-30',
+    notes: 'Document new API endpoints and authentication flow',
   },
   {
-    id: "TASK-007",
-    title: "Security Audit",
-    assignee: "Sophia Taylor",
-    status: "completed",
-    priority: "urgent",
-    dueDate: "2024-03-19",
+    id: 'TASK-007',
+    title: 'Security Audit',
+    assignee: 'Sophia Taylor',
+    status: 'completed',
+    priority: 'urgent',
+    dueDate: '2024-03-19',
     notes:
-      "Conducted comprehensive security review and vulnerability assessment",
+      'Conducted comprehensive security review and vulnerability assessment',
   },
 ];
 
-function getStatusBadge(status: Task["status"]) {
+function getStatusBadge(status: Task['status']) {
   switch (status) {
-    case "pending":
+    case 'pending':
       return (
         <Badge
+          className="border-0 bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20"
           variant="outline"
-          className="bg-amber-500/15 text-amber-700 hover:bg-amber-500/25 dark:bg-amber-500/10 dark:text-amber-300 dark:hover:bg-amber-500/20 border-0"
         >
           Pending
         </Badge>
       );
-    case "in-progress":
+    case 'in-progress':
       return (
         <Badge
+          className="border-0 bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"
           variant="outline"
-          className="bg-blue-500/15 text-blue-700 hover:bg-blue-500/25 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20 border-0"
         >
           In Progress
         </Badge>
       );
-    case "completed":
+    case 'completed':
       return (
         <Badge
+          className="border-0 bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20"
           variant="outline"
-          className="bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20 border-0"
         >
           Completed
         </Badge>
       );
-    case "blocked":
+    case 'blocked':
       return (
         <Badge
+          className="border-0 bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20"
           variant="outline"
-          className="bg-rose-500/15 text-rose-700 hover:bg-rose-500/25 dark:bg-rose-500/10 dark:text-rose-400 dark:hover:bg-rose-500/20 border-0"
         >
           Blocked
         </Badge>
@@ -171,29 +171,31 @@ export default function Table02() {
 
   const renderTaskRow = (task: Task) => {
     const busy = isTaskBusy(task.id);
-    const startPending = isTaskActionPending("start", task.id);
-    const pausePending = isTaskActionPending("pause", task.id);
-    const completePending = isTaskActionPending("complete", task.id);
-    const deletePending = isTaskActionPending("delete", task.id);
+    const startPending = isTaskActionPending('start', task.id);
+    const pausePending = isTaskActionPending('pause', task.id);
+    const completePending = isTaskActionPending('complete', task.id);
+    const deletePending = isTaskActionPending('delete', task.id);
 
     return (
-      <TableRow key={task.id} className="hover:bg-muted/50">
+      <TableRow className="hover:bg-muted/50" key={task.id}>
         <TableCell className="h-16 px-4 font-medium">{task.title}</TableCell>
-        <TableCell className="h-16 px-4 text-sm text-muted-foreground">
+        <TableCell className="h-16 px-4 text-muted-foreground text-sm">
           {task.assignee}
         </TableCell>
         <TableCell className="h-16 px-4">
           {getStatusBadge(task.status)}
         </TableCell>
 
-        <TableCell className="h-16 px-4 text-sm text-muted-foreground">
+        <TableCell className="h-16 px-4 text-muted-foreground text-sm">
           {task.dueDate}
         </TableCell>
-        <TableCell className="h-16 px-4 max-w-[300px] text-sm text-muted-foreground">
+        <TableCell className="h-16 max-w-[300px] px-4 text-muted-foreground text-sm">
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="block cursor-help truncate">{task.notes}</span>
+              <TooltipTrigger
+                render={<span className="block cursor-help truncate" />}
+              >
+                {task.notes}
               </TooltipTrigger>
               <TooltipContent className="max-w-md">{task.notes}</TooltipContent>
             </Tooltip>
@@ -202,100 +204,110 @@ export default function Table02() {
         <TableCell className="h-16 px-4">
           <TooltipProvider>
             <div className="flex items-center gap-1">
-              {(task.status === "pending" || task.status === "blocked") && (
+              {(task.status === 'pending' || task.status === 'blocked') && (
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="h-8 w-8"
-                      onClick={() => handleAction(task, "start")}
-                      disabled={busy}
-                      aria-label="Start"
-                    >
-                      {startPending ? (
-                        <Loader2 className="size-4 animate-spin" />
-                      ) : (
-                        <PlayIcon className="size-4" />
-                      )}
-                    </Button>
+                  <TooltipTrigger
+                    render={
+                      <Button
+                        aria-label="Start"
+                        className="h-8 w-8"
+                        disabled={busy}
+                        onClick={() => handleAction(task, 'start')}
+                        size="icon"
+                        variant="outline"
+                      />
+                    }
+                  >
+                    {startPending ? (
+                      <Loader2 className="size-4 animate-spin" />
+                    ) : (
+                      <PlayIcon className="size-4" />
+                    )}
                   </TooltipTrigger>
                   <TooltipContent>Start</TooltipContent>
                 </Tooltip>
               )}
-              {task.status === "in-progress" && (
+              {task.status === 'in-progress' && (
                 <>
                   <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() => handleAction(task, "pause")}
-                        disabled={busy}
-                        aria-label="Pause"
-                      >
-                        {pausePending ? (
-                          <Loader2 className="size-4 animate-spin" />
-                        ) : (
-                          <PauseIcon className="size-4" />
-                        )}
-                      </Button>
+                    <TooltipTrigger
+                      render={
+                        <Button
+                          aria-label="Pause"
+                          className="h-8 w-8"
+                          disabled={busy}
+                          onClick={() => handleAction(task, 'pause')}
+                          size="icon"
+                          variant="outline"
+                        />
+                      }
+                    >
+                      {pausePending ? (
+                        <Loader2 className="size-4 animate-spin" />
+                      ) : (
+                        <PauseIcon className="size-4" />
+                      )}
                     </TooltipTrigger>
                     <TooltipContent>Pause</TooltipContent>
                   </Tooltip>
                   <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() => handleAction(task, "complete")}
-                        disabled={busy}
-                        aria-label="Complete"
-                      >
-                        {completePending ? (
-                          <Loader2 className="size-4 animate-spin" />
-                        ) : (
-                          <CheckCircle className="size-4" />
-                        )}
-                      </Button>
+                    <TooltipTrigger
+                      render={
+                        <Button
+                          aria-label="Complete"
+                          className="h-8 w-8"
+                          disabled={busy}
+                          onClick={() => handleAction(task, 'complete')}
+                          size="icon"
+                          variant="outline"
+                        />
+                      }
+                    >
+                      {completePending ? (
+                        <Loader2 className="size-4 animate-spin" />
+                      ) : (
+                        <CheckCircle className="size-4" />
+                      )}
                     </TooltipTrigger>
                     <TooltipContent>Complete</TooltipContent>
                   </Tooltip>
                 </>
               )}
               <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8 text-destructive hover:bg-destructive hover:text-white"
-                    onClick={() => handleAction(task, "delete")}
-                    disabled={busy}
-                    aria-label="Delete"
-                  >
-                    {deletePending ? (
-                      <Loader2 className="size-4 animate-spin" />
-                    ) : (
-                      <Trash2Icon className="size-4" />
-                    )}
-                  </Button>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      aria-label="Delete"
+                      className="h-8 w-8 text-destructive hover:bg-destructive hover:text-white"
+                      disabled={busy}
+                      onClick={() => handleAction(task, 'delete')}
+                      size="icon"
+                      variant="outline"
+                    />
+                  }
+                >
+                  {deletePending ? (
+                    <Loader2 className="size-4 animate-spin" />
+                  ) : (
+                    <Trash2Icon className="size-4" />
+                  )}
                 </TooltipTrigger>
                 <TooltipContent>Delete</TooltipContent>
               </Tooltip>
               <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8"
-                    onClick={() => handleAction(task, "view")}
-                    disabled={busy}
-                    aria-label="View details"
-                  >
-                    <FileTextIcon className="size-4" />
-                  </Button>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      aria-label="View details"
+                      className="h-8 w-8"
+                      disabled={busy}
+                      onClick={() => handleAction(task, 'view')}
+                      size="icon"
+                      variant="outline"
+                    />
+                  }
+                >
+                  <FileTextIcon className="size-4" />
                 </TooltipTrigger>
                 <TooltipContent>View Details</TooltipContent>
               </Tooltip>
@@ -307,19 +319,19 @@ export default function Table02() {
   };
 
   return (
-    <div className="rounded-lg border bg-card w-[95%]">
+    <div className="w-[95%] rounded-lg border bg-card">
       <Table>
         <TableHeader>
-          <TableRow className="hover:bg-transparent border-b">
+          <TableRow className="border-b hover:bg-transparent">
             <TableHead className="h-12 px-4 font-medium">Title</TableHead>
             <TableHead className="h-12 px-4 font-medium">Assignee</TableHead>
-            <TableHead className="h-12 px-4 font-medium w-[120px]">
+            <TableHead className="h-12 w-[120px] px-4 font-medium">
               Status
             </TableHead>
 
             <TableHead className="h-12 px-4 font-medium">Due Date</TableHead>
             <TableHead className="h-12 px-4 font-medium">Notes</TableHead>
-            <TableHead className="h-12 px-4 font-medium w-[180px]">
+            <TableHead className="h-12 w-[180px] px-4 font-medium">
               Actions
             </TableHead>
           </TableRow>

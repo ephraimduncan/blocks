@@ -22,44 +22,46 @@ export function RegistrySetup({
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          className={cn(className, 'rounded-full')}
-          size="default"
-          variant="ghost"
+      <DialogTrigger
+        render={
+          <Button
+            className={cn(className, 'rounded-full')}
+            size="default"
+            variant="ghost"
+          />
+        }
+      >
+        <svg
+          aria-hidden="true"
+          className="size-4"
+          viewBox="0 0 256 256"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            aria-hidden="true"
-            className="size-4"
-            viewBox="0 0 256 256"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect fill="none" height="256" width="256" />
-            <line
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="32"
-              x1="208"
-              x2="128"
-              y1="128"
-              y2="208"
-            />
-            <line
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="32"
-              x1="192"
-              x2="40"
-              y1="40"
-              y2="192"
-            />
-          </svg>
-          Registry
-        </Button>
+          <rect fill="none" height="256" width="256" />
+          <line
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="32"
+            x1="208"
+            x2="128"
+            y1="128"
+            y2="208"
+          />
+          <line
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="32"
+            x1="192"
+            x2="40"
+            y1="40"
+            y2="192"
+          />
+        </svg>
+        Registry
       </DialogTrigger>
       <DialogContent className="md:max-w-2xl">
         <DialogHeader>

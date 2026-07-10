@@ -1,15 +1,5 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
 import {
   IconBolt,
   IconChevronDown,
@@ -27,14 +17,24 @@ import {
   IconUser,
   IconWand,
   IconWorld,
-} from "@tabler/icons-react";
-import { useRef, useState } from "react";
+} from '@tabler/icons-react';
+import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
 export default function Ai03() {
-  const [input, setInput] = useState("");
-  const [selectedModel, setSelectedModel] = useState("Local");
-  const [selectedAgent, setSelectedAgent] = useState("Agent");
-  const [selectedPerformance, setSelectedPerformance] = useState("High");
+  const [input, setInput] = useState('');
+  const [selectedModel, setSelectedModel] = useState('Local');
+  const [selectedAgent, setSelectedAgent] = useState('Agent');
+  const [selectedPerformance, setSelectedPerformance] = useState('High');
   const [autoMode, setAutoMode] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -46,43 +46,45 @@ export default function Ai03() {
 
   return (
     <div className="w-xl">
-      <div className="bg-background border border-border rounded-2xl overflow-hidden">
+      <div className="overflow-hidden rounded-2xl border border-border bg-background">
         <input
+          className="sr-only"
+          multiple
+          onChange={(e) => {}}
           ref={fileInputRef}
           type="file"
-          multiple
-          className="sr-only"
-          onChange={(e) => {}}
         />
 
-        <div className="px-3 pt-3 pb-2 grow">
+        <div className="grow px-3 pt-3 pb-2">
           <form onSubmit={handleSubmit}>
             <Textarea
-              value={input}
+              className="max-h-[25vh] min-h-10 w-full resize-none border-0 border-none bg-transparent! p-0 text-foreground text-sm placeholder-muted-foreground shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask anything"
-              className="w-full bg-transparent! p-0 border-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground placeholder-muted-foreground resize-none border-none outline-none text-sm min-h-10 max-h-[25vh]"
-              rows={1}
               onInput={(e) => {
                 const target = e.target as HTMLTextAreaElement;
-                target.style.height = "auto";
-                target.style.height = target.scrollHeight + "px";
+                target.style.height = 'auto';
+                target.style.height = target.scrollHeight + 'px';
               }}
+              placeholder="Ask anything"
+              rows={1}
+              value={input}
             />
           </form>
         </div>
 
-        <div className="mb-2 px-2 flex items-center justify-between">
+        <div className="mb-2 flex items-center justify-between px-2">
           <div className="flex items-center gap-1">
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-7 w-7 p-0 rounded-full border border-border hover:bg-accent"
-                >
-                  <IconPlus className="size-3" />
-                </Button>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    className="h-7 w-7 rounded-full border border-border p-0 hover:bg-accent"
+                    size="sm"
+                    variant="ghost"
+                  />
+                }
+              >
+                <IconPlus className="size-3" />
               </DropdownMenuTrigger>
 
               <DropdownMenuContent
@@ -94,28 +96,28 @@ export default function Ai03() {
                     className="rounded-[calc(1rem-6px)] text-xs"
                     onClick={() => fileInputRef.current?.click()}
                   >
-                    <IconPaperclip size={16} className="opacity-60" />
+                    <IconPaperclip className="opacity-60" size={16} />
                     Attach Files
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="rounded-[calc(1rem-6px)] text-xs"
                     onClick={() => {}}
                   >
-                    <IconCode size={16} className="opacity-60" />
+                    <IconCode className="opacity-60" size={16} />
                     Code Interpreter
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="rounded-[calc(1rem-6px)] text-xs"
                     onClick={() => {}}
                   >
-                    <IconWorld size={16} className="opacity-60" />
+                    <IconWorld className="opacity-60" size={16} />
                     Web Search
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="rounded-[calc(1rem-6px)] text-xs"
                     onClick={() => {}}
                   >
-                    <IconHistory size={16} className="opacity-60" />
+                    <IconHistory className="opacity-60" size={16} />
                     Chat History
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -123,16 +125,16 @@ export default function Ai03() {
             </DropdownMenu>
 
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setAutoMode(!autoMode)}
               className={cn(
-                "h-7 px-2 rounded-full border border-border hover:bg-accent ",
+                'h-7 rounded-full border border-border px-2 hover:bg-accent ',
                 {
-                  "bg-primary/10 text-primary border-primary/30": autoMode,
-                  "text-muted-foreground": !autoMode,
+                  'border-primary/30 bg-primary/10 text-primary': autoMode,
+                  'text-muted-foreground': !autoMode,
                 }
               )}
+              onClick={() => setAutoMode(!autoMode)}
+              size="sm"
+              variant="ghost"
             >
               <IconWand className="size-3" />
               <span className="text-xs">Auto</span>
@@ -141,10 +143,10 @@ export default function Ai03() {
 
           <div>
             <Button
-              type="submit"
+              className="size-7 rounded-full bg-primary p-0 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={!input.trim()}
-              className="size-7 p-0 rounded-full bg-primary disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={handleSubmit}
+              type="submit"
             >
               <IconSend className="size-3 fill-primary" />
             </Button>
@@ -154,34 +156,36 @@ export default function Ai03() {
 
       <div className="flex items-center gap-0 pt-2">
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-6 px-2 rounded-full border border-transparent hover:bg-accent text-muted-foreground text-xs"
-            >
-              <IconDeviceLaptop className="size-3" />
-              <span>{selectedModel}</span>
-              <IconChevronDown className="size-3" />
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="h-6 rounded-full border border-transparent px-2 text-muted-foreground text-xs hover:bg-accent"
+                size="sm"
+                variant="ghost"
+              />
+            }
+          >
+            <IconDeviceLaptop className="size-3" />
+            <span>{selectedModel}</span>
+            <IconChevronDown className="size-3" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="start"
-            className="max-w-xs rounded-2xl p-1.5 bg-popover border-border"
+            className="max-w-xs rounded-2xl border-border bg-popover p-1.5"
           >
             <DropdownMenuGroup className="space-y-1">
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedModel("Local")}
+                onClick={() => setSelectedModel('Local')}
               >
-                <IconDeviceLaptop size={16} className="opacity-60" />
+                <IconDeviceLaptop className="opacity-60" size={16} />
                 Local
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedModel("Cloud")}
+                onClick={() => setSelectedModel('Cloud')}
               >
-                <IconCloud size={16} className="opacity-60" />
+                <IconCloud className="opacity-60" size={16} />
                 Cloud
               </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -189,34 +193,36 @@ export default function Ai03() {
         </DropdownMenu>
 
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-6 px-2 rounded-full border border-transparent hover:bg-accent text-muted-foreground text-xs"
-            >
-              <IconUser className="size-3" />
-              <span>{selectedAgent}</span>
-              <IconChevronDown className="size-3" />
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="h-6 rounded-full border border-transparent px-2 text-muted-foreground text-xs hover:bg-accent"
+                size="sm"
+                variant="ghost"
+              />
+            }
+          >
+            <IconUser className="size-3" />
+            <span>{selectedAgent}</span>
+            <IconChevronDown className="size-3" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="start"
-            className="max-w-xs rounded-2xl p-1.5 bg-popover border-border"
+            className="max-w-xs rounded-2xl border-border bg-popover p-1.5"
           >
             <DropdownMenuGroup className="space-y-1">
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedAgent("Agent")}
+                onClick={() => setSelectedAgent('Agent')}
               >
-                <IconUser size={16} className="opacity-60" />
+                <IconUser className="opacity-60" size={16} />
                 Agent
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedAgent("Assistant")}
+                onClick={() => setSelectedAgent('Assistant')}
               >
-                <IconRobot size={16} className="opacity-60" />
+                <IconRobot className="opacity-60" size={16} />
                 Assistant
               </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -224,41 +230,43 @@ export default function Ai03() {
         </DropdownMenu>
 
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-6 px-2 rounded-full border border-transparent hover:bg-accent text-muted-foreground text-xs"
-            >
-              <IconBolt className="size-3" />
-              <span>{selectedPerformance}</span>
-              <IconChevronDown className="size-3" />
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="h-6 rounded-full border border-transparent px-2 text-muted-foreground text-xs hover:bg-accent"
+                size="sm"
+                variant="ghost"
+              />
+            }
+          >
+            <IconBolt className="size-3" />
+            <span>{selectedPerformance}</span>
+            <IconChevronDown className="size-3" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="start"
-            className="max-w-xs rounded-2xl p-1.5 bg-popover border-border"
+            className="max-w-xs rounded-2xl border-border bg-popover p-1.5"
           >
             <DropdownMenuGroup className="space-y-1">
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedPerformance("High")}
+                onClick={() => setSelectedPerformance('High')}
               >
-                <IconCircle size={16} className="opacity-60" />
+                <IconCircle className="opacity-60" size={16} />
                 High
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedPerformance("Medium")}
+                onClick={() => setSelectedPerformance('Medium')}
               >
-                <IconProgress size={16} className="opacity-60" />
+                <IconProgress className="opacity-60" size={16} />
                 Medium
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="rounded-[calc(1rem-6px)] text-xs"
-                onClick={() => setSelectedPerformance("Low")}
+                onClick={() => setSelectedPerformance('Low')}
               >
-                <IconCircleDashed size={16} className="opacity-60" />
+                <IconCircleDashed className="opacity-60" size={16} />
                 Low
               </DropdownMenuItem>
             </DropdownMenuGroup>

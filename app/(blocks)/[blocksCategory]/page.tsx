@@ -58,7 +58,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       `copy paste ${categoryName.toLowerCase()}`,
       `${categoryName.toLowerCase()} examples`,
       `${categoryName.toLowerCase()} template`,
-      `radix ${categoryName.toLowerCase()}`,
+      `base ui ${categoryName.toLowerCase()}`,
     ],
     openGraph: {
       title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui Components`,

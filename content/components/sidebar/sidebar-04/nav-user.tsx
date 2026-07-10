@@ -44,7 +44,7 @@ export function NavUser({
           <DropdownMenuTrigger
             render={
               <SidebarMenuButton
-                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground md:h-8 md:p-0"
+                className="data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground md:h-8 md:p-0"
                 size="lg"
               />
             }

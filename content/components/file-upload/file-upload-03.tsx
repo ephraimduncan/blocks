@@ -93,7 +93,11 @@ export default function FileUpload03() {
                 <Label className="font-medium" htmlFor="visibility">
                   Visibility
                 </Label>
-                <Select defaultValue="private" disabled>
+                <Select
+                  defaultValue="private"
+                  disabled
+                  items={{ private: 'Private', public: 'Public' }}
+                >
                   <SelectTrigger
                     className="mt-2 w-full"
                     id="visibility"

@@ -65,7 +65,14 @@ export default function SignupForm() {
           <CardContent className="space-y-6 px-8">
             <div className="space-y-2">
               <Label htmlFor="role">Role</Label>
-              <Select defaultValue="designer">
+              <Select
+                defaultValue="designer"
+                items={{
+                  designer: 'Product Designer',
+                  developer: 'Developer',
+                  manager: 'Product Manager',
+                }}
+              >
                 <SelectTrigger
                   className="[&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0"
                   id="role"

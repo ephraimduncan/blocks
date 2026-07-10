@@ -1,30 +1,26 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export function OpenInPlaygroundButton({
   name,
   className,
-}: { name: string } & React.ComponentProps<typeof Button>) {
+}: { name: string } & React.ComponentProps<'a'>) {
   return (
-    <Button
+    <a
       aria-label="Open in shadcn playground"
       className={cn(
+        buttonVariants(),
         'h-8 gap-1 rounded-lg bg-black text-white hover:bg-black hover:text-white dark:bg-white dark:text-black',
         className
       )}
-      nativeButton={false}
-      render={
-        <a
-          data-umami-event="Open Block in Playground"
-          href={`https://play.blocks.so/api/open?url=${
-            process.env.NEXT_PUBLIC_BASE_URL || 'https://blocks.so'
-          }/r/${name}.json`}
-          rel="noreferrer"
-          target="_blank"
-        />
-      }
+      data-umami-event="Open Block in Playground"
+      href={`https://play.blocks.so/api/open?url=${
+        process.env.NEXT_PUBLIC_BASE_URL || 'https://blocks.so'
+      }/r/${name}.json`}
+      rel="noreferrer"
+      target="_blank"
     >
       Open in{' '}
       <svg
@@ -57,6 +53,6 @@ export function OpenInPlaygroundButton({
           y2="192"
         />
       </svg>
-    </Button>
+    </a>
   );
 }

@@ -90,7 +90,14 @@ export default function FormLayout05() {
                 <div className="md:w-1/4">
                   <Field className="gap-2">
                     <FieldLabel htmlFor="organization">Organization</FieldLabel>
-                    <Select defaultValue="1">
+                    <Select
+                      defaultValue="1"
+                      items={{
+                        '1': 'Acme, Inc.',
+                        '2': 'Hero Labs',
+                        '3': 'Rose Holding',
+                      }}
+                    >
                       <SelectTrigger
                         className="w-full"
                         id="organization"
@@ -116,7 +123,16 @@ export default function FormLayout05() {
               <div>
                 <Field className="gap-2">
                   <FieldLabel htmlFor="region">Region</FieldLabel>
-                  <Select defaultValue="iad1">
+                  <Select
+                    defaultValue="iad1"
+                    items={{
+                      fra1: 'eu-central-1 (Frankfurt, Germany)',
+                      iad1: 'us-east-1 (Washington, D.C., USA)',
+                      lhr1: 'eu-west-2 (London, United Kingdom)',
+                      sfo1: 'us-west-1 (San Francisco, USA)',
+                      sin1: 'ap-southeast-1 (Singapore)',
+                    }}
+                  >
                     <SelectTrigger id="region" name="region">
                       <SelectValue placeholder="Select region" />
                     </SelectTrigger>

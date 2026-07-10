@@ -1,9 +1,10 @@
 ````tsx
 import type { JSX, SVGProps } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 const GitHubIcon = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -70,24 +71,26 @@ export default function Login04() {
             </a>
           </p>
           <div className="mt-8 flex flex-col items-center space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
-            <Button
-              className="flex-1 items-center justify-center space-x-2 py-2"
-              nativeButton={false}
-              render={<a href="#" />}
-              variant="outline"
+            <a
+              className={cn(
+                buttonVariants({ variant: 'outline' }),
+                'flex-1 items-center justify-center space-x-2 py-2'
+              )}
+              href="#"
             >
               <GitHubIcon aria-hidden={true} className="size-5" />
               <span className="font-medium text-sm">Login with GitHub</span>
-            </Button>
-            <Button
-              className="mt-2 flex-1 items-center justify-center space-x-2 py-2 sm:mt-0"
-              nativeButton={false}
-              render={<a href="#" />}
-              variant="outline"
+            </a>
+            <a
+              className={cn(
+                buttonVariants({ variant: 'outline' }),
+                'mt-2 flex-1 items-center justify-center space-x-2 py-2 sm:mt-0'
+              )}
+              href="#"
             >
               <GoogleIcon aria-hidden={true} className="size-4" />
               <span className="font-medium text-sm">Login with Google</span>
-            </Button>
+            </a>
           </div>
 
           <div className="relative my-6">

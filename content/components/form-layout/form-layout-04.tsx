@@ -139,7 +139,7 @@ export default function FormLayout04() {
               >
                 {workspaces.map((item) => (
                   <div
-                    className="relative flex flex-col gap-2 rounded-md border border-input p-4 shadow-xs outline-none has-data-[state=checked]:border-ring"
+                    className="relative flex flex-col gap-2 rounded-md border border-input p-4 shadow-xs outline-none has-data-checked:border-ring"
                     key={item.id.toString()}
                   >
                     <div className="flex justify-between">

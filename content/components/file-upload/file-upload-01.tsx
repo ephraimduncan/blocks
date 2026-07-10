@@ -108,7 +108,14 @@ export default function FileUpload01() {
                 <Label className="mb-2" htmlFor="projectLead">
                   Project lead
                 </Label>
-                <Select defaultValue="1">
+                <Select
+                  defaultValue="1"
+                  items={{
+                    '1': 'Ephraim Duncan',
+                    '2': 'Lucas Smith',
+                    '3': 'Timur Ercan',
+                  }}
+                >
                   <SelectTrigger className="w-full ps-2" id="projectLead">
                     <SelectValue placeholder="Select project lead" />
                   </SelectTrigger>

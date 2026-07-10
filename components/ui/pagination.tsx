@@ -4,7 +4,8 @@ import {
   MoreHorizontalIcon,
 } from 'lucide-react';
 import type * as React from 'react';
-import { Button } from '@/components/ui/button';
+import type { VariantProps } from 'class-variance-authority';
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
@@ -36,10 +37,10 @@ function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
   return <li data-slot="pagination-item" {...props} />;
 }
 
-type PaginationLinkProps = {
-  isActive?: boolean;
-} & Pick<React.ComponentProps<typeof Button>, 'size'> &
-  React.ComponentProps<'a'>;
+type PaginationLinkProps = React.ComponentProps<'a'> &
+  {
+    isActive?: boolean;
+  } & Pick<VariantProps<typeof buttonVariants>, 'size'>;
 
 function PaginationLink({
   className,
@@ -48,19 +49,15 @@ function PaginationLink({
   ...props
 }: PaginationLinkProps) {
   return (
-    <Button
-      className={cn(className)}
-      nativeButton={false}
-      render={
-        <a
-          aria-current={isActive ? 'page' : undefined}
-          data-active={isActive}
-          data-slot="pagination-link"
-          {...props}
-        />
-      }
-      size={size}
-      variant={isActive ? 'outline' : 'ghost'}
+    <a
+      aria-current={isActive ? 'page' : undefined}
+      className={cn(
+        buttonVariants({ variant: isActive ? 'outline' : 'ghost', size }),
+        className
+      )}
+      data-active={isActive}
+      data-slot="pagination-link"
+      {...props}
     />
   );
 }

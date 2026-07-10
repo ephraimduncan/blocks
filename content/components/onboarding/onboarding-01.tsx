@@ -9,7 +9,7 @@ import {
   IconMail,
 } from '@tabler/icons-react';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible';
 import {
   DropdownMenu,
@@ -298,18 +298,19 @@ export function Onboarding01() {
                                 <p className="mt-2 text-pretty text-muted-foreground text-sm sm:max-w-64 md:max-w-xs">
                                   {step.description}
                                 </p>
-                                <Button
-                                  className="mt-3"
-                                  nativeButton={false}
+                                <a
+                                  className={cn(
+                                    buttonVariants({ size: 'sm' }),
+                                    'mt-3'
+                                  )}
+                                  href={step.actionHref}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleStepAction(step);
                                   }}
-                                  render={<a href={step.actionHref} />}
-                                  size="sm"
                                 >
                                   {step.actionLabel}
-                                </Button>
+                                </a>
                               </CollapsibleContent>
                             </Collapsible>
                           </div>

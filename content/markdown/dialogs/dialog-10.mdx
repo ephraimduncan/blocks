@@ -122,6 +122,7 @@ export default function Dialog10() {
               <div className="space-y-2">
                 <Label htmlFor="time">Time</Label>
                 <Select
+                  items={timeOptions}
                   onValueChange={(value) => {
                     if (value) {
                       setStartTime(value);

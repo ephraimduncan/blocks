@@ -993,7 +993,6 @@ export const PromptInputActionMenuTrigger = ({
   ...props
 }: PromptInputActionMenuTriggerProps) => (
   <DropdownMenuTrigger
-    nativeButton={false}
     render={<PromptInputButton className={className} {...props} />}
   >
     {children ?? <PlusIcon className="size-4" />}

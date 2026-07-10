@@ -36,7 +36,7 @@ export function NavCollapsible({
               render={<CollapsibleTrigger />}
             >
               Favorites
-              <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>
@@ -71,7 +71,7 @@ export function NavCollapsible({
               render={<CollapsibleTrigger />}
             >
               Teams
-              <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-0 group-data-[state=open]/collapsible:rotate-180" />
+              <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>
@@ -102,7 +102,7 @@ export function NavCollapsible({
               render={<CollapsibleTrigger />}
             >
               Topics
-              <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-0 group-data-[state=open]/collapsible:rotate-180" />
+              <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
             </SidebarGroupLabel>
             <CollapsibleContent>
               <SidebarGroupContent>

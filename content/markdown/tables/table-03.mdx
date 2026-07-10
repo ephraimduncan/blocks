@@ -168,6 +168,10 @@ export default function Table03() {
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <Select
+            items={[
+              { value: 'all', label: 'All Categories' },
+              ...uniqueCategories.map((c) => ({ value: c, label: c })),
+            ]}
             onValueChange={(value) => {
               if (value) {
                 setSelectedCategory(value);

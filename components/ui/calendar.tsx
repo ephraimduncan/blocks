@@ -217,6 +217,7 @@ function CalendarDayButton({
         !modifiers.range_end &&
         !modifiers.range_middle
       }
+      ref={ref}
       size="icon"
       variant="ghost"
       {...props}

@@ -92,7 +92,16 @@ export default function Dialog11() {
                     Select Framework
                   </Label>
                 </div>
-                <Select defaultValue="react">
+                <Select
+                  defaultValue="react"
+                  items={{
+                    react: 'Next.js',
+                    vue: 'React Router',
+                    angular: 'Tanstack Start',
+                    svelte: 'SvelteKit',
+                    vanilla: 'SolidStart',
+                  }}
+                >
                   <SelectTrigger
                     className="w-full"
                     id="framework"
@@ -121,7 +130,10 @@ export default function Dialog11() {
                     Choose Package Manager
                   </Label>
                 </div>
-                <Select defaultValue="npm">
+                <Select
+                  defaultValue="npm"
+                  items={{ npm: 'npm', yarn: 'yarn', pnpm: 'pnpm', bun: 'bun' }}
+                >
                   <SelectTrigger
                     className="w-full"
                     id="package-manager"
@@ -152,7 +164,17 @@ export default function Dialog11() {
                 <p className="mt-1 text-pretty text-muted-foreground text-xs">
                   Ensure code quality and consistency.
                 </p>
-                <Select defaultValue="eslint-prettier">
+                <Select
+                  defaultValue="eslint-prettier"
+                  items={{
+                    'eslint-prettier': 'ESLint + Prettier',
+                    eslint: 'ESLint Only',
+                    prettier: 'Prettier Only',
+                    biome: 'Biome',
+                    oxlint: 'Oxlint',
+                    none: 'None',
+                  }}
+                >
                   <SelectTrigger
                     className="mt-4 w-full"
                     id="linter"
@@ -187,7 +209,15 @@ export default function Dialog11() {
                 <p className="mt-1 text-pretty text-muted-foreground text-xs">
                   Choose a framework for unit/integration tests.
                 </p>
-                <Select defaultValue="jest">
+                <Select
+                  defaultValue="jest"
+                  items={{
+                    jest: 'Jest',
+                    vitest: 'Vitest',
+                    cypress: 'Cypress',
+                    none: 'None',
+                  }}
+                >
                   <SelectTrigger
                     className="mt-4 w-full"
                     id="testing-tool"

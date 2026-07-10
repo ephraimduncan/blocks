@@ -1,4 +1,5 @@
 import { Slider as SliderPrimitive } from '@base-ui/react/slider';
+import { useMemo } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -10,11 +11,19 @@ function Slider({
   max = 100,
   ...props
 }: SliderPrimitive.Root.Props) {
-  const _values = Array.isArray(value)
-    ? value
-    : Array.isArray(defaultValue)
-      ? defaultValue
-      : [min, max];
+  const _values = useMemo(
+    () =>
+      Array.isArray(value)
+        ? value
+        : value != null
+          ? [value]
+          : Array.isArray(defaultValue)
+            ? defaultValue
+            : defaultValue != null
+              ? [defaultValue]
+              : [min, max],
+    [value, defaultValue, min, max]
+  );
 
   return (
     <SliderPrimitive.Root
@@ -39,8 +48,9 @@ function Slider({
         </SliderPrimitive.Track>
         {Array.from({ length: _values.length }, (_, index) => (
           <SliderPrimitive.Thumb
-            className="after:-inset-2 relative block size-3 shrink-0 select-none rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] after:absolute hover:ring-3 focus-visible:outline-hidden focus-visible:ring-3 active:ring-3 disabled:pointer-events-none disabled:opacity-50"
+            className="after:-inset-2 relative block size-3 shrink-0 select-none rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] after:absolute hover:ring-3 has-focus-visible:outline-hidden has-focus-visible:ring-3 active:ring-3 data-disabled:pointer-events-none data-disabled:opacity-50"
             data-slot="slider-thumb"
+            index={index}
             key={index}
           />
         ))}

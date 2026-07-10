@@ -63,16 +63,16 @@ export class ImportTransformer {
     const basePath = blockId ? `@/components/${blockId}` : "@/components";
 
     transformed = transformed.replace(
-      /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\.\/((?![\/]).+)["']/g,
-      (_, importPart, relativePath) => {
-        return `import ${importPart} from "${basePath}/${relativePath}"`;
+      /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\.\/((?![\/]).+)["']/g,
+      (_, typePrefix, importPart, relativePath) => {
+        return `import ${typePrefix ?? ""}${importPart} from '${basePath}/${relativePath}'`;
       }
     );
 
     transformed = transformed.replace(
-      /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
-      (_, importPart, relativePath) => {
-        return `import ${importPart} from "${basePath}/${relativePath}"`;
+      /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
+      (_, typePrefix, importPart, relativePath) => {
+        return `import ${typePrefix ?? ""}${importPart} from '${basePath}/${relativePath}'`;
       }
     );
 
@@ -84,16 +84,16 @@ export class ImportTransformer {
     const basePath = blockId ? `@/components/${blockId}` : "@/components";
 
     transformed = transformed.replace(
-      /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
-      (_, importPart, relativePath) => {
-        return `import ${importPart} from "${basePath}/${relativePath}"`;
+      /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
+      (_, typePrefix, importPart, relativePath) => {
+        return `import ${typePrefix ?? ""}${importPart} from '${basePath}/${relativePath}'`;
       }
     );
 
     transformed = transformed.replace(
-      /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\.\/((?![\/]).+)["']/g,
-      (_, importPart, relativePath) => {
-        return `import ${importPart} from "${basePath}/${relativePath}"`;
+      /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\.\/((?![\/]).+)["']/g,
+      (_, typePrefix, importPart, relativePath) => {
+        return `import ${typePrefix ?? ""}${importPart} from '${basePath}/${relativePath}'`;
       }
     );
 
@@ -105,9 +105,9 @@ export class ImportTransformer {
     const basePath = blockId ? `@/lib/${blockId}` : "@/lib";
 
     transformed = transformed.replace(
-      /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
-      (_, importPart, relativePath) => {
-        return `import ${importPart} from "${basePath}/${relativePath}"`;
+      /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
+      (_, typePrefix, importPart, relativePath) => {
+        return `import ${typePrefix ?? ""}${importPart} from '${basePath}/${relativePath}'`;
       }
     );
 
@@ -119,9 +119,9 @@ export class ImportTransformer {
     const basePath = blockId ? `@/components/${blockId}` : "@/components";
 
     transformed = transformed.replace(
-      /import\s+({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
-      (_, importPart, relativePath) => {
-        return `import ${importPart} from "${basePath}/${relativePath}"`;
+      /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']\.\/((?![\/]).+)["']/g,
+      (_, typePrefix, importPart, relativePath) => {
+        return `import ${typePrefix ?? ""}${importPart} from '${basePath}/${relativePath}'`;
       }
     );
 

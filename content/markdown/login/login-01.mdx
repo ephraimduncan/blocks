@@ -1,9 +1,10 @@
 ````tsx
 import type { JSX, SVGProps } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 const GoogleIcon = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -49,15 +50,16 @@ export default function Login01() {
             </div>
           </div>
 
-          <Button
-            className="inline-flex w-full items-center justify-center space-x-2"
-            nativeButton={false}
-            render={<a href="#" />}
-            variant="outline"
+          <a
+            className={cn(
+              buttonVariants({ variant: 'outline' }),
+              'inline-flex w-full items-center justify-center space-x-2'
+            )}
+            href="#"
           >
             <GoogleIcon aria-hidden={true} className="size-5" />
             <span className="font-medium text-sm">Sign in with Google</span>
-          </Button>
+          </a>
 
           <p className="mt-4 text-pretty text-muted-foreground text-xs">
             By signing in, you agree to our{' '}

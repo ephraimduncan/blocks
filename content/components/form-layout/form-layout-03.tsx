@@ -120,7 +120,11 @@ export default function FormLayout03() {
               <div className="col-span-full sm:col-span-3">
                 <Field className="gap-2">
                   <FieldLabel htmlFor="visibility">Visibility</FieldLabel>
-                  <Select defaultValue="private" name="visibility">
+                  <Select
+                    defaultValue="private"
+                    items={{ private: 'Private', public: 'Public' }}
+                    name="visibility"
+                  >
                     <SelectTrigger id="visibility">
                       <SelectValue placeholder="Select visibility" />
                     </SelectTrigger>

@@ -14,8 +14,9 @@ import {
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 import type { BlocksProps } from '@/lib/blocks';
+import { cn } from '@/lib/utils';
 import { AddCommand } from '../add-command';
-import { Button } from './button';
+import { buttonVariants } from './button';
 import { Separator } from './separator';
 import { Tabs, TabsList, TabsTrigger } from './tabs';
 import { ToggleGroup, ToggleGroupItem } from './toggle-group';
@@ -211,18 +212,19 @@ export const Block = ({
 
             <Separator className="h-4" orientation="vertical" />
 
-            <Button
-              className="size-6 rounded-md p-0"
+            <Link
+              className={cn(
+                buttonVariants({ variant: 'ghost', size: 'icon' }),
+                'size-6 rounded-md p-0'
+              )}
               data-umami-event="Open Block Fullscreen Preview"
-              nativeButton={false}
-              render={<Link href={`/preview/${blocksId}`} target="_blank" />}
-              size="icon"
+              href={`/preview/${blocksId}`}
+              target="_blank"
               title="Open in New Tab"
-              variant="ghost"
             >
               <span className="sr-only">Open in New Tab</span>
               <Fullscreen className="size-3.5" />
-            </Button>
+            </Link>
           </div>
 
           <Separator

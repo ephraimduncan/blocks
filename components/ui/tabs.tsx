@@ -17,7 +17,6 @@ function Tabs({
         className
       )}
       data-orientation={orientation}
-      orientation={orientation}
       data-slot="tabs"
       {...props}
     />

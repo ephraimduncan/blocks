@@ -53,11 +53,6 @@ const MODELS = [
     description: 'Fast and capable',
   },
   {
-    value: 'gpt-4',
-    name: 'GPT-4',
-    description: 'Reliable and accurate',
-  },
-  {
     value: 'claude-3.5',
     name: 'Claude 3.5 Sonnet',
     description: 'Great for coding tasks',

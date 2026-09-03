@@ -219,6 +219,7 @@ export const Block = ({
               )}
               data-umami-event="Open Block Fullscreen Preview"
               href={`/preview/${blocksId}`}
+              prefetch={false}
               target="_blank"
               title="Open in New Tab"
             >

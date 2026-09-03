@@ -6,13 +6,11 @@
 import {
   IconAdjustmentsHorizontal,
   IconBolt,
-  IconMessageCircle,
   IconPaperclip,
-  IconRefresh,
-  IconSparkles,
+  IconPlus,
 } from '@tabler/icons-react';
 import type { ChatStatus } from 'ai';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   Conversation,
   ConversationContent,
@@ -31,7 +29,6 @@ import {
   PromptInputTextarea,
   PromptInputTools,
 } from '@/components/ai-elements/prompt-input';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -46,98 +43,92 @@ const INITIAL_MESSAGES: DemoMessage[] = [
     id: 'intro',
     role: 'assistant',
     content:
-      '**Welcome back.** I can help you explore this chat block.\n\n- Draft UI copy\n- Summarize docs\n- Turn notes into tasks\n\nAsk me anything and I will respond with a demo reply.',
+      'Hi, I am your workspace assistant. I can draft copy, summarize documents, and turn notes into tasks. What are you working on?',
   },
   {
     id: 'question',
     role: 'user',
-    content: 'What makes this chat block reusable?',
+    content: 'Summarize the Q3 launch plan in three bullets.',
   },
   {
     id: 'answer',
     role: 'assistant',
     content:
-      'It is built with **AI Elements** for conversation layout and input, plus shadcn/ui for the chrome. That means you can drop it into other screens and wire it up to a real AI backend later.',
+      '- **Ship the new onboarding** by Sept 18 with an A/B test on pricing.\n- **Open EU and APAC** with localized checkout.\n- **Launch the partner API** in private beta with 12 partners.',
   },
 ];
 
-const RESPONSES = [
-  'Here is a quick outline you can reuse:\n\n1. Swap the mock response with a real API call.\n2. Stream tokens into `MessageResponse`.\n3. Keep the layout exactly as-is for a consistent UI.',
-  'If you want multi-model support, add a small model selector next to the status badge and pass the selection to your backend.',
-  'You can also inject tools like file upload or voice input by adding buttons to the prompt footer.',
+const SUGGESTIONS = [
+  'Draft a launch announcement',
+  'List open risks',
+  'Turn this into tasks',
 ];
 
-const pickResponse = (index: number) => RESPONSES[index % RESPONSES.length];
+const RESPONSES = [
+  'Here is a quick outline you can reuse:\n\n1. Swap the mock response with a real API call.\n2. Stream tokens into `MessageResponse`.\n3. Keep the layout as-is for a consistent UI.',
+  'If you want multi-model support, add a small model selector to the prompt footer and pass the selection to your backend.',
+  'You can also inject tools like file upload or voice input by adding buttons to the prompt footer.',
+];
 
 export default function Ai05() {
   const [messages, setMessages] = useState<DemoMessage[]>(INITIAL_MESSAGES);
   const [inputValue, setInputValue] = useState('');
   const [status, setStatus] = useState<ChatStatus>('ready');
-  const replyTimeoutRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (replyTimeoutRef.current) {
-        window.clearTimeout(replyTimeoutRef.current);
-      }
-    };
-  }, []);
 
   const handleSend = (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed) {
+    if (!trimmed || status !== 'ready') {
       return;
     }
 
-    const newMessage: DemoMessage = {
-      id: `user-${Date.now()}`,
-      role: 'user',
-      content: trimmed,
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev) => [
+      ...prev,
+      { id: `user-${Date.now()}`, role: 'user', content: trimmed },
+    ]);
     setInputValue('');
     setStatus('submitted');
 
-    replyTimeoutRef.current = window.setTimeout(() => {
-      const response: DemoMessage = {
-        id: `assistant-${Date.now()}`,
-        role: 'assistant',
-        content: pickResponse(messages.length),
-      };
-
-      setMessages((prev) => [...prev, response]);
+    window.setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `assistant-${Date.now()}`,
+          role: 'assistant',
+          content: RESPONSES[messages.length % RESPONSES.length],
+        },
+      ]);
       setStatus('ready');
-    }, 900);
+    }, 1200);
+  };
+
+  const handleReset = () => {
+    setMessages(INITIAL_MESSAGES.slice(0, 1));
+    setInputValue('');
+    setStatus('ready');
   };
 
   return (
     <div className="w-full px-4">
-      <div className="mx-auto flex h-96 w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-lg sm:w-3/5">
-        <header className="flex items-center justify-between gap-4 border-border/80 border-b px-4 py-3">
-          <div className="flex items-center gap-3">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 text-balance font-semibold text-sm">
-                Documenso Chat
-              </div>
-              <div className="flex items-center gap-2 text-pretty text-muted-foreground text-xs">
-                <span className="inline-flex items-center gap-1">
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  Live preview
-                </span>
-                <span className="hidden sm:inline">- Powered by shadcn/ui</span>
-              </div>
-            </div>
+      <div className="mx-auto flex h-[560px] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-card shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_1px_2px_oklch(0_0_0/0.04),0_12px_32px_-12px_oklch(0_0_0/0.18)] dark:shadow-[0_0_0_1px_oklch(1_0_0/0.1),0_12px_32px_-12px_oklch(0_0_0/0.6)]">
+        <header className="flex items-center justify-between gap-4 px-5 py-4">
+          <div className="flex flex-col">
+            <span className="font-semibold text-sm leading-tight">
+              Assistant
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-muted-foreground text-xs">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Online
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Button
-              aria-label="Refresh"
-              className="size-8"
-              size="icon"
-              title="Refresh"
+              className="h-8 gap-1.5 px-2.5 text-xs"
+              onClick={handleReset}
+              size="sm"
               variant="ghost"
             >
-              <IconRefresh className="size-4" />
+              <IconPlus className="size-4" stroke={1.5} />
+              New chat
             </Button>
             <Button
               aria-label="Settings"
@@ -146,19 +137,21 @@ export default function Ai05() {
               title="Settings"
               variant="ghost"
             >
-              <IconAdjustmentsHorizontal className="size-4" />
+              <IconAdjustmentsHorizontal className="size-4" stroke={1.5} />
             </Button>
           </div>
         </header>
 
-        <Conversation className="bg-muted/30">
-          <ConversationContent className="gap-6 pl-1">
+        <Conversation className="border-border/60 border-t">
+          <ConversationContent className="gap-5 px-5 py-5">
             {messages.map((message) => (
               <Message from={message.role} key={message.id}>
                 <MessageContent
                   className={cn(
                     'leading-relaxed',
-                    message.role === 'assistant' && 'max-w-prose'
+                    message.role === 'assistant' && 'max-w-prose',
+                    message.role === 'user' &&
+                      'group-[.is-user]:rounded-2xl group-[.is-user]:rounded-br-md group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground'
                   )}
                 >
                   {message.role === 'assistant' ? (
@@ -171,33 +164,60 @@ export default function Ai05() {
                 </MessageContent>
               </Message>
             ))}
+            {status === 'submitted' && (
+              <Message from="assistant">
+                <output
+                  aria-label="Assistant is typing"
+                  className="flex h-7 items-center gap-1"
+                >
+                  {[0, 1, 2].map((dot) => (
+                    <span
+                      className="size-1.5 animate-bounce rounded-full bg-muted-foreground/60"
+                      key={dot}
+                      style={{ animationDelay: `${dot * 150}ms` }}
+                    />
+                  ))}
+                </output>
+              </Message>
+            )}
           </ConversationContent>
           <ConversationScrollButton />
         </Conversation>
 
-        <div className="bg-background">
+        <div className="flex flex-col gap-3 p-3">
+          <div className="flex flex-wrap gap-2 px-1">
+            {SUGGESTIONS.map((suggestion) => (
+              <button
+                className="rounded-full border border-border/70 bg-background px-3 py-1.5 text-muted-foreground text-xs transition-[color,background-color,scale] hover:bg-muted hover:text-foreground active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50"
+                disabled={status !== 'ready'}
+                key={suggestion}
+                onClick={() => handleSend(suggestion)}
+                type="button"
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
           <PromptInput
-            className="w-full [&>[data-slot=input-group]]:rounded-none [&>[data-slot=input-group]]:border-border/80 [&>[data-slot=input-group]]:border-x-0 [&>[data-slot=input-group]]:border-t [&>[data-slot=input-group]]:border-b-0 [&>[data-slot=input-group]]:shadow-none [&>[data-slot=input-group]]:focus-within:border-border/80 [&>[data-slot=input-group]]:focus-within:outline-none [&>[data-slot=input-group]]:focus-within:ring-0 [&>[data-slot=input-group]]:focus-within:ring-transparent [&>[data-slot=input-group]]:focus-within:ring-offset-0"
+            className="[&>[data-slot=input-group]]:rounded-xl [&>[data-slot=input-group]]:border-border [&>[data-slot=input-group]]:bg-muted/40 [&>[data-slot=input-group]]:shadow-none"
             onSubmit={(message) => handleSend(message.text)}
           >
             <PromptInputTextarea
               onChange={(event) => setInputValue(event.currentTarget.value)}
-              placeholder="Ask about the block, UI patterns, or an AI workflow"
+              placeholder="Message Assistant..."
               value={inputValue}
             />
             <PromptInputFooter>
               <PromptInputTools>
-                <PromptInputButton aria-label="Attach">
-                  <IconPaperclip className="size-4" />
+                <PromptInputButton aria-label="Attach file">
+                  <IconPaperclip className="size-4" stroke={1.5} />
                 </PromptInputButton>
                 <PromptInputButton aria-label="Quick prompt">
-                  <IconBolt className="size-4" />
-                </PromptInputButton>
-                <PromptInputButton aria-label="New chat">
-                  <IconMessageCircle className="size-4" />
+                  <IconBolt className="size-4" stroke={1.5} />
                 </PromptInputButton>
               </PromptInputTools>
               <PromptInputSubmit
+                className="rounded-full transition-[scale,opacity] active:scale-[0.96]"
                 disabled={!inputValue.trim() || status !== 'ready'}
                 status={status}
               />

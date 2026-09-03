@@ -29,6 +29,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandShortcut,
 } from '@/components/ui/command';
 import {
   Dialog,
@@ -72,10 +73,10 @@ export function CommandMenu02() {
           className="gap-0 overflow-hidden rounded-xl border-border/50 p-0 shadow-lg sm:max-w-lg"
           showCloseButton={false}
         >
-          <Command className="flex h-full w-full flex-col overflow-hidden bg-popover **:data-[slot=command-input-wrapper]:h-auto **:data-[slot=command-input-wrapper]:grow **:data-[slot=command-input-wrapper]:border-0 **:data-[slot=command-input-wrapper]:px-0">
+          <Command className="p-0 **:data-[slot=input-group]:h-10! **:data-[slot=command-input-wrapper]:grow **:data-[slot=input-group]:rounded-none! **:data-[slot=input-group]:border-0 **:data-[slot=input-group]:bg-transparent **:data-[slot=command-input-wrapper]:p-0 **:data-[slot=input-group-addon]:pl-0!">
             <div className="flex h-12 items-center gap-2 border-border/50 border-b px-4">
               <CommandInput
-                className="h-10 text-[15px]"
+                className="text-[15px]"
                 onValueChange={setInputValue}
                 placeholder="What do you need?"
                 value={inputValue}
@@ -99,10 +100,12 @@ export function CommandMenu02() {
                 >
                   <IconSettings aria-hidden />
                   Account Settings...
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>,</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>,</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -117,10 +120,12 @@ export function CommandMenu02() {
                 >
                   <IconLogout aria-hidden />
                   Log Out
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>Q</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>Q</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
               </CommandGroup>
 
@@ -131,10 +136,12 @@ export function CommandMenu02() {
                 >
                   <IconFile aria-hidden />
                   Search Documents...
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>F</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>F</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -142,10 +149,12 @@ export function CommandMenu02() {
                 >
                   <IconPlus aria-hidden />
                   Create New Document...
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>N</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>N</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -153,10 +162,12 @@ export function CommandMenu02() {
                 >
                   <IconFile aria-hidden />
                   Upload Document...
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>U</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>U</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
               </CommandGroup>
 
@@ -208,10 +219,12 @@ export function CommandMenu02() {
                 >
                   <IconDeviceDesktop aria-hidden />
                   Change Theme...
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>T</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>T</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
                 <CommandItem
                   className="mx-2 rounded-lg py-2.5"
@@ -219,11 +232,13 @@ export function CommandMenu02() {
                 >
                   <IconCopy aria-hidden />
                   Copy Current URL
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>⇧</Kbd>
-                    <Kbd>C</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>⇧</Kbd>
+                      <Kbd>C</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
               </CommandGroup>
 
@@ -367,10 +382,12 @@ export function CommandMenu02() {
                 >
                   <IconKeyboard aria-hidden />
                   View Keyboard Shortcuts
-                  <KbdGroup className="ml-auto">
-                    <Kbd>⌘</Kbd>
-                    <Kbd>/</Kbd>
-                  </KbdGroup>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>/</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
               </CommandGroup>
             </CommandList>

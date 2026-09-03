@@ -76,12 +76,12 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="flex items-baseline justify-between">
+                <div className="flex items-center gap-2">
                   <div className="font-medium text-[0.9375rem] text-foreground tracking-tight">
                     {block.name}
                   </div>
-                  <div className="text-sm text-zinc-400 tabular-nums">
-                    {block.count}
+                  <div className="rounded-full bg-zinc-100 px-2 py-0.5 font-medium text-xs text-zinc-600 tabular-nums ring-1 ring-zinc-200/60">
+                    {block.count} blocks
                   </div>
                 </div>
               </div>

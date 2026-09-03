@@ -146,9 +146,9 @@ export default function Stats10() {
               : 'hsl(0 72.2% 50.6%)';
 
           return (
-            <Card className="p-0 shadow-2xs" key={item.name}>
-              <CardContent className="p-4 pb-0">
-                <div>
+            <Card className="overflow-hidden p-0 shadow-2xs" key={item.name}>
+              <CardContent className="p-0">
+                <div className="p-4 pb-0">
                   <dt className="font-medium text-foreground text-sm">
                     {item.name}{' '}
                     <span className="font-normal text-muted-foreground">
@@ -193,7 +193,10 @@ export default function Stats10() {
                       },
                     }}
                   >
-                    <AreaChart data={data}>
+                    <AreaChart
+                      data={data}
+                      margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                    >
                       <defs>
                         <linearGradient
                           id={gradientId}

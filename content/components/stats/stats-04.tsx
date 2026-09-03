@@ -39,20 +39,18 @@ export default function Stats04() {
                 </dt>
                 <Badge
                   className={cn(
-                    'inline-flex items-center px-1.5 py-0.5 ps-2.5 font-medium text-xs',
+                    'tabular-nums',
                     item.changeType === 'positive'
                       ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
                       : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
                   )}
-                  variant="outline"
                 >
                   {item.changeType === 'positive' ? (
-                    <TrendingUp className="-ml-1 mr-0.5 h-5 w-5 shrink-0 self-center text-green-500" />
+                    <TrendingUp aria-hidden={true} data-icon="inline-start" />
                   ) : (
-                    <TrendingDown className="-ml-1 mr-0.5 h-5 w-5 shrink-0 self-center text-red-500" />
+                    <TrendingDown aria-hidden={true} data-icon="inline-start" />
                   )}
                   <span className="sr-only">
-                    {' '}
                     {item.changeType === 'positive' ? 'Increased' : 'Decreased'}{' '}
                     by{' '}
                   </span>

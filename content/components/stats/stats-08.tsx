@@ -64,7 +64,7 @@ export default function Stats08() {
                       data={[item]}
                       endAngle={-270}
                       innerRadius={30}
-                      outerRadius={60}
+                      outerRadius={40}
                       startAngle={90}
                     >
                       <PolarAngleAxis

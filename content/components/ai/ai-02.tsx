@@ -18,7 +18,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { cn } from '@/lib/utils';
 
 const PROMPTS = [
   {
@@ -67,7 +66,8 @@ const MODELS = [
 
 export default function Ai02() {
   const [inputValue, setInputValue] = useState('');
-  const [selectedModel, setSelectedModel] = useState(MODELS[0]);
+  const [modelValue, setModelValue] = useState(MODELS[0].value);
+  const selectedModel = MODELS.find((m) => m.value === modelValue) ?? MODELS[0];
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const handlePromptClick = (prompt: string) => {
@@ -78,17 +78,10 @@ export default function Ai02() {
     }
   };
 
-  const handleModelChange = (value: string) => {
-    const model = MODELS.find((m) => m.value === value);
-    if (model) {
-      setSelectedModel(model);
-    }
-  };
-
-  const renderMaxBadge = () => (
-    <div className="flex h-[14px] items-center gap-1.5 rounded border border-border px-1 py-0">
+  const maxBadge = (
+    <span className="inline-flex h-[15px] items-center rounded-[4px] border border-border/80 bg-muted/40 px-[5px]">
       <span
-        className="font-bold text-[9px] uppercase"
+        className="font-bold text-[9px] uppercase leading-none tracking-[0.06em]"
         style={{
           background:
             'linear-gradient(to right, rgb(129, 161, 193), rgb(125, 124, 155))',
@@ -98,7 +91,7 @@ export default function Ai02() {
       >
         MAX
       </span>
-    </div>
+    </span>
   );
 
   return (
@@ -115,73 +108,69 @@ export default function Ai02() {
         </div>
 
         <div className="flex min-h-[40px] items-center gap-2 p-2 pb-1">
-          <div className="flex aspect-1 items-center gap-1 rounded-full bg-muted p-1.5 text-xs">
-            <IconCloud className="h-4 w-4 text-muted-foreground" />
+          <div className="flex size-7 items-center justify-center rounded-full bg-muted">
+            <IconCloud className="size-4 text-muted-foreground" />
           </div>
 
-          <div className="relative flex items-center">
-            <Select
-              onValueChange={(value) => {
-                if (value) {
-                  handleModelChange(value);
-                }
-              }}
-              value={selectedModel.value}
+          <Select
+            onValueChange={(value) => value && setModelValue(value)}
+            value={modelValue}
+          >
+            <SelectTrigger
+              className="h-7 rounded-full border-transparent bg-transparent px-2 font-medium text-foreground text-sm shadow-none transition-[background-color,color] hover:bg-muted aria-expanded:bg-muted dark:bg-transparent dark:hover:bg-muted"
+              size="sm"
             >
-              <SelectTrigger className="w-fit border-none bg-transparent! p-0 text-muted-foreground text-sm shadow-none hover:text-foreground focus:ring-0">
-                <SelectValue>
-                  {selectedModel.max ? (
-                    <div className="flex items-center gap-1">
-                      <span>{selectedModel.name}</span>
-                      {renderMaxBadge()}
-                    </div>
-                  ) : (
-                    <span>{selectedModel.name}</span>
-                  )}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                {MODELS.map((model) => (
-                  <SelectItem key={model.value} value={model.value}>
-                    {model.max ? (
-                      <div className="flex items-center gap-1">
-                        <span>{model.name}</span>
-                        {renderMaxBadge()}
-                      </div>
-                    ) : (
-                      <span>{model.name}</span>
-                    )}
-                    <span className="block text-muted-foreground text-xs">
+              <SelectValue>
+                <span className="flex items-center gap-1.5">
+                  <span>{selectedModel.name}</span>
+                  {selectedModel.max && maxBadge}
+                </span>
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent
+              align="start"
+              alignItemWithTrigger={false}
+              className="w-64 p-1"
+              sideOffset={6}
+            >
+              {MODELS.map((model) => (
+                <SelectItem
+                  className="rounded-md py-1.5"
+                  key={model.value}
+                  value={model.value}
+                >
+                  <span className="flex flex-col gap-0.5">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      {model.name}
+                      {model.max && maxBadge}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
                       {model.description}
                     </span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+                  </span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-1.5">
             <Button
               aria-label="Attach images"
-              className="text-muted-foreground transition-colors duration-100 ease-out hover:text-foreground"
+              className="rounded-full text-muted-foreground transition-[background-color,color] hover:text-foreground"
               size="icon-sm"
               title="Attach images"
               variant="ghost"
             >
-              <IconPhotoScan className="h-5 w-5" />
+              <IconPhotoScan className="size-4.5" />
             </Button>
 
             <Button
               aria-label="Send message"
-              className={cn(
-                'cursor-pointer rounded-full bg-primary transition-colors duration-100 ease-out',
-                inputValue && 'bg-primary hover:bg-primary/90!'
-              )}
+              className="rounded-full transition-[background-color,scale,opacity] active:not-disabled:scale-[0.96]"
               disabled={!inputValue}
               size="icon-sm"
-              variant="ghost"
             >
-              <IconArrowUp className="h-4 w-4 text-primary-foreground" />
+              <IconArrowUp className="size-4" />
             </Button>
           </div>
         </div>
@@ -192,13 +181,16 @@ export default function Ai02() {
           const IconComponent = button.icon;
           return (
             <Button
-              className="group flex h-auto items-center gap-2 rounded-full border bg-transparent px-3 py-2 text-foreground text-sm transition-colors duration-200 ease-out hover:bg-muted/30 dark:bg-muted"
+              className="h-8 gap-1.5 rounded-full border-border bg-background pr-3.5 pl-2.5 font-normal text-foreground text-sm shadow-[0_1px_2px_oklch(0_0_0/0.05)] transition-[background-color,color,scale,box-shadow] duration-150 ease-out hover:bg-muted active:scale-[0.96] dark:bg-muted/40 dark:hover:bg-muted"
               key={button.text}
               onClick={() => handlePromptClick(button.prompt)}
-              variant="ghost"
+              variant="outline"
             >
-              <IconComponent className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
-              <span>{button.text}</span>
+              <IconComponent
+                className="size-4 text-muted-foreground transition-colors duration-150 group-hover/button:text-foreground"
+                strokeWidth={1.75}
+              />
+              {button.text}
             </Button>
           );
         })}

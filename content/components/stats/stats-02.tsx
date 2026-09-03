@@ -50,7 +50,7 @@ export default function Stats02() {
 
                 <Badge
                   className={cn(
-                    'inline-flex items-center px-1.5 py-0.5 ps-2.5 font-medium text-xs tabular-nums md:mt-2 lg:mt-0',
+                    'inline-flex h-auto items-center border-transparent px-1.5 py-0.5 ps-2.5 font-medium text-xs tabular-nums md:mt-2 lg:mt-0 [&>svg]:size-5!',
                     item.trend === 'up'
                       ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
                       : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'

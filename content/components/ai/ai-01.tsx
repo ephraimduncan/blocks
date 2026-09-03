@@ -113,7 +113,7 @@ export default function Ai01() {
                   <Button
                     aria-label="Add attachments"
                     className="rounded-full transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]"
-                    size="icon"
+                    size="icon-lg"
                     type="button"
                     variant="ghost"
                   />
@@ -172,7 +172,7 @@ export default function Ai01() {
               <Button
                 aria-label="Record audio message"
                 className="rounded-full transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]"
-                size="icon"
+                size="icon-lg"
                 type="button"
                 variant="ghost"
               >
@@ -185,7 +185,7 @@ export default function Ai01() {
               <Button
                 aria-label="Audio visualization"
                 className="rounded-full transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]"
-                size="icon"
+                size="icon-lg"
                 type="button"
                 variant="ghost"
               >
@@ -199,10 +199,10 @@ export default function Ai01() {
                 aria-label="Send message"
                 className="rounded-full transition-[scale,opacity,background-color] duration-150 ease-out active:scale-[0.96] disabled:opacity-40"
                 disabled={!message.trim()}
-                size="icon"
+                size="icon-lg"
                 type="submit"
               >
-                <IconSend className="size-4" stroke={1.5} />
+                <IconSend className="size-4.5" stroke={1.5} />
               </Button>
             </div>
           </div>

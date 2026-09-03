@@ -29,17 +29,22 @@ export default function Ai01() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const send = () => {
+    if (!message.trim()) {
+      return;
+    }
+
+    setMessage('');
+    setIsExpanded(false);
+
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (message.trim()) {
-      setMessage('');
-      setIsExpanded(false);
-
-      if (textareaRef.current) {
-        textareaRef.current.style.height = 'auto';
-      }
-    }
+    send();
   };
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -56,46 +61,39 @@ export default function Ai01() {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e as any);
+      send();
     }
   };
 
   return (
     <div className="w-full">
-      <h1 className="mx-auto mb-8 max-w-2xl whitespace-pre-wrap text-balance text-pretty px-1 text-center font-semibold text-2xl text-foreground leading-9">
+      <h1 className="mx-auto mb-6 max-w-2xl text-balance text-center font-semibold text-3xl text-foreground leading-tight tracking-tight">
         How can I help you today?
       </h1>
 
       <form className="group/composer w-full" onSubmit={handleSubmit}>
-        <input
-          className="sr-only"
-          multiple
-          onChange={(e) => {}}
-          ref={fileInputRef}
-          type="file"
-        />
+        <input className="sr-only" multiple ref={fileInputRef} type="file" />
 
         <div
           className={cn(
-            'mx-auto w-full max-w-2xl cursor-text overflow-clip border border-border bg-transparent bg-clip-padding p-2.5 shadow-lg transition-[border-radius] duration-200 ease-out dark:bg-muted/50',
+            'mx-auto w-full max-w-2xl cursor-text overflow-clip bg-background bg-clip-padding p-2.5 shadow-[0_0_0_1px_oklch(0_0_0/0.08),0_1px_2px_-1px_oklch(0_0_0/0.08),0_4px_12px_-2px_oklch(0_0_0/0.08)] dark:bg-muted/50 dark:shadow-[0_0_0_1px_oklch(1_0_0/0.1)]',
             isExpanded
-              ? "grid rounded-3xl [grid-template-areas:'header'_'primary'_'footer'] [grid-template-columns:1fr] [grid-template-rows:auto_1fr_auto]"
-              : "grid rounded-3xl [grid-template-areas:'header_header_header'_'leading_primary_trailing'_'._footer_.'] [grid-template-columns:auto_1fr_auto] [grid-template-rows:auto_1fr_auto]"
+              ? "grid rounded-[28px] [grid-template-areas:'header'_'primary'_'footer'] [grid-template-columns:1fr] [grid-template-rows:auto_1fr_auto]"
+              : "grid rounded-full [grid-template-areas:'header_header_header'_'leading_primary_trailing'_'._footer_.'] [grid-template-columns:auto_1fr_auto] [grid-template-rows:auto_1fr_auto]"
           )}
         >
           <div
             className={cn(
-              'flex min-h-14 items-center overflow-x-hidden px-1.5',
-              {
-                'mb-0 px-2 py-1': isExpanded,
-                '-my-2.5': !isExpanded,
-              }
+              'flex overflow-x-hidden',
+              isExpanded
+                ? 'px-2 pt-1.5 pb-2'
+                : '-my-2.5 min-h-14 items-center px-1.5'
             )}
             style={{ gridArea: 'primary' }}
           >
             <div className="max-h-52 flex-1 overflow-auto">
               <Textarea
-                className="scrollbar-thin min-h-0 resize-none rounded-none border-0 p-0 text-base placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-transparent"
+                className="scrollbar-thin min-h-0 resize-none rounded-none border-0 p-0 text-base placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 md:text-base dark:bg-transparent"
                 onChange={handleTextareaChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask anything"
@@ -107,7 +105,7 @@ export default function Ai01() {
           </div>
 
           <div
-            className={cn('flex', { hidden: isExpanded })}
+            className={cn('flex items-center', { hidden: isExpanded })}
             style={{ gridArea: 'leading' }}
           >
             <DropdownMenu>
@@ -115,36 +113,51 @@ export default function Ai01() {
                 render={
                   <Button
                     aria-label="Add attachments"
-                    className="rounded-full outline-none ring-0 hover:bg-accent"
-                    size="icon"
+                    className="rounded-full transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]"
+                    size="icon-lg"
                     type="button"
                     variant="ghost"
                   />
                 }
               >
-                <IconPlus className="size-6 text-muted-foreground" />
+                <IconPlus
+                  className="size-5 text-muted-foreground"
+                  stroke={1.5}
+                />
               </DropdownMenuTrigger>
 
               <DropdownMenuContent
                 align="start"
-                className="max-w-xs rounded-2xl p-1.5"
+                className="w-64 rounded-[16px] p-1.5"
               >
                 <DropdownMenuGroup className="space-y-1">
                   <DropdownMenuItem
-                    className="rounded-md"
+                    className="rounded-[10px] px-2.5 py-2"
                     onClick={() => fileInputRef.current?.click()}
                   >
-                    <IconPaperclip className="opacity-60" size={20} />
+                    <IconPaperclip
+                      className="opacity-60"
+                      size={20}
+                      stroke={1.5}
+                    />
                     Add photos & files
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-md" onClick={() => {}}>
-                    <div className="flex items-center gap-2">
-                      <IconSparkles className="opacity-60" size={20} />
-                      Agent mode
-                    </div>
+                  <DropdownMenuItem
+                    className="rounded-[10px] px-2.5 py-2"
+                    onClick={() => {}}
+                  >
+                    <IconSparkles
+                      className="opacity-60"
+                      size={20}
+                      stroke={1.5}
+                    />
+                    Agent mode
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-md" onClick={() => {}}>
-                    <IconSearch className="opacity-60" size={20} />
+                  <DropdownMenuItem
+                    className="rounded-[10px] px-2.5 py-2"
+                    onClick={() => {}}
+                  >
+                    <IconSearch className="opacity-60" size={20} stroke={1.5} />
                     Deep Research
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -159,34 +172,39 @@ export default function Ai01() {
             <div className="ms-auto flex items-center gap-1.5">
               <Button
                 aria-label="Record audio message"
-                className="rounded-full hover:bg-accent"
-                size="icon"
+                className="rounded-full transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]"
+                size="icon-lg"
                 type="button"
                 variant="ghost"
               >
-                <IconMicrophone className="size-5 text-muted-foreground" />
+                <IconMicrophone
+                  className="size-5 text-muted-foreground"
+                  stroke={1.5}
+                />
               </Button>
 
               <Button
                 aria-label="Audio visualization"
-                className="relative h-9 w-9 rounded-full hover:bg-accent"
-                size="icon"
+                className="rounded-full transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]"
+                size="icon-lg"
                 type="button"
                 variant="ghost"
               >
-                <IconWaveSine className="size-5 text-muted-foreground" />
+                <IconWaveSine
+                  className="size-5 text-muted-foreground"
+                  stroke={1.5}
+                />
               </Button>
 
-              {message.trim() && (
-                <Button
-                  aria-label="Send message"
-                  className="rounded-full"
-                  size="icon"
-                  type="submit"
-                >
-                  <IconSend className="size-5" />
-                </Button>
-              )}
+              <Button
+                aria-label="Send message"
+                className="rounded-full transition-[scale,opacity,background-color] duration-150 ease-out active:scale-[0.96] disabled:opacity-40"
+                disabled={!message.trim()}
+                size="icon-lg"
+                type="submit"
+              >
+                <IconSend className="size-4.5" stroke={1.5} />
+              </Button>
             </div>
           </div>
         </div>

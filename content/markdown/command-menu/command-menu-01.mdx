@@ -84,7 +84,12 @@ export function CommandMenu01() {
         Open Command Menu
       </Button>
 
-      <CommandDialog onOpenChange={setOpen} open={open} showCloseButton={false}>
+      <CommandDialog
+        className="-translate-y-1/2 top-1/2"
+        onOpenChange={setOpen}
+        open={open}
+        showCloseButton={false}
+      >
         <Command>
           <CommandInput
             className="h-12"

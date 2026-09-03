@@ -11,6 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandShortcut,
 } from '@/components/ui/command';
 import {
   Dialog,
@@ -171,7 +172,7 @@ export function CommandMenu03() {
       </Button>
 
       <Dialog onOpenChange={setOpen} open={open}>
-        <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800">
+        <DialogContent className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 sm:max-w-md dark:bg-neutral-900 dark:ring-neutral-800">
           <DialogHeader className="sr-only">
             <DialogTitle>Search documentation...</DialogTitle>
             <DialogDescription>
@@ -179,7 +180,7 @@ export function CommandMenu03() {
             </DialogDescription>
           </DialogHeader>
 
-          <Command className="rounded-none bg-transparent p-0 **:data-[slot=input-group]:h-9! **:data-[slot=input-group]:rounded-md! **:data-[slot=input-group]:border-input **:data-[slot=input-group]:bg-input/50 **:data-[slot=command-input-wrapper]:p-0">
+          <Command className="rounded-none bg-transparent p-0 **:data-[slot=input-group]:h-9! **:data-[slot=input-group]:rounded-md! **:data-[slot=input-group]:border-input **:data-[slot=input-group]:bg-input/50 **:data-[slot=command-input-wrapper]:p-0 **:data-[slot=command-input]:pr-9 **:data-[slot=command-input]:pl-2! **:data-[slot=input-group-addon]:pl-3!">
             <CommandInput placeholder="Search documentation..." />
             <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
               <CommandEmpty className="py-12 text-center text-muted-foreground text-sm">
@@ -262,9 +263,9 @@ export function CommandMenu03() {
                         style={{ backgroundColor: color.value }}
                       />
                       {color.className}
-                      <span className="ml-auto font-mono font-normal text-muted-foreground text-xs tabular-nums">
+                      <CommandShortcut className="font-mono font-normal text-xs tabular-nums tracking-normal">
                         {color.value}
-                      </span>
+                      </CommandShortcut>
                     </CommandItem>
                   ))}
                 </CommandGroup>

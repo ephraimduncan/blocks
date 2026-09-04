@@ -147,6 +147,7 @@ export default async function BlockPage({ params }: Params) {
           <Link
             className={cn(buttonVariants({ variant: 'outline' }))}
             href={`/preview/${block.blocksId}`}
+            prefetch={false}
             target="_blank"
           >
             Open full preview

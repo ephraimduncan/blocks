@@ -13,6 +13,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
+import { blocksComponents } from '@/content/blocks-components';
 import type { BlocksProps } from '@/lib/blocks';
 import { cn } from '@/lib/utils';
 import { AddCommand } from '../add-command';
@@ -28,6 +29,9 @@ interface BlockViewState {
 
 const CODE_BLOCK_REGEX = /`{3,4}(?:[a-zA-Z0-9#+-]+)?\n([\s\S]*?)`{3,4}/;
 const CODE_LANG_REGEX = /^`{3,4}([a-zA-Z0-9#+-]+)\n/;
+
+const sizeItem =
+  'h-full w-6.5 min-w-0 rounded-md p-0 text-foreground/60 hover:text-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm dark:aria-pressed:border dark:aria-pressed:border-input dark:aria-pressed:bg-input/30';
 
 const CodeBlockEditor = dynamic(
   () => import('../code-block-editor').then((mod) => mod.CodeBlockEditor),
@@ -47,7 +51,8 @@ export const Block = ({
   code,
   meta,
   fileTree,
-}: BlocksProps) => {
+  priority = false,
+}: BlocksProps & { priority?: boolean }) => {
   const [state, setState] = useState<BlockViewState>({
     view: 'preview',
     size: 'desktop',
@@ -55,6 +60,37 @@ export const Block = ({
 
   const resizablePanelRef = useRef<PanelImperativeHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? '930px';
+
+  // Single-file blocks render inline instead of in an iframe at desktop size.
+  // Dialogs and command menus portal to the page body, so they keep the iframe.
+  // Tablet and mobile keep the iframe so the block's media queries respond
+  // to the panel width instead of the browser window.
+  const InlineBlock =
+    meta?.type === 'file' &&
+    blocksCategory !== 'dialogs' &&
+    blocksCategory !== 'command-menu' &&
+    state.size === 'desktop'
+      ? blocksComponents[blocksId]
+      : null;
+
+  // Same-origin iframes share the parent's main thread, so every offscreen
+  // preview that boots early delays the visible ones. Mount only near the viewport.
+  const [showFrame, setShowFrame] = useState(priority);
+  const watchFrame = (node: HTMLDivElement | null) => {
+    if (!node || showFrame) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowFrame(true);
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  };
 
   const getCleanCode = (rawCode: string | ReactNode): string => {
     const cleanCode = typeof rawCode === 'string' ? rawCode : '';
@@ -145,26 +181,27 @@ export const Block = ({
         <Link
           className="font-medium text-[0.9375rem] text-foreground tracking-tight underline-offset-2 hover:underline"
           href={`/${blocksCategory}/${blocksId}`}
+          prefetch={false}
         >
           {name}
         </Link>
 
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex flex-wrap items-center gap-2">
           <Tabs
             className="hidden lg:flex"
             onValueChange={handleViewChange}
             value={state.view}
           >
-            <TabsList className="h-8 rounded-lg">
+            <TabsList>
               <TabsTrigger
-                className="h-7 rounded-md px-2.5"
+                className="px-2.5"
                 data-umami-event="View Block Preview"
                 value="preview"
               >
                 Preview
               </TabsTrigger>
               <TabsTrigger
-                className="h-7 rounded-md px-2.5"
+                className="px-2.5"
                 data-umami-event="View Block Code"
                 value="code"
               >
@@ -173,9 +210,9 @@ export const Block = ({
             </TabsList>
           </Tabs>
 
-          <div className="ml-auto hidden h-8 items-center gap-0.5 rounded-lg bg-zinc-50 p-1 ring-1 ring-black/5 lg:flex">
+          <div className="hidden h-8 items-center gap-0.5 rounded-lg bg-muted p-[3px] lg:flex">
             <ToggleGroup
-              className="gap-0.5"
+              className="h-full gap-0.5"
               onValueChange={(value) => {
                 const size = value[0];
                 if (size) {
@@ -185,7 +222,7 @@ export const Block = ({
               value={[state.size]}
             >
               <ToggleGroupItem
-                className="size-6 min-w-0 rounded-md p-0"
+                className={sizeItem}
                 data-umami-event="Set Preview Desktop"
                 title="Desktop"
                 value="desktop"
@@ -193,7 +230,7 @@ export const Block = ({
                 <Monitor className="size-3.5" />
               </ToggleGroupItem>
               <ToggleGroupItem
-                className="size-6 min-w-0 rounded-md p-0"
+                className={sizeItem}
                 data-umami-event="Set Preview Tablet"
                 title="Tablet"
                 value="tablet"
@@ -201,7 +238,7 @@ export const Block = ({
                 <Tablet className="size-3.5" />
               </ToggleGroupItem>
               <ToggleGroupItem
-                className="size-6 min-w-0 rounded-md p-0"
+                className={sizeItem}
                 data-umami-event="Set Preview Mobile"
                 title="Mobile"
                 value="mobile"
@@ -210,15 +247,16 @@ export const Block = ({
               </ToggleGroupItem>
             </ToggleGroup>
 
-            <Separator className="h-4" orientation="vertical" />
+            <Separator className="mx-0.5 h-4" orientation="vertical" />
 
             <Link
               className={cn(
                 buttonVariants({ variant: 'ghost', size: 'icon' }),
-                'size-6 rounded-md p-0'
+                'h-full w-6.5 rounded-md text-foreground/60 hover:text-foreground'
               )}
               data-umami-event="Open Block Fullscreen Preview"
               href={`/preview/${blocksId}`}
+              prefetch={false}
               target="_blank"
               title="Open in New Tab"
             >
@@ -227,70 +265,61 @@ export const Block = ({
             </Link>
           </div>
 
-          <Separator
-            className="mx-0.5 hidden h-4 md:flex"
-            orientation="vertical"
-          />
+          <Separator className="hidden h-4 lg:block" orientation="vertical" />
 
           <AddCommand name={blocksId} />
 
-          <Separator
-            className="mx-0.5 hidden h-4 xl:flex"
-            orientation="vertical"
-          />
-
-          <div className="flex items-center gap-1.5">
-            {meta?.type === 'file' && (
-              <OpenInPlaygroundButton name={blocksId} />
-            )}
-            <OpenInV0Button name={blocksId} />
-          </div>
+          {meta?.type === 'file' && <OpenInPlaygroundButton name={blocksId} />}
+          <OpenInV0Button name={blocksId} />
         </div>
       </div>
 
       <div className="relative mt-4 w-full">
         {state.view === 'preview' && (
-          <div className="md:h-(--height)">
-            <div className="grid w-full gap-4">
-              <ResizablePanelGroup
-                className="relative z-10"
-                orientation="horizontal"
-              >
-                <ResizablePanel
-                  className="relative"
-                  defaultSize={100}
-                  minSize={30}
-                  panelRef={resizablePanelRef}
-                >
-                  <div className="h-full overflow-hidden rounded-2xl border border-black/10">
+          <ResizablePanelGroup
+            className="md:h-(--height)"
+            orientation="horizontal"
+          >
+            <ResizablePanel
+              className="overflow-hidden rounded-2xl border border-black/10 bg-background dark:border-white/10"
+              defaultSize={100}
+              minSize={30}
+              panelRef={resizablePanelRef}
+            >
+              {InlineBlock ? (
+                <div className="overflow-auto" style={{ height: iframeHeight }}>
+                  <div className="flex min-h-full w-full items-center justify-center [&_.min-h-dvh]:min-h-0">
+                    <InlineBlock />
+                  </div>
+                </div>
+              ) : (
+                <div ref={watchFrame} style={{ height: iframeHeight }}>
+                  {showFrame && (
                     <iframe
-                      className="relative z-20 w-full bg-background"
+                      className="w-full bg-background"
                       height={meta?.iframeHeight ?? 930}
-                      loading="lazy"
                       src={`/preview/${blocksId}`}
                       title={`${name} preview`}
                     />
-                  </div>
-                </ResizablePanel>
-                <ResizableHandle className="after:-translate-y-1/2 after:-translate-x-px relative hidden w-3 bg-transparent p-0 after:absolute after:top-1/2 after:right-0 after:h-8 after:w-[6px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
-                <ResizablePanel defaultSize={0} minSize={0} />
-              </ResizablePanelGroup>
-            </div>
-          </div>
+                  )}
+                </div>
+              )}
+            </ResizablePanel>
+            <ResizableHandle className="after:-translate-y-1/2 relative hidden w-3 bg-transparent p-0 after:absolute after:top-1/2 after:left-1/2 after:h-8 after:w-1.5 after:rounded-full after:bg-border after:transition-[height,background-color] after:hover:h-10 after:hover:bg-foreground/30 md:block" />
+            <ResizablePanel defaultSize={0} minSize={0} />
+          </ResizablePanelGroup>
         )}
 
         {state.view === 'code' && meta?.type === 'file' && (
-          <div className="group-data-[view=preview]/block-view-wrapper:hidden">
-            <SingleFileCodeView
-              code={activeSingleFileCode.code}
-              fileName={activeSingleFileCode.fileName}
-              language={activeSingleFileCode.language}
-            />
-          </div>
+          <SingleFileCodeView
+            code={activeSingleFileCode.code}
+            fileName={activeSingleFileCode.fileName}
+            language={activeSingleFileCode.language}
+          />
         )}
 
         {state.view === 'code' && meta?.type === 'directory' && (
-          <div className="overflow-auto rounded-lg group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height)">
+          <div className="overflow-auto rounded-lg md:h-(--height)">
             <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
           </div>
         )}

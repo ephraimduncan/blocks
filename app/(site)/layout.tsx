@@ -1,35 +1,14 @@
 import '@/app/globals.css';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import Script from 'next/script';
 import { ThemeProvider } from 'next-themes';
+import { fontMono, fontSans } from '@/app/fonts';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
-
-const fontSans = localFont({
-  src: '../public/font/font-medium.otf',
-  variable: '--font-sans',
-  fallback: ['DM Sans', 'system-ui', 'sans-serif'],
-});
-
-const fontMono = localFont({
-  src: '../public/font/BerkeleyMonoVariable.woff2',
-  variable: '--font-mono',
-  display: 'swap',
-  fallback: [
-    'SF Mono',
-    'Monaco',
-    'Consolas',
-    'Ubuntu Mono',
-    'Liberation Mono',
-    'Courier New',
-    'monospace',
-  ],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

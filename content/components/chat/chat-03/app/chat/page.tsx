@@ -30,10 +30,17 @@ import {
   type Thread,
   type Turn,
 } from '../../components/conversation';
+import { ClaudeLogo, OpenAILogo } from '../../components/logos';
 import data from './data.json' with { type: 'json' };
 
 const { models, replies } = data;
 const seed = data.threads as Thread[];
+
+const logos = { openai: OpenAILogo, anthropic: ClaudeLogo };
+const Logo = ({ vendor, ...props }: { vendor: string; className?: string }) => {
+  const Icon = logos[vendor as keyof typeof logos];
+  return <Icon {...props} />;
+};
 
 const thinkDelay = 900;
 const wordDelay = 35;
@@ -219,9 +226,16 @@ export default function Chat03() {
                     )}
                     key={m.name}
                     onClick={() => setModel(m.name)}
+              <Logo
+                className="size-3.5"
+                vendor={
+                  models.find((m) => m.name === model)?.vendor ?? 'openai'
+                }
+              />
                   >
                     <span className="flex grow flex-col gap-0.5">
-                      <span className="font-medium text-[13px]/4">
+                      <span className="flex items-center gap-1.5 font-medium text-[13px]/4">
+                        <Logo className="size-3 shrink-0" vendor={m.vendor} />
                         {m.name}
                       </span>
                       <span className="text-[11px]/3.5 text-muted-foreground">

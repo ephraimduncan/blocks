@@ -8,19 +8,52 @@
   },
   "models": [
     {
-      "name": "GPT-5",
-      "hint": "Fastest for everyday tasks",
+      "vendor": "openai",
+      "name": "GPT-6 Astra",
+      "hint": "Most capable for complex reasoning and coding",
+      "context": "1M"
+    },
+    {
+      "vendor": "openai",
+      "name": "GPT-5.6 Sol",
+      "hint": "Flagship for complex professional work",
+      "context": "1M"
+    },
+    {
+      "vendor": "openai",
+      "name": "GPT-5.6 Terra",
+      "hint": "Balances intelligence and cost",
+      "context": "1M"
+    },
+    {
+      "vendor": "openai",
+      "name": "GPT-5.6 Luna",
+      "hint": "Fastest and most affordable",
       "context": "128K"
     },
     {
-      "name": "GPT-5 Thinking",
-      "hint": "Reasons longer on hard problems",
-      "context": "200K"
+      "vendor": "anthropic",
+      "name": "Claude Fable 5.1",
+      "hint": "Demanding reasoning and long-horizon agentic work",
+      "context": "1M"
     },
     {
-      "name": "GPT-5 mini",
-      "hint": "Light and quick for simple asks",
-      "context": "64K"
+      "vendor": "anthropic",
+      "name": "Claude Opus 5",
+      "hint": "Complex agentic coding and enterprise work",
+      "context": "1M"
+    },
+    {
+      "vendor": "anthropic",
+      "name": "Claude Sonnet 5",
+      "hint": "Best combination of speed and intelligence",
+      "context": "1M"
+    },
+    {
+      "vendor": "anthropic",
+      "name": "Claude Haiku 4.5",
+      "hint": "Fastest with near-frontier intelligence",
+      "context": "200K"
     }
   ],
   "replies": [

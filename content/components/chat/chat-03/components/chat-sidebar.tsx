@@ -289,8 +289,8 @@ export function ChatSidebar({
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            align="start"
-            className="w-59 rounded-xl p-1.5"
+            align="center"
+            className="w-[calc(var(--anchor-width)-1rem)] rounded-xl p-1.5"
             side="top"
             sideOffset={8}
           >

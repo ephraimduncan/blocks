@@ -1,4 +1,5 @@
 export * from './ai';
+export * from './chat';
 export * from './command-menu';
 export * from './dialogs';
 export * from './file-upload';

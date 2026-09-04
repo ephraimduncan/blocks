@@ -222,6 +222,9 @@ export const blocksComponents: Record<string, ComponentType> = {
   'ai-03': dynamic(() => import('./components/ai/ai-03'), { ssr: false }),
   'ai-04': dynamic(() => import('./components/ai/ai-04'), { ssr: false }),
   'ai-05': dynamic(() => import('./components/ai/ai-05'), { ssr: false }),
+  'chat-01': dynamic(() => import('./components/chat/chat-01'), {
+    ssr: false,
+  }),
 
   'table-01': dynamic(() => import('./components/tables/table-01'), {
     ssr: false,

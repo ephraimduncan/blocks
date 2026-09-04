@@ -457,6 +457,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: '720px',
     type: 'file',
   },
+  {
+    id: 'chat-01',
+    category: categoryIds.Chat,
+    name: 'Chat Basic',
+    iframeHeight: '520px',
+    type: 'file',
+  },
 
   {
     id: 'table-01',

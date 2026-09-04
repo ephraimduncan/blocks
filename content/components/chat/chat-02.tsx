@@ -119,9 +119,10 @@ const thinkDelay = 600;
 const wordDelay = 35;
 
 const easeOut = 'ease-[cubic-bezier(0.23,1,0.32,1)]';
-const press = `${easeOut} transition-[scale,background-color] duration-150 active:scale-[0.96]`;
+const press = `${easeOut} transition-[scale,background-color] duration-150 active:scale-[0.96] motion-reduce:active:scale-100`;
 const enter = `${easeOut} motion-reduce:slide-in-from-bottom-0 fade-in slide-in-from-bottom-1 animate-in duration-200`;
-const swap = `${easeOut} fade-in zoom-in-95 animate-in duration-150`;
+const fade =
+  'transition-[opacity,scale,filter,background-color] duration-150 ease-[cubic-bezier(0.2,0,0,1)] data-[shown=false]:pointer-events-none data-[shown=false]:scale-25 data-[shown=false]:opacity-0 data-[shown=false]:blur-[4px] motion-reduce:data-[shown=false]:scale-100 motion-reduce:data-[shown=false]:blur-0';
 const item = 'rounded-lg px-2.5 py-1.75 text-[13px]';
 
 export default function Chat02() {
@@ -326,7 +327,7 @@ export default function Chat02() {
                                 />
                                 <DropdownMenuContent
                                   align="start"
-                                  className="w-44 rounded-xl p-1.5"
+                                  className="w-44 rounded-[14px] p-1.5"
                                 >
                                   <DropdownMenuGroup className="flex flex-col gap-0.5">
                                     <DropdownMenuItem
@@ -400,7 +401,7 @@ export default function Chat02() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="start"
-                className="w-56 rounded-xl p-1.5"
+                className="w-56 rounded-[14px] p-1.5"
                 sideOffset={10}
               >
                 <DropdownMenuGroup className="flex flex-col gap-0.5">
@@ -443,30 +444,34 @@ export default function Chat02() {
             align="inline-end"
             className={cn('gap-1.5 pr-2.5 pb-1.25', tall && 'ml-auto')}
           >
-            {draft.trim() ? (
+            <span className="relative size-8">
               <InputGroupButton
+                aria-hidden={!draft.trim()}
                 aria-label="Send"
-                className={cn(swap, press, 'rounded-full')}
-                disabled={streaming}
+                className={cn(press, fade, 'absolute inset-0 rounded-full')}
+                data-shown={Boolean(draft.trim())}
+                disabled={streaming || !draft.trim()}
                 size="icon-sm"
                 type="submit"
                 variant="default"
               >
                 <IconArrowUp stroke={2} />
               </InputGroupButton>
-            ) : (
               <InputGroupButton
+                aria-hidden={Boolean(draft.trim())}
                 aria-label={listening ? 'Stop listening' : 'Voice input'}
                 aria-pressed={listening}
                 className={cn(
-                  swap,
                   press,
-                  'rounded-full',
+                  fade,
+                  'absolute inset-0 rounded-full',
                   listening &&
                     'bg-destructive/15 text-destructive hover:bg-destructive/25'
                 )}
+                data-shown={!draft.trim()}
                 onClick={() => setListening(!listening)}
                 size="icon-sm"
+                tabIndex={draft.trim() ? -1 : 0}
               >
                 {listening ? (
                   <IconPlayerStopFilled className="animate-pulse motion-reduce:animate-none" />
@@ -474,7 +479,7 @@ export default function Chat02() {
                   <IconMicrophone stroke={1.8} />
                 )}
               </InputGroupButton>
-            )}
+            </span>
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
@@ -493,7 +498,7 @@ export default function Chat02() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
-                className="w-49 rounded-xl p-1.5"
+                className="w-49 rounded-[14px] p-1.5"
                 side="top"
                 sideOffset={10}
               >
@@ -530,7 +535,7 @@ export default function Chat02() {
                     >
                       {model}
                     </DropdownMenuSubTrigger>
-                    <DropdownMenuSubContent className="w-44 rounded-xl p-1.5">
+                    <DropdownMenuSubContent className="w-44 rounded-[14px] p-1.5">
                       <DropdownMenuRadioGroup
                         className="flex flex-col gap-0.5"
                         onValueChange={setModel}

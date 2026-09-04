@@ -1,5 +1,6 @@
 import '@/app/globals.css';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { fontMono, fontSans } from '@/app/fonts';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -119,6 +120,15 @@ export default function RootLayout({
 }>) {
   return (
     <html className="light" lang="en">
+      <head>
+        {process.env.NODE_ENV === 'development' && (
+          <Script
+            crossOrigin="anonymous"
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            strategy="beforeInteractive"
+          />
+        )}
+      </head>
       <body
         className={cn(fontSans.variable, fontMono.variable, 'antialiased')}
         suppressHydrationWarning

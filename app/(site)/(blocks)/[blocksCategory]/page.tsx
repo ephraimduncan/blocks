@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { BreadcrumbJsonLd } from '@/components/breadcrumb-jsonld';
 import { CategoryItemListJsonLd } from '@/components/category-itemlist-jsonld';
 import { Block } from '@/components/ui/block';
@@ -12,22 +11,16 @@ type PageProps = {
   params: Promise<{ blocksCategory: string }>;
 };
 
-type Params = {
-  params: Promise<{
-    blocksCategory: string;
-  }>;
-};
-
 export function generateStaticParams() {
   return blocksCategoriesMetadata.map((category) => ({
     blocksCategory: category.id,
   }));
 }
 
-export async function generateMetadata(props: Params): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { blocksCategory: categoryId } = await params;
   const blocksCategory = blocksCategoriesMetadata.find(
-    (category) => category.id === params.blocksCategory
+    (category) => category.id === categoryId
   );
 
   if (!blocksCategory) {
@@ -40,7 +33,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   return {
     title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui ${categoryName} Components`,
     description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks into your projects.`,
-    alternates: { canonical: `/${params.blocksCategory}` },
+    alternates: { canonical: `/${categoryId}` },
     keywords: [
       `shadcn ${categoryName.toLowerCase()}`,
       `shadcn ${categoryName.toLowerCase()} blocks`,
@@ -63,7 +56,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     openGraph: {
       title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui Components`,
       description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks.`,
-      url: `${siteConfig.url}/${params.blocksCategory}`,
+      url: `${siteConfig.url}/${categoryId}`,
       siteName: 'blocks.so',
       type: 'website',
       images: [
@@ -90,9 +83,6 @@ export default async function Page({ params }: PageProps) {
   const { blocksCategory } = await params;
   const blocks = getBlocks({ blocksCategory });
 
-  if (!blocks) {
-    notFound();
-  }
 
   return (
     <>

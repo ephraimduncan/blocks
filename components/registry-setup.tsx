@@ -3,6 +3,7 @@
 
 import { CheckIcon, CopyIcon } from 'lucide-react';
 import type * as React from 'react';
+import { ShadcnLogo } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -31,36 +32,7 @@ export function RegistrySetup({
           />
         }
       >
-        <svg
-          aria-hidden="true"
-          className="size-4"
-          viewBox="0 0 256 256"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect fill="none" height="256" width="256" />
-          <line
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="32"
-            x1="208"
-            x2="128"
-            y1="128"
-            y2="208"
-          />
-          <line
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="32"
-            x1="192"
-            x2="40"
-            y1="40"
-            y2="192"
-          />
-        </svg>
+        <ShadcnLogo className="size-4" />
         Registry
       </DialogTrigger>
       <DialogContent className="md:max-w-2xl">

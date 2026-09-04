@@ -1,7 +1,5 @@
 import '@/app/globals.css';
 import type { Metadata } from 'next';
-import Script from 'next/script';
-import { ThemeProvider } from 'next-themes';
 import { fontMono, fontSans } from '@/app/fonts';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -120,35 +118,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {process.env.NODE_ENV === 'development' && (
-          <Script
-            crossOrigin="anonymous"
-            src="//unpkg.com/react-grab/dist/index.global.js"
-            strategy="beforeInteractive"
-          />
-        )}
-      </head>
+    <html className="light" lang="en">
       <body
         className={cn(fontSans.variable, fontMono.variable, 'antialiased')}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-          enableSystem={false}
-          forcedTheme="light"
-        >
-          <TooltipProvider delay={0}>
-            {children}
+        <TooltipProvider delay={0}>
+          {children}
 
-            <TailwindIndicator />
-            <Toaster />
-            <SeoJsonLd />
-          </TooltipProvider>
-        </ThemeProvider>
+          <TailwindIndicator />
+          <Toaster />
+          <SeoJsonLd />
+        </TooltipProvider>
       </body>
     </html>
   );

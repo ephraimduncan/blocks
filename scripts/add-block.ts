@@ -1,5 +1,4 @@
 #!/usr/bin/env bun
-import { spawn } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -13,7 +12,6 @@ interface BlockArgs {
 
 const ARG_PREFIX_REGEX = /^--/;
 const METADATA_ARRAY_END_REGEX = /(\];)$/m;
-const COMPONENTS_OBJECT_END_REGEX = /(\};)$/m;
 
 function writeLine(message = '') {
   process.stdout.write(`${message}\n`);
@@ -167,27 +165,6 @@ export default function ${componentName}() {
   writeLine(`✓ Created ${blockDir}/ with index.tsx`);
 }
 
-function runGenerateMarkdown(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    writeLine('Running bun run generate:markdown...');
-    const child = spawn('bun', ['run', 'generate:markdown'], {
-      stdio: 'inherit',
-      cwd: process.cwd(),
-    });
-
-    child.on('close', (code) => {
-      if (code === 0) {
-        writeLine('✓ Generated MDX documentation');
-        resolve();
-      } else {
-        reject(new Error(`generate:markdown failed with code ${code}`));
-      }
-    });
-
-    child.on('error', reject);
-  });
-}
-
 const blockArgs = parseArgs();
 
 writeLine(
@@ -227,43 +204,6 @@ try {
 
   writeFileSync(metadataPath, metadataContent);
   writeLine('✓ Updated content/blocks-metadata.ts');
-
-  // 3. Update blocks-components.tsx
-  const componentsPath = join(process.cwd(), 'content/blocks-components.tsx');
-  let componentsContent = readFileSync(componentsPath, 'utf8');
-
-  const componentName = toPascalCase(blockArgs.id);
-  const newComponentEntry = `  '${blockArgs.id}': dynamic(() => import('./components/${blockArgs.category}/${blockArgs.id}'), { ssr: false }),\n`;
-
-  // Find the end of the object and insert before the closing brace
-  const objectEndMatch = componentsContent.match(COMPONENTS_OBJECT_END_REGEX);
-  if (objectEndMatch) {
-    componentsContent = componentsContent.replace(
-      objectEndMatch[0],
-      newComponentEntry + objectEndMatch[0]
-    );
-  }
-
-  writeFileSync(componentsPath, componentsContent);
-  writeLine('✓ Updated content/blocks-components.tsx');
-
-  // 4. Update category index.ts
-  const categoryIndexPath = join(
-    process.cwd(),
-    `content/components/${blockArgs.category}/index.ts`
-  );
-  let categoryIndexContent = readFileSync(categoryIndexPath, 'utf8');
-
-  const exportEntry = `export { default as ${componentName} } from "./${blockArgs.id}";\n`;
-  categoryIndexContent += exportEntry;
-
-  writeFileSync(categoryIndexPath, categoryIndexContent);
-  writeLine(`✓ Updated content/components/${blockArgs.category}/index.ts`);
-
-  // 5. Generate markdown for file-type blocks
-  if (blockArgs.type === 'file') {
-    await runGenerateMarkdown();
-  }
 
   writeLine(
     `\n🎉 Successfully added ${blockArgs.type} block "${blockArgs.name}"!`

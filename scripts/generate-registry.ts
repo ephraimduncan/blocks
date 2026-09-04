@@ -1,239 +1,222 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
-import { Command } from "commander";
-import { DependencyExtractor } from "./lib/dependency-extractor";
-import { FileScanner } from "./lib/file-scanner";
-import { ImportTransformer } from "./lib/import-transformer";
-import { MetadataLoader } from "./lib/metadata-loader";
-import { RegistryBuilder } from "./lib/registry-builder";
-import { SchemaValidator } from "./lib/schema-validator";
-import { GeneratorConfig } from "./lib/types";
+import fs from 'node:fs/promises';
+import { builtinModules } from 'node:module';
+import path from 'node:path';
+import { blocksMetadata } from '@/content/blocks-metadata';
 
-const DEFAULT_CONFIG: GeneratorConfig = {
-  componentsDir: "content/components",
-  metadataFile: "content/blocks-metadata.ts",
-  outputFile: "public/r/registry.json",
-  individualOutputDir: "public/r",
-  author: "ephraim duncan <https://ephraimduncan.com>",
-  schema: "https://ui.shadcn.com/schema/registry.json",
-  itemSchema: "https://ui.shadcn.com/schema/registry-item.json",
-  homepage: "https://blocks.so",
-  name: "blocks",
+const root = 'content/components';
+const out = 'public/r';
+const skipPattern = /\.(d|test|spec|stories)\.[jt]sx?$/;
+const builtins: Record<string, true> = Object.fromEntries(
+  [
+    ...builtinModules,
+    ...builtinModules.map((name) => `node:${name}`),
+    'react',
+    'react-dom',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+    'next',
+  ].map((name) => [name, true])
+);
+const metadata = new Map(blocksMetadata.map((block) => [block.id, block]));
+
+type File = {
+  path: string;
+  type:
+    | 'registry:component'
+    | 'registry:file'
+    | 'registry:hook'
+    | 'registry:lib'
+    | 'registry:page';
+  target: string;
+  content: string;
 };
 
-class RegistryGenerator {
-  private config: GeneratorConfig;
-  private metadataLoader: MetadataLoader;
-  private importTransformer: ImportTransformer;
-  private fileScanner: FileScanner;
-  private dependencyExtractor: DependencyExtractor;
-  private registryBuilder: RegistryBuilder;
-  private schemaValidator: SchemaValidator;
+type Item = {
+  name: string;
+  type: 'registry:block';
+  title: string;
+  description: string;
+  author: string;
+  registryDependencies: string[];
+  dependencies: string[];
+  files: File[];
+  categories?: string[];
+};
 
-  constructor(config: GeneratorConfig) {
-    this.config = config;
-
-    this.metadataLoader = new MetadataLoader(config);
-    this.importTransformer = new ImportTransformer();
-    this.fileScanner = new FileScanner(config, this.importTransformer);
-    this.dependencyExtractor = new DependencyExtractor();
-    this.registryBuilder = new RegistryBuilder(
-      config,
-      this.metadataLoader,
-      this.fileScanner,
-      this.dependencyExtractor
-    );
-    this.schemaValidator = new SchemaValidator();
+async function walk(dir: string): Promise<string[]> {
+  const files: string[] = [];
+  for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
+    const file = path.join(dir, entry.name);
+    if (entry.isDirectory()) files.push(...(await walk(file)));
+    else if (
+      entry.isFile() &&
+      /\.[jt]sx?$/.test(entry.name) &&
+      !skipPattern.test(entry.name)
+    )
+      files.push(file);
   }
+  return files;
+}
 
-  async generate(options: GenerateOptions): Promise<void> {
-    const startTime = Date.now();
+function place(file: string, dir: string | undefined, id: string) {
+  const parts = path.relative(root, file).replaceAll('\\', '/').split('/');
+  const special = parts.findIndex(
+    (part) => part === 'app' || part === 'lib' || part === 'hooks'
+  );
+  if (special !== -1) {
+    const name = parts[special];
+    return {
+      type:
+        name === 'app'
+          ? 'registry:page'
+          : name === 'lib'
+            ? 'registry:lib'
+            : 'registry:hook',
+      target: `${name}/${parts.slice(special + 1).join('/')}`,
+    } as const;
+  }
+  if (!dir)
+    return {
+      type: 'registry:component',
+      target: `components/${path.basename(file)}`,
+    } as const;
+  const relative = path.relative(dir, file).replaceAll('\\', '/');
+  const name = path.basename(file);
+  const types =
+    name === 'types.ts' ||
+    name === 'types.tsx' ||
+    name.endsWith('.types.ts') ||
+    file.includes('/types/');
+  return {
+    type: types ? 'registry:file' : 'registry:component',
+    target: `components/${id}/${relative}`,
+  } as const;
+}
 
-    try {
-      console.log("🚀 Starting registry generation...");
-      console.log(`📁 Components directory: ${this.config.componentsDir}`);
-      console.log(`📋 Metadata file: ${this.config.metadataFile}`);
-      console.log(`📤 Output file: ${this.config.outputFile}`);
+function rewrite(code: string, type: File['type'], id: string) {
+  const base =
+    type === 'registry:lib' || type === 'registry:hook'
+      ? `@/lib/${id}`
+      : `@/components/${id}`;
+  return code.replace(
+    /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["'](\.\.\/|\.\/)((?![/]).+)["']/g,
+    (_match, typeWord, imported, _prefix, relative) =>
+      `import ${typeWord ?? ''}${imported} from '${base}/${relative}'`
+  );
+}
 
-      if (options.verbose) {
-        console.log("📊 Config:", JSON.stringify(this.config, null, 2));
-      }
+function addDep(name: string, registry: Set<string>, packages: Set<string>) {
+  if (name.startsWith('@/components/ui/')) {
+    registry.add(name.split('/').pop()!);
+    return;
+  }
+  if (name.startsWith('.') || name.startsWith('/') || name.startsWith('@/'))
+    return;
+  if (
+    builtins[name] ||
+    name.startsWith('react/') ||
+    name.startsWith('next/') ||
+    name.startsWith('@next/')
+  )
+    return;
+  packages.add(
+    name.startsWith('@')
+      ? name.split('/').slice(0, 2).join('/')
+      : name.split('/')[0]
+  );
+}
 
-      const registry = await this.registryBuilder.buildRegistry();
+const items: Item[] = [];
+const categories = (await fs.readdir(root, { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
+  .map((entry) => entry.name)
+  .sort();
 
-      if (options.validate) {
-        console.log("🔍 Validating registry...");
-        const validation = this.schemaValidator.validateRegistry(registry);
+for (const category of categories) {
+  const dir = path.join(root, category);
+  const entries = (await fs.readdir(dir, { withFileTypes: true }))
+    .filter(
+      (entry) =>
+        !entry.name.startsWith('.') &&
+        !entry.name.startsWith('index.') &&
+        (entry.isDirectory() || isSource(entry.name))
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
 
-        if (options.verbose || !validation.isValid) {
-          console.log(this.schemaValidator.generateReport(validation));
-        }
+  for (const entry of entries) {
+    const source = path.join(dir, entry.name);
+    const id = entry.isDirectory()
+      ? entry.name
+      : path.basename(entry.name, path.extname(entry.name));
+    const meta = metadata.get(id);
+    const title =
+      meta?.name ??
+      id
+        .split('-')
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(' ');
+    const registry = new Set<string>();
+    const packages = new Set<string>();
+    const paths = entry.isDirectory() ? await walk(source) : [source];
+    const files: File[] = [];
 
-        if (!validation.isValid) {
-          if (options.strict) {
-            throw new Error(
-              "Registry validation failed and strict mode is enabled"
-            );
-          } else {
-            console.warn(
-              "⚠️  Registry has validation issues but continuing..."
-            );
-          }
-        } else {
-          console.log("✅ Registry validation passed");
-        }
-      }
-
-      await this.registryBuilder.writeRegistry(registry);
-
-      const endTime = Date.now();
-      const duration = (endTime - startTime) / 1000;
-
-      console.log("");
-      console.log("📊 Generation Summary:");
-      console.log(`   • Total items: ${registry.items.length}`);
-      console.log(
-        `   • Total files: ${registry.items.reduce(
-          (sum, item) => sum + item.files.length,
-          0
-        )}`
+    for (const file of paths) {
+      const code = await fs.readFile(file, 'utf8');
+      for (const match of code.matchAll(/\bfrom\s+["']([^"']+)["']/g))
+        addDep(match[1], registry, packages);
+      const { type, target } = place(
+        file,
+        entry.isDirectory() ? source : undefined,
+        id
       );
-      console.log(`   • Duration: ${duration.toFixed(2)}s`);
-
-      if (options.verbose) {
-        const cacheStats = this.importTransformer.getCacheStats();
-        console.log(`   • Cache hits: ${cacheStats.size} entries`);
-      }
-
-      console.log("");
-      console.log("🎉 Registry generation completed successfully!");
-    } catch (error) {
-      console.error("❌ Registry generation failed:");
-      console.error(error instanceof Error ? error.message : String(error));
-
-      if (options.verbose && error instanceof Error && error.stack) {
-        console.error("\nStack trace:");
-        console.error(error.stack);
-      }
-
-      process.exit(1);
-    } finally {
-      this.dependencyExtractor.cleanup();
-      this.importTransformer.clearCache();
+      files.push({
+        path: file.replaceAll('\\', '/'),
+        type,
+        target,
+        content: rewrite(code, type, entry.isDirectory() ? id : ''),
+      });
     }
-  }
 
-  async validate(
-    registryPath: string,
-    options: ValidateOptions
-  ): Promise<void> {
-    try {
-      console.log(`🔍 Validating registry at ${registryPath}...`);
-
-      const fs = await import("fs/promises");
-      const registryContent = await fs.readFile(registryPath, "utf-8");
-      const registry = JSON.parse(registryContent);
-
-      const validation = this.schemaValidator.validateRegistry(registry);
-      console.log(this.schemaValidator.generateReport(validation));
-
-      if (!validation.isValid) {
-        process.exit(1);
-      }
-    } catch (error) {
-      console.error("❌ Validation failed:");
-      console.error(error instanceof Error ? error.message : String(error));
-      process.exit(1);
-    }
+    items.push({
+      name: id,
+      type: 'registry:block',
+      title,
+      description: `A ${title.toLowerCase()} block.`,
+      author: 'ephraim duncan <https://ephraimduncan.com>',
+      registryDependencies: [...registry].sort(),
+      dependencies: [...packages].sort(),
+      files,
+      ...(meta?.category ? { categories: [meta.category] } : {}),
+    });
   }
 }
 
-interface GenerateOptions {
-  verbose?: boolean;
-  validate?: boolean;
-  strict?: boolean;
-  config?: string;
-}
-
-interface ValidateOptions {
-  verbose?: boolean;
-}
-
-async function main() {
-  const program = new Command();
-
-  program
-    .name("generate-registry")
-    .description("Generate shadcn-compatible component registry")
-    .version("2.0.0");
-
-  program
-    .command("generate", { isDefault: true })
-    .description("Generate the component registry")
-    .option("-v, --verbose", "Enable verbose logging")
-    .option("--validate", "Validate registry after generation", true)
-    .option("--no-validate", "Skip registry validation")
-    .option("--strict", "Exit with error if validation fails")
-    .option("-c, --config <path>", "Custom configuration file path")
-    .action(async (options: GenerateOptions) => {
-      let config = DEFAULT_CONFIG;
-
-      if (options.config) {
-        try {
-          const customConfig = await import(options.config);
-          config = { ...DEFAULT_CONFIG, ...customConfig.default };
-        } catch (error) {
-          console.error(`Failed to load config from ${options.config}:`, error);
-          process.exit(1);
-        }
-      }
-
-      const generator = new RegistryGenerator(config);
-      await generator.generate(options);
-    });
-
-  program
-    .command("validate <registry-file>")
-    .description("Validate an existing registry file")
-    .option("-v, --verbose", "Enable verbose logging")
-    .action(async (registryFile: string, options: ValidateOptions) => {
-      const generator = new RegistryGenerator(DEFAULT_CONFIG);
-      await generator.validate(registryFile, options);
-    });
-
-  program
-    .command("info")
-    .description("Show registry generator information")
-    .action(() => {
-      console.log("Registry Generator v2.0.0");
-      console.log("");
-      console.log(
-        "A modern TypeScript-based registry generator for shadcn-compatible components"
-      );
-      console.log("");
-      console.log("Features:");
-      console.log("  • Full TypeScript support with type safety");
-      console.log("  • Comprehensive dependency extraction");
-      console.log("  • Smart import transformation");
-      console.log("  • Schema validation against shadcn registry spec");
-      console.log("  • Performance optimizations with caching");
-      console.log("  • Detailed error reporting and validation");
-      console.log("");
-      console.log("Configuration:");
-      console.log(`  • Components: ${DEFAULT_CONFIG.componentsDir}`);
-      console.log(`  • Metadata: ${DEFAULT_CONFIG.metadataFile}`);
-      console.log(`  • Output: ${DEFAULT_CONFIG.outputFile}`);
-      console.log(`  • Individual: ${DEFAULT_CONFIG.individualOutputDir}/`);
-    });
-
-  await program.parseAsync(process.argv);
-}
-
-process.on("unhandledRejection", (error) => {
-  console.error("Unhandled rejection:", error);
-  process.exit(1);
-});
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main();
-}
+items.sort((a, b) => a.name.localeCompare(b.name));
+const all = {
+  $schema: 'https://ui.shadcn.com/schema/registry.json',
+  name: 'blocks',
+  homepage: 'https://blocks.so',
+  items,
+};
+await fs.mkdir(out, { recursive: true });
+await fs.writeFile(
+  path.join(out, 'registry.json'),
+  JSON.stringify(all, null, 2)
+);
+await Promise.all(
+  items.map((item) =>
+    fs.writeFile(
+      path.join(out, `${item.name}.json`),
+      JSON.stringify(
+        { $schema: 'https://ui.shadcn.com/schema/registry-item.json', ...item },
+        null,
+        2
+      )
+    )
+  )
+);
+console.log(
+  `Wrote ${items.length} registry items (${items.reduce((sum, item) => sum + item.files.length, 0)} files)`
+);

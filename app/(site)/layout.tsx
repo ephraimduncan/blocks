@@ -1,3 +1,4 @@
+import { Agentation } from 'agentation';
 import '@/app/globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
@@ -139,6 +140,7 @@ export default function RootLayout({
           <TailwindIndicator />
           <Toaster />
           <SeoJsonLd />
+          {process.env.NODE_ENV === 'development' && <Agentation />}
         </TooltipProvider>
       </body>
     </html>

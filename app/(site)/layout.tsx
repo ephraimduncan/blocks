@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   applicationName: 'blocks.so',
   title: {
     default: 'Shadcn Blocks - 60+ Free shadcn/ui Components for React',
-    template: '%s | blocks.so - shadcn/ui blocks',
+    template: '%s | blocks.so',
   },
   description: siteConfig.description,
   keywords: [

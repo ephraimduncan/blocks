@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const blockCount = blocksCategory.count || 0;
 
   return {
-    title: `${categoryName} Shadcn Blocks - ${blockCount} Free shadcn/ui ${categoryName} Components`,
-    description: `Free shadcn/ui ${categoryName.toLowerCase()} blocks and components built with React, Tailwind CSS, and Next.js. Copy and paste ${blockCount} beautifully designed, accessible ${categoryName.toLowerCase()} UI blocks into your projects.`,
+    title: `Shadcn ${categoryName} Components - ${blockCount} Free Examples`,
+    description: `${blockCount} free shadcn/ui ${categoryName.toLowerCase()} examples with copy-paste React, Tailwind CSS, and Next.js code. Open source and accessible.`,
     alternates: { canonical: `/${categoryId}` },
     keywords: [
       `shadcn ${categoryName.toLowerCase()}`,
@@ -112,6 +112,11 @@ export default async function Page({ params }: PageProps) {
           <h1 className="text-balance font-semibold text-3xl tracking-tight sm:text-4xl md:text-5xl">
             {blocks.name}
           </h1>
+          <p className="text-pretty text-base text-zinc-500 md:text-lg">
+            {blocks.blocksData.length} free shadcn/ui {blocks.name.toLowerCase()}{' '}
+            examples built with React, Tailwind CSS, and Next.js. Copy the code
+            or add any block from the registry.
+          </p>
         </div>
 
         <div className="overflow-hidden px-px pb-px">

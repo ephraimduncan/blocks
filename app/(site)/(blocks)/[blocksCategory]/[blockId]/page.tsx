@@ -40,8 +40,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 
   const blockName = block.name;
   const categoryName = category.name;
-  const title = `${blockName} - Free ${categoryName} shadcn/ui component`;
-  const description = `Copy and paste ${blockName} from blocks.so. A free ${categoryName.toLowerCase()} shadcn/ui block built with React, Tailwind CSS, and Next.js.`;
+  const title = `${blockName} - Free Shadcn ${categoryName} Example`;
+  const description = `${blockName}: a free shadcn/ui ${categoryName.toLowerCase()} example with copy-paste React, Tailwind CSS, and Next.js code. Add it from the blocks.so registry.`;
   const canonicalPath = `/${params.blocksCategory}/${params.blockId}`;
 
   return {

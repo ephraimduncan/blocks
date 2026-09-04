@@ -288,7 +288,7 @@ export const Block = ({
             >
               {InlineBlock ? (
                 <div className="overflow-auto" style={{ height: iframeHeight }}>
-                  <div className="flex min-h-full w-full items-center justify-center [&_.min-h-dvh]:min-h-0">
+                  <div className="flex min-h-full w-full items-center justify-center [&_.h-dvh]:h-(--height) [&_.min-h-dvh]:min-h-0">
                     <InlineBlock />
                   </div>
                 </div>

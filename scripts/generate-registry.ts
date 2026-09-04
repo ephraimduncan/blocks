@@ -45,17 +45,16 @@ type Item = {
   categories?: string[];
 };
 
+function isSource(name: string) {
+  return /\.[jt]sx?$/.test(name) && !skipPattern.test(name);
+}
+
 async function walk(dir: string): Promise<string[]> {
   const files: string[] = [];
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) files.push(...(await walk(file)));
-    else if (
-      entry.isFile() &&
-      /\.[jt]sx?$/.test(entry.name) &&
-      !skipPattern.test(entry.name)
-    )
-      files.push(file);
+    else if (entry.isFile() && isSource(entry.name)) files.push(file);
   }
   return files;
 }

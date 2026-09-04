@@ -5,7 +5,6 @@ import {
   IconCopy,
   IconMicrophone,
   IconPaperclip,
-  IconPencil,
   IconPhoto,
   IconPlayerStopFilled,
   IconPlus,
@@ -44,6 +43,7 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from '@/components/ui/message-scroller';
+import { Textarea } from '@/components/ui/textarea';
 
 type Turn = {
   id: string;
@@ -85,6 +85,7 @@ export default function Chat01() {
   const [draft, setDraft] = useState('');
   const [listening, setListening] = useState(false);
   const [replyIndex, setReplyIndex] = useState(0);
+  const [edit, setEdit] = useState<{ id: string; text: string } | null>(null);
   const streaming = turns.some((t) => t.streaming);
 
   const stream = (replyId: string) => {
@@ -134,6 +135,108 @@ export default function Chat01() {
     stream(replyId);
   };
 
+  const resend = () => {
+    const text = edit?.text.trim();
+    if (!(edit && text) || streaming) {
+      return;
+    }
+    const at = turns.findIndex((t) => t.id === edit.id);
+    const replyId = crypto.randomUUID();
+    setTurns([
+      ...turns.slice(0, at),
+      { id: edit.id, role: 'user', text },
+      { id: replyId, role: 'assistant', text: '' },
+    ]);
+    setEdit(null);
+    stream(replyId);
+  };
+
+  const editLast = (e: React.KeyboardEvent) => {
+    const last = turns.findLast((t) => t.role === 'user');
+    if (e.key === 'ArrowUp' && !draft && last) {
+      e.preventDefault();
+      setEdit({ id: last.id, text: last.text });
+    }
+  };
+
+  const body = (turn: Turn) => {
+    const mine = turn.role === 'user';
+    if (edit?.id === turn.id) {
+      return (
+        <>
+          <Textarea
+            aria-label="Edit message"
+            autoFocus
+            className="min-h-0 w-md max-w-full resize-none rounded-[22px] border-0 bg-muted px-4 py-3 font-medium text-[15px]/6 focus-visible:ring-0 md:text-[15px]/6"
+            onChange={(e) => setEdit({ ...edit, text: e.target.value })}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setEdit(null);
+              }
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                resend();
+              }
+            }}
+            value={edit.text}
+          />
+          <div className="flex items-center gap-1.5 self-end">
+            <Button
+              aria-label="Copy"
+              className="rounded-full"
+              onClick={() => navigator.clipboard.writeText(turn.text)}
+              size="icon-sm"
+              variant="ghost"
+            >
+              <IconCopy stroke={1.6} />
+            </Button>
+            <Button
+              className="rounded-full"
+              onClick={() => setEdit(null)}
+              size="sm"
+              variant="secondary"
+            >
+              Cancel
+            </Button>
+            <Button
+              className="rounded-full"
+              disabled={!edit.text.trim() || streaming}
+              onClick={resend}
+              size="sm"
+            >
+              Send
+            </Button>
+          </div>
+        </>
+      );
+    }
+    if (turn.streaming && !turn.text) {
+      return (
+        <span className="shimmer text-[15px]/6 text-muted-foreground">
+          Thinking…
+        </span>
+      );
+    }
+    return turn.text.split('\n\n').map((paragraph) => (
+      <Bubble
+        align={mine ? 'end' : 'start'}
+        className={
+          mine
+            ? 'max-w-md cursor-text select-text text-right font-medium'
+            : undefined
+        }
+        key={paragraph}
+        onDoubleClick={
+          mine ? () => setEdit({ id: turn.id, text: turn.text }) : undefined
+        }
+        title={mine ? 'Double-click to edit' : undefined}
+        variant="ghost"
+      >
+        <BubbleContent className="text-[15px]/6">{paragraph}</BubbleContent>
+      </Bubble>
+    ));
+  };
+
   return (
     <div className="flex h-screen w-full flex-col bg-background">
       <MessageScrollerProvider autoScroll>
@@ -150,29 +253,8 @@ export default function Chat01() {
                   >
                     <Message align={mine ? 'end' : 'start'}>
                       <MessageContent className="gap-2">
-                        {turn.streaming && !turn.text ? (
-                          <span className="shimmer text-[15px]/6 text-muted-foreground">
-                            Thinking…
-                          </span>
-                        ) : (
-                          turn.text.split('\n\n').map((paragraph) => (
-                            <Bubble
-                              align={mine ? 'end' : 'start'}
-                              className={
-                                mine
-                                  ? 'max-w-md text-right font-medium'
-                                  : undefined
-                              }
-                              key={paragraph}
-                              variant="ghost"
-                            >
-                              <BubbleContent className="text-[15px]/6">
-                                {paragraph}
-                              </BubbleContent>
-                            </Bubble>
-                          ))
-                        )}
-                        {!turn.streaming && (
+                        {body(turn)}
+                        {!(mine || turn.streaming) && (
                           <MessageFooter className="gap-0.5">
                             <Button
                               aria-label="Copy"
@@ -184,41 +266,28 @@ export default function Chat01() {
                             >
                               <IconCopy stroke={1.6} />
                             </Button>
-                            {mine ? (
-                              <Button
-                                aria-label="Edit"
-                                onClick={() => setDraft(turn.text)}
-                                size="icon-sm"
-                                variant="ghost"
-                              >
-                                <IconPencil stroke={1.6} />
-                              </Button>
-                            ) : (
-                              <>
-                                <Button
-                                  aria-label="Good response"
-                                  size="icon-sm"
-                                  variant="ghost"
-                                >
-                                  <IconThumbUp stroke={1.6} />
-                                </Button>
-                                <Button
-                                  aria-label="Bad response"
-                                  size="icon-sm"
-                                  variant="ghost"
-                                >
-                                  <IconThumbDown stroke={1.6} />
-                                </Button>
-                                <Button
-                                  aria-label="Regenerate"
-                                  onClick={() => stream(turn.id)}
-                                  size="icon-sm"
-                                  variant="ghost"
-                                >
-                                  <IconRefresh stroke={1.6} />
-                                </Button>
-                              </>
-                            )}
+                            <Button
+                              aria-label="Good response"
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconThumbUp stroke={1.6} />
+                            </Button>
+                            <Button
+                              aria-label="Bad response"
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconThumbDown stroke={1.6} />
+                            </Button>
+                            <Button
+                              aria-label="Regenerate"
+                              onClick={() => stream(turn.id)}
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconRefresh stroke={1.6} />
+                            </Button>
                           </MessageFooter>
                         )}
                       </MessageContent>
@@ -275,6 +344,7 @@ export default function Chat01() {
           <InputGroupInput
             className="text-[15px] md:text-[15px]"
             onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={editLast}
             placeholder={listening ? 'Listening…' : 'Ask anything'}
             value={draft}
           />

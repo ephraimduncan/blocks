@@ -90,5 +90,6 @@
   "overrides": {
     "@types/react": "19.1.11",
     "@types/react-dom": "19.1.7"
-  }
+  },
+  "packageManager": "bun@1.4.0"
 }

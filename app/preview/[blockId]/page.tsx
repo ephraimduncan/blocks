@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { blocksMetadata } from '@/content/blocks-metadata';
 import { BlockPreviewClient } from './block-preview-client';
@@ -29,8 +28,3 @@ export default async function BlockPreviewPage({ params }: Params) {
     </div>
   );
 }
-
-export const metadata: Metadata = {
-  robots: { index: false, follow: false },
-  title: 'Blocks.so — Preview',
-};

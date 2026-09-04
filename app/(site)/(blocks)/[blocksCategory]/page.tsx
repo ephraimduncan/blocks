@@ -125,7 +125,7 @@ export default async function Page({ params }: PageProps) {
         </div>
 
         <div className="overflow-hidden px-px pb-px">
-          {blocks.blocksData?.map((block) => (
+          {blocks.blocksData?.map((block, index) => (
             <Block
               blocksCategory={block.blocksCategory}
               blocksId={block.blocksId}
@@ -134,6 +134,7 @@ export default async function Page({ params }: PageProps) {
               key={block.blocksId}
               meta={block.meta}
               name={block.name}
+              priority={index < 2}
             />
           ))}
         </div>

@@ -13,6 +13,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
+import { blocksComponents } from '@/content/blocks-components';
 import type { BlocksProps } from '@/lib/blocks';
 import { cn } from '@/lib/utils';
 import { AddCommand } from '../add-command';
@@ -56,6 +57,18 @@ export const Block = ({
 
   const resizablePanelRef = useRef<PanelImperativeHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? '930px';
+
+  // Single-file blocks render inline instead of in an iframe at desktop size.
+  // Dialogs and command menus portal to the page body, so they keep the iframe.
+  // Tablet and mobile keep the iframe so the block's media queries respond
+  // to the panel width instead of the browser window.
+  const InlineBlock =
+    meta?.type === 'file' &&
+    blocksCategory !== 'dialogs' &&
+    blocksCategory !== 'command-menu' &&
+    state.size === 'desktop'
+      ? blocksComponents[blocksId]
+      : null;
 
   // Same-origin iframes share the parent's main thread, so every offscreen
   // preview that boots early delays the visible ones. Mount only near the viewport.
@@ -284,20 +297,31 @@ export const Block = ({
                   minSize={30}
                   panelRef={resizablePanelRef}
                 >
-                  <div
-                    className="h-full overflow-hidden rounded-2xl border border-black/10"
-                    ref={watchFrame}
-                    style={{ height: iframeHeight }}
-                  >
-                    {showFrame && (
-                      <iframe
-                        className="relative z-20 w-full bg-background"
-                        height={meta?.iframeHeight ?? 930}
-                        src={`/preview/${blocksId}`}
-                        title={`${name} preview`}
-                      />
-                    )}
-                  </div>
+                  {InlineBlock ? (
+                    <div
+                      className="overflow-auto rounded-2xl border border-black/10 bg-background"
+                      style={{ height: iframeHeight }}
+                    >
+                      <div className="flex min-h-full w-full items-center justify-center [&_.min-h-dvh]:min-h-0">
+                        <InlineBlock />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="h-full overflow-hidden rounded-2xl border border-black/10"
+                      ref={watchFrame}
+                      style={{ height: iframeHeight }}
+                    >
+                      {showFrame && (
+                        <iframe
+                          className="relative z-20 w-full bg-background"
+                          height={meta?.iframeHeight ?? 930}
+                          src={`/preview/${blocksId}`}
+                          title={`${name} preview`}
+                        />
+                      )}
+                    </div>
+                  )}
                 </ResizablePanel>
                 <ResizableHandle className="after:-translate-y-1/2 after:-translate-x-px relative hidden w-3 bg-transparent p-0 after:absolute after:top-1/2 after:right-0 after:h-8 after:w-[6px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
                 <ResizablePanel defaultSize={0} minSize={0} />

@@ -160,7 +160,7 @@ export function ChatSidebar({
                           </SidebarMenuButton>
                           <SidebarMenuBadge
                             className={cn(
-                              'top-1! right-1.5 font-mono font-normal text-[11px] text-muted-foreground/80 group-hover/menu-item:opacity-0',
+                              'top-1! right-1.5 font-mono font-normal text-[11px] text-muted-foreground/80 group-focus-within/menu-item:opacity-0 group-hover/menu-item:opacity-0 group-has-aria-expanded/menu-item:opacity-0',
                               t.pinned && 'right-1'
                             )}
                           >

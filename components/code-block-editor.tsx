@@ -87,7 +87,10 @@ function EditorProvider({
         toggleFolder,
       }}
     >
-      <div className="flex min-w-0 flex-col items-stretch rounded-lg border">
+      <div
+        className="flex min-w-0 overflow-hidden rounded-lg border"
+        style={{ height: 'var(--height, 700px)' }}
+      >
         {children}
       </div>
     </EditorContext.Provider>
@@ -241,13 +244,13 @@ function CodeView() {
     <div className="code-block-editor-view flex h-full min-w-0 flex-1 flex-col">
       <div
         className={cn(
-          'flex h-full min-h-0 flex-col overflow-hidden rounded-r-sm border-y border-r transition-colors',
+          'flex h-full min-h-0 flex-col overflow-hidden transition-colors',
           styles.container
         )}
       >
         <div
           className={cn(
-            '-ml-[1px] flex items-center justify-between border-b',
+            'flex items-center justify-between border-b',
             styles.tabBar
           )}
         >
@@ -353,15 +356,13 @@ export function CodeBlockEditor({ fileTree }: { fileTree: FileTreeItem[] }) {
 
   return (
     <EditorProvider fileTree={fileTree}>
-      <div className="flex w-full overflow-hidden" style={{ height: '700px' }}>
-        {singleFile ? null : (
-          <div className="w-[240px] shrink-0">
-            <FileTreeView />
-          </div>
-        )}
-        <div className="min-w-0 flex-1">
-          <CodeView />
+      {singleFile ? null : (
+        <div className="w-[240px] shrink-0">
+          <FileTreeView />
         </div>
+      )}
+      <div className="min-w-0 flex-1">
+        <CodeView />
       </div>
     </EditorProvider>
   );

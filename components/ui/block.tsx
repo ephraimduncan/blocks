@@ -26,7 +26,6 @@ interface BlockViewState {
   size: 'desktop' | 'tablet' | 'mobile';
 }
 
-
 const sizeItem =
   'h-full w-6.5 min-w-0 rounded-md p-0 text-foreground/60 hover:text-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm dark:aria-pressed:border dark:aria-pressed:border-input dark:aria-pressed:bg-input/30';
 
@@ -34,7 +33,6 @@ const CodeBlockEditor = dynamic(
   () => import('../code-block-editor').then((mod) => mod.CodeBlockEditor),
   { ssr: false }
 );
-
 
 export const Block = ({
   name,
@@ -269,11 +267,9 @@ export const Block = ({
         )}
 
         {state.view === 'code' && (
-          <div className="overflow-auto rounded-lg md:h-(--height)">
-            <CodeBlockEditor
-              fileTree={meta?.type === 'file' ? singleFileTree : (fileTree ?? [])}
-            />
-          </div>
+          <CodeBlockEditor
+            fileTree={meta?.type === 'file' ? singleFileTree : (fileTree ?? [])}
+          />
         )}
       </div>
     </div>

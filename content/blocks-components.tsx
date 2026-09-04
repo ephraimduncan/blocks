@@ -120,6 +120,7 @@ export const blocksComponents: Record<string, ComponentType> = {
   'ai-03': dynamic(() => import('./components/ai/ai-03')),
   'ai-04': dynamic(() => import('./components/ai/ai-04')),
   'ai-05': dynamic(() => import('./components/ai/ai-05')),
+  'chat-01': dynamic(() => import('./components/chat/chat-01')),
 
   'table-01': dynamic(() => import('./components/tables/table-01')),
   'table-02': dynamic(() => import('./components/tables/table-02')),

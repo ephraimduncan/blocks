@@ -1,0 +1,410 @@
+'use client';
+
+import {
+  IconArrowUp,
+  IconCopy,
+  IconMicrophone,
+  IconPaperclip,
+  IconPhoto,
+  IconPlayerStopFilled,
+  IconPlus,
+  IconRefresh,
+  IconThumbDown,
+  IconThumbUp,
+  IconWorldSearch,
+} from '@tabler/icons-react';
+import type React from 'react';
+import { useState } from 'react';
+import { Bubble, BubbleContent } from '@/components/ui/bubble';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from '@/components/ui/input-group';
+import {
+  Message,
+  MessageContent,
+  MessageFooter,
+} from '@/components/ui/message';
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+} from '@/components/ui/message-scroller';
+import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
+
+type Turn = {
+  id: string;
+  role: 'user' | 'assistant';
+  text: string;
+  streaming?: boolean;
+};
+
+const thread: Turn[] = [
+  {
+    id: '1',
+    role: 'user',
+    text: 'Is it true that a day on Venus is longer than its year?',
+  },
+  {
+    id: '2',
+    role: 'assistant',
+    text: 'Yes. Venus takes 243 Earth days to rotate once, but only 225 days to orbit the Sun, so its day is longer than its year.\n\nIt also spins in the opposite direction to most planets, which means the Sun rises in the west there.',
+  },
+  { id: '3', role: 'user', text: 'How hot does it get on the surface?' },
+  {
+    id: '4',
+    role: 'assistant',
+    text: 'The surface sits around 465°C, hot enough to melt lead. The atmosphere traps so much heat that Venus stays hotter than Mercury, even though Mercury is much closer to the Sun.',
+  },
+];
+
+const replies = [
+  'Good question. Venus has no moons and no rings, which makes it unusual among the inner planets. Most explanations point to its slow, retrograde spin: any moon it once had would have drifted inward and been pulled apart by tidal forces.\n\nMercury is the only other moonless planet in the solar system.',
+  'The clouds are mostly sulfuric acid droplets, sitting about 50 to 70 km above the surface. They reflect roughly 75% of incoming sunlight, which is why Venus is the brightest object in our sky after the Moon.\n\nBelow the clouds the air is almost entirely carbon dioxide, with pressure about 92 times that of Earth at sea level.',
+  'Several landers have made it down. The Soviet Venera 7 was the first to transmit from the surface in 1970, and Venera 13 survived for 127 minutes in 1982, long enough to send back the first color photos.\n\nNothing has lasted more than a couple of hours; the heat and pressure destroy electronics quickly.',
+];
+
+const thinkDelay = 600;
+const wordDelay = 35;
+
+const easeOut = 'ease-[cubic-bezier(0.23,1,0.32,1)]';
+const press = `${easeOut} transition-[scale,background-color] duration-150 active:scale-[0.96]`;
+const enter = `${easeOut} motion-reduce:slide-in-from-bottom-0 fade-in slide-in-from-bottom-1 animate-in duration-200`;
+const swap = `${easeOut} fade-in zoom-in-95 animate-in duration-150`;
+
+export default function Chat01() {
+  const [turns, setTurns] = useState(thread);
+  const [draft, setDraft] = useState('');
+  const [listening, setListening] = useState(false);
+  const [replyIndex, setReplyIndex] = useState(0);
+  const [edit, setEdit] = useState<{ id: string; text: string } | null>(null);
+  const streaming = turns.some((t) => t.streaming);
+
+  const stream = (replyId: string) => {
+    const words = replies[replyIndex % replies.length].split(' ');
+    setReplyIndex(replyIndex + 1);
+    setTurns((prev) =>
+      prev.map((t) =>
+        t.id === replyId ? { ...t, text: '', streaming: true } : t
+      )
+    );
+    let shown = 0;
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        shown += 1;
+        const done = shown >= words.length;
+        setTurns((prev) =>
+          prev.map((t) =>
+            t.id === replyId
+              ? {
+                  ...t,
+                  text: words.slice(0, shown).join(' '),
+                  streaming: !done,
+                }
+              : t
+          )
+        );
+        if (done) {
+          clearInterval(timer);
+        }
+      }, wordDelay);
+    }, thinkDelay);
+  };
+
+  const send = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = draft.trim();
+    if (!text || streaming) {
+      return;
+    }
+    const replyId = crypto.randomUUID();
+    setTurns([
+      ...turns,
+      { id: crypto.randomUUID(), role: 'user', text },
+      { id: replyId, role: 'assistant', text: '' },
+    ]);
+    setDraft('');
+    stream(replyId);
+  };
+
+  const resend = () => {
+    const text = edit?.text.trim();
+    if (!(edit && text) || streaming) {
+      return;
+    }
+    const at = turns.findIndex((t) => t.id === edit.id);
+    const replyId = crypto.randomUUID();
+    setTurns([
+      ...turns.slice(0, at),
+      { id: edit.id, role: 'user', text },
+      { id: replyId, role: 'assistant', text: '' },
+    ]);
+    setEdit(null);
+    stream(replyId);
+  };
+
+  const editLast = (e: React.KeyboardEvent) => {
+    const last = turns.findLast((t) => t.role === 'user');
+    if (e.key === 'ArrowUp' && !draft && last) {
+      e.preventDefault();
+      setEdit({ id: last.id, text: last.text });
+    }
+  };
+
+  const body = (turn: Turn) => {
+    const mine = turn.role === 'user';
+    if (edit?.id === turn.id) {
+      return (
+        <>
+          <Textarea
+            aria-label="Edit message"
+            autoFocus
+            className={cn(
+              enter,
+              'min-h-0 w-md max-w-full resize-none rounded-[22px] border-0 bg-muted px-4 py-3 font-medium text-[15px]/6 focus-visible:ring-0 md:text-[15px]/6'
+            )}
+            onChange={(e) => setEdit({ ...edit, text: e.target.value })}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setEdit(null);
+              }
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                resend();
+              }
+            }}
+            value={edit.text}
+          />
+          <div className={cn(enter, 'flex items-center gap-1.5 self-end')}>
+            <Button
+              aria-label="Copy"
+              className={cn(press, 'rounded-full')}
+              onClick={() => navigator.clipboard.writeText(turn.text)}
+              size="icon-sm"
+              variant="ghost"
+            >
+              <IconCopy stroke={1.6} />
+            </Button>
+            <Button
+              className={cn(press, 'rounded-full')}
+              onClick={() => setEdit(null)}
+              size="sm"
+              variant="secondary"
+            >
+              Cancel
+            </Button>
+            <Button
+              className={cn(press, 'rounded-full')}
+              disabled={!edit.text.trim() || streaming}
+              onClick={resend}
+              size="sm"
+            >
+              Send
+            </Button>
+          </div>
+        </>
+      );
+    }
+    if (turn.streaming && !turn.text) {
+      return (
+        <span className="shimmer text-[15px]/6 text-muted-foreground">
+          Thinking…
+        </span>
+      );
+    }
+    return turn.text.split('\n\n').map((paragraph) => (
+      <Bubble
+        align={mine ? 'end' : 'start'}
+        className={
+          mine
+            ? '-mx-2.5 -my-1 box-content max-w-md cursor-pointer rounded-xl px-2.5 py-1 text-right font-medium transition-colors duration-150 ease-out hover:bg-muted'
+            : undefined
+        }
+        key={paragraph}
+        onDoubleClick={
+          mine ? () => setEdit({ id: turn.id, text: turn.text }) : undefined
+        }
+        title={mine ? 'Double-click to edit' : undefined}
+        variant="ghost"
+      >
+        <BubbleContent className="text-[15px]/6">{paragraph}</BubbleContent>
+      </Bubble>
+    ));
+  };
+
+  return (
+    <div className="flex h-dvh w-full flex-col bg-background">
+      <MessageScrollerProvider autoScroll>
+        <MessageScroller>
+          <MessageScrollerViewport>
+            <MessageScrollerContent className="mx-auto w-full max-w-2xl gap-3.5 px-1.5 pt-12 pb-4">
+              {turns.map((turn) => {
+                const mine = turn.role === 'user';
+                return (
+                  <MessageScrollerItem
+                    className={cn(
+                      'px-2.5',
+                      mine && 'pt-5.5 pb-1 first:pt-1',
+                      !thread.some((t) => t.id === turn.id) && enter
+                    )}
+                    key={turn.id}
+                    messageId={turn.id}
+                  >
+                    <Message align={mine ? 'end' : 'start'}>
+                      <MessageContent className="gap-2">
+                        {body(turn)}
+                        {!(mine || turn.streaming) && (
+                          <MessageFooter className={cn(enter, 'gap-0.5')}>
+                            <Button
+                              aria-label="Copy"
+                              className={press}
+                              onClick={() =>
+                                navigator.clipboard.writeText(turn.text)
+                              }
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconCopy stroke={1.6} />
+                            </Button>
+                            <Button
+                              aria-label="Good response"
+                              className={press}
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconThumbUp stroke={1.6} />
+                            </Button>
+                            <Button
+                              aria-label="Bad response"
+                              className={press}
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconThumbDown stroke={1.6} />
+                            </Button>
+                            <Button
+                              aria-label="Regenerate"
+                              className={press}
+                              onClick={() => stream(turn.id)}
+                              size="icon-sm"
+                              variant="ghost"
+                            >
+                              <IconRefresh stroke={1.6} />
+                            </Button>
+                          </MessageFooter>
+                        )}
+                      </MessageContent>
+                    </Message>
+                  </MessageScrollerItem>
+                );
+              })}
+            </MessageScrollerContent>
+          </MessageScrollerViewport>
+          <MessageScrollerButton className={easeOut} />
+        </MessageScroller>
+      </MessageScrollerProvider>
+
+      <form
+        className="mx-auto flex w-full max-w-2xl flex-col items-center gap-2.5 px-4 pt-3 pb-4"
+        onSubmit={send}
+      >
+        <InputGroup className="h-13 rounded-full border-0 bg-muted px-2.5 has-[[data-slot=input-group-control]:focus-visible]:ring-0">
+          <InputGroupAddon>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <InputGroupButton
+                    aria-label="Add attachment"
+                    className={cn(press, 'rounded-full hover:bg-foreground/10')}
+                    size="icon-sm"
+                  />
+                }
+              >
+                <IconPlus stroke={1.8} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="w-60 rounded-[20px] p-2 shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_8px_24px_-6px_oklch(0_0_0/0.14)]"
+                sideOffset={10}
+              >
+                <DropdownMenuGroup className="flex flex-col gap-0.5">
+                  <DropdownMenuItem className="gap-3 rounded-xl px-3 py-2.5 text-[15px] [&>svg]:size-5 [&>svg]:text-muted-foreground">
+                    <IconPaperclip stroke={1.6} />
+                    Add files
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="gap-3 rounded-xl px-3 py-2.5 text-[15px] [&>svg]:size-5 [&>svg]:text-muted-foreground">
+                    <IconPhoto stroke={1.6} />
+                    Add photos
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="gap-3 rounded-xl px-3 py-2.5 text-[15px] [&>svg]:size-5 [&>svg]:text-muted-foreground">
+                    <IconWorldSearch stroke={1.6} />
+                    Search the web
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </InputGroupAddon>
+          <InputGroupInput
+            className="text-[15px] md:text-[15px]"
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={editLast}
+            placeholder={listening ? 'Listening…' : 'Ask anything'}
+            value={draft}
+          />
+          <InputGroupAddon align="inline-end">
+            {draft.trim() ? (
+              <InputGroupButton
+                aria-label="Send"
+                className={cn(swap, press, 'rounded-full')}
+                disabled={streaming}
+                size="icon-sm"
+                type="submit"
+                variant="default"
+              >
+                <IconArrowUp stroke={2} />
+              </InputGroupButton>
+            ) : (
+              <InputGroupButton
+                aria-label={listening ? 'Stop listening' : 'Voice input'}
+                aria-pressed={listening}
+                className={cn(
+                  swap,
+                  press,
+                  'rounded-full',
+                  listening
+                    ? 'bg-destructive/15 text-destructive hover:bg-destructive/25'
+                    : 'hover:bg-foreground/10'
+                )}
+                onClick={() => setListening(!listening)}
+                size="icon-sm"
+              >
+                {listening ? (
+                  <IconPlayerStopFilled className="animate-pulse motion-reduce:animate-none" />
+                ) : (
+                  <IconMicrophone stroke={1.8} />
+                )}
+              </InputGroupButton>
+            )}
+          </InputGroupAddon>
+        </InputGroup>
+        <p className="text-muted-foreground text-xs">
+          AI can make mistakes. Check important info.
+        </p>
+      </form>
+    </div>
+  );
+}

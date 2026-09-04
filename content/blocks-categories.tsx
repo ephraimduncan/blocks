@@ -96,6 +96,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     hasCharts: false,
     thumbnailCustomClasses: "w-8/12",
   },
+  {
+    id: categoryIds.Chat,
+    name: "AI Chat",
+    hasCharts: false,
+    thumbnailCustomClasses: "w-10/12",
+  },
 ];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories().sort(

@@ -1,0 +1,86 @@
+<svg width="278" height="194" viewBox="0 0 278 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="128" y="2" width="142" height="26" rx="13" fill="#1C1C1C"/>
+<rect x="141" y="12.5" width="92" height="5" rx="2.5" fill="#656565"/>
+<g filter="url(#chat_avatar)">
+<circle cx="18" cy="53" r="9" fill="white"/>
+</g>
+<circle cx="18" cy="53" r="4.5" fill="#D6D6D6" stroke="#C2C2C2" stroke-width="0.69"/>
+<g filter="url(#chat_card)">
+<rect x="32" y="40" width="150" height="34" rx="12" fill="white"/>
+</g>
+<rect x="44" y="49" width="104" height="5" rx="2.5" fill="#F3F3F3" stroke="#E6E6E6" stroke-width="0.62"/>
+<rect x="44" y="59" width="72" height="5" rx="2.5" fill="#F3F3F3" stroke="#E6E6E6" stroke-width="0.62"/>
+<g filter="url(#chat_chip)">
+<rect x="40" y="70" width="46" height="14" rx="7" fill="#F3F3F3"/>
+</g>
+<circle cx="48" cy="77" r="3.5" fill="#222222"/>
+<rect x="55" y="75.5" width="24" height="3" rx="1.5" fill="#DDDDDD"/>
+<rect x="166" y="96" width="104" height="26" rx="13" fill="#1C1C1C"/>
+<rect x="179" y="106.5" width="60" height="5" rx="2.5" fill="#656565"/>
+<g filter="url(#chat_avatar)">
+<circle cx="18" cy="147" r="9" fill="white"/>
+</g>
+<circle cx="18" cy="147" r="4.5" fill="#D6D6D6" stroke="#C2C2C2" stroke-width="0.69"/>
+<g filter="url(#chat_card)">
+<rect x="32" y="134" width="176" height="46" rx="12" fill="white"/>
+</g>
+<rect x="44" y="144" width="134" height="5" rx="2.5" fill="#F3F3F3" stroke="#E6E6E6" stroke-width="0.62"/>
+<rect x="44" y="154" width="116" height="5" rx="2.5" fill="#F3F3F3" stroke="#E6E6E6" stroke-width="0.62"/>
+<rect x="44" y="164" width="80" height="5" rx="2.5" fill="#F3F3F3" stroke="#E6E6E6" stroke-width="0.62"/>
+<g filter="url(#chat_chip)">
+<rect x="40" y="176" width="46" height="14" rx="7" fill="#F3F3F3"/>
+</g>
+<circle cx="48" cy="183" r="3.5" fill="#222222"/>
+<rect x="55" y="181.5" width="24" height="3" rx="1.5" fill="#DDDDDD"/>
+<g filter="url(#chat_chip)">
+<rect x="90" y="176" width="34" height="14" rx="7" fill="#F3F3F3"/>
+</g>
+<circle cx="98" cy="183" r="3.5" fill="#D6D6D6" stroke="#C2C2C2" stroke-width="0.69"/>
+<rect x="105" y="181.5" width="13" height="3" rx="1.5" fill="#DDDDDD"/>
+<defs>
+<filter id="chat_card" x="20" y="30" width="200" height="170" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="bg"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1.85" operator="erode" in="SourceAlpha" result="e1"/>
+<feOffset dy="3.08"/>
+<feGaussianBlur stdDeviation="4"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="bg" result="e1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.31" operator="dilate" in="SourceAlpha" result="e2"/>
+<feOffset dy="0.31"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="e1" result="e2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="e2" result="shape"/>
+</filter>
+<filter id="chat_avatar" x="0" y="36" width="36" height="140" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="bg"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.75" operator="erode" in="SourceAlpha" result="e1"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.17 0"/>
+<feBlend mode="normal" in2="bg" result="e1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="0.25"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="e1" result="e2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="e2" result="shape"/>
+</filter>
+<filter id="chat_chip" x="30" y="62" width="110" height="140" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="bg"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="e1"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="1.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="bg" result="e1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="e1" result="shape"/>
+</filter>
+</defs>
+</svg>

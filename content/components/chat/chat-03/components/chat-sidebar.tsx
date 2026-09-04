@@ -28,7 +28,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Kbd } from '@/components/ui/kbd';
+import { Kbd, KbdGroup } from '@/components/ui/kbd';
 import {
   Sidebar,
   SidebarContent,
@@ -317,9 +317,10 @@ export function ChatSidebar({
               <DropdownMenuItem className={item}>
                 <IconSettings stroke={1.8} />
                 Settings
-                <DropdownMenuShortcut className="font-mono text-[11px]">
-                  ⌘,
-                </DropdownMenuShortcut>
+                <KbdGroup className="ml-auto">
+                  <Kbd>⌘</Kbd>
+                  <Kbd>,</Kbd>
+                </KbdGroup>
               </DropdownMenuItem>
               <DropdownMenuItem className={item}>
                 <IconSunMoon stroke={1.8} />
@@ -331,9 +332,10 @@ export function ChatSidebar({
               <DropdownMenuItem className={item}>
                 <IconKeyboard stroke={1.8} />
                 Keyboard shortcuts
-                <DropdownMenuShortcut className="font-mono text-[11px]">
-                  ⌘/
-                </DropdownMenuShortcut>
+                <KbdGroup className="ml-auto">
+                  <Kbd>⌘</Kbd>
+                  <Kbd>/</Kbd>
+                </KbdGroup>
               </DropdownMenuItem>
               <DropdownMenuItem className={item}>
                 <IconHelpCircle stroke={1.8} />

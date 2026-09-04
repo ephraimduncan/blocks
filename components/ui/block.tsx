@@ -47,7 +47,8 @@ export const Block = ({
   code,
   meta,
   fileTree,
-}: BlocksProps) => {
+  priority = false,
+}: BlocksProps & { priority?: boolean }) => {
   const [state, setState] = useState<BlockViewState>({
     view: 'preview',
     size: 'desktop',
@@ -55,6 +56,25 @@ export const Block = ({
 
   const resizablePanelRef = useRef<PanelImperativeHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? '930px';
+
+  // Same-origin iframes share the parent's main thread, so every offscreen
+  // preview that boots early delays the visible ones. Mount only near the viewport.
+  const [showFrame, setShowFrame] = useState(priority);
+  const watchFrame = (node: HTMLDivElement | null) => {
+    if (!node || showFrame) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowFrame(true);
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  };
 
   const getCleanCode = (rawCode: string | ReactNode): string => {
     const cleanCode = typeof rawCode === 'string' ? rawCode : '';
@@ -145,6 +165,7 @@ export const Block = ({
         <Link
           className="font-medium text-[0.9375rem] text-foreground tracking-tight underline-offset-2 hover:underline"
           href={`/${blocksCategory}/${blocksId}`}
+          prefetch={false}
         >
           {name}
         </Link>
@@ -263,14 +284,19 @@ export const Block = ({
                   minSize={30}
                   panelRef={resizablePanelRef}
                 >
-                  <div className="h-full overflow-hidden rounded-2xl border border-black/10">
-                    <iframe
-                      className="relative z-20 w-full bg-background"
-                      height={meta?.iframeHeight ?? 930}
-                      loading="lazy"
-                      src={`/preview/${blocksId}`}
-                      title={`${name} preview`}
-                    />
+                  <div
+                    className="h-full overflow-hidden rounded-2xl border border-black/10"
+                    ref={watchFrame}
+                    style={{ height: iframeHeight }}
+                  >
+                    {showFrame && (
+                      <iframe
+                        className="relative z-20 w-full bg-background"
+                        height={meta?.iframeHeight ?? 930}
+                        src={`/preview/${blocksId}`}
+                        title={`${name} preview`}
+                      />
+                    )}
                   </div>
                 </ResizablePanel>
                 <ResizableHandle className="after:-translate-y-1/2 after:-translate-x-px relative hidden w-3 bg-transparent p-0 after:absolute after:top-1/2 after:right-0 after:h-8 after:w-[6px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />

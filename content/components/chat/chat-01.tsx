@@ -44,6 +44,7 @@ import {
   MessageScrollerViewport,
 } from '@/components/ui/message-scroller';
 import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
 type Turn = {
   id: string;
@@ -79,6 +80,11 @@ const replies = [
 
 const thinkDelay = 600;
 const wordDelay = 35;
+
+const easeOut = 'ease-[cubic-bezier(0.23,1,0.32,1)]';
+const press = `${easeOut} transition-[scale,background-color] duration-150 active:scale-[0.96]`;
+const enter = `${easeOut} motion-reduce:slide-in-from-bottom-0 fade-in slide-in-from-bottom-1 animate-in duration-200`;
+const swap = `${easeOut} fade-in zoom-in-95 animate-in duration-150`;
 
 export default function Chat01() {
   const [turns, setTurns] = useState(thread);
@@ -167,7 +173,10 @@ export default function Chat01() {
           <Textarea
             aria-label="Edit message"
             autoFocus
-            className="min-h-0 w-md max-w-full resize-none rounded-[22px] border-0 bg-muted px-4 py-3 font-medium text-[15px]/6 focus-visible:ring-0 md:text-[15px]/6"
+            className={cn(
+              enter,
+              'min-h-0 w-md max-w-full resize-none rounded-[22px] border-0 bg-muted px-4 py-3 font-medium text-[15px]/6 focus-visible:ring-0 md:text-[15px]/6'
+            )}
             onChange={(e) => setEdit({ ...edit, text: e.target.value })}
             onKeyDown={(e) => {
               if (e.key === 'Escape') {
@@ -180,10 +189,10 @@ export default function Chat01() {
             }}
             value={edit.text}
           />
-          <div className="flex items-center gap-1.5 self-end">
+          <div className={cn(enter, 'flex items-center gap-1.5 self-end')}>
             <Button
               aria-label="Copy"
-              className="rounded-full"
+              className={cn(press, 'rounded-full')}
               onClick={() => navigator.clipboard.writeText(turn.text)}
               size="icon-sm"
               variant="ghost"
@@ -191,7 +200,7 @@ export default function Chat01() {
               <IconCopy stroke={1.6} />
             </Button>
             <Button
-              className="rounded-full"
+              className={cn(press, 'rounded-full')}
               onClick={() => setEdit(null)}
               size="sm"
               variant="secondary"
@@ -199,7 +208,7 @@ export default function Chat01() {
               Cancel
             </Button>
             <Button
-              className="rounded-full"
+              className={cn(press, 'rounded-full')}
               disabled={!edit.text.trim() || streaming}
               onClick={resend}
               size="sm"
@@ -222,7 +231,7 @@ export default function Chat01() {
         align={mine ? 'end' : 'start'}
         className={
           mine
-            ? 'max-w-md cursor-text select-text text-right font-medium'
+            ? '-mx-2.5 -my-1 box-content max-w-md cursor-pointer rounded-xl px-2.5 py-1 text-right font-medium transition-colors duration-150 ease-out hover:bg-muted'
             : undefined
         }
         key={paragraph}
@@ -242,12 +251,16 @@ export default function Chat01() {
       <MessageScrollerProvider autoScroll>
         <MessageScroller>
           <MessageScrollerViewport>
-            <MessageScrollerContent className="mx-auto w-full max-w-2xl gap-3.5 px-4 pt-12 pb-4">
+            <MessageScrollerContent className="mx-auto w-full max-w-2xl gap-3.5 px-1.5 pt-12 pb-4">
               {turns.map((turn) => {
                 const mine = turn.role === 'user';
                 return (
                   <MessageScrollerItem
-                    className={mine ? 'pt-5.5 first:pt-0' : undefined}
+                    className={cn(
+                      'px-2.5',
+                      mine && 'pt-5.5 pb-1 first:pt-1',
+                      !thread.some((t) => t.id === turn.id) && enter
+                    )}
                     key={turn.id}
                     messageId={turn.id}
                   >
@@ -255,9 +268,10 @@ export default function Chat01() {
                       <MessageContent className="gap-2">
                         {body(turn)}
                         {!(mine || turn.streaming) && (
-                          <MessageFooter className="gap-0.5">
+                          <MessageFooter className={cn(enter, 'gap-0.5')}>
                             <Button
                               aria-label="Copy"
+                              className={press}
                               onClick={() =>
                                 navigator.clipboard.writeText(turn.text)
                               }
@@ -268,6 +282,7 @@ export default function Chat01() {
                             </Button>
                             <Button
                               aria-label="Good response"
+                              className={press}
                               size="icon-sm"
                               variant="ghost"
                             >
@@ -275,6 +290,7 @@ export default function Chat01() {
                             </Button>
                             <Button
                               aria-label="Bad response"
+                              className={press}
                               size="icon-sm"
                               variant="ghost"
                             >
@@ -282,6 +298,7 @@ export default function Chat01() {
                             </Button>
                             <Button
                               aria-label="Regenerate"
+                              className={press}
                               onClick={() => stream(turn.id)}
                               size="icon-sm"
                               variant="ghost"
@@ -297,7 +314,7 @@ export default function Chat01() {
               })}
             </MessageScrollerContent>
           </MessageScrollerViewport>
-          <MessageScrollerButton />
+          <MessageScrollerButton className={easeOut} />
         </MessageScroller>
       </MessageScrollerProvider>
 
@@ -312,7 +329,7 @@ export default function Chat01() {
                 render={
                   <InputGroupButton
                     aria-label="Add attachment"
-                    className="rounded-full hover:bg-foreground/10"
+                    className={cn(press, 'rounded-full hover:bg-foreground/10')}
                     size="icon-sm"
                   />
                 }
@@ -352,7 +369,7 @@ export default function Chat01() {
             {draft.trim() ? (
               <InputGroupButton
                 aria-label="Send"
-                className="rounded-full"
+                className={cn(swap, press, 'rounded-full')}
                 disabled={streaming}
                 size="icon-sm"
                 type="submit"
@@ -364,16 +381,19 @@ export default function Chat01() {
               <InputGroupButton
                 aria-label={listening ? 'Stop listening' : 'Voice input'}
                 aria-pressed={listening}
-                className={
+                className={cn(
+                  swap,
+                  press,
+                  'rounded-full',
                   listening
-                    ? 'rounded-full bg-destructive/15 text-destructive hover:bg-destructive/25'
-                    : 'rounded-full hover:bg-foreground/10'
-                }
+                    ? 'bg-destructive/15 text-destructive hover:bg-destructive/25'
+                    : 'hover:bg-foreground/10'
+                )}
                 onClick={() => setListening(!listening)}
                 size="icon-sm"
               >
                 {listening ? (
-                  <IconPlayerStopFilled className="animate-pulse" />
+                  <IconPlayerStopFilled className="animate-pulse motion-reduce:animate-none" />
                 ) : (
                   <IconMicrophone stroke={1.8} />
                 )}

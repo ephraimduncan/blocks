@@ -461,7 +461,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: 'chat-01',
     category: categoryIds.Chat,
     name: 'Chat Basic',
-    iframeHeight: '520px',
+    iframeHeight: '640px',
     type: 'file',
   },
 

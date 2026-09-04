@@ -10,11 +10,7 @@ export function OpenInV0Button({
   return (
     <a
       aria-label="Open in v0"
-      className={cn(
-        buttonVariants(),
-        'h-8 gap-1 rounded-lg bg-black text-white hover:bg-black hover:text-white dark:bg-white dark:text-black',
-        className
-      )}
+      className={cn(buttonVariants(), 'gap-1', className)}
       data-umami-event="Open Block in v0"
       href={`https://v0.dev/chat/api/open?url=${
         process.env.NEXT_PUBLIC_BASE_URL || 'https://blocks.so'

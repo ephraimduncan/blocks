@@ -10,12 +10,11 @@ export function AddCommand({ name }: { name: string }) {
 
   return (
     <Button
-      className="rounded-lg pl-2!"
+      className="pl-2"
       onClick={() => {
         copyToClipboard(`npx shadcn@latest add @blocks-so/${name}`);
         toast.success('npx command copied to clipboard');
       }}
-      size="sm"
       variant="outline"
     >
       {isCopied ? (

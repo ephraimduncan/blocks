@@ -10,11 +10,7 @@ export function OpenInPlaygroundButton({
   return (
     <a
       aria-label="Open in shadcn playground"
-      className={cn(
-        buttonVariants(),
-        'h-8 gap-1 rounded-lg bg-black text-white hover:bg-black hover:text-white dark:bg-white dark:text-black',
-        className
-      )}
+      className={cn(buttonVariants({ variant: 'outline' }), 'gap-1', className)}
       data-umami-event="Open Block in Playground"
       href={`https://play.blocks.so/api/open?url=${
         process.env.NEXT_PUBLIC_BASE_URL || 'https://blocks.so'

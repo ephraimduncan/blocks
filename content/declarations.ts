@@ -1,10 +1,8 @@
 export type BlocksCategoryMetadata = {
   id: string;
   name: string;
-  thumbnail?: string;
   thumbnailCustomClasses?: string;
   count: string;
-  hasCharts?: boolean;
 };
 
 export type BlocksMetadata = {

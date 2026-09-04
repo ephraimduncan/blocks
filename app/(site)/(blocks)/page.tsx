@@ -1,39 +1,9 @@
-import type { Metadata } from 'next';
+import { IconBrandReact, IconCode } from '@tabler/icons-react';
 import Link from 'next/link';
 
 import { BreadcrumbJsonLd } from '@/components/breadcrumb-jsonld';
-import { CodeIcon, ReactIcon } from '@/components/icons';
-import { siteConfig } from '@/config';
 import { blocksCategoriesMetadata } from '@/content/blocks-categories';
 
-export const metadata: Metadata = {
-  title: 'Shadcn Blocks - 60+ Free shadcn/ui Components for React',
-  description: siteConfig.description,
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: 'Shadcn Blocks - 60+ Free shadcn/ui Components for React',
-    description: siteConfig.description,
-    url: siteConfig.url,
-    siteName: 'blocks.so',
-    type: 'website',
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: 'blocks.so - Free shadcn/ui blocks and components',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Shadcn Blocks - 60+ Free shadcn/ui Components for React',
-    description: siteConfig.description,
-    creator: '@ephraimduncan_',
-    site: '@ephraimduncan_',
-    images: [siteConfig.ogImage],
-  },
-};
 
 export default function Home() {
   return (
@@ -53,12 +23,12 @@ export default function Home() {
 
           <div className="mt-6 flex items-center gap-2">
             <div className="flex items-center gap-1.5 rounded-full bg-sky-50 py-1 pr-2.5 pl-1.5 font-medium text-sky-700 text-sm ring-1 ring-sky-200/60">
-              <ReactIcon className="size-4 text-sky-500" />
+              <IconBrandReact className="size-4 text-sky-500" />
               All React frameworks
             </div>
 
             <div className="flex items-center gap-1.5 rounded-full bg-zinc-50 py-1 pr-2.5 pl-1.5 font-medium text-sm text-zinc-600 ring-1 ring-zinc-200/60">
-              <CodeIcon className="size-4 text-zinc-400" />
+              <IconCode className="size-4 text-zinc-400" />
               Open Source
             </div>
           </div>

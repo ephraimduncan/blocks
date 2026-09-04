@@ -23,16 +23,14 @@ export type FileTreeItem = FileItem | FolderItem;
 
 export interface BlocksProps {
   name: string;
-  code?: string | ReactNode; // Keep for potential future use or consistency
-  codeSource?: string | ReactNode; // Primarily for type: 'file'
-  fileTree?: FileTreeItem[]; // Use the discriminated union type
-  copyCode?: ReactNode; // This seems unused in Block.tsx, maybe remove?
+  code?: string | ReactNode;
+  codeSource?: string | ReactNode;
+  fileTree?: FileTreeItem[];
   blocksId: string;
   blocksCategory: string;
   meta?: {
     iframeHeight?: string;
     type?: 'file' | 'directory';
-    sourcePath?: string;
   };
 }
 

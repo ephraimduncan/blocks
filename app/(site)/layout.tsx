@@ -1,7 +1,6 @@
 import '@/app/globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { ThemeProvider } from 'next-themes';
 import { fontMono, fontSans } from '@/app/fonts';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -120,7 +119,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html className="light" lang="en">
       <head>
         {process.env.NODE_ENV === 'development' && (
           <Script
@@ -134,21 +133,13 @@ export default function RootLayout({
         className={cn(fontSans.variable, fontMono.variable, 'antialiased')}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-          enableSystem={false}
-          forcedTheme="light"
-        >
-          <TooltipProvider delay={0}>
-            {children}
+        <TooltipProvider delay={0}>
+          {children}
 
-            <TailwindIndicator />
-            <Toaster />
-            <SeoJsonLd />
-          </TooltipProvider>
-        </ThemeProvider>
+          <TailwindIndicator />
+          <Toaster />
+          <SeoJsonLd />
+        </TooltipProvider>
       </body>
     </html>
   );

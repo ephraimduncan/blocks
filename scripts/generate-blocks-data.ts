@@ -5,22 +5,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import type { FileTreeItem } from '@/lib/blocks';
 
-type FileItem = {
-  type: 'file';
-  name: string;
-  path: string;
-  content: string;
-};
-
-type FolderItem = {
-  type: 'folder';
-  name: string;
-  path: string;
-  children: FileTreeItem[];
-};
-
-type FileTreeItem = FileItem | FolderItem;
 
 const projectRoot = process.cwd();
 const componentsDir = path.join(projectRoot, 'content', 'components');

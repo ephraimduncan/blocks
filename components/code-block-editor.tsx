@@ -18,114 +18,66 @@ import {
 } from '@tabler/icons-react';
 import { ChevronRight } from 'lucide-react';
 import * as React from 'react';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarProvider,
-} from '@/components/ui/sidebar';
+import { useCopyToClipboard } from '@/hooks/use-copy';
+import type { FileItem, FileTreeItem } from '@/lib/blocks';
 import { cn } from '@/lib/utils';
 
-preloadHighlighter({
-  themes: ['pierre-dark', 'pierre-light'],
-  langs: ['tsx'],
-});
+preloadHighlighter({ themes: ['pierre-dark', 'pierre-light'], langs: ['tsx'] });
 
 const COLOR_MODE_STORAGE_KEY = 'blocks-code-preview-color-mode';
 
-type FileItem = {
-  name: string;
-  path: string;
-  content?: string;
-  type: 'file';
-};
-
-export type FolderItem = {
-  name: string;
-  path: string;
-  type: 'folder';
-  children: FileTreeItem[];
-};
-
-export type FileTreeItem = FileItem | FolderItem;
-
-type CodeBlockEditorContext = {
+type EditorContext = {
   activeFile: string | null;
   setActiveFile: (file: string) => void;
   openFiles: string[];
   fileTree: FileTreeItem[];
   expandedFolders: Set<string>;
   toggleFolder: (path: string) => void;
-  blockTitle?: string;
 };
 
-const CodeBlockEditorContext =
-  React.createContext<CodeBlockEditorContext | null>(null);
+const EditorContext = React.createContext<EditorContext | null>(null);
 
-function useCodeBlockEditor() {
-  const context = React.useContext(CodeBlockEditorContext);
-  if (!context) {
-    throw new Error(
-      'useCodeBlockEditor must be used within a CodeBlockEditorProvider'
-    );
-  }
+function useEditor() {
+  const context = React.useContext(EditorContext);
+  if (!context) throw new Error('useEditor must be used within EditorProvider');
   return context;
 }
 
-function CodeBlockEditorProvider({
+function EditorProvider({
   children,
   fileTree,
-  blockTitle,
 }: {
   children: React.ReactNode;
   fileTree: FileTreeItem[];
-  blockTitle?: string;
 }) {
-  const initialFilePath = findFirstFile(fileTree)?.path || null;
-
-  const [activeFile, setActiveFileState] = React.useState<string | null>(
-    initialFilePath
+  const firstFile = findFirstFile(fileTree)?.path ?? null;
+  const [activeFile, setActiveFileState] = React.useState(firstFile);
+  const [openFiles, setOpenFiles] = React.useState(
+    firstFile ? [firstFile] : []
   );
-  const [openFiles, setOpenFiles] = React.useState<string[]>(
-    initialFilePath ? [initialFilePath] : []
+  const [expandedFolders, setExpandedFolders] = React.useState(
+    () =>
+      new Set(
+        fileTree
+          .filter((item) => item.type === 'folder')
+          .map((item) => item.path)
+      )
   );
-  const [expandedFolders, setExpandedFolders] = React.useState<Set<string>>(
-    () => {
-      const expanded = new Set<string>();
-      const addFirstLevelFolders = (items: FileTreeItem[]) => {
-        items.forEach((item) => {
-          if (item.type === 'folder' && !item.path.includes('/')) {
-            expanded.add(item.path);
-          }
-        });
-      };
-      addFirstLevelFolders(fileTree);
-      return expanded;
-    }
-  );
-
   const toggleFolder = React.useCallback((path: string) => {
-    setExpandedFolders((prev) => {
-      const next = new Set(prev);
-      if (next.has(path)) {
-        next.delete(path);
-      } else {
-        next.add(path);
-      }
+    setExpandedFolders((old) => {
+      const next = new Set(old);
+      if (next.has(path)) next.delete(path);
+      else next.add(path);
       return next;
     });
   }, []);
-
-  const setActiveFile = React.useCallback((filePath: string) => {
-    setOpenFiles((prev) =>
-      prev.includes(filePath) ? prev : [...prev, filePath]
-    );
-    setActiveFileState(filePath);
+  const setActiveFile = React.useCallback((path: string) => {
+    setOpenFiles((old) => (old.includes(path) ? old : [...old, path]));
+    setActiveFileState(path);
   }, []);
 
   return (
-    <CodeBlockEditorContext.Provider
+    <EditorContext.Provider
       value={{
         activeFile,
         setActiveFile,
@@ -133,367 +85,230 @@ function CodeBlockEditorProvider({
         fileTree,
         expandedFolders,
         toggleFolder,
-        blockTitle,
       }}
     >
-      <div className="flex min-w-0 flex-col items-stretch rounded-lg border">
+      <div
+        className="flex min-w-0 overflow-hidden rounded-lg border"
+        style={{ height: 'var(--height, 700px)' }}
+      >
         {children}
       </div>
-    </CodeBlockEditorContext.Provider>
+    </EditorContext.Provider>
   );
 }
 
 function findFirstFile(items: FileTreeItem[]): FileItem | null {
   for (const item of items) {
-    if (item.type === 'file') {
-      return item;
-    }
-    if (item.type === 'folder') {
-      const file = findFirstFile(item.children);
-      if (file) return file;
-    }
+    if (item.type === 'file') return item;
+    const file = findFirstFile(item.children);
+    if (file) return file;
   }
   return null;
 }
 
-function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
+function findFile(items: FileTreeItem[], path: string): FileItem | null {
   for (const item of items) {
-    if (item.type === 'file' && item.path === path) {
-      return item;
-    }
+    if (item.type === 'file' && item.path === path) return item;
     if (item.type === 'folder') {
-      const file = findFileByPath(item.children, path);
+      const file = findFile(item.children, path);
       if (file) return file;
     }
   }
   return null;
 }
 
-function getFileIcon(filename: string) {
-  if (filename.endsWith('.tsx')) return IconFileTypeTsx;
-  if (filename.endsWith('.ts')) return IconFileTypeTs;
+function getFileIcon(name: string) {
+  if (name.endsWith('.tsx')) return IconFileTypeTsx;
+  if (name.endsWith('.ts')) return IconFileTypeTs;
   return IconFile;
 }
 
-function getLanguageFromPath(filePath: string): SupportedLanguages {
-  const extension = filePath.split('.').pop()?.toLowerCase();
-
-  switch (extension) {
-    case 'ts':
-      return 'typescript';
-    case 'tsx':
-      return 'tsx';
-    case 'js':
-      return 'javascript';
-    case 'jsx':
-      return 'jsx';
-    case 'css':
-      return 'css';
-    case 'html':
-      return 'html';
-    case 'json':
-      return 'json';
-    case 'md':
-    case 'mdx':
-      return 'markdown';
-    default:
-      return 'tsx';
-  }
-}
+const languages: Record<string, SupportedLanguages> = {
+  ts: 'typescript',
+  tsx: 'tsx',
+  js: 'javascript',
+  jsx: 'jsx',
+  css: 'css',
+  html: 'html',
+  json: 'json',
+  md: 'markdown',
+  mdx: 'markdown',
+};
 
 function FileTreeView() {
-  const { fileTree, expandedFolders } = useCodeBlockEditor();
-
-  const renderableTree = React.useMemo(() => {
-    const itemMap = new Map<
-      string,
-      FileTreeItem & { depth: number; visible: boolean }
-    >();
-
-    const addToMap = (
-      items: FileTreeItem[],
-      depth: number,
-      parentVisible = true
-    ) => {
-      items.forEach((item) => {
-        const isVisible =
-          parentVisible &&
-          (item.type === 'folder' ||
-            (item.type === 'file' &&
-              (!item.path.includes('/') ||
-                expandedFolders.has(
-                  item.path.substring(0, item.path.lastIndexOf('/'))
-                ))));
-
-        itemMap.set(item.path, { ...item, depth, visible: isVisible });
-
-        if (item.type === 'folder') {
-          const folderVisible = isVisible && expandedFolders.has(item.path);
-          addToMap(item.children, depth + 1, folderVisible);
-        }
-      });
-    };
-
-    addToMap(fileTree, 0);
-
-    return Array.from(itemMap.values()).filter((item) => item.visible);
-  }, [fileTree, expandedFolders]);
-
+  const { fileTree } = useEditor();
   return (
-    <SidebarProvider className="flex min-h-full! flex-col">
-      <Sidebar
-        className="w-full flex-1 border-r bg-muted/50"
-        collapsible="none"
-      >
-        <SidebarContent>
-          <SidebarGroup className="p-0">
-            <SidebarGroupContent>
-              <div className="flex flex-col gap-0.5 rounded-none">
-                {renderableTree.map((item) => (
-                  <TreeItem depth={item.depth} item={item} key={item.path} />
-                ))}
-              </div>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </SidebarContent>
-      </Sidebar>
-    </SidebarProvider>
+    <div className="flex min-h-full flex-col gap-0.5 border-r bg-muted/50">
+      {fileTree.map((item) => (
+        <TreeItem depth={0} item={item} key={item.path} />
+      ))}
+    </div>
   );
 }
 
 function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
   const { activeFile, setActiveFile, expandedFolders, toggleFolder } =
-    useCodeBlockEditor();
+    useEditor();
   const isExpanded = item.type === 'folder' && expandedFolders.has(item.path);
 
-  const handleClick = () => {
-    if (item.type === 'file') {
-      setActiveFile(item.path);
-    } else {
-      toggleFolder(item.path);
-    }
-  };
-
   return (
-    <button
-      className={cn(
-        'flex w-full items-center gap-2 whitespace-nowrap py-1.5 text-left text-sm hover:bg-muted',
-        'pl-[calc(0.5rem+0.8rem*var(--depth))]',
-        item.type === 'file' &&
-          item.path === activeFile &&
-          'bg-muted font-medium'
-      )}
-      onClick={handleClick}
-      style={{ '--depth': depth } as React.CSSProperties}
-      type="button"
-    >
-      {item.type === 'folder' ? (
-        <>
-          <ChevronRight
-            className={cn(
-              'h-4 w-4 shrink-0 transition-transform',
-              isExpanded && 'rotate-90'
+    <>
+      <button
+        className={cn(
+          'flex w-full items-center gap-2 whitespace-nowrap py-1.5 text-left text-sm hover:bg-muted',
+          'pl-[calc(0.5rem+0.8rem*var(--depth))]',
+          item.type === 'file' &&
+            item.path === activeFile &&
+            'bg-muted font-medium'
+        )}
+        onClick={() =>
+          item.type === 'file'
+            ? setActiveFile(item.path)
+            : toggleFolder(item.path)
+        }
+        style={{ '--depth': depth } as React.CSSProperties}
+        type="button"
+      >
+        {item.type === 'folder' ? (
+          <>
+            <ChevronRight
+              className={cn(
+                'h-4 w-4 shrink-0 transition-transform',
+                isExpanded && 'rotate-90'
+              )}
+            />
+            {isExpanded ? (
+              <IconFolderOpen className="h-4 w-4 shrink-0" />
+            ) : (
+              <IconFolder className="h-4 w-4 shrink-0" />
             )}
-          />
-          {isExpanded ? (
-            <IconFolderOpen className="h-4 w-4 shrink-0" />
-          ) : (
-            <IconFolder className="h-4 w-4 shrink-0" />
-          )}
-
-          <span className="truncate font-medium">{item.name}</span>
-        </>
-      ) : (
-        <>
-          <span className="w-4" />
-          {React.createElement(getFileIcon(item.name), {
-            className: 'h-4 w-4 shrink-0',
-          })}
-          <span className="truncate">{item.name}</span>
-        </>
-      )}
-    </button>
+            <span className="truncate font-medium">{item.name}</span>
+          </>
+        ) : (
+          <>
+            <span className="w-4" />
+            {React.createElement(getFileIcon(item.name), {
+              className: 'h-4 w-4 shrink-0',
+            })}
+            <span className="truncate">{item.name}</span>
+          </>
+        )}
+      </button>
+      {item.type === 'folder' && isExpanded
+        ? item.children.map((child) => (
+            <TreeItem depth={depth + 1} item={child} key={child.path} />
+          ))
+        : null}
+    </>
   );
 }
 
 function CodeView() {
-  const { activeFile, fileTree, openFiles, setActiveFile } =
-    useCodeBlockEditor();
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
-  const [mounted, setMounted] = React.useState(false);
-  const [copied, setCopied] = React.useState(false);
-
-  const copiedTimeoutRef = React.useRef<number | null>(null);
-
-  const file = activeFile ? findFileByPath(fileTree, activeFile) : null;
-  const content = file?.content ?? '';
-
-  const openTabs = React.useMemo(() => {
-    return openFiles
-      .map((path) => findFileByPath(fileTree, path))
-      .filter((item): item is FileItem => item !== null);
-  }, [fileTree, openFiles]);
-
-  React.useEffect(() => {
-    setMounted(true);
-
-    const storedColorMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY);
-    if (storedColorMode === 'light' || storedColorMode === 'dark') {
-      setColorMode(storedColorMode);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (!mounted) {
-      return;
-    }
-
-    window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode);
-  }, [colorMode, mounted]);
-
-  React.useEffect(() => {
-    return () => {
-      if (copiedTimeoutRef.current !== null) {
-        window.clearTimeout(copiedTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  const styles = React.useMemo(
-    () => ({
-      container:
-        colorMode === 'dark'
-          ? 'border-neutral-700/50 bg-[#1b1d23]'
-          : 'border-neutral-300/70 bg-[#f9f9fb]',
-      tabBar:
-        colorMode === 'dark'
-          ? 'border-neutral-700/50 bg-neutral-900'
-          : 'border-neutral-200 bg-neutral-50',
-      tabActive:
-        colorMode === 'dark'
-          ? 'border-neutral-700/50 bg-neutral-950 text-neutral-100'
-          : 'border-neutral-200 bg-[#fff] text-neutral-900',
-      controls: colorMode === 'dark' ? 'text-neutral-300' : 'text-neutral-700',
-      tabIdle:
-        colorMode === 'dark'
-          ? 'text-neutral-300 hover:bg-neutral-800/70'
-          : 'text-neutral-700 hover:bg-neutral-100',
-    }),
-    [colorMode]
+  const { activeFile, fileTree, openFiles, setActiveFile } = useEditor();
+  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>(() =>
+    window.localStorage.getItem(COLOR_MODE_STORAGE_KEY) === 'dark'
+      ? 'dark'
+      : 'light'
   );
+  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 1200 });
+  const file = activeFile ? findFile(fileTree, activeFile) : null;
+  const content = file?.content ?? '';
+  const openTabs = React.useMemo(
+    () =>
+      openFiles
+        .map((path) => findFile(fileTree, path))
+        .filter((item): item is FileItem => item !== null),
+    [fileTree, openFiles]
+  );
+  const isDark = colorMode === 'dark';
+  const styles = {
+    container: isDark
+      ? 'border-neutral-700/50 bg-[#1b1d23]'
+      : 'border-neutral-300/70 bg-[#f9f9fb]',
+    tabBar: isDark
+      ? 'border-neutral-700/50 bg-neutral-900'
+      : 'border-neutral-200 bg-neutral-50',
+    tabActive: isDark
+      ? 'border-neutral-700/50 bg-neutral-950 text-neutral-100'
+      : 'border-neutral-200 bg-[#fff] text-neutral-900',
+    controls: isDark ? 'text-neutral-300' : 'text-neutral-700',
+    tabIdle: isDark
+      ? 'text-neutral-300 hover:bg-neutral-800/70'
+      : 'text-neutral-700 hover:bg-neutral-100',
+  };
 
-  if (!file) {
+  if (!file)
     return <div className="p-4">Select a file to view its content</div>;
-  }
-
-  if (!mounted) {
-    return <div className="p-4">Loading syntax highlighting...</div>;
-  }
-
-  const themeName = colorMode === 'dark' ? 'pierre-dark' : 'pierre-light';
-
-  const handleColorModeToggle = () => {
-    setColorMode((mode) => (mode === 'dark' ? 'light' : 'dark'));
-  };
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(content);
-      setCopied(true);
-
-      if (copiedTimeoutRef.current !== null) {
-        window.clearTimeout(copiedTimeoutRef.current);
-      }
-
-      copiedTimeoutRef.current = window.setTimeout(
-        () => setCopied(false),
-        1200
-      );
-    } catch {
-      setCopied(false);
-    }
-  };
 
   return (
     <div className="code-block-editor-view flex h-full min-w-0 flex-1 flex-col">
       <div
         className={cn(
-          'flex h-full min-h-0 flex-col overflow-hidden rounded-r-sm border-y border-r transition-colors',
+          'flex h-full min-h-0 flex-col overflow-hidden transition-colors',
           styles.container
         )}
       >
         <div
           className={cn(
-            '-ml-[1px] flex items-center justify-between border-b',
+            'flex items-center justify-between border-b',
             styles.tabBar
           )}
         >
           <div className="min-w-0 flex-1 overflow-x-auto">
             <div className="flex min-w-max items-center">
-              {openTabs.map((openTab) => {
-                const isActive = openTab.path === file.path;
-
-                return (
-                  <button
-                    className={cn(
-                      'relative flex items-center gap-2 whitespace-nowrap border-transparent border-r border-l px-4 py-2 font-medium text-sm',
-                      isActive
-                        ? styles.tabActive
-                        : cn(
-                            'border-transparent bg-transparent',
-                            styles.tabIdle
-                          )
-                    )}
-                    key={openTab.path}
-                    onClick={() => setActiveFile(openTab.path)}
-                    title={openTab.path}
-                    type="button"
-                  >
-                    <IconFileCode className="size-4 text-blue-400" />
-                    <span>{openTab.name}</span>
-                  </button>
-                );
-              })}
+              {openTabs.map((tab) => (
+                <button
+                  className={cn(
+                    'relative flex items-center gap-2 whitespace-nowrap border-transparent border-r border-l px-4 py-2 font-medium text-sm first:border-l-0',
+                    tab.path === file.path
+                      ? styles.tabActive
+                      : cn('border-transparent bg-transparent', styles.tabIdle)
+                  )}
+                  key={tab.path}
+                  onClick={() => setActiveFile(tab.path)}
+                  title={tab.path}
+                  type="button"
+                >
+                  <IconFileCode className="size-4 text-blue-400" />
+                  <span>{tab.name}</span>
+                </button>
+              ))}
             </div>
           </div>
-
           <div className="mr-2 flex shrink-0 items-center gap-1">
             <button
               aria-label={
-                colorMode === 'dark'
-                  ? 'Switch to light mode'
-                  : 'Switch to dark mode'
+                isDark ? 'Switch to light mode' : 'Switch to dark mode'
               }
               className={cn(
                 'inline-flex size-6 items-center justify-center transition-opacity hover:opacity-80',
                 styles.controls
               )}
-              onClick={handleColorModeToggle}
-              title={
-                colorMode === 'dark'
-                  ? 'Switch to light mode'
-                  : 'Switch to dark mode'
-              }
+              onClick={() => {
+                const mode = isDark ? 'light' : 'dark';
+                window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, mode);
+                setColorMode(mode);
+              }}
+              title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               type="button"
             >
-              {colorMode === 'dark' ? (
+              {isDark ? (
                 <IconColorLight className="size-3.5" />
               ) : (
                 <IconColorDark className="size-3.5" />
               )}
             </button>
-
             <button
-              aria-label={copied ? 'Copied' : 'Copy code'}
+              aria-label={isCopied ? 'Copied' : 'Copy code'}
               className={cn(
                 'inline-flex size-6 items-center justify-center transition-opacity hover:opacity-80',
                 styles.controls
               )}
-              onClick={handleCopy}
-              title={copied ? 'Copied' : 'Copy code'}
+              onClick={() => copyToClipboard(content)}
+              title={isCopied ? 'Copied' : 'Copy code'}
               type="button"
             >
-              {copied ? (
+              {isCopied ? (
                 <IconCheck className="size-3.5" />
               ) : (
                 <IconCopy className="size-3.5" />
@@ -501,16 +316,17 @@ function CodeView() {
             </button>
           </div>
         </div>
-
         <File
           className="min-h-0 flex-1 overflow-auto"
           file={{
             name: file.path,
-            lang: getLanguageFromPath(file.path),
+            lang:
+              languages[file.path.split('.').pop()?.toLowerCase() ?? ''] ??
+              'tsx',
             contents: content,
           }}
           options={{
-            theme: themeName,
+            theme: isDark ? 'pierre-dark' : 'pierre-light',
             themeType: colorMode,
             disableFileHeader: true,
           }}
@@ -528,106 +344,26 @@ function CodeView() {
   );
 }
 
-export interface CodeBlockEditorProps {
-  fileTree: FileTreeItem[];
-  blockTitle?: string;
-  height?: string;
-}
-
-export function buildFileTree(paths: string[]): FileTreeItem[] {
-  const root: { [key: string]: any } = {};
-
-  paths.forEach((path) => {
-    const parts = path.split('/').filter(Boolean);
-    let current = root;
-    let currentPath = '';
-
-    parts.forEach((part, index) => {
-      currentPath = currentPath ? `${currentPath}/${part}` : part;
-      const isFile = index === parts.length - 1;
-
-      if (!current[part]) {
-        current[part] = {
-          name: part,
-          path: currentPath,
-          type: isFile ? 'file' : 'folder',
-          ...(isFile
-            ? { content: `// Content for ${currentPath}` }
-            : { children: {} }),
-        };
-      }
-
-      if (!isFile && current[part].type === 'folder') {
-        current = current[part].children;
-      }
-    });
-  });
-
-  const convertToArray = (obj: any, parentPath = ''): FileTreeItem[] => {
-    return Object.values(obj)
-      .map((node: any) => {
-        if (node.type === 'folder' && node.children) {
-          return {
-            ...node,
-            children: convertToArray(node.children, node.path),
-          };
-        }
-        return node;
-      })
-      .sort((a: FileTreeItem, b: FileTreeItem) => {
-        if (a.type !== b.type) {
-          return a.type === 'folder' ? -1 : 1;
-        }
-
-        return a.name.localeCompare(b.name);
-      });
-  };
-
-  return convertToArray(root);
-}
-
-export function CodeBlockEditor({
-  fileTree,
-  blockTitle,
-  height = '700px',
-}: CodeBlockEditorProps) {
-  if (!fileTree || fileTree.length === 0) {
+export function CodeBlockEditor({ fileTree }: { fileTree: FileTreeItem[] }) {
+  if (fileTree.length === 0) {
     return (
       <div className="rounded-lg border p-4 text-muted-foreground">
         No files to display
       </div>
     );
   }
-
-  const sortedFileTree = React.useMemo(() => {
-    const sortTree = (items: FileTreeItem[]): FileTreeItem[] => {
-      return [...items]
-        .sort((a, b) => {
-          if (a.type !== b.type) {
-            return a.type === 'folder' ? -1 : 1;
-          }
-          return a.name.localeCompare(b.name);
-        })
-        .map((item) => {
-          if (item.type === 'folder' && item.children) {
-            return { ...item, children: sortTree(item.children) };
-          }
-          return item;
-        });
-    };
-    return sortTree(fileTree);
-  }, [fileTree]);
+  const singleFile = fileTree.length === 1 && fileTree[0]?.type === 'file';
 
   return (
-    <CodeBlockEditorProvider blockTitle={blockTitle} fileTree={sortedFileTree}>
-      <div className="flex w-full overflow-hidden" style={{ height }}>
-        <div className="w-[240px] shrink-0 border-r">
+    <EditorProvider fileTree={fileTree}>
+      {singleFile ? null : (
+        <div className="w-[240px] shrink-0">
           <FileTreeView />
         </div>
-        <div className="min-w-0 flex-1">
-          <CodeView />
-        </div>
+      )}
+      <div className="min-w-0 flex-1">
+        <CodeView />
       </div>
-    </CodeBlockEditorProvider>
+    </EditorProvider>
   );
 }

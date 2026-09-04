@@ -1,10 +1,9 @@
 'use client';
 
-import type { SupportedLanguages } from '@pierre/diffs/react';
 import { Fullscreen, Monitor, Smartphone, Tablet } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { type ReactNode, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import type { PanelImperativeHandle } from 'react-resizable-panels';
 import { OpenInPlaygroundButton } from '@/components/open-in-playground-button';
 import { OpenInV0Button } from '@/components/open-in-v0-button';
@@ -27,20 +26,11 @@ interface BlockViewState {
   size: 'desktop' | 'tablet' | 'mobile';
 }
 
-const CODE_BLOCK_REGEX = /`{3,4}(?:[a-zA-Z0-9#+-]+)?\n([\s\S]*?)`{3,4}/;
-const CODE_LANG_REGEX = /^`{3,4}([a-zA-Z0-9#+-]+)\n/;
-
 const sizeItem =
   'h-full w-6.5 min-w-0 rounded-md p-0 text-foreground/60 hover:text-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm dark:aria-pressed:border dark:aria-pressed:border-input dark:aria-pressed:bg-input/30';
 
 const CodeBlockEditor = dynamic(
   () => import('../code-block-editor').then((mod) => mod.CodeBlockEditor),
-  { ssr: false }
-);
-
-const SingleFileCodeView = dynamic(
-  () =>
-    import('../single-file-code-view').then((mod) => mod.SingleFileCodeView),
   { ssr: false }
 );
 
@@ -92,53 +82,19 @@ export const Block = ({
     return () => observer.disconnect();
   };
 
-  const getCleanCode = (rawCode: string | ReactNode): string => {
-    const cleanCode = typeof rawCode === 'string' ? rawCode : '';
-
-    if (cleanCode.startsWith('```')) {
-      const fencedCode = cleanCode.match(CODE_BLOCK_REGEX);
-      if (fencedCode?.[1]) {
-        return fencedCode[1];
-      }
-    }
-
-    return cleanCode;
-  };
-
-  const getCodeLanguage = (rawCode: string | ReactNode): SupportedLanguages => {
-    const cleanCode = typeof rawCode === 'string' ? rawCode : '';
-    const language = cleanCode.match(CODE_LANG_REGEX)?.[1]?.toLowerCase();
-
-    switch (language) {
-      case 'ts':
-      case 'typescript':
-        return 'typescript';
-      case 'tsx':
-        return 'tsx';
-      case 'js':
-      case 'javascript':
-        return 'javascript';
-      case 'jsx':
-        return 'jsx';
-      case 'css':
-        return 'css';
-      case 'html':
-        return 'html';
-      case 'json':
-        return 'json';
-      case 'md':
-      case 'markdown':
-        return 'markdown';
-      default:
-        return 'tsx';
-    }
-  };
-
-  const activeSingleFileCode = {
-    code: getCleanCode(code),
-    language: getCodeLanguage(code),
-    fileName: `${blocksId}.tsx`,
-  };
+  const cleanCode = typeof code === 'string' ? code : '';
+  const fencedCode = cleanCode.startsWith('```')
+    ? cleanCode.match(/`{3,4}(?:[a-zA-Z0-9#+-]+)?\n([\s\S]*?)`{3,4}/)?.[1]
+    : undefined;
+  const singleFileName = `${blocksId}.tsx`;
+  const singleFileTree = [
+    {
+      type: 'file' as const,
+      name: singleFileName,
+      path: singleFileName,
+      content: fencedCode ?? cleanCode,
+    },
+  ];
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as 'preview' | 'code' }));
@@ -310,18 +266,10 @@ export const Block = ({
           </ResizablePanelGroup>
         )}
 
-        {state.view === 'code' && meta?.type === 'file' && (
-          <SingleFileCodeView
-            code={activeSingleFileCode.code}
-            fileName={activeSingleFileCode.fileName}
-            language={activeSingleFileCode.language}
+        {state.view === 'code' && (
+          <CodeBlockEditor
+            fileTree={meta?.type === 'file' ? singleFileTree : (fileTree ?? [])}
           />
-        )}
-
-        {state.view === 'code' && meta?.type === 'directory' && (
-          <div className="overflow-auto rounded-lg md:h-(--height)">
-            <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
-          </div>
         )}
       </div>
     </div>

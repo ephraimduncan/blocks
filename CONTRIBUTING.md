@@ -44,7 +44,6 @@ bun run start            # Start production server
 
 # Registry Management
 bun run generate:registry    # Generate registry.json
-bun run generate:markdown    # Generate MDX documentation
 bun run validate:registry    # Validate registry structure
 
 # Code Quality
@@ -59,7 +58,6 @@ blocks/
 ├── components/             # Shared UI components
 ├── content/
 │   ├── components/         # Block implementations
-│   ├── markdown/           # Generated MDX docs
 │   ├── blocks-metadata.ts  # Block registry metadata
 │   └── blocks-categories.tsx # Category definitions
 ├── lib/                    # Utility functions
@@ -75,11 +73,9 @@ We'd love your block contributions! To keep the library well-organized, we ask t
 
 Existing categories can be found in `content/blocks-categories.tsx`.
 
-1. **Create the component** in `content/components/{category}/{block-id}.tsx`
-2. **Register metadata** in `content/blocks-metadata.ts`
-3. **Map the component** in `content/blocks-components.tsx`
-4. **Export from category** in `content/components/{category}/index.ts`
-5. **Generate registry** with `bun run generate:registry`
+1. **Add the component** to `content/components/{category}/{block-id}.tsx`
+2. **Add the metadata** to `content/blocks-metadata.ts`
+3. **Generate the registry** with `bun run generate:registry`
 
 See [CLAUDE.md](./CLAUDE.md) for detailed development guidelines.
 

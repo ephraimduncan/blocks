@@ -10,5 +10,3 @@ export const siteConfig = {
     github: "https://github.com/ephraimduncan/blocks?utm_source=blocks.so",
   },
 };
-
-export type SiteConfig = typeof siteConfig;

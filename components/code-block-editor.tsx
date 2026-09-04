@@ -259,7 +259,7 @@ function CodeView() {
               {openTabs.map((tab) => (
                 <button
                   className={cn(
-                    'relative flex items-center gap-2 whitespace-nowrap border-transparent border-r border-l px-4 py-2 font-medium text-sm',
+                    'relative flex items-center gap-2 whitespace-nowrap border-transparent border-r border-l px-4 py-2 font-medium text-sm first:border-l-0',
                     tab.path === file.path
                       ? styles.tabActive
                       : cn('border-transparent bg-transparent', styles.tabIdle)

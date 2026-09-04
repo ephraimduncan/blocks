@@ -43,7 +43,7 @@ const Logo = ({ vendor, ...props }: { vendor: string; className?: string }) => {
 };
 
 const thinkDelay = 900;
-const wordDelay = 35;
+const tokenDelay = 40;
 
 export default function Chat03() {
   const [threads, setThreads] = useState(seed);
@@ -71,7 +71,6 @@ export default function Chat03() {
   const stream = (threadId: string, turnId: string) => {
     const reply = replies[replyIndex % replies.length];
     setReplyIndex(replyIndex + 1);
-    const words = reply.text.split(' ');
     patch(threadId, turnId, (t) => ({
       ...t,
       text: '',
@@ -81,25 +80,28 @@ export default function Chat03() {
       streaming: true,
     }));
     let shown = 0;
-    timer.current = window.setInterval(() => {
-      shown += 1;
-      const done = shown >= words.length;
+    const tick = () => {
+      shown = Math.min(
+        reply.text.length,
+        shown + 2 + Math.floor(Math.random() * 5)
+      );
+      const done = shown >= reply.text.length;
       patch(threadId, turnId, (t) => ({
         ...t,
-        text: words.slice(0, shown).join(' '),
+        text: reply.text.slice(0, shown),
         thought: done ? 4 + Math.round(reply.reasoning.length / 40) : t.thought,
         streaming: !done,
       }));
-      if (done && timer.current) {
-        window.clearInterval(timer.current);
-        timer.current = null;
-      }
-    }, wordDelay);
+      timer.current = done
+        ? null
+        : window.setTimeout(tick, tokenDelay * (0.5 + Math.random()));
+    };
+    tick();
   };
 
   const stop = () => {
     if (timer.current) {
-      window.clearInterval(timer.current);
+      window.clearTimeout(timer.current);
       timer.current = null;
     }
     const live = thread?.turns.find((t) => t.streaming);
@@ -116,15 +118,33 @@ export default function Chat03() {
     const text = draft.trim();
     const replyId = crypto.randomUUID();
     const turns: Turn[] = [
-      { id: crypto.randomUUID(), role: 'user', text },
-      { id: replyId, role: 'assistant', text: '', streaming: true },
+      { id: crypto.randomUUID(), role: 'user', text, day: 'today' },
+      {
+        id: replyId,
+        role: 'assistant',
+        text: '',
+        streaming: true,
+        day: 'today',
+      },
     ];
     const id = thread?.id ?? crypto.randomUUID();
     setThreads((prev) =>
       thread
-        ? prev.map((t) =>
-            t.id === id ? { ...t, turns: [...t.turns, ...turns] } : t
-          )
+        ? [
+            {
+              ...thread,
+              updated: 'now',
+              group: 'today',
+              turns: [
+                ...thread.turns.map((t) => ({
+                  ...t,
+                  day: t.day ?? thread.group,
+                })),
+                ...turns,
+              ],
+            },
+            ...prev.filter((t) => t.id !== id),
+          ]
         : [
             {
               id,
@@ -206,6 +226,12 @@ export default function Chat03() {
                 />
               }
             >
+              <Logo
+                className="size-3.5"
+                vendor={
+                  models.find((m) => m.name === model)?.vendor ?? 'openai'
+                }
+              />
               {model}
               <IconChevronDown
                 className="size-3 text-muted-foreground"
@@ -226,12 +252,6 @@ export default function Chat03() {
                     )}
                     key={m.name}
                     onClick={() => setModel(m.name)}
-              <Logo
-                className="size-3.5"
-                vendor={
-                  models.find((m) => m.name === model)?.vendor ?? 'openai'
-                }
-              />
                   >
                     <span className="flex grow flex-col gap-0.5">
                       <span className="flex items-center gap-1.5 font-medium text-[13px]/4">

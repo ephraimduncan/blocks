@@ -10,7 +10,7 @@ import {
   IconThumbDown,
   IconThumbUp,
 } from '@tabler/icons-react';
-import type React from 'react';
+import React, { Fragment } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Collapsible,
@@ -35,6 +35,7 @@ export type Turn = {
   thought?: number;
   streaming?: boolean;
   error?: boolean;
+  day?: Thread['group'];
 };
 
 export type Thread = {
@@ -129,107 +130,50 @@ export function Conversation({
       <MessageScroller className="grow">
         <MessageScrollerViewport>
           <MessageScrollerContent className="mx-auto w-full max-w-160 gap-4.5 px-4 pt-6 pb-4">
-            <div className="flex items-center gap-3">
-              <div className="h-px grow bg-muted" />
-              <span className="font-medium text-[11px] text-muted-foreground/80">
-                Today
-              </span>
-              <div className="h-px grow bg-muted" />
-            </div>
-
-            {thread.turns.map((turn) =>
-              turn.role === 'user' ? (
-                <MessageScrollerItem
-                  className="group/turn flex flex-row-reverse items-center gap-2"
-                  key={turn.id}
-                  messageId={turn.id}
-                >
-                  <div className="max-w-105 rounded-[20px] bg-muted px-4 py-2.5 text-[15px]/5.5">
-                    {turn.text}
-                  </div>
-                  <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity group-focus-within/turn:opacity-100 group-hover/turn:opacity-100">
-                    {action('Edit', <IconPencil stroke={1.8} />, () =>
-                      onEdit(turn)
-                    )}
-                    {action('Copy', <IconCopy stroke={1.8} />, () =>
-                      navigator.clipboard.writeText(turn.text)
-                    )}
-                  </div>
-                </MessageScrollerItem>
-              ) : (
-                <MessageScrollerItem
-                  className={cn(
-                    'flex flex-col gap-2.5',
-                    turn.streaming && enter
+            {thread.turns.map((turn, i) => {
+              const day = turn.day ?? thread.group;
+              const prev = thread.turns[i - 1];
+              const divider = !prev || (prev.day ?? thread.group) !== day;
+              return (
+                <Fragment key={turn.id}>
+                  {divider && (
+                    <div className="flex items-center gap-3">
+                      <div className="h-px grow bg-muted" />
+                      <span className="font-medium text-[11px] text-muted-foreground/80">
+                        {
+                          {
+                            today: 'Today',
+                            yesterday: 'Yesterday',
+                            week: 'This week',
+                          }[day]
+                        }
+                      </span>
+                      <div className="h-px grow bg-muted" />
+                    </div>
                   )}
-                  key={turn.id}
-                  messageId={turn.id}
-                >
-                  {turn.error ? (
-                    <>
-                      <div className="flex items-start gap-3 rounded-xl bg-destructive/5 px-4 py-3.5 ring-1 ring-destructive/15">
-                        <IconAlertCircle
-                          className="mt-px size-4 shrink-0 text-destructive"
-                          stroke={2}
-                        />
-                        <div className="flex flex-col gap-1">
-                          <p className="font-semibold text-destructive text-sm/5">
-                            The response was interrupted
-                          </p>
-                          <p className="text-[13px]/5 text-destructive/80">
-                            The model stopped before finishing. Your message was
-                            not lost. Retry with the same model or switch to a
-                            different one.
-                          </p>
-                        </div>
+                  {turn.role === 'user' ? (
+                    <MessageScrollerItem
+                      className="group/turn flex flex-row-reverse items-center gap-2"
+                      key={turn.id}
+                      messageId={turn.id}
+                    >
+                      <div className="max-w-105 rounded-[20px] bg-muted px-4 py-2.5 text-[15px]/5.5">
+                        {turn.text}
                       </div>
-                      <div className="flex items-center gap-2 pt-0.5">
-                        <Button
-                          className={cn(press, 'text-[13px]')}
-                          onClick={() => onRetry(turn.id)}
-                        >
-                          <IconRefresh className="size-3.5" stroke={2} />
-                          Retry
-                        </Button>
-                        <Button
-                          className={cn(press, 'text-[13px]')}
-                          onClick={() => onRetry(turn.id, altModel)}
-                          variant="outline"
-                        >
-                          Retry with {altModel}
-                        </Button>
+                      <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity group-focus-within/turn:opacity-100 group-hover/turn:opacity-100">
+                        {action('Edit', <IconPencil stroke={1.8} />, () =>
+                          onEdit(turn)
+                        )}
+                        {action('Copy', <IconCopy stroke={1.8} />, () =>
+                          navigator.clipboard.writeText(turn.text)
+                        )}
                       </div>
-                    </>
+                    </MessageScrollerItem>
                   ) : (
-                    <>
-                      <Collapsible className="flex flex-col gap-2">
-                        <CollapsibleTrigger
-                          className={cn(
-                            'group/thought flex w-fit items-center gap-2 rounded-md font-medium text-[13px] text-muted-foreground outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
-                            turn.streaming &&
-                              !turn.text &&
-                              'shimmer text-primary'
-                          )}
-                        >
-                          <IconChevronRight
-                            className="size-3.5 transition-transform group-data-[panel-open]/thought:rotate-90"
-                            stroke={2}
-                          />
-                          {turn.thought
-                            ? `Thought for ${turn.thought}s`
-                            : 'Thinking…'}
-                        </CollapsibleTrigger>
-                        <CollapsibleContent className="border-muted border-l-2 pl-3.5 text-[13px]/5 text-muted-foreground">
-                          {turn.reasoning}
-                        </CollapsibleContent>
-                      </Collapsible>
-                      {turn.text && (
-                        <p className="text-[15px]/6">
-                          {turn.text}
-                          {turn.streaming && (
-                            <span className="ml-0.5 inline-block h-4 w-[3px] translate-y-0.5 animate-pulse bg-foreground align-baseline motion-reduce:animate-none" />
-                          )}
-                        </p>
+                    <MessageScrollerItem
+                      className={cn(
+                        'flex flex-col gap-2.5',
+                        turn.streaming && enter
                       )}
                       {!turn.streaming && (
                         <div className="-ml-1.5 flex items-center gap-0.5">
@@ -244,18 +188,33 @@ export function Conversation({
                             'Bad response',
                             <IconThumbDown stroke={1.8} />
                           )}
-                          {action(
-                            'Regenerate',
-                            <IconRefresh stroke={1.8} />,
-                            () => onRetry(turn.id)
+                          {!turn.streaming && (
+                            <div className="-ml-1.5 flex items-center gap-0.5">
+                              {action('Copy', <IconCopy stroke={1.8} />, () =>
+                                navigator.clipboard.writeText(turn.text)
+                              )}
+                              {action(
+                                'Good response',
+                                <IconThumbUp stroke={1.8} />
+                              )}
+                              {action(
+                                'Bad response',
+                                <IconThumbDown stroke={1.8} />
+                              )}
+                              {action(
+                                'Regenerate',
+                                <IconRefresh stroke={1.8} />,
+                                () => onRetry(turn.id)
+                              )}
+                            </div>
                           )}
-                        </div>
+                        </>
                       )}
-                    </>
+                    </MessageScrollerItem>
                   )}
-                </MessageScrollerItem>
-              )
-            )}
+                </Fragment>
+              );
+            })}
           </MessageScrollerContent>
         </MessageScrollerViewport>
         <MessageScrollerButton

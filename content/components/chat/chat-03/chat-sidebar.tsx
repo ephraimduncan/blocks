@@ -126,9 +126,11 @@ export function ChatSidebar({
                       {renameId === t.id ? (
                         <input
                           aria-label="Thread name"
+                          autoFocus
                           className="h-7 w-full rounded-md border border-primary bg-background px-2 text-[13px] outline-none ring-3 ring-primary/20"
                           onBlur={commitRename}
                           onChange={(e) => setName(e.target.value)}
+                          onFocus={(e) => e.target.select()}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               commitRename();
@@ -137,7 +139,6 @@ export function ChatSidebar({
                               setRenameId(null);
                             }
                           }}
-                          ref={(node) => node?.select()}
                           value={name}
                         />
                       ) : (

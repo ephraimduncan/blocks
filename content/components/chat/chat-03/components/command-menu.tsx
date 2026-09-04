@@ -13,7 +13,7 @@ import {
   CommandShortcut,
 } from '@/components/ui/command';
 import { Kbd } from '@/components/ui/kbd';
-import type { Thread } from './data';
+import type { Thread } from './conversation';
 
 type Props = {
   open: boolean;

@@ -26,7 +26,26 @@ import {
   MessageScrollerViewport,
 } from '@/components/ui/message-scroller';
 import { cn } from '@/lib/utils';
-import type { Thread, Turn } from './data';
+
+export type Turn = {
+  id: string;
+  role: 'user' | 'assistant';
+  text: string;
+  reasoning?: string;
+  thought?: number;
+  streaming?: boolean;
+  error?: boolean;
+};
+
+export type Thread = {
+  id: string;
+  title: string;
+  preview: string;
+  updated: string;
+  group: 'today' | 'yesterday' | 'week';
+  pinned?: boolean;
+  turns: Turn[];
+};
 
 const easeOut = 'ease-[cubic-bezier(0.23,1,0.32,1)]';
 const press = `${easeOut} transition-[scale,background-color] duration-150 active:scale-[0.96] motion-reduce:active:scale-100`;

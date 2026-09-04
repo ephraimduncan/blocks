@@ -44,7 +44,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import { type Thread, user } from './data';
+import type { Thread } from './conversation';
 
 const groups: { key: Thread['group'] | 'pinned'; label: string }[] = [
   { key: 'pinned', label: 'Pinned' },
@@ -56,6 +56,13 @@ const groups: { key: Thread['group'] | 'pinned'; label: string }[] = [
 const item = 'h-8 gap-2.5 rounded-md px-2.5 text-[13px]';
 
 type Props = {
+  user: {
+    name: string;
+    email: string;
+    plan: string;
+    renews: string;
+    avatar: string;
+  };
   threads: Thread[];
   activeId: string | null;
   onSelect: (id: string) => void;
@@ -65,6 +72,7 @@ type Props = {
 };
 
 export function ChatSidebar({
+  user,
   threads,
   activeId,
   onSelect,

@@ -7,7 +7,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { FileTreeItem } from '@/lib/blocks';
 
-
 const projectRoot = process.cwd();
 const componentsDir = path.join(projectRoot, 'content', 'components');
 const outputPath = path.join(projectRoot, 'content', 'blocks-data.ts');
@@ -41,11 +40,11 @@ function readTree(dir: string, base: string = dir): FileTreeItem[] {
     }
   }
   items.sort((a, b) => {
-    if (a.type === 'folder' && b.type === 'file') {
-      return -1;
+    if (a.type !== b.type) {
+      return a.type === 'folder' ? -1 : 1;
     }
-    if (a.type === 'file' && b.type === 'folder') {
-      return 1;
+    if (a.name === 'page.tsx' || b.name === 'page.tsx') {
+      return a.name === 'page.tsx' ? -1 : 1;
     }
     return a.name.localeCompare(b.name);
   });

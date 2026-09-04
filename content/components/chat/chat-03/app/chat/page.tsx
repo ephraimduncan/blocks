@@ -22,11 +22,18 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import { ChatSidebar } from './chat-sidebar';
-import { CommandMenu } from './command-menu';
-import { type Attachment, Composer } from './composer';
-import { Conversation } from './conversation';
-import { models, replies, threads as seed, type Turn } from './data';
+import { ChatSidebar } from '../../components/chat-sidebar';
+import { CommandMenu } from '../../components/command-menu';
+import { type Attachment, Composer } from '../../components/composer';
+import {
+  Conversation,
+  type Thread,
+  type Turn,
+} from '../../components/conversation';
+import data from './data.json' with { type: 'json' };
+
+const { models, replies } = data;
+const seed = data.threads as Thread[];
 
 const thinkDelay = 900;
 const wordDelay = 35;
@@ -176,6 +183,7 @@ export default function Chat03() {
         onSearch={() => setSearch(true)}
         onSelect={setActiveId}
         threads={threads}
+        user={data.user}
       />
       <SidebarInset className="min-h-0 bg-background">
         <header className="flex h-13 shrink-0 items-center gap-2.5 border-b px-4">

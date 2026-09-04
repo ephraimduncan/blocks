@@ -46,7 +46,7 @@ type Item = {
 };
 
 function isSource(name: string) {
-  return /\.[jt]sx?$/.test(name) && !skipPattern.test(name);
+  return /\.([jt]sx?|json)$/.test(name) && !skipPattern.test(name);
 }
 
 async function walk(dir: string): Promise<string[]> {
@@ -81,7 +81,10 @@ function place(file: string, dir: string | undefined, id: string) {
       type: 'registry:component',
       target: `components/${path.basename(file)}`,
     } as const;
-  const relative = path.relative(dir, file).replaceAll('\\', '/');
+  const relative = path
+    .relative(dir, file)
+    .replaceAll('\\', '/')
+    .replace(/^components\//, '');
   const name = path.basename(file);
   const types =
     name === 'types.ts' ||
@@ -100,9 +103,11 @@ function rewrite(code: string, type: File['type'], id: string) {
       ? `@/lib/${id}`
       : `@/components/${id}`;
   return code.replace(
-    /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["'](\.\.\/|\.\/)((?![/]).+)["']/g,
-    (_match, typeWord, imported, _prefix, relative) =>
-      `import ${typeWord ?? ''}${imported} from '${base}/${relative}'`
+    /import\s+(type\s+)?({[^}]+}|\*\s+as\s+\w+|\w+)\s+from\s+["']((?:\.\.?\/)+)(.+?)["']/g,
+    (match, typeWord, imported, prefix, relative) =>
+      type === 'registry:page' && prefix === './'
+        ? match
+        : `import ${typeWord ?? ''}${imported} from '${base}/${relative.replace(/^components\//, '')}'`
   );
 }
 
@@ -138,8 +143,7 @@ for (const category of categories) {
   const entries = (await fs.readdir(dir, { withFileTypes: true }))
     .filter(
       (entry) =>
-        !entry.name.startsWith('.') &&
-        !entry.name.startsWith('index.') &&
+        !(entry.name.startsWith('.') || entry.name.startsWith('index.')) &&
         (entry.isDirectory() || isSource(entry.name))
     )
     .sort((a, b) => a.name.localeCompare(b.name));

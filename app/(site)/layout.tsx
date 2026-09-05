@@ -1,3 +1,4 @@
+import { Agentation } from 'agentation';
 import '@/app/globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
@@ -119,7 +120,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="light" lang="en">
+    <html className="light" lang="en" suppressHydrationWarning>
       <head>
         {process.env.NODE_ENV === 'development' && (
           <Script
@@ -139,6 +140,7 @@ export default function RootLayout({
           <TailwindIndicator />
           <Toaster />
           <SeoJsonLd />
+          {process.env.NODE_ENV === 'development' && <Agentation />}
         </TooltipProvider>
       </body>
     </html>

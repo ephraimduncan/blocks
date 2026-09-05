@@ -15,6 +15,7 @@ import {
   IconFileTypeTsx,
   IconFolder,
   IconFolderOpen,
+  IconX,
 } from '@tabler/icons-react';
 import { ChevronRight } from 'lucide-react';
 import * as React from 'react';
@@ -30,6 +31,7 @@ type EditorContext = {
   activeFile: string | null;
   setActiveFile: (file: string) => void;
   openFiles: string[];
+  closeFile: (file: string) => void;
   fileTree: FileTreeItem[];
   expandedFolders: Set<string>;
   toggleFolder: (path: string) => void;
@@ -75,6 +77,17 @@ function EditorProvider({
     setOpenFiles((old) => (old.includes(path) ? old : [...old, path]));
     setActiveFileState(path);
   }, []);
+  const closeFile = React.useCallback((path: string) => {
+    setOpenFiles((old) => {
+      const next = old.filter((p) => p !== path);
+      setActiveFileState((active) =>
+        active === path
+          ? (next[Math.min(old.indexOf(path), next.length - 1)] ?? null)
+          : active
+      );
+      return next;
+    });
+  }, []);
 
   return (
     <EditorContext.Provider
@@ -82,6 +95,7 @@ function EditorProvider({
         activeFile,
         setActiveFile,
         openFiles,
+        closeFile,
         fileTree,
         expandedFolders,
         toggleFolder,
@@ -204,7 +218,8 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
 }
 
 function CodeView() {
-  const { activeFile, fileTree, openFiles, setActiveFile } = useEditor();
+  const { activeFile, fileTree, openFiles, setActiveFile, closeFile } =
+    useEditor();
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>(() =>
     window.localStorage.getItem(COLOR_MODE_STORAGE_KEY) === 'dark'
       ? 'dark'
@@ -257,21 +272,36 @@ function CodeView() {
           <div className="min-w-0 flex-1 overflow-x-auto">
             <div className="flex min-w-max items-center">
               {openTabs.map((tab) => (
-                <button
+                <div
                   className={cn(
-                    'relative flex items-center gap-2 whitespace-nowrap border-transparent border-r border-l px-4 py-2 font-medium text-sm first:border-l-0',
+                    'group/tab relative flex items-center gap-2 whitespace-nowrap border-transparent border-r border-l py-2 pr-2 pl-4 font-medium text-sm first:border-l-0',
                     tab.path === file.path
                       ? styles.tabActive
                       : cn('border-transparent bg-transparent', styles.tabIdle)
                   )}
                   key={tab.path}
-                  onClick={() => setActiveFile(tab.path)}
-                  title={tab.path}
-                  type="button"
                 >
-                  <IconFileCode className="size-4 text-blue-400" />
-                  <span>{tab.name}</span>
-                </button>
+                  <button
+                    className="flex items-center gap-2 after:absolute after:inset-0"
+                    onClick={() => setActiveFile(tab.path)}
+                    title={tab.path}
+                    type="button"
+                  >
+                    <IconFileCode className="size-4 text-blue-400" />
+                    <span>{tab.name}</span>
+                  </button>
+                  <button
+                    aria-label={`Close ${tab.name}`}
+                    className={cn(
+                      'relative z-10 flex size-5 items-center justify-center rounded opacity-0 transition-opacity hover:bg-black/10 focus-visible:opacity-100 group-hover/tab:opacity-100 dark:hover:bg-white/10',
+                      tab.path === file.path && 'opacity-100'
+                    )}
+                    onClick={() => closeFile(tab.path)}
+                    type="button"
+                  >
+                    <IconX className="size-3.5" />
+                  </button>
+                </div>
               ))}
             </div>
           </div>

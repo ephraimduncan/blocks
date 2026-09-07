@@ -12,7 +12,7 @@ const categories: Omit<BlocksCategoryMetadata, 'count'>[] = [
     id: categoryIds.Dashboard,
     name: 'Dashboard',
     thumbnailCustomClasses:
-      'absolute top-[15%] left-[9%] h-[85%] w-auto max-w-none',
+      'absolute top-[14%] left-[14%] h-[88.5%] w-auto max-w-none',
   },
   {
     id: categoryIds.Dialogs,

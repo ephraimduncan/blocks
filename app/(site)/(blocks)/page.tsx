@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { BreadcrumbJsonLd } from '@/components/breadcrumb-jsonld';
 import { blocksCategoriesMetadata } from '@/content/blocks-categories';
 
-
 export default function Home() {
   return (
     <>
@@ -38,7 +37,7 @@ export default function Home() {
           {blocksCategoriesMetadata.map((block) => (
             <Link href={`/${block.id}`} key={`${block.id}-${block.name}`}>
               <div className="group space-y-3">
-                <div className="grid aspect-square w-full place-items-center rounded-2xl bg-zinc-50 ring-1 ring-black/5 transition-shadow duration-200 group-hover:shadow-lg group-hover:shadow-zinc-200/50 group-hover:ring-black/10">
+                <div className="relative grid aspect-square w-full place-items-center overflow-hidden rounded-2xl bg-zinc-50 ring-1 ring-black/5 transition-shadow duration-200 group-hover:shadow-lg group-hover:shadow-zinc-200/50 group-hover:ring-black/10">
                   <img
                     alt={`${block.name} - Free shadcn/ui ${block.name.toLowerCase()} blocks and components`}
                     className={block.thumbnailCustomClasses}

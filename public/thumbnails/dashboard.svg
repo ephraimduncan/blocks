@@ -1,6 +1,5 @@
-<svg width="331" height="277" viewBox="0 0 331 277" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#dash_clip)">
-<rect width="331" height="277" rx="14" fill="#F4F4F4"/>
+<svg width="415" height="280" viewBox="0 0 415 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(-30.33 -32.15)">
 <rect x="30.83" y="32.65" width="414" height="279" rx="13.5" fill="#EFEFEF" stroke="#DFDFDF"/>
 <g filter="url(#dash_shadow)">
 <rect x="35.33" y="37.15" width="143" height="270" rx="8.635" fill="white"/>
@@ -45,9 +44,6 @@
 </g>
 </g>
 <defs>
-<clipPath id="dash_clip">
-<rect width="331" height="277" rx="14"/>
-</clipPath>
 <filter id="dash_shadow" x="20" y="20" width="200" height="300" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="bg"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>

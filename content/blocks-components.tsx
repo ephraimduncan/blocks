@@ -9,6 +9,7 @@ const entries: Record<string, string> = {
   'sidebar-05': '/app/page',
   'sidebar-06': '/app/page',
   'chat-03': '/app/chat/page',
+  'dashboard-01': '/app/page',
 };
 
 export const blocksComponents: Record<string, ComponentType> =

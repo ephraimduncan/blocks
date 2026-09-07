@@ -9,6 +9,11 @@ const categories: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnailCustomClasses: "w-9/12",
   },
   {
+    id: categoryIds.Dashboard,
+    name: "Dashboard",
+    thumbnailCustomClasses: "w-11/12",
+  },
+  {
     id: categoryIds.Dialogs,
     name: "Dialogs",
     thumbnailCustomClasses: "w-9/12",

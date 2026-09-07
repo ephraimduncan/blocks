@@ -107,22 +107,13 @@ export const Block = ({
         size: value as 'desktop' | 'tablet' | 'mobile',
       }));
 
-      if (resizablePanelRef?.current) {
-        switch (value) {
-          case 'desktop':
-            resizablePanelRef.current.resize('100%');
-            break;
-          case 'tablet':
-            resizablePanelRef.current.resize('60%');
-            break;
-          case 'mobile':
-            resizablePanelRef.current.resize('30%');
-            break;
-          default:
-            resizablePanelRef.current.resize('100%');
-            break;
-        }
+      let size = 100;
+      if (value === 'tablet') {
+        size = 60;
+      } else if (value === 'mobile') {
+        size = 30;
       }
+      resizablePanelRef.current?.resize(`${size}%`);
     }
   };
 

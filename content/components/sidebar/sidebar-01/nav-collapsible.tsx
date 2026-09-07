@@ -63,66 +63,42 @@ export function NavCollapsible({
         </Collapsible>
       )}
 
-      {teams && teams.length > 0 && (
-        <Collapsible className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel
-              className="text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-              render={<CollapsibleTrigger />}
-            >
-              Teams
-              <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {teams.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <SidebarMenuItem key={item.id}>
-                        <SidebarMenuButton>
-                          <Icon className="mr-2 h-4 w-4" />
-                          {item.title}
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    );
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-      )}
-
-      {topics && topics.length > 0 && (
-        <Collapsible className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel
-              className="text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-              render={<CollapsibleTrigger />}
-            >
-              Topics
-              <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {topics.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <SidebarMenuItem key={item.id}>
-                        <SidebarMenuButton>
-                          <Icon className="mr-2 h-4 w-4" />
-                          {item.title}
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    );
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+      {[
+        { label: 'Teams', items: teams },
+        { label: 'Topics', items: topics },
+      ].map(
+        ({ label, items }) =>
+          items &&
+          items.length > 0 && (
+            <Collapsible className="group/collapsible" key={label}>
+              <SidebarGroup>
+                <SidebarGroupLabel
+                  className="text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  render={<CollapsibleTrigger />}
+                >
+                  {label}
+                  <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
+                </SidebarGroupLabel>
+                <CollapsibleContent>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {items.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <SidebarMenuItem key={item.id}>
+                            <SidebarMenuButton>
+                              <Icon className="mr-2 h-4 w-4" />
+                              {item.title}
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        );
+                      })}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
+          )
       )}
     </div>
   );

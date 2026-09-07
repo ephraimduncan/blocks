@@ -32,7 +32,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
 export default function Dialog10() {
-  const [open, setOpen] = useState(true);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [startTime, setStartTime] = useState('09:00');
 
@@ -56,9 +55,8 @@ export default function Dialog10() {
 
     return options;
   }, []);
-
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog defaultOpen>
       <DialogTrigger render={<Button />}>Show dialog</DialogTrigger>
       <DialogContent className="gap-0 p-0 sm:max-w-lg">
         <DialogHeader className="border-b px-6 py-4 pt-5">

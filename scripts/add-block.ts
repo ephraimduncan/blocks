@@ -78,13 +78,16 @@ function toPascalCase(str: string): string {
     .join('');
 }
 
-function createFileTypeBlock(newBlockArgs: BlockArgs) {
-  const { category, id, name } = newBlockArgs;
+function createBlock(newBlockArgs: BlockArgs) {
+  const { category, id, name, type } = newBlockArgs;
   const componentName = toPascalCase(id);
-  const componentPath = join(
-    process.cwd(),
-    `content/components/${category}/${id}.tsx`
-  );
+  const blockPath = join(process.cwd(), `content/components/${category}/${id}`);
+  const componentPath =
+    type === 'file' ? `${blockPath}.tsx` : join(blockPath, 'index.tsx');
+
+  if (type === 'directory') {
+    mkdirSync(blockPath, { recursive: true });
+  }
 
   // Create basic component template
   const componentContent = `import { Button } from "@/components/ui/button";
@@ -118,51 +121,11 @@ export default function ${componentName}() {
 `;
 
   writeFileSync(componentPath, componentContent);
-  writeLine(`✓ Created ${componentPath}`);
-}
-
-function createDirectoryTypeBlock(newBlockArgs: BlockArgs) {
-  const { category, id, name } = newBlockArgs;
-  const componentName = toPascalCase(id);
-  const blockDir = join(process.cwd(), `content/components/${category}/${id}`);
-
-  // Create directory
-  mkdirSync(blockDir, { recursive: true });
-
-  // Create main index.tsx
-  const indexPath = join(blockDir, 'index.tsx');
-  const indexContent = `import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-export default function ${componentName}() {
-  return (
-    <div className="flex items-center justify-center p-10">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>${name}</CardTitle>
-          <CardDescription>
-            This is a placeholder component. Update with your implementation.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button className="w-full">
-            Example Button
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+  writeLine(
+    type === 'file'
+      ? `✓ Created ${componentPath}`
+      : `✓ Created ${blockPath}/ with index.tsx`
   );
-}
-`;
-
-  writeFileSync(indexPath, indexContent);
-  writeLine(`✓ Created ${blockDir}/ with index.tsx`);
 }
 
 const blockArgs = parseArgs();
@@ -173,11 +136,7 @@ writeLine(
 
 try {
   // 1. Create component files
-  if (blockArgs.type === 'file') {
-    createFileTypeBlock(blockArgs);
-  } else {
-    createDirectoryTypeBlock(blockArgs);
-  }
+  createBlock(blockArgs);
 
   // 2. Update blocks-metadata.ts
   const metadataPath = join(process.cwd(), 'content/blocks-metadata.ts');

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -15,10 +14,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export default function Dialog03() {
-  const [isOpen, setIsOpen] = useState(true);
-
   return (
-    <Dialog onOpenChange={setIsOpen} open={isOpen}>
+    <Dialog defaultOpen>
       <div className="flex items-center justify-center py-36">
         <DialogTrigger render={<Button />}>Edit Profile</DialogTrigger>
       </div>

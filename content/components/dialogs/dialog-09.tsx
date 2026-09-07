@@ -22,7 +22,6 @@ import {
 import { cn } from '@/lib/utils';
 
 export default function Dialog09() {
-  const [open, setOpen] = useState<boolean>(true);
   const [copied, setCopied] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,7 +34,7 @@ export default function Dialog09() {
   };
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog defaultOpen>
       <DialogTrigger render={<Button />}>
         <Share2 className="mr-2 h-4 w-4" />
         Share

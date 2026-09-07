@@ -1,0 +1,337 @@
+'use client';
+
+import { format, parseISO } from 'date-fns';
+import {
+  Area,
+  CartesianGrid,
+  ComposedChart,
+  Line,
+  XAxis,
+  YAxis,
+} from 'recharts';
+import {
+  type ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart';
+import { cn } from '@/lib/utils';
+
+const swap =
+  'ease-[cubic-bezier(0.23,1,0.32,1)] fade-in zoom-in-95 motion-reduce:zoom-in-100 animate-in duration-150';
+
+export function DashboardCharts({
+  period,
+  from,
+  to,
+}: {
+  period: 'day' | 'week' | 'month' | 'year';
+  from: string;
+  to: string;
+}) {
+  const hourly = from === to;
+  const start = days.findIndex((day) => day.date >= from);
+  const current = days.filter((day) => day.date >= from && day.date <= to);
+  const prior = days.slice(start - current.length, start);
+  const data = hourly
+    ? hours(current[0], prior[0])
+    : current.map((day, index) => ({
+        date: day.date,
+        revenue: day.revenue,
+        priorRevenue: prior[index]?.revenue ?? 0,
+        charges: day.charges,
+        priorCharges: prior[index]?.charges ?? 0,
+      }));
+  const tickStep = Math.max(1, Math.ceil(data.length / 7));
+  const ticks = data
+    .filter((_, index) => index % tickStep === 0)
+    .map((row) => row.date);
+  const tickFormat = hourly ? 'ha' : data.length > 90 ? 'MMM' : 'd MMM';
+  const labelFormat = hourly ? 'EEE, d MMM, ha' : 'EEE, d MMM yyyy';
+
+  return (
+    <div className="@container/charts border-b">
+      <div className="grid @4xl/charts:grid-cols-2">
+        {panels.map((panel) => {
+          const total = data.reduce((sum, row) => sum + row[panel.current], 0);
+          const previous = data.reduce(
+            (sum, row) => sum + row[panel.previous],
+            0
+          );
+          const change = previous ? ((total - previous) / previous) * 100 : 0;
+          const config = {
+            [panel.current]: {
+              label: `This ${period}`,
+              color: 'var(--chart-1)',
+            },
+            [panel.previous]: {
+              label: `Last ${period}`,
+              color: 'var(--chart-2)',
+            },
+          } satisfies ChartConfig;
+
+          return (
+            <section
+              aria-labelledby={`${panel.id}-title`}
+              className="@container/panel flex min-h-100 min-w-0 flex-col gap-7 border-t @4xl/charts:border-t-0 @4xl/charts:not-first:border-l p-4 py-7 first:border-t-0 sm:px-7"
+              id={panel.id}
+              key={panel.id}
+            >
+              <div className="relative flex flex-col gap-2">
+                <h2
+                  className="text-[0.9375rem] text-muted-foreground"
+                  id={`${panel.id}-title`}
+                >
+                  {panel.title}
+                </h2>
+                <div className="flex flex-wrap items-baseline gap-2.5">
+                  <p className="font-semibold text-[1.75rem] tabular-nums tracking-tight">
+                    {panel.currency ? '$' : ''}
+                    {total.toLocaleString('en-US')}
+                  </p>
+                  <p
+                    className={cn(
+                      'font-medium text-[0.8125rem] tabular-nums',
+                      change < 0
+                        ? 'text-red-600 dark:text-red-400'
+                        : 'text-green-600 dark:text-green-400'
+                    )}
+                  >
+                    {change > 0 ? '+' : ''}
+                    {change.toFixed(1)}%
+                  </p>
+                  <p className="text-[0.8125rem] text-muted-foreground">
+                    vs. last {period}
+                  </p>
+                </div>
+                <div className="@lg/panel:absolute @lg/panel:top-1 @lg/panel:right-0 flex items-center gap-4 text-[0.8125rem]">
+                  <div className="flex items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="h-0.75 w-2.5 rounded-full bg-chart-1"
+                    />
+                    This {period}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="h-0.75 w-2.5 rounded-full bg-chart-2"
+                    />
+                    Last {period}
+                  </div>
+                </div>
+              </div>
+              {data.length ? (
+                <ChartContainer
+                  className={cn(swap, 'aspect-auto h-63 w-full')}
+                  config={config}
+                  key={`${from}-${to}`}
+                >
+                  <ComposedChart
+                    accessibilityLayer
+                    data={data}
+                    margin={{ top: 8, right: 8, bottom: 0, left: 0 }}
+                  >
+                    <CartesianGrid
+                      stroke="var(--border)"
+                      strokeDasharray="3 4"
+                      vertical={false}
+                    />
+                    <XAxis
+                      axisLine={false}
+                      dataKey="date"
+                      height={40}
+                      minTickGap={24}
+                      tickFormatter={(date: string) =>
+                        format(parseISO(date), tickFormat)
+                      }
+                      tickLine={false}
+                      tickMargin={16}
+                      ticks={ticks}
+                    />
+                    <YAxis
+                      axisLine={false}
+                      domain={[0, 'auto']}
+                      tickCount={4}
+                      tickFormatter={(value: number) =>
+                        `${panel.currency ? '$' : ''}${value >= 1000 ? `${value / 1000}k` : value}`
+                      }
+                      tickLine={false}
+                      tickMargin={8}
+                      width={48}
+                    />
+                    <ChartTooltip
+                      content={
+                        <ChartTooltipContent
+                          className="w-47.5 rounded-[10px] bg-popover px-3 py-2.5"
+                          formatter={(value, name) => (
+                            <div className="flex w-full items-center gap-2">
+                              <span
+                                aria-hidden="true"
+                                className={cn(
+                                  'size-2 shrink-0 rounded-xs',
+                                  name === panel.current
+                                    ? 'bg-chart-1'
+                                    : 'bg-chart-2'
+                                )}
+                              />
+                              <span className="flex-1 text-muted-foreground">
+                                {name === panel.current
+                                  ? `This ${period}`
+                                  : `Last ${period}`}
+                              </span>
+                              <span className="font-medium text-foreground tabular-nums">
+                                {panel.currency ? '$' : ''}
+                                {Number(value).toLocaleString('en-US')}
+                              </span>
+                            </div>
+                          )}
+                          labelClassName="font-normal text-muted-foreground"
+                          labelFormatter={(label) =>
+                            typeof label === 'string'
+                              ? format(parseISO(label), labelFormat)
+                              : label
+                          }
+                        />
+                      }
+                      cursor={{
+                        stroke: 'var(--chart-1)',
+                        strokeDasharray: '3 3',
+                      }}
+                    />
+                    <Area
+                      activeDot={false}
+                      dataKey={panel.current}
+                      fill="var(--chart-1)"
+                      fillOpacity={0.1}
+                      isAnimationActive={false}
+                      stroke="none"
+                      tooltipType="none"
+                      type="linear"
+                    />
+                    <Line
+                      activeDot={{
+                        r: 5,
+                        fill: 'var(--chart-1)',
+                        stroke: 'var(--background)',
+                        strokeWidth: 2,
+                      }}
+                      dataKey={panel.current}
+                      dot={data.length === 1}
+                      isAnimationActive={false}
+                      stroke="var(--chart-1)"
+                      strokeWidth={2.5}
+                      type="linear"
+                    />
+                    <Line
+                      activeDot={{
+                        r: 4,
+                        fill: 'var(--chart-2)',
+                        stroke: 'var(--background)',
+                        strokeWidth: 2,
+                      }}
+                      dataKey={panel.previous}
+                      dot={data.length === 1}
+                      isAnimationActive={false}
+                      stroke="var(--chart-2)"
+                      strokeWidth={2}
+                      type="linear"
+                    />
+                  </ComposedChart>
+                </ChartContainer>
+              ) : (
+                <p className="flex flex-1 items-center justify-center text-muted-foreground text-sm">
+                  No data for this date range.
+                </p>
+              )}
+            </section>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+const panels = [
+  {
+    id: 'revenue',
+    title: 'Revenue',
+    current: 'revenue',
+    previous: 'priorRevenue',
+    currency: true,
+  },
+  {
+    id: 'charges',
+    title: 'Charges',
+    current: 'charges',
+    previous: 'priorCharges',
+    currency: false,
+  },
+] as const;
+
+type Day = { date: string; revenue: number; charges: number };
+
+// Seeded LCG so every render draws the same two years of demo data.
+let seed = 20_251_116;
+const random = () => {
+  seed = (Math.imul(seed, 1_664_525) + 1_013_904_223) >>> 0;
+  return seed / 2 ** 32;
+};
+
+const days: Day[] = Array.from({ length: 731 }, (_, index) => {
+  const date = new Date(Date.UTC(2023, 10, 17 + index));
+  const growth = 1 + index / 731;
+  const weekend = date.getUTCDay() % 6 === 0 ? 0.62 : 1;
+  const season =
+    1 + 0.12 * Math.sin(((date.getUTCMonth() - 3) / 12) * Math.PI * 2);
+  const spike = random() < 0.04 ? 1.6 : 1;
+  const revenue = Math.round(
+    3400 * growth * weekend * season * spike * (0.82 + random() * 0.36)
+  );
+  return {
+    date: date.toISOString().slice(0, 10),
+    revenue,
+    charges: Math.round((revenue / 13.5) * (0.9 + random() * 0.2)),
+  };
+});
+
+const activity = [
+  0.54, 0.46, 0.38, 0.35, 0.41, 0.58, 0.74, 0.97, 1.12, 1.38, 1.21, 1.53, 1.29,
+  1.41, 1.67, 1.48, 1.31, 1.58, 1.36, 1.19, 1.04, 0.86, 0.72, 0.63,
+];
+
+// Split a day's totals across 24 hours. Noise is keyed on the date so the
+// same day always draws the same curve, and the hourly shares sum to the day.
+function hours(day: Day | undefined, previous: Day | undefined) {
+  if (!(day && previous)) {
+    return [];
+  }
+  const weights = [day, previous].map((row) => {
+    const key = Number(row.date.replaceAll('-', ''));
+    const noisy = activity.map(
+      (weight, hour) =>
+        weight * (0.8 + 0.4 * ((Math.sin(key + hour * 7.31) + 1) / 2))
+    );
+    const total = noisy.reduce((sum, weight) => sum + weight, 0);
+    return noisy.map((weight) => weight / total);
+  });
+  let share = 0;
+  let priorShare = 0;
+  return activity.map((_, hour) => {
+    const from = share;
+    const priorFrom = priorShare;
+    share += weights[0][hour];
+    priorShare += weights[1][hour];
+    return {
+      date: `${day.date}T${String(hour).padStart(2, '0')}:00:00`,
+      revenue: Math.round(day.revenue * share) - Math.round(day.revenue * from),
+      priorRevenue:
+        Math.round(previous.revenue * priorShare) -
+        Math.round(previous.revenue * priorFrom),
+      charges: Math.round(day.charges * share) - Math.round(day.charges * from),
+      priorCharges:
+        Math.round(previous.charges * priorShare) -
+        Math.round(previous.charges * priorFrom),
+    };
+  });
+}

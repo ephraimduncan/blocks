@@ -22,6 +22,7 @@ export const categoryIds: { [key: string]: string } = {
   Dialogs: "dialogs",
   Sidebar: "sidebar",
   CommandMenu: "command-menu",
+  Dashboard: "dashboard",
 
   AI: "ai",
   Tables: "tables",

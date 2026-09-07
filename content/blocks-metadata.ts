@@ -423,6 +423,14 @@ export const blocksMetadata: BlocksMetadata[] = [
   },
 
   {
+    id: 'dashboard-01',
+    category: categoryIds.Dashboard,
+    name: 'Dashboard with Revenue and Customers',
+    iframeHeight: '1340px',
+    type: 'directory',
+  },
+
+  {
     id: 'ai-01',
     category: categoryIds.AI,
     name: 'AI Chat with Voice Input',

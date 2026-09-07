@@ -11,7 +11,7 @@ const categories: Omit<BlocksCategoryMetadata, 'count'>[] = [
   {
     id: categoryIds.Dashboard,
     name: 'Dashboard',
-    thumbnailCustomClasses: 'w-11/12 self-end justify-self-end',
+    thumbnailCustomClasses: 'w-11/12',
   },
   {
     id: categoryIds.Dialogs,

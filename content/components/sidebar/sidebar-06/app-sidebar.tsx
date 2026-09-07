@@ -89,7 +89,6 @@ interface SidebarItem {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   badge?: string;
-  hasSubItems?: boolean;
   route?: string;
   subItems?: {
     id: string;
@@ -104,7 +103,6 @@ const sidebarItems: SidebarItem[] = [
     id: 'overview',
     label: 'Overview',
     icon: IconHome,
-    hasSubItems: true,
     subItems: [
       {
         id: 'dashboard',
@@ -131,7 +129,6 @@ const sidebarItems: SidebarItem[] = [
     label: 'Repositories',
     icon: IconFolders,
     badge: '12',
-    hasSubItems: true,
     subItems: [
       {
         id: 'all-repos',
@@ -158,7 +155,6 @@ const sidebarItems: SidebarItem[] = [
     label: 'Pull Requests',
     icon: IconGitPullRequest,
     badge: '3',
-    hasSubItems: true,
     subItems: [
       {
         id: 'open-prs',
@@ -185,7 +181,6 @@ const sidebarItems: SidebarItem[] = [
     label: 'Issues',
     icon: IconBug,
     badge: '7',
-    hasSubItems: true,
     subItems: [
       {
         id: 'open-issues',
@@ -211,7 +206,6 @@ const sidebarItems: SidebarItem[] = [
     id: 'actions',
     label: 'Actions',
     icon: IconBackground,
-    hasSubItems: true,
     subItems: [
       {
         id: 'workflows',
@@ -237,7 +231,6 @@ const sidebarItems: SidebarItem[] = [
     id: 'packages',
     label: 'Packages',
     icon: IconPackages,
-    hasSubItems: true,
     subItems: [
       {
         id: 'published',
@@ -264,7 +257,6 @@ const sidebarItems: SidebarItem[] = [
     label: 'Security',
     icon: IconLockPassword,
     badge: '2',
-    hasSubItems: true,
     subItems: [
       {
         id: 'alerts',
@@ -290,7 +282,6 @@ const sidebarItems: SidebarItem[] = [
     id: 'settings',
     label: 'Settings',
     icon: IconSettings,
-    hasSubItems: true,
     subItems: [
       {
         id: 'profile',
@@ -322,7 +313,6 @@ const sidebarItems: SidebarItem[] = [
     id: 'docs',
     label: 'Documentation',
     icon: IconFileText,
-    hasSubItems: false,
     route: '/docs',
   },
 ];
@@ -334,7 +324,7 @@ export function AppSidebar() {
   const activeItemData = sidebarItems.find((item) => item.id === activeItem);
 
   const handleItemClick = (item: SidebarItem) => {
-    if (item.hasSubItems) {
+    if (item.subItems) {
       setActiveItem(item.id);
       setSelectedSubItem(null);
     } else {
@@ -436,16 +426,16 @@ export function AppSidebar() {
                               <span className="truncate">{item.label}</span>
                             </div>
                             <div className="ml-auto flex min-w-fit shrink-0 items-center gap-1">
-                              {(item.badge || item.hasSubItems) &&
+                              {(item.badge || item.subItems) &&
                                 (item.badge ? (
                                   <SidebarMenuBadge
                                     className={cn(
                                       'min-w-fit',
-                                      item.hasSubItems && 'gap-x-3'
+                                      item.subItems && 'gap-x-3'
                                     )}
                                   >
                                     {item.badge}
-                                    {item.hasSubItems && chevronIndicator}
+                                    {item.subItems && chevronIndicator}
                                   </SidebarMenuBadge>
                                 ) : (
                                   chevronIndicator

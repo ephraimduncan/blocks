@@ -91,19 +91,7 @@ export function Onboarding07() {
   }, [startAnimation]);
 
   const handleRunAgain = () => {
-    setSteps(
-      initialSteps.map((step) =>
-        step.id === 3
-          ? {
-              ...step,
-              value: 45,
-              type: 'in progress' as const,
-              createdOn: null,
-              runTime: null,
-            }
-          : step
-      )
-    );
+    setSteps(initialSteps);
     startAnimation();
   };
 

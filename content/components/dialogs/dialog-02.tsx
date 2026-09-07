@@ -1,7 +1,6 @@
 'use client';
 
 import { Check } from 'lucide-react';
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -15,10 +14,8 @@ import {
 } from '@/components/ui/dialog';
 
 export default function Dialog04() {
-  const [open, setOpen] = useState(true);
-
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog defaultOpen>
       <DialogTrigger render={<Button variant="outline" />}>
         Show Dialog
       </DialogTrigger>

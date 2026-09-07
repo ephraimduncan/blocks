@@ -1,7 +1,6 @@
 'use client';
 
 import { AppWindowIcon as Apps } from 'lucide-react';
-import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -23,10 +22,8 @@ import {
 import { Separator } from '@/components/ui/separator';
 
 export default function Dialog11() {
-  const [open, setOpen] = useState(true);
-
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog defaultOpen>
       <DialogTrigger render={<Button />}>Initialize New Project</DialogTrigger>
       <DialogContent className="gap-0 overflow-visible p-0 sm:max-w-2xl">
         <DialogHeader className="mb-0 border-b px-6 py-4">

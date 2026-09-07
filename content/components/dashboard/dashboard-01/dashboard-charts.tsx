@@ -9,7 +9,6 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { Badge } from '@/components/ui/badge';
 import {
   type ChartConfig,
   ChartContainer,
@@ -17,6 +16,9 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 import { cn } from '@/lib/utils';
+
+const swap =
+  'ease-[cubic-bezier(0.23,1,0.32,1)] fade-in zoom-in-95 motion-reduce:zoom-in-100 animate-in duration-150';
 
 export function DashboardCharts({
   period,
@@ -27,14 +29,25 @@ export function DashboardCharts({
   from: string;
   to: string;
 }) {
-  const data = samples.filter(
-    (row) => row.date.slice(0, 10) >= from && row.date.slice(0, 10) <= to
-  );
+  const hourly = from === to;
+  const start = days.findIndex((day) => day.date >= from);
+  const current = days.filter((day) => day.date >= from && day.date <= to);
+  const prior = days.slice(start - current.length, start);
+  const data = hourly
+    ? hours(current[0], prior[0])
+    : current.map((day, index) => ({
+        date: day.date,
+        revenue: day.revenue,
+        priorRevenue: prior[index]?.revenue ?? 0,
+        charges: day.charges,
+        priorCharges: prior[index]?.charges ?? 0,
+      }));
   const tickStep = Math.max(1, Math.ceil(data.length / 7));
   const ticks = data
     .filter((_, index) => index % tickStep === 0)
     .map((row) => row.date);
-  const tickFormat = from === to ? 'ha' : 'd MMM';
+  const tickFormat = hourly ? 'ha' : data.length > 90 ? 'MMM' : 'd MMM';
+  const labelFormat = hourly ? 'EEE, d MMM, ha' : 'EEE, d MMM yyyy';
 
   return (
     <div className="@container/charts border-b">
@@ -71,23 +84,22 @@ export function DashboardCharts({
                 >
                   {panel.title}
                 </h2>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-baseline gap-2.5">
                   <p className="font-semibold text-[1.75rem] tabular-nums tracking-tight">
                     {panel.currency ? '$' : ''}
                     {total.toLocaleString('en-US')}
                   </p>
-                  <Badge
+                  <p
                     className={cn(
-                      'rounded-full border-0 px-2 tabular-nums',
+                      'font-medium text-[0.8125rem] tabular-nums',
                       change < 0
-                        ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400'
-                        : 'bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400'
+                        ? 'text-red-600 dark:text-red-400'
+                        : 'text-green-600 dark:text-green-400'
                     )}
-                    variant="secondary"
                   >
                     {change > 0 ? '+' : ''}
                     {change.toFixed(1)}%
-                  </Badge>
+                  </p>
                   <p className="text-[0.8125rem] text-muted-foreground">
                     vs. last {period}
                   </p>
@@ -111,8 +123,9 @@ export function DashboardCharts({
               </div>
               {data.length ? (
                 <ChartContainer
-                  className="aspect-auto h-63 w-full"
+                  className={cn(swap, 'aspect-auto h-63 w-full')}
                   config={config}
+                  key={`${from}-${to}`}
                 >
                   <ComposedChart
                     accessibilityLayer
@@ -176,7 +189,7 @@ export function DashboardCharts({
                           labelClassName="font-normal text-muted-foreground"
                           labelFormatter={(label) =>
                             typeof label === 'string'
-                              ? format(parseISO(label), 'EEE, d MMM, ha')
+                              ? format(parseISO(label), labelFormat)
                               : label
                           }
                         />
@@ -256,151 +269,69 @@ const panels = [
   },
 ] as const;
 
-const dailyTotals = [
-  {
-    date: '2025-11-03',
-    revenue: 4890,
-    priorRevenue: 4710,
-    charges: 335,
-    priorCharges: 315,
-  },
-  {
-    date: '2025-11-04',
-    revenue: 6210,
-    priorRevenue: 5900,
-    charges: 410,
-    priorCharges: 390,
-  },
-  {
-    date: '2025-11-05',
-    revenue: 5620,
-    priorRevenue: 5300,
-    charges: 365,
-    priorCharges: 320,
-  },
-  {
-    date: '2025-11-06',
-    revenue: 7670,
-    priorRevenue: 7250,
-    charges: 285,
-    priorCharges: 270,
-  },
-  {
-    date: '2025-11-07',
-    revenue: 6820,
-    priorRevenue: 6510,
-    charges: 480,
-    priorCharges: 460,
-  },
-  {
-    date: '2025-11-08',
-    revenue: 5840,
-    priorRevenue: 5560,
-    charges: 601,
-    priorCharges: 570,
-  },
-  {
-    date: '2025-11-09',
-    revenue: 7232,
-    priorRevenue: 6900,
-    charges: 650,
-    priorCharges: 610,
-  },
-  {
-    date: '2025-11-10',
-    revenue: 5260,
-    priorRevenue: 4890,
-    charges: 370,
-    priorCharges: 335,
-  },
-  {
-    date: '2025-11-11',
-    revenue: 6480,
-    priorRevenue: 6210,
-    charges: 475,
-    priorCharges: 410,
-  },
-  {
-    date: '2025-11-12',
-    revenue: 8140,
-    priorRevenue: 5620,
-    charges: 390,
-    priorCharges: 365,
-  },
-  {
-    date: '2025-11-13',
-    revenue: 5890,
-    priorRevenue: 7670,
-    charges: 315,
-    priorCharges: 285,
-  },
-  {
-    date: '2025-11-14',
-    revenue: 7010,
-    priorRevenue: 6820,
-    charges: 552,
-    priorCharges: 480,
-  },
-  {
-    date: '2025-11-15',
-    revenue: 4320,
-    priorRevenue: 5840,
-    charges: 650,
-    priorCharges: 601,
-  },
-  {
-    date: '2025-11-16',
-    revenue: 5810,
-    priorRevenue: 7232,
-    charges: 730,
-    priorCharges: 650,
-  },
-];
+type Day = { date: string; revenue: number; charges: number };
+
+// Seeded LCG so every render draws the same two years of demo data.
+let seed = 20_251_116;
+const random = () => {
+  seed = (Math.imul(seed, 1_664_525) + 1_013_904_223) >>> 0;
+  return seed / 2 ** 32;
+};
+
+const days: Day[] = Array.from({ length: 731 }, (_, index) => {
+  const date = new Date(Date.UTC(2023, 10, 17 + index));
+  const growth = 1 + index / 731;
+  const weekend = date.getUTCDay() % 6 === 0 ? 0.62 : 1;
+  const season =
+    1 + 0.12 * Math.sin(((date.getUTCMonth() - 3) / 12) * Math.PI * 2);
+  const spike = random() < 0.04 ? 1.6 : 1;
+  const revenue = Math.round(
+    3400 * growth * weekend * season * spike * (0.82 + random() * 0.36)
+  );
+  return {
+    date: date.toISOString().slice(0, 10),
+    revenue,
+    charges: Math.round((revenue / 13.5) * (0.9 + random() * 0.2)),
+  };
+});
 
 const activity = [
   0.54, 0.46, 0.38, 0.35, 0.41, 0.58, 0.74, 0.97, 1.12, 1.38, 1.21, 1.53, 1.29,
   1.41, 1.67, 1.48, 1.31, 1.58, 1.36, 1.19, 1.04, 0.86, 0.72, 0.63,
 ];
-const variation = [
-  1.08, 0.82, 1.16, 0.94, 1.28, 0.76, 1.02, 1.19, 0.88, 1.12, 0.91, 1.24, 0.84,
-  1.06, 0.97, 1.31, 0.79,
-];
 
-// Hourly demo activity preserves each day's totals in both comparison series.
-const samples = dailyTotals.flatMap((day, index) => {
-  const weights = activity.map(
-    (weight, hour) =>
-      weight * variation[(hour * 3 + index * 7) % variation.length]
-  );
-  const previousWeights = activity.map(
-    (weight, hour) =>
-      weight * variation[(hour * 5 + index * 11) % variation.length]
-  );
-  const sum = weights.reduce((total, weight) => total + weight, 0);
-  const previousSum = previousWeights.reduce(
-    (total, weight) => total + weight,
-    0
-  );
+// Split a day's totals across 24 hours. Noise is keyed on the date so the
+// same day always draws the same curve, and the hourly shares sum to the day.
+function hours(day: Day | undefined, previous: Day | undefined) {
+  if (!(day && previous)) {
+    return [];
+  }
+  const weights = [day, previous].map((row) => {
+    const key = Number(row.date.replaceAll('-', ''));
+    const noisy = activity.map(
+      (weight, hour) =>
+        weight * (0.8 + 0.4 * ((Math.sin(key + hour * 7.31) + 1) / 2))
+    );
+    const total = noisy.reduce((sum, weight) => sum + weight, 0);
+    return noisy.map((weight) => weight / total);
+  });
   let share = 0;
-  let previousShare = 0;
-
-  return weights.map((weight, hour) => {
-    const start = share;
-    const previousStart = previousShare;
-    share += weight / sum;
-    previousShare += previousWeights[hour] / previousSum;
+  let priorShare = 0;
+  return activity.map((_, hour) => {
+    const from = share;
+    const priorFrom = priorShare;
+    share += weights[0][hour];
+    priorShare += weights[1][hour];
     return {
       date: `${day.date}T${String(hour).padStart(2, '0')}:00:00`,
-      revenue:
-        Math.round(day.revenue * share) - Math.round(day.revenue * start),
+      revenue: Math.round(day.revenue * share) - Math.round(day.revenue * from),
       priorRevenue:
-        Math.round(day.priorRevenue * previousShare) -
-        Math.round(day.priorRevenue * previousStart),
-      charges:
-        Math.round(day.charges * share) - Math.round(day.charges * start),
+        Math.round(previous.revenue * priorShare) -
+        Math.round(previous.revenue * priorFrom),
+      charges: Math.round(day.charges * share) - Math.round(day.charges * from),
       priorCharges:
-        Math.round(day.priorCharges * previousShare) -
-        Math.round(day.priorCharges * previousStart),
+        Math.round(previous.charges * priorShare) -
+        Math.round(previous.charges * priorFrom),
     };
   });
-});
+}

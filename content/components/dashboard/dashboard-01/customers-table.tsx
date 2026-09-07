@@ -10,7 +10,6 @@ import {
   XIcon,
 } from 'lucide-react';
 import { useState } from 'react';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -46,12 +45,16 @@ import {
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 
+const easeOut = 'ease-[cubic-bezier(0.23,1,0.32,1)]';
+const press = `${easeOut} transition-[scale,background-color] duration-150 active:scale-[0.96] motion-reduce:active:scale-100`;
+const swap = `${easeOut} fade-in zoom-in-95 motion-reduce:zoom-in-100 animate-in duration-150`;
+
 export function CustomersTable() {
   const [query, setQuery] = useState('');
-  const [selectedPlans, setSelectedPlans] = useState<readonly Plan[]>([]);
-  const [selectedStatuses, setSelectedStatuses] = useState<readonly Status[]>(
-    []
-  );
+  const [selected, setSelected] = useState<Record<Facet, readonly string[]>>({
+    Plan: [],
+    Status: [],
+  });
   const [page, setPage] = useState(1);
   const [customer, setCustomer] = useState<Customer | null>(null);
 
@@ -76,13 +79,28 @@ export function CustomersTable() {
       (!term ||
         item.name.toLocaleLowerCase().includes(term) ||
         item.email.toLocaleLowerCase().includes(term)) &&
-      (!selectedPlans.length || selectedPlans.includes(item.plan)) &&
-      (!selectedStatuses.length || selectedStatuses.includes(item.status))
+      (!selected.Plan.length || selected.Plan.includes(item.plan)) &&
+      (!selected.Status.length || selected.Status.includes(item.status))
   );
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / 9));
   const visibleCustomers = filtered.slice((page - 1) * 9, page * 9);
-  const filterCount = selectedPlans.length + selectedStatuses.length;
+  const filterCount = selected.Plan.length + selected.Status.length;
+  const toggle = (facet: Facet, option: string) => {
+    setSelected((current) => ({
+      ...current,
+      [facet]: current[facet].includes(option)
+        ? current[facet].filter((item) => item !== option)
+        : [...current[facet], option],
+    }));
+    setPage(1);
+  };
+  const clear = (facet?: Facet) => {
+    setSelected((current) =>
+      facet ? { ...current, [facet]: [] } : { Plan: [], Status: [] }
+    );
+    setPage(1);
+  };
 
   const exportCustomers = () => {
     const csv = [
@@ -124,130 +142,61 @@ export function CustomersTable() {
               aria-label="Active customer filters"
               className="flex flex-wrap items-center gap-2"
             >
-              {selectedPlans.length > 0 && (
-                <div className="flex h-9 items-center rounded-full border border-border bg-background text-[0.8125rem] dark:border-input dark:bg-input/30">
-                  <div className="flex h-full items-center border-r px-3 font-medium">
-                    Plan
-                  </div>
-                  <div className="flex h-full items-center border-r px-2 text-muted-foreground">
-                    {selectedPlans.length === 1 ? 'is' : 'is any of'}
-                  </div>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger
-                      render={
-                        <Button
-                          className="h-full rounded-none px-2.5 text-[0.8125rem]"
-                          variant="ghost"
-                        />
-                      }
+              {facets.map(
+                (facet) =>
+                  selected[facet].length > 0 && (
+                    <div
+                      className={cn(
+                        swap,
+                        'flex h-7 items-center rounded-md bg-muted pl-2 text-[0.8125rem]'
+                      )}
+                      key={facet}
                     >
-                      {selectedPlans.join(', ')}
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-44 rounded-[10px] p-1.5">
-                      <DropdownMenuGroup>
-                        <DropdownMenuLabel>Plan</DropdownMenuLabel>
-                        {plans.map((plan) => (
-                          <DropdownMenuCheckboxItem
-                            checked={selectedPlans.includes(plan)}
-                            className="min-h-9 px-2.5"
-                            closeOnClick={false}
-                            key={plan}
-                            onCheckedChange={() => {
-                              setSelectedPlans((current) =>
-                                current.includes(plan)
-                                  ? current.filter((item) => item !== plan)
-                                  : [...current, plan]
-                              );
-                              setPage(1);
-                            }}
-                          >
-                            {plan}
-                          </DropdownMenuCheckboxItem>
-                        ))}
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Button
-                    aria-label="Remove plan filter"
-                    className="h-full w-8 rounded-none rounded-r-full border-l"
-                    onClick={() => {
-                      setSelectedPlans([]);
-                      setPage(1);
-                    }}
-                    size="icon-sm"
-                    type="button"
-                    variant="ghost"
-                  >
-                    <XIcon aria-hidden="true" />
-                  </Button>
-                </div>
-              )}
-              {selectedStatuses.length > 0 && (
-                <div className="flex h-9 items-center rounded-full border border-border bg-background text-[0.8125rem] dark:border-input dark:bg-input/30">
-                  <div className="flex h-full items-center border-r px-3 font-medium">
-                    Status
-                  </div>
-                  <div className="flex h-full items-center border-r px-2 text-muted-foreground">
-                    {selectedStatuses.length === 1 ? 'is' : 'is any of'}
-                  </div>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger
-                      render={
-                        <Button
-                          className="h-full max-w-40 rounded-none px-2.5 text-[0.8125rem]"
-                          variant="ghost"
-                        />
-                      }
-                    >
-                      <span className="truncate">
-                        {selectedStatuses.join(', ')}
-                      </span>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-48 rounded-[10px] p-1.5">
-                      <DropdownMenuGroup>
-                        <DropdownMenuLabel>Status</DropdownMenuLabel>
-                        {statuses.map((status) => (
-                          <DropdownMenuCheckboxItem
-                            checked={selectedStatuses.includes(status)}
-                            className="min-h-9 px-2.5"
-                            closeOnClick={false}
-                            key={status}
-                            onCheckedChange={() => {
-                              setSelectedStatuses((current) =>
-                                current.includes(status)
-                                  ? current.filter((item) => item !== status)
-                                  : [...current, status]
-                              );
-                              setPage(1);
-                            }}
-                          >
-                            {status}
-                          </DropdownMenuCheckboxItem>
-                        ))}
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Button
-                    aria-label="Remove status filter"
-                    className="h-full w-8 rounded-none rounded-r-full border-l"
-                    onClick={() => {
-                      setSelectedStatuses([]);
-                      setPage(1);
-                    }}
-                    size="icon-sm"
-                    type="button"
-                    variant="ghost"
-                  >
-                    <XIcon aria-hidden="true" />
-                  </Button>
-                </div>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger
+                          render={
+                            <button
+                              className="flex h-full max-w-56 items-center gap-1 rounded-l-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                              type="button"
+                            />
+                          }
+                        >
+                          <span className="text-muted-foreground">
+                            {facet}:
+                          </span>
+                          <span className="truncate font-medium">
+                            {selected[facet].join(', ')}
+                          </span>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-44 rounded-[10px] p-1.5">
+                          <DropdownMenuGroup>
+                            {options[facet].map((option) => (
+                              <DropdownMenuCheckboxItem
+                                checked={selected[facet].includes(option)}
+                                className="min-h-9 px-2.5"
+                                closeOnClick={false}
+                                key={option}
+                                onCheckedChange={() => toggle(facet, option)}
+                              >
+                                {option}
+                              </DropdownMenuCheckboxItem>
+                            ))}
+                          </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                      <button
+                        aria-label={`Remove ${facet.toLowerCase()} filter`}
+                        className="flex h-full w-6 items-center justify-center rounded-r-md text-muted-foreground outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+                        onClick={() => clear(facet)}
+                        type="button"
+                      >
+                        <XIcon aria-hidden="true" className="size-3.5" />
+                      </button>
+                    </div>
+                  )
               )}
               <Button
-                onClick={() => {
-                  setSelectedPlans([]);
-                  setSelectedStatuses([]);
-                  setPage(1);
-                }}
+                onClick={() => clear()}
                 size="sm"
                 type="button"
                 variant="ghost"
@@ -289,7 +238,7 @@ export function CustomersTable() {
               <DropdownMenuTrigger
                 render={
                   <Button
-                    className="h-9 flex-1 sm:flex-none"
+                    className={cn(press, 'h-9 flex-1 sm:flex-none')}
                     size="lg"
                     variant="outline"
                   />
@@ -299,56 +248,26 @@ export function CustomersTable() {
                 Filter{filterCount ? ` (${filterCount})` : ''}
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel>Plan</DropdownMenuLabel>
-                  {plans.map((plan) => (
-                    <DropdownMenuCheckboxItem
-                      checked={selectedPlans.includes(plan)}
-                      key={plan}
-                      onCheckedChange={() => {
-                        setSelectedPlans((current) =>
-                          current.includes(plan)
-                            ? current.filter((item) => item !== plan)
-                            : [...current, plan]
-                        );
-                        setPage(1);
-                      }}
-                    >
-                      {plan}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel>Status</DropdownMenuLabel>
-                  {statuses.map((status) => (
-                    <DropdownMenuCheckboxItem
-                      checked={selectedStatuses.includes(status)}
-                      key={status}
-                      onCheckedChange={() => {
-                        setSelectedStatuses((current) =>
-                          current.includes(status)
-                            ? current.filter((item) => item !== status)
-                            : [...current, status]
-                        );
-                        setPage(1);
-                      }}
-                    >
-                      {status}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuGroup>
+                {facets.map((facet, index) => (
+                  <DropdownMenuGroup key={facet}>
+                    {index > 0 && <DropdownMenuSeparator />}
+                    <DropdownMenuLabel>{facet}</DropdownMenuLabel>
+                    {options[facet].map((option) => (
+                      <DropdownMenuCheckboxItem
+                        checked={selected[facet].includes(option)}
+                        key={option}
+                        onCheckedChange={() => toggle(facet, option)}
+                      >
+                        {option}
+                      </DropdownMenuCheckboxItem>
+                    ))}
+                  </DropdownMenuGroup>
+                ))}
                 {filterCount > 0 && (
                   <>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
-                      <DropdownMenuItem
-                        onClick={() => {
-                          setSelectedPlans([]);
-                          setSelectedStatuses([]);
-                          setPage(1);
-                        }}
-                      >
+                      <DropdownMenuItem onClick={() => clear()}>
                         Clear filters
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
@@ -357,7 +276,7 @@ export function CustomersTable() {
               </DropdownMenuContent>
             </DropdownMenu>
             <Button
-              className="h-9 flex-1 sm:flex-none"
+              className={cn(press, 'h-9 flex-1 sm:flex-none')}
               onClick={exportCustomers}
               size="lg"
               variant="outline"
@@ -415,7 +334,7 @@ export function CustomersTable() {
                 </TableCell>
                 <TableCell className="px-2 py-0 text-sm">{item.plan}</TableCell>
                 <TableCell className="px-2 py-0">
-                  <StatusBadge status={item.status} />
+                  <StatusDot status={item.status} />
                 </TableCell>
                 <TableCell className="px-0 py-0 text-right">
                   <DropdownMenu>
@@ -559,7 +478,7 @@ export function CustomersTable() {
                 <dd>{customer.plan}</dd>
                 <dt className="text-muted-foreground">Status</dt>
                 <dd>
-                  <StatusBadge status={customer.status} />
+                  <StatusDot status={customer.status} />
                 </dd>
               </dl>
               <DialogFooter>
@@ -583,19 +502,18 @@ export function CustomersTable() {
   );
 }
 
-function StatusBadge({ status }: { readonly status: Status }) {
+function StatusDot({ status }: { readonly status: Status }) {
   return (
-    <Badge
-      className={cn(
-        'h-5 gap-1.5 border-0 px-2 font-medium text-[11px]',
-        statusStyles[status]
-      )}
-    >
-      <span aria-hidden="true" className="size-1.5 rounded-full bg-current" />
+    <span className="inline-flex items-center gap-2 text-sm">
+      <span
+        aria-hidden="true"
+        className={cn('size-1.5 rounded-full', statusDots[status])}
+      />
       {status}
-    </Badge>
+    </span>
   );
 }
+
 type Plan = 'Starter' | 'Pro' | 'Team';
 type Status = 'Active' | 'Pending' | 'Under review' | 'Rejected' | 'Inactive';
 
@@ -736,20 +654,17 @@ const customers: readonly Customer[] = [
   },
 ];
 
-const plans: readonly Plan[] = ['Starter', 'Pro', 'Team'];
-const statuses: readonly Status[] = [
-  'Active',
-  'Pending',
-  'Under review',
-  'Rejected',
-  'Inactive',
-];
+type Facet = 'Plan' | 'Status';
+const facets: readonly Facet[] = ['Plan', 'Status'];
+const options: Record<Facet, readonly string[]> = {
+  Plan: ['Starter', 'Pro', 'Team'],
+  Status: ['Active', 'Pending', 'Under review', 'Rejected', 'Inactive'],
+};
 
-const statusStyles: Record<Status, string> = {
-  Active: 'bg-[#DCFCE7] text-[#15803D] dark:bg-[#14301F] dark:text-[#4ADE80]',
-  Pending: 'bg-[#FEF3C7] text-[#B45309] dark:bg-[#3D2E14] dark:text-[#FCD34D]',
-  'Under review':
-    'bg-[#DBEAFE] text-[#1D4ED8] dark:bg-[#1E2A44] dark:text-[#93C5FD]',
-  Rejected: 'bg-[#FEE2E2] text-[#B91C1C] dark:bg-[#3A1D1D] dark:text-[#F87171]',
-  Inactive: 'bg-[#F4F4F5] text-[#71717A] dark:bg-[#1F1F1F] dark:text-[#A1A1AA]',
+const statusDots: Record<Status, string> = {
+  Active: 'bg-green-500',
+  Pending: 'bg-amber-500',
+  'Under review': 'bg-blue-500',
+  Rejected: 'bg-red-500',
+  Inactive: 'bg-muted-foreground/40',
 };

@@ -8,8 +8,10 @@ import {
   ChevronDown,
   LockKeyhole,
   LogOut,
+  Moon,
   PanelLeftClose,
   PanelLeftOpen,
+  Sun,
   UserRound,
 } from 'lucide-react';
 import { type ComponentProps, useState } from 'react';
@@ -46,10 +48,14 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { useSidebar } from '@/components/ui/sidebar';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { cn } from '@/lib/utils';
 import type { DashboardCharts } from './dashboard-charts';
 
 type ChartOptions = ComponentProps<typeof DashboardCharts>;
 type DateRange = Pick<ChartOptions, 'from' | 'to'>;
+
+const press =
+  'ease-[cubic-bezier(0.23,1,0.32,1)] transition-[scale,background-color] duration-150 active:scale-[0.96] motion-reduce:active:scale-100';
 
 export function DashboardHeader({
   period,
@@ -128,6 +134,7 @@ export function DashboardHeader({
               render={
                 <Button
                   aria-label={`Date range: ${rangeLabel}`}
+                  className={press}
                   size="lg"
                   variant="outline"
                 />
@@ -176,6 +183,18 @@ export function DashboardHeader({
             </DropdownMenuContent>
           </DropdownMenu>
           <Separator className="h-5! max-sm:hidden" orientation="vertical" />
+          <Button
+            aria-label="Toggle dark mode"
+            className={cn(press, 'relative')}
+            onClick={() => document.documentElement.classList.toggle('dark')}
+            size="icon-lg"
+            title="Toggle dark mode (Shift+D)"
+            type="button"
+            variant="ghost"
+          >
+            <Sun className="scale-100 opacity-100 transition-[opacity,scale] duration-150 ease-out dark:scale-50 dark:opacity-0" />
+            <Moon className="absolute scale-50 opacity-0 transition-[opacity,scale] duration-150 ease-out dark:scale-100 dark:opacity-100" />
+          </Button>
           <Popover onOpenChange={setNotificationsOpen} open={notificationsOpen}>
             <PopoverTrigger
               render={
@@ -183,7 +202,7 @@ export function DashboardHeader({
                   aria-label={
                     unread ? 'Notifications, unread updates' : 'Notifications'
                   }
-                  className="relative"
+                  className={cn(press, 'relative')}
                   size="icon-lg"
                   variant="ghost"
                 />
@@ -302,14 +321,14 @@ export function DashboardHeader({
               render={
                 <Button
                   aria-label="Account menu"
-                  className="gap-2 rounded-full pr-2.5 pl-1"
+                  className={cn(press, 'gap-2 rounded-full pr-2.5 pl-1')}
                   size="lg"
                   variant="outline"
                 />
               }
             >
               <Avatar className="size-7">
-                <AvatarFallback className="bg-linear-to-br from-amber-400 to-red-500 font-semibold text-[0.6875rem] text-white">
+                <AvatarFallback className="bg-muted font-semibold text-[0.6875rem] text-foreground">
                   EB
                 </AvatarFallback>
               </Avatar>
@@ -450,7 +469,9 @@ export function DashboardHeader({
                 >
                   Cancel
                 </Button>
-                <Button type="submit">Apply range</Button>
+                <Button className={press} type="submit">
+                  Apply range
+                </Button>
               </DialogFooter>
             </form>
           )}

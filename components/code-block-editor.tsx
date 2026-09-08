@@ -18,14 +18,13 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import { ChevronRight } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import * as React from 'react';
 import { useCopyToClipboard } from '@/hooks/use-copy';
 import type { FileItem, FileTreeItem } from '@/lib/blocks';
 import { cn } from '@/lib/utils';
 
 preloadHighlighter({ themes: ['pierre-dark', 'pierre-light'], langs: ['tsx'] });
-
-const COLOR_MODE_STORAGE_KEY = 'blocks-code-preview-color-mode';
 
 type EditorContext = {
   activeFile: string | null;
@@ -220,11 +219,8 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
 function CodeView() {
   const { activeFile, fileTree, openFiles, setActiveFile, closeFile } =
     useEditor();
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>(() =>
-    window.localStorage.getItem(COLOR_MODE_STORAGE_KEY) === 'dark'
-      ? 'dark'
-      : 'light'
-  );
+  const { resolvedTheme, setTheme } = useTheme();
+  const colorMode = resolvedTheme === 'dark' ? 'dark' : 'light';
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 1200 });
   const file = activeFile ? findFile(fileTree, activeFile) : null;
   const content = file?.content ?? '';
@@ -314,11 +310,7 @@ function CodeView() {
                 'inline-flex size-6 items-center justify-center transition-opacity hover:opacity-80',
                 styles.controls
               )}
-              onClick={() => {
-                const mode = isDark ? 'light' : 'dark';
-                window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, mode);
-                setColorMode(mode);
-              }}
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
               title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               type="button"
             >

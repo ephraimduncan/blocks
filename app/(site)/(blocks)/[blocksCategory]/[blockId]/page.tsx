@@ -122,7 +122,7 @@ export default async function BlockPage({ params }: Params) {
       <article className="py-6 md:py-10">
         <div className="space-y-4">
           <Link
-            className="font-medium text-sm text-zinc-500 transition-colors hover:text-foreground"
+            className="font-medium text-sm text-zinc-500 transition-colors hover:text-foreground dark:text-zinc-400"
             href={`/${blocksCategory}`}
           >
             Back to {category.name}
@@ -130,7 +130,7 @@ export default async function BlockPage({ params }: Params) {
           <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-5xl">
             {block.name}
           </h1>
-          <p className="text-pretty text-base text-zinc-500 md:text-lg">
+          <p className="text-pretty text-base text-zinc-500 md:text-lg dark:text-zinc-400">
             Free {category.name.toLowerCase()} component built with shadcn/ui,
             React, Tailwind CSS, and Next.js. Use it as a copy-paste block or
             add it directly from the blocks registry.
@@ -154,12 +154,12 @@ export default async function BlockPage({ params }: Params) {
           </Link>
         </div>
 
-        <section className="mt-10 rounded-2xl bg-zinc-50 p-6 ring-1 ring-black/5">
+        <section className="mt-10 rounded-2xl bg-zinc-50 p-6 ring-1 ring-black/5 dark:bg-white/[0.025] dark:ring-white/[0.06]">
           <h2 className="font-semibold text-xl">Install this block</h2>
           <p className="mt-2 text-muted-foreground text-sm">
             Add this block to your project with the shadcn CLI.
           </p>
-          <pre className="mt-4 overflow-x-auto rounded-xl bg-white px-4 py-3 text-sm ring-1 ring-black/5">
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-white px-4 py-3 text-sm ring-1 ring-black/5 dark:bg-background dark:ring-white/[0.06]">
             <code>{`npx shadcn@latest add @blocks-so/${block.blocksId}`}</code>
           </pre>
         </section>
@@ -171,7 +171,7 @@ export default async function BlockPage({ params }: Params) {
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {relatedBlocks.map((related) => (
               <Link
-                className="rounded-xl bg-zinc-50 p-4 ring-1 ring-black/5 transition-all duration-200 hover:shadow-md hover:shadow-zinc-200/50 hover:ring-black/10"
+                className="rounded-xl bg-zinc-50 p-4 ring-1 ring-black/5 transition-all duration-200 hover:shadow-md hover:shadow-zinc-200/50 hover:ring-black/10 dark:bg-white/[0.025] dark:shadow-none dark:ring-white/[0.06] dark:hover:shadow-none dark:hover:ring-white/10"
                 href={`/${blocksCategory}/${related.blocksId}`}
                 key={related.blocksId}
               >

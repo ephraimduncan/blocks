@@ -1,0 +1,98 @@
+<svg width="415" height="280" viewBox="0 0 415 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(-30.33 -32.15)">
+<g filter="url(#dash_shadow)">
+<rect x="35.33" y="37.15" width="143" height="270" rx="8.635" fill="#161616"/>
+</g>
+<rect x="47.67" y="49.49" width="24" height="24" rx="5.714" fill="#252525"/>
+<path d="M52.83 63.8v-2.54l7.27-7.27h2.54v2.31l-7.5 7.5h-2.31Z" fill="#D2D2D2"/>
+<path d="M52.67 59.42v-3.3l2.31-2.3h2.54v1.15l-.64.6-.63.55h-1.27v1.33l-2.31 1.97Z" fill="#D2D2D2"/>
+<path d="M66.68 53.8v4.9l-5.95 5.96h-2.45v-2.45l5.95-5.96v-1.75l.7-.7h1.75Z" fill="#D2D2D2"/>
+<rect x="81.98" y="58.3" width="33.38" height="6.38" rx="3.19" fill="#1E1E1E" stroke="#252525" stroke-width="0.617"/>
+<path d="M157 55.5h9M157 58.3h9M157 61.1h9M157 63.9h9M157 66.7h9" stroke="#2F2F2F" stroke-width="1.4" stroke-linecap="round"/>
+<g filter="url(#dash_shadow)">
+<rect x="47.67" y="93.49" width="118.33" height="22" rx="5" fill="#1E1E1E"/>
+</g>
+<rect x="55.98" y="101.8" width="101.7" height="5.38" rx="2.69" fill="#D1D1D1" stroke="#D5D5D5" stroke-width="0.617"/>
+<rect x="48.01" y="135.83" width="44.14" height="4.95" rx="2.48" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<rect x="48.01" y="154.47" width="82.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<rect x="48.01" y="173.47" width="59.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<rect x="48.01" y="199.47" width="50.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<rect x="48.01" y="218.47" width="44.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<rect x="48.01" y="237.47" width="25.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<g filter="url(#dash_shadow_lg)">
+<rect x="190.33" y="37.15" width="256" height="78" rx="9.636" fill="#161616"/>
+</g>
+<path d="M204.1 69.2l6.79-10.03c1.66-2.44 4.33-4.01 7.28-4.25 2.94-.25 5.84.85 7.88 2.99l5.25 5.49c3.08 3.23 8.15 3.45 11.5.52l6-5.25" stroke="#2B2B2B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="204.44" y="89.5" width="27.31" height="5.31" rx="2.66" fill="#D1D1D1" stroke="#D5D5D5" stroke-width="0.688"/>
+<rect x="204.44" y="103.5" width="57.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<path d="M280.6 50.15v52" stroke="#1D1D1D"/>
+<path d="M299.1 68.7l11.38-9.26c1.84-1.5 4.22-2.16 6.56-1.83 2.35.33 4.45 1.62 5.81 3.56 1.24 1.78 3.24 2.87 5.4 2.94 2.17.07 4.24-.88 5.6-2.57l9.95-12.38" stroke="#2B2B2B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="299.44" y="89.5" width="57.31" height="5.31" rx="2.66" fill="#D1D1D1" stroke="#D5D5D5" stroke-width="0.688"/>
+<rect x="299.44" y="103.5" width="39.31" height="5.31" rx="2.66" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<g filter="url(#dash_shadow_lg)">
+<rect x="190.33" y="123.15" width="122" height="95.54" rx="9.636" fill="#161616"/>
+</g>
+<g filter="url(#dash_shadow_sm)">
+<rect x="204.1" y="136.92" width="24" height="24" rx="12" fill="#1D1D1D"/>
+</g>
+<rect x="211.28" y="144.1" width="9.64" height="9.64" rx="4.82" fill="#8E8E8E" stroke="#BDBDBD" stroke-width="0.688"/>
+<rect x="204.44" y="179.26" width="49.31" height="8.31" rx="4.16" fill="#1E1E1E" stroke="#252525" stroke-width="0.688"/>
+<rect x="204.44" y="200.26" width="17.31" height="4.31" rx="2.16" fill="#292929" stroke="#353535" stroke-width="0.688"/>
+<g filter="url(#dash_shadow_lg)">
+<rect x="324.33" y="123.15" width="122" height="95.54" rx="9.636" fill="#161616"/>
+</g>
+</g>
+<defs>
+<filter id="dash_shadow" x="20" y="20" width="200" height="300" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="bg"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1.85" operator="erode" in="SourceAlpha" result="s1"/>
+<feOffset dy="3.08"/>
+<feGaussianBlur stdDeviation="4.01"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="bg" result="s1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.31" operator="dilate" in="SourceAlpha" result="s2"/>
+<feOffset dy="0.31"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="s1" result="s2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="s2" result="shape"/>
+</filter>
+<filter id="dash_shadow_lg" x="170" y="20" width="300" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="bg"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2.06" operator="erode" in="SourceAlpha" result="s1"/>
+<feOffset dy="3.44"/>
+<feGaussianBlur stdDeviation="4.47"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="bg" result="s1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.34" operator="dilate" in="SourceAlpha" result="s2"/>
+<feOffset dy="0.34"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="s1" result="s2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="s2" result="shape"/>
+</filter>
+<filter id="dash_shadow_sm" x="194" y="127" width="44" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="bg"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1.5" operator="erode" in="SourceAlpha" result="s1"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.17 0"/>
+<feBlend mode="normal" in2="bg" result="s1"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="0.25" operator="dilate" in="SourceAlpha" result="s2"/>
+<feOffset dy="0.25"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"/>
+<feBlend mode="normal" in2="s1" result="s2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="s2" result="shape"/>
+</filter>
+</defs>
+</svg>

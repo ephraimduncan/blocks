@@ -17,7 +17,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { blocksCategory: categoryId } = await params;
   const blocksCategory = blocksCategoriesMetadata.find(
     (category) => category.id === categoryId
@@ -83,7 +85,6 @@ export default async function Page({ params }: PageProps) {
   const { blocksCategory } = await params;
   const blocks = getBlocks({ blocksCategory });
 
-
   return (
     <>
       <BreadcrumbJsonLd
@@ -103,7 +104,7 @@ export default async function Page({ params }: PageProps) {
       <div className="flex flex-col">
         <div className="flex flex-col gap-3 pt-4 pb-8">
           <Link
-            className="font-medium text-sm text-zinc-500 transition-colors hover:text-foreground"
+            className="font-medium text-sm text-zinc-500 transition-colors hover:text-foreground dark:text-zinc-400"
             href="/"
           >
             All blocks
@@ -112,10 +113,10 @@ export default async function Page({ params }: PageProps) {
           <h1 className="text-balance font-semibold text-3xl tracking-tight sm:text-4xl md:text-5xl">
             {blocks.name}
           </h1>
-          <p className="text-pretty text-base text-zinc-500 md:text-lg">
-            {blocks.blocksData.length} free shadcn/ui {blocks.name.toLowerCase()}{' '}
-            examples built with React, Tailwind CSS, and Next.js. Copy the code
-            or add any block from the registry.
+          <p className="text-pretty text-base text-zinc-500 md:text-lg dark:text-zinc-400">
+            {blocks.blocksData.length} free shadcn/ui{' '}
+            {blocks.name.toLowerCase()} examples built with React, Tailwind CSS,
+            and Next.js. Copy the code or add any block from the registry.
           </p>
         </div>
 

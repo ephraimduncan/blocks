@@ -1,5 +1,6 @@
 import { IconSquareRoundedFilled } from '@tabler/icons-react';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
@@ -17,6 +18,7 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <RegistrySetup />
+          <ThemeToggle />
 
           <a
             className={cn(

@@ -2,6 +2,7 @@ import { Agentation } from 'agentation';
 import '@/app/globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { ThemeProvider } from 'next-themes';
 import { fontMono, fontSans } from '@/app/fonts';
 import { SeoJsonLd } from '@/components/seo-jsonld';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -120,7 +121,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="light" lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {process.env.NODE_ENV === 'development' && (
           <Script
@@ -134,14 +135,20 @@ export default function RootLayout({
         className={cn(fontSans.variable, fontMono.variable, 'antialiased')}
         suppressHydrationWarning
       >
-        <TooltipProvider delay={0}>
-          {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+        >
+          <TooltipProvider delay={0}>
+            {children}
 
-          <TailwindIndicator />
-          <Toaster />
-          <SeoJsonLd />
-          {process.env.NODE_ENV === 'development' && <Agentation />}
-        </TooltipProvider>
+            <TailwindIndicator />
+            <Toaster />
+            <SeoJsonLd />
+            {process.env.NODE_ENV === 'development' && <Agentation />}
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

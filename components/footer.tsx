@@ -15,7 +15,7 @@ export function Footer() {
           <p>
             Built by{' '}
             <a
-              className="text-zinc-500 underline underline-offset-4 transition-colors hover:text-foreground"
+              className="text-zinc-500 underline underline-offset-4 transition-colors hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground"
               data-umami-event="View Ephraim Duncan's Website"
               href={siteConfig.links.website}
               rel="noreferrer"
@@ -25,7 +25,7 @@ export function Footer() {
             </a>
             . Source on{' '}
             <a
-              className="text-zinc-500 underline underline-offset-4 transition-colors hover:text-foreground"
+              className="text-zinc-500 underline underline-offset-4 transition-colors hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground"
               data-umami-event="View GitHub Repository"
               href={siteConfig.links.github}
               rel="noreferrer"

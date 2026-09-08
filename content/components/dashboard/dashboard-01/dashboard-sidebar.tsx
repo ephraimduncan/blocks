@@ -5,7 +5,7 @@ import {
   BriefcaseBusiness,
   ChartNoAxesCombined,
   Check,
-  ChevronsUpDown,
+  ChevronDown,
   CircleHelp,
   CirclePlus,
   CreditCard,
@@ -72,21 +72,17 @@ export function DashboardSidebar() {
                   render={
                     <SidebarMenuButton
                       aria-label={`${workspace}, switch workspace`}
-                      className="h-11 gap-2.5 rounded-[10px] border px-2 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
-                      size="lg"
+                      className="h-9 gap-2 rounded-lg px-2 font-medium group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
                     />
                   }
                 >
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-blue-500 font-semibold text-white">
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-[5px] bg-blue-500 font-semibold text-[0.6875rem] text-white">
                     {workspace.slice(0, 1)}
-                  </div>
-                  <div className="flex min-w-0 flex-1 flex-col gap-0.5 text-sm group-data-[collapsible=icon]:hidden">
-                    <span className="truncate font-medium">{workspace}</span>
-                    <div className="text-muted-foreground text-xs">
-                      Pro workspace
-                    </div>
-                  </div>
-                  <ChevronsUpDown className="text-muted-foreground group-data-[collapsible=icon]:hidden" />
+                  </span>
+                  <span className="flex-1 truncate group-data-[collapsible=icon]:hidden">
+                    {workspace}
+                  </span>
+                  <ChevronDown className="text-muted-foreground group-data-[collapsible=icon]:hidden" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   className={cn(
@@ -111,16 +107,16 @@ export function DashboardSidebar() {
                         key={item}
                         onClick={() => setWorkspace(item)}
                       >
-                        <div
+                        <span
                           className={cn(
-                            'flex size-5.5 shrink-0 items-center justify-center rounded-full text-xs',
+                            'flex size-5 shrink-0 items-center justify-center rounded-[5px] font-semibold text-[0.6875rem]',
                             index === 0
-                              ? 'rounded-md bg-blue-500 text-white'
+                              ? 'bg-blue-500 text-white'
                               : 'bg-muted text-muted-foreground'
                           )}
                         >
                           {item.slice(0, 1)}
-                        </div>
+                        </span>
                         <span className="flex-1 truncate">{item}</span>
                         {item === workspace && <Check aria-label="Selected" />}
                       </DropdownMenuItem>

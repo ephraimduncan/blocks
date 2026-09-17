@@ -293,6 +293,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: '550px',
     type: 'file',
   },
+  {
+    id: 'command-menu-04',
+    category: categoryIds.CommandMenu,
+    name: 'Command Menu with Global Search',
+    iframeHeight: '650px',
+    type: 'file',
+  },
 
   {
     id: 'dialog-01',

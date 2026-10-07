@@ -20,7 +20,7 @@ export default function Dialog01() {
         Show Dialog
       </DialogTrigger>
 
-      <DialogContent className="flex flex-col items-center sm:max-w-sm">
+      <DialogContent className="sm:max-w-sm">
         <div className="flex justify-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
             <Check className="h-6 w-6 text-green-600" />
@@ -36,7 +36,7 @@ export default function Dialog01() {
             amet labore.
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="w-full sm:justify-center">
+        <DialogFooter className="sm:justify-center">
           <DialogClose render={<Button className="w-full" />}>
             Go back to dashboard
           </DialogClose>

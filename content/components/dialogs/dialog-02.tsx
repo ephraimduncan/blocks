@@ -20,7 +20,7 @@ export default function Dialog04() {
         Show Dialog
       </DialogTrigger>
 
-      <DialogContent className="flex flex-col items-center sm:max-w-sm">
+      <DialogContent className="sm:max-w-sm">
         <div className="flex justify-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
             <Check className="h-6 w-6 text-green-600" />
@@ -36,14 +36,14 @@ export default function Dialog04() {
             amet labore.
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex w-full flex-col gap-2 sm:flex-row sm:gap-3">
+        <DialogFooter className="flex-col gap-2 sm:flex-row sm:gap-3">
           <DialogClose
-            render={<Button className="w-full sm:w-1/2" variant="default" />}
+            render={<Button className="w-full sm:flex-1" variant="default" />}
           >
             Deactivate
           </DialogClose>
           <DialogClose
-            render={<Button className="w-full sm:w-1/2" variant="outline" />}
+            render={<Button className="w-full sm:flex-1" variant="outline" />}
           >
             Cancel
           </DialogClose>

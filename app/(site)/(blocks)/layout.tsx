@@ -1,6 +1,7 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import Script from "next/script";
+import Script from 'next/script';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { LaunchBanner } from '@/components/launch-banner';
 
 export default function BlockLayout({
   children,
@@ -9,6 +10,7 @@ export default function BlockLayout({
 }>) {
   return (
     <div className="flex min-h-screen flex-col">
+      <LaunchBanner renderedAt={Date.now()} />
       <Header />
       <div className="flex flex-1 flex-col">
         <div className="mx-auto w-full max-w-(--breakpoint-xl) flex-1 px-8">
@@ -19,7 +21,7 @@ export default function BlockLayout({
       </div>
       <Footer />
 
-      {process.env.NODE_ENV === "production" && (
+      {process.env.NODE_ENV === 'production' && (
         <Script
           async
           data-website-id="1671be23-4bb0-43b1-9632-962a463265e8"
